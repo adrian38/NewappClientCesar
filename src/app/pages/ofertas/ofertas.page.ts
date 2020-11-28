@@ -1,0 +1,138 @@
+import { Component, OnInit ,NgZone} from '@angular/core';
+import { Observable } from 'rxjs';
+import { TaskModel } from 'src/app/models/task.model';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { AuthOdooService } from 'src/app/services/auth-odoo.service';
+import { TaskOdooService } from 'src/app/services/task-odoo.service';
+
+@Component({
+  selector: 'app-ofertas',
+  templateUrl: './ofertas.page.html',
+  styleUrls: ['./ofertas.page.scss'],
+})
+export class OfertasPage implements OnInit {
+
+  userType:string="";
+  user : UsuarioModel;
+  task: TaskModel;
+
+  offersList:TaskModel[];
+  offersList$: Observable<TaskModel[]>;
+  notificationOffertCancelled$: Observable<number[]>;
+  notificationNewOffertSuplier$: Observable<number[]>;
+
+  veroferta:boolean;
+  verdetalles:boolean;
+  valorSegment:string="";
+
+  constructor(
+    private _taskOdoo:TaskOdooService,
+    private _authOdoo:AuthOdooService,
+    private ngZone: NgZone) {
+
+
+this.veroferta=true;
+this.verdetalles=false;
+
+
+this.user = this._authOdoo.getUser();
+this.offersList =[];
+this.userType = this.user.type
+
+
+
+
+}
+
+
+ngOnInit() {
+
+  this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
+  this.notificationOffertCancelled$.subscribe(notificationOffertCancelled => {
+    this.ngZone.run(() => {
+
+
+      if (typeof this.offersList !== 'undefined' && this.offersList.length > 0) {
+        for (let Po_id of notificationOffertCancelled) {
+
+          let temp = this.offersList.findIndex(element => element.id === Po_id);
+          if (temp !== -1) {
+            this.offersList.splice(temp, 1);
+          }
+
+        }
+
+      }
+    });
+
+  });
+
+  this.notificationNewOffertSuplier$ = this._taskOdoo.getRequestedNotificationNewOffertSuplier$();
+  this.notificationNewOffertSuplier$.subscribe(notificationNewOffertSuplier=>{
+
+    this.ngZone.run(()=>{
+
+/*           for (let Po_id of notificationNewOffertSuplier) {
+
+        
+          ////////como asocio una po con un task
+        
+
+      } */
+
+      console.log("nueva oferta ha llegado")
+      
+    });
+  });
+
+
+
+
+  //////////////////////////////////////////////
+
+  this.offersList$ = this._taskOdoo.getOffers$();
+  this.offersList$.subscribe(offersList => {
+
+    this.ngZone.run(() => {
+
+      if (offersList.find(element => element.origin)) {
+        let temp = (offersList.find(element => element.origin));
+
+        if (this.task.id_string === temp.origin) {
+          this.offersList = offersList;
+          
+        }
+      }
+    });
+  });
+}
+
+segChange(event){
+  this.valorSegment = event.detail.value;
+  console.log(this.valorSegment);
+
+  if(this.valorSegment==="ofertas"){
+   
+    this.veroferta=true;
+    this.verdetalles=false;
+    console.log("etiqueta",this.veroferta);
+
+ this.task=new TaskModel();
+ this.task=this._taskOdoo.getTaskCesar();
+this._taskOdoo.requestOffersForTask(this.task.id_string);
+console.log("esto",this._taskOdoo.requestOffersForTask(this.task.id_string));
+   
+  }
+  
+  if(this.valorSegment==="detalle"){
+    this.veroferta=false;
+    this.verdetalles=true;
+    console.log("etiqueta",this.verdetalles);
+  }
+
+ 
+
+ 
+}
+
+}

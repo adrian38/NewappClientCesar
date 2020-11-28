@@ -1,0 +1,34 @@
+
+img {
+    width: 120px;
+
+}
+
+
+
+ion-input{
+    border: 1px solid  rgb(246, 183, 118);
+    
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 3px;
+  
+   
+}
+ion-input:focus-within{
+    border: 3px solid  rgb(246, 183, 118);
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 3px;
+}
+
+#datos{
+    margin-top: 20px;
+    //margin-left: 60px;
+}
+
+ion-button{
+    width: 50%;
+    border-radius: 5px 5px 5px 5px ;
+    background-color:  rgb(246, 183, 118);
+    color: black;
+}
+

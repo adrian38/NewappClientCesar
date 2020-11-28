@@ -1,0 +1,75 @@
+<ion-header >
+  <div id="barraSuperior">
+    <div id="barraInferior">
+      <img  id="logo" slot="start" src="../../assets/logoNavbar.png">
+      
+    </div>
+    <h2 style="text-align: center; margin-top: 2px;color: rgb(49 ,49 ,57);">Servicios</h2>
+    
+  </div>
+  <div id="ServHist">
+  <ion-segment  (ionChange)="segChange($event)" 
+                style="color: rgb(49 ,49 ,57);">
+  
+     
+  
+  <ion-segment-button value="servicio">
+  <ion-label>Contratados</ion-label>
+  
+  
+  
+  </ion-segment-button>
+  <ion-segment-button value="historial">
+  <ion-label>Historial</ion-label>
+  </ion-segment-button>
+  
+  </ion-segment>
+  </div>
+  
+</ion-header>
+
+<ion-content >
+
+  <ion-list  *ngIf="verservicios">
+    <ion-item  
+              *ngFor="let contratados of contratadosList ">
+        
+       
+     
+      
+     <ion-grid >
+     <ion-row>
+     <ion-col>
+     <ion-avatar>
+      <img src="../../assets/av-6.png">
+     </ion-avatar>
+     </ion-col>
+     <ion-col>
+     <ion-row>
+     
+      <h6> {{contratados.title}}</h6>
+       <ion-label style="margin-left: 5px;">{{contratados.title}}</ion-label> 
+      </ion-row>
+     <ion-row>
+      <ion-icon name="build"></ion-icon>
+      <ion-label style="margin-left: 5px;">Tipo: {{contratados.type}}</ion-label>
+     </ion-row>
+     <ion-row>
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label style="margin-left: 5px;">Fecha: {{contratados.date_planned}}</ion-label>
+     </ion-row>
+     <ion-row>
+      <ion-icon name="time" ></ion-icon>
+      <ion-label style="margin-left: 5px;">Hora: {{contratados.time}}</ion-label>
+     </ion-row>
+     
+     </ion-col>
+     </ion-row>
+     </ion-grid>
+     
+     </ion-item>
+   </ion-list>   
+ 
+ 
+
+</ion-content>

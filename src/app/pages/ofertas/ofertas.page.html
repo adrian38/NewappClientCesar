@@ -1,0 +1,88 @@
+<ion-header>
+  <div id="barraSuperior">
+    <div id="barraInferior">
+      <img  id="logo" slot="start" src="../../assets/logoNavbar.png">
+      
+    </div>
+    <h2 style="text-align: center; margin-top: 2px;color: rgb(49 ,49 ,57);">Contratados</h2>
+    
+  </div>
+  <div id="ServHist">
+  <ion-segment  (ionChange)="segChange($event)" 
+                style="color: rgb(49 ,49 ,57);">
+  
+     
+  
+  <ion-segment-button value="ofertas">
+  <ion-label>Ofertas</ion-label>
+  
+  
+  
+  </ion-segment-button>
+  <ion-segment-button value="detalle">
+  <ion-label>Detalles</ion-label>
+  </ion-segment-button>
+  
+  </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="veroferta">
+
+
+    <ion-card *ngFor="let offer of offersList"
+    
+    >
+  
+  <ion-row>
+  <ion-col>
+  <ion-avatar>
+    <img src="../../assets/av-6.png">
+  </ion-avatar>
+  <ion-button routerLink="/chat"
+            color="secondary"
+             style="margin-top: 23px;">        
+             chat</ion-button>
+  </ion-col>
+  <ion-col>
+  <ion-card-title >{{offer.provider_name}}</ion-card-title>
+  <ion-card-header>
+              <ion-icon name="star"></ion-icon> 
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+  </ion-card-header>
+  <h5 style="text-align: start;">{{offer.budget}}€</h5>
+  </ion-col>
+  
+  <ion-row>
+  
+  
+  <ion-col>
+  
+  <ion-buttons style="margin-top: 45px;">
+  <ion-button routerLink="/chat"
+              fill="clear">        
+  </ion-button>
+  <ion-icon  name="close" style="width: 25px;height: 25px;"></ion-icon>
+  </ion-buttons>
+  
+  </ion-col>
+  
+  <ion-col>
+  <ion-buttons style="margin-top: 45px;">
+  <ion-button routerLink="/chat"
+              fill="clear">        
+  </ion-button>
+  <ion-icon name="checkmark" style="width: 25px;height: 25px;"></ion-icon>
+  </ion-buttons>
+  
+  </ion-col>
+  </ion-row>
+  </ion-row>
+  
+  </ion-card>
+  </div>
+</ion-content>
