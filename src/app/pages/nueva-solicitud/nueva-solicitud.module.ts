@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FechaPageRoutingModule } from './fecha-routing.module';
+import { NuevaSolicitudPageRoutingModule } from './nueva-solicitud-routing.module';
 
-import { FechaPage } from './fecha.page';
+import { NuevaSolicitudPage } from './nueva-solicitud.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FechaPageRoutingModule
+    NuevaSolicitudPageRoutingModule
   ],
-  declarations: [FechaPage]
+  declarations: [NuevaSolicitudPage]
 })
-export class FechaPageModule {}
+export class NuevaSolicitudPageModule {}

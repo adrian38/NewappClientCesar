@@ -30,6 +30,48 @@
    
 }
 
+ion-slides{
+    width: 95%;
+    height: 90%;
+ 
+}
+
+ion-card{
+    width: 94%;
+    height: 89%;
+    border-radius: 15px 15px 15px 15px;
+    border: 1px solid  rgb(246, 183, 118);
+}
+
+
+#barra{
+    background-color :rgb(241, 241, 241);
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+
+ion-input{
+    border: 1px solid  rgb(246, 183, 118);
+    width: 80%;
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 10px;
+  
+   
+}
+ion-input:focus-within{
+    border: 3px solid  rgb(246, 183, 118);
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 10px;
+}
+#logo1{
+    width: 50px;
+    height: 50px;
+ 
+    
+}
+
+
 textarea{
     border: 1px solid  rgb(246, 183, 118);
   
@@ -47,11 +89,4 @@ textarea:focus-within{
     box-sizing: border-box;
     
     
-}
-
-#btnS{
-    width: 50%;
-    border-radius: 5px 5px 5px 5px ;
-    background-color:  rgb(246, 183, 118);
-
 }
