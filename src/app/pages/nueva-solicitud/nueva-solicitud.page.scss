@@ -24,9 +24,13 @@
 
 #barra{
     background-color :rgb(241, 241, 241);
-    width: 100%;
+    width: 98%;
     height: 50px;
-    text-align: center;
+    //text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
    
 }
 
