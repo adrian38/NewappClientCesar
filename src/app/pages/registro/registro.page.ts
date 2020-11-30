@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotoService } from 'src/app/services/photo.service';
+import { Photo } from '../../services/photo.service';
 
 @Component({
   selector: 'app-registro',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-
-  constructor() { }
+ ver:boolean=true;
+ foto:Photo
+  constructor(public photoService: PhotoService) { }
 
   ngOnInit() {
   }
+  addPhotoToGallery() {
 
+    
+    this.ver=false;
+     this.photoService.addNewToGallery();
+  }
 }

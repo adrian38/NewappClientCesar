@@ -283,106 +283,106 @@ export class TaskOdooService {
     }
 
     //////// De la forma de Michel
-         newTask(task: TaskModel) {
+    newTask(task: TaskModel) {
     
-            //let newTask:TaskModel;
-    
-    
-            let createService = function () {
-    
-                console.log(task);
-                let SO = {
-                    'company_id': 1,
-                    'client_order_ref': task.type,
-                    'order_line': [[0, 0, {
-                        'name': 'Servicio de Fontaneria',
-                        'price_unit': 0.0,
-                        'product_id': 39,
-                        'product_uom': 1,
-                        'product_uom_qty': 1.0,
-                        'state': 'draft'
-                    }]],
-                    'note': '',
-                    'partner_id': 45,
-                    'title': 'arreglo de llave',
-                    'commitment_date': '2020-10-20 07:30:30',
-                    'require_materials': true,
-                    'require_payment': false,
-                    'require_signature': false,
-                    'state': 'draft',
-                    'address_street': '2',
-                    'address_floor': '2',
-                    'address_portal': '2',
-                    'address_number': '2',
-                    'address_door': '2',
-                    'address_stairs': '2',
-                    'address_zip_code': '2',
-                    'address_latitude': '',
-                    'address_longitude': '',
-                }
-                let inParams = [];
-                inParams.push(SO);
-                let params = [];
-                params.push(inParams)
-                let fparams = [];
-                fparams.push(jaysonServer.db);
-                fparams.push(user.id);
-                fparams.push(jaysonServer.password);
-                fparams.push('sale.order');//model
-                fparams.push('create');//method
-    
-                for (let i = 0; i < params.length; i++) {
-                    fparams.push(params[i]);
-                }
-    
-                client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
-    
-                    if (err || !value) {
-                        console.log(err, "Error creando Service");
-    
-                    } else {
-                        console.log(value, "createService");
-                        inParams = []
-                        inParams.push(value)
-                        params = []
-                        params.push(inParams)
-                        let fparams = [];
-                        fparams.push(jaysonServer.db);
-                        fparams.push(user.id);
-                        fparams.push(jaysonServer.password);
-                        fparams.push('sale.order');//model
-                        fparams.push('action_confirm');//method
-    
-                        for (let i = 0; i < params.length; i++) {
-                            fparams.push(params[i]);
-                        }
-    
-                        client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
-                            if (err || !value) {
-                                console.log(err, "Error Confirmar Servicio Creado");
-                                notificationError$.next(true);
-                            } else {
-                                console.log(value, "Confirmar Servicio Creado");
-                                notificationNewSoClient$.next(true);
-    
-                            }
-                        });
-                    }
-                });
+        //let newTask:TaskModel;
+
+
+        let createService = function () {
+
+            console.log(task);
+            let SO = {
+                'company_id': 1,
+                'client_order_ref': task.type,
+                'order_line': [[0, 0, {
+                    'name': task.type,
+                    'price_unit': 0.0,
+                    'product_id': task.product_id,
+                    'product_uom': 1,
+                    'product_uom_qty': 1.0,
+                    'state': 'draft'
+                }]],
+                'note': task.description,
+                'partner_id': task.client_id,
+                'title': task.title,
+                'commitment_date': (task.date + ' ' + task.time),
+                'require_materials': task.require_materials,
+                'require_payment': false,
+                'require_signature': false,
+                'state': 'draft',
+                'address_street': task.address.street,
+                'address_floor': task.address.floor,
+                'address_portal': task.address.portal,
+                'address_number': task.address.number,
+                'address_door': task.address.door,
+                'address_stairs': task.address.stair,
+                'address_zip_code': task.address.cp,
+                'address_latitude': '',
+                'address_longitude': '',
             }
-    
-            let client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
-            client.request('call', { service: 'common', method: 'login', args: [jaysonServer.db, jaysonServer.username, jaysonServer.password] }, function (err, error, value) {
-    
+            let inParams = [];
+            inParams.push(SO);
+            let params = [];
+            params.push(inParams)
+            let fparams = [];
+            fparams.push(jaysonServer.db);
+            fparams.push(user.id);
+            fparams.push(jaysonServer.password);
+            fparams.push('sale.order');//model
+            fparams.push('create');//method
+
+            for (let i = 0; i < params.length; i++) {
+                fparams.push(params[i]);
+            }
+
+            client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
+
                 if (err || !value) {
-                    console.log(err, "newTask");
-    
+                    console.log(err, "createService");
+
                 } else {
-                    createService();
+                    console.log(value, "createService");
+                    inParams = []
+                    inParams.push(value)
+                    params = []
+                    params.push(inParams)
+                    let fparams = [];
+                    fparams.push(jaysonServer.db);
+                    fparams.push(user.id);
+                    fparams.push(jaysonServer.password);
+                    fparams.push('sale.order');//model
+                    fparams.push('action_confirm');//method
+
+                    for (let i = 0; i < params.length; i++) {
+                        fparams.push(params[i]);
+                    }
+
+                    client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
+                        if (err || !value) {
+                            console.log(err, "Error Confirmar Servicio Creado");
+                            notificationError$.next(true);
+                        } else {
+                            console.log(value, "Confirmar Servicio Creado");
+                            notificationNewSoClient$.next(true);
+
+                        }
+                    });
                 }
             });
-    
-        } 
+        }
+
+        let client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
+        client.request('call', { service: 'common', method: 'login', args: [jaysonServer.db, jaysonServer.username, jaysonServer.password] }, function (err, error, value) {
+
+            if (err || !value) {
+                console.log(err, "newTask");
+
+            } else {
+                createService();
+            }
+        });
+
+    }
 
     getNotificationNewSoClient$(): Observable<boolean> {
         return notificationNewSoClient$.asObservable();
