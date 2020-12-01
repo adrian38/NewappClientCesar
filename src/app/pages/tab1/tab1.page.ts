@@ -1,4 +1,5 @@
 import { Component, NgZone ,OnInit} from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 
@@ -28,7 +29,8 @@ export class Tab1Page implements OnInit {
   constructor(private subServ: ObtSubSService,
     private _taskOdoo: TaskOdooService,
     private _authOdoo: AuthOdooService,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    public navCtrl:NavController) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
@@ -64,6 +66,9 @@ export class Tab1Page implements OnInit {
 
 
   }
- 
+  irSolicitud(){
+    this.navCtrl.navigateRoot('nueva-solicitud');
+    //this.navCtrl.navigateBack('back');
+  }
 
 }

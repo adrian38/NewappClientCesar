@@ -44,6 +44,7 @@
       </ion-item>
     </ion-list>
   
+
      </ion-card>
        
    
@@ -266,6 +267,18 @@
       
        
       </ion-grid>
+
+      <!-- lo nuevo -->
+
+      <ion-grid>
+        <ion-row>
+        <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+          <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+    
        </ion-card>
 
     </ion-slide>
@@ -306,9 +319,7 @@
           <ion-label>calle:{{calle}},numero:{{numero}},piso:{{piso}}</ion-label>
           <ion-label>escalera:{{escalera}},portal:{{portal}} y codigo P:{{cod_postal}}</ion-label>
         </ion-row>
-        <ion-row>
-          <ion-label>escalera:{{escalera}},portal:{{portal}} y codigo P:{{cod_postal}}</ion-label>
-        </ion-row>
+       
       </ion-col>
      
     </ion-item>
@@ -330,12 +341,14 @@
     <ion-col size=2></ion-col> 
 
      <ion-col>
-      <ion-button size=4>Cancelar</ion-button>
+      <ion-button size=4
+      routerLink='/tabs/tab1'>Cancelar</ion-button>
      </ion-col>
 
      <ion-col>
       <ion-button size=4
-                  (click)="crearSolicitud()">Crear</ion-button>
+                  (click)="crearSolicitud()"
+                  routerLink='/tabs/tab1'>Crear</ion-button>
      </ion-col>
 
      <ion-col size=2></ion-col> 

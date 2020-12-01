@@ -40,6 +40,8 @@ export class Tab2Page {
     this.contratadosList = this.subServ.getContratadosList();
     console.log(this.contratadosList,'tabs2 entro');
     this.verservicios=true;
+    this.verhistorial=false;
+ 
   }
   ngOnInit(): void {
     this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();

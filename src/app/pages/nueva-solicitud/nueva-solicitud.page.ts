@@ -1,7 +1,13 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Address, TaskModel } from '../../models/task.model';
+
+//-----------------------------------------------
+import { ActionSheetController } from '@ionic/angular';
+
+import { Photo,PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'app-nueva-solicitud',
@@ -28,12 +34,16 @@ export class NuevaSolicitudPage implements OnInit {
 
   constructor(private datos:ObtSubSService,
               private _taskOdoo: TaskOdooService,
-              private ngZone: NgZone) { 
+              private ngZone: NgZone,
+              public navCtrl:NavController,
+              public photoService: PhotoService, 
+              public actionSheetController: ActionSheetController) { 
    
   }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+//-----------------------
+await this.photoService.loadSaved();
   }
 
   checkSiF(){
@@ -115,18 +125,30 @@ this.datos.setportal(this.portal);
 this._taskOdoo.newTask(this.task);
 
 
-//this.task.require_materials= !this.checkSi; 
-/* this.task.description =this.comentario;
-this.task.address.street=this.calle;
-this.task.address.door=this.puerta;
-this.task.address.floor=this.piso;
-this.task.address.number=this.numero;
-this.task.address.portal=this.portal;
-this.task.address.stair=this.escalera; */
-
-   
 
 
   }
-
+ 
+//-------------------------------
+public async showActionSheet(photo: Photo, position: number) {
+  const actionSheet = await this.actionSheetController.create({
+    header: 'Photos',
+    buttons: [{
+      text: 'Delete',
+      role: 'destructive',
+      icon: 'trash',
+      handler: () => {
+        this.photoService.deletePicture(photo, position);
+      }
+    }, {
+      text: 'Cancel',
+      icon: 'close',
+      role: 'cancel',
+      handler: () => {
+        // Nothing to do, action sheet is automatically closed
+       }
+    }]
+  });
+  await actionSheet.present();
+}
 }

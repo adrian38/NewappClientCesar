@@ -290,36 +290,36 @@ export class TaskOdooService {
 
         let createService = function () {
 
-            console.log(task);
+        
             let SO = {
-                'company_id': 1,
-                'client_order_ref': task.type,
-                'order_line': [[0, 0, {
-                    'name': task.type,
-                    'price_unit': 0.0,
-                    'product_id': task.product_id,
-                    'product_uom': 1,
-                    'product_uom_qty': 1.0,
+                'company_id': 1, 
+                'order_line': [[0,0,{
+                    'name': task.type, 
+                    'price_unit': 0.0, 
+                    'product_id': task.product_id, 
+                    'product_uom': 1, 
+                    'product_uom_qty': 1.0, 
                     'state': 'draft'
                 }]],
-                'note': task.description,
-                'partner_id': task.client_id,
-                'title': task.title,
-                'commitment_date': (task.date + ' ' + task.time),
-                'require_materials': task.require_materials,
-                'require_payment': false,
+                'partner_id': user.partner_id,
+                'title':task.title,
+                'require_materials':task.require_materials,
+                'note':task.description,//descripcion del servicio
+                'commitment_date':task.time + ' ' + task.date,//fecha y hora del pedido
+                'require_payment': false, 
                 'require_signature': false,
                 'state': 'draft',
-                'address_street': task.address.street,
-                'address_floor': task.address.floor,
-                'address_portal': task.address.portal,
-                'address_number': task.address.number,
-                'address_door': task.address.door,
-                'address_stairs': task.address.stair,
-                'address_zip_code': task.address.cp,
-                'address_latitude': '',
-                'address_longitude': '',
+                'address_street' : task.address.street,
+                'address_floor' : task.address.floor,
+                'address_portal' : task.address.portal,
+                'address_number' : task.address.number,
+                'address_door' : task.address.door,
+                'address_stairs' : task.address.stair,
+                'address_zip_code' : task.address.cp,
+                'address_latitude' : '40,47558',
+                'address_longitude' : '-3,68992',
             }
+           
             let inParams = [];
             inParams.push(SO);
             let params = [];
