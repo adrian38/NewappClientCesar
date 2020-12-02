@@ -51,7 +51,8 @@ export class PhotoService {
   // Store a reference to all photo filepaths using Storage API:
   // https://capacitor.ionicframework.com/docs/apis/storage
   */
-  public async addNewToGallery() {
+ 
+ public async addNewToGallery() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri, // file-based data; provides best performance
@@ -73,6 +74,27 @@ export class PhotoService {
     });
   }
 
+  public async addNewToCamara() {
+    // Take a photo
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Uri, // file-based data; provides best performance
+     source: CameraSource.Camera, // automatically take a new photo with the camera
+    //source: CameraSource.Photos, 
+     quality: 100 // highest quality (0 to 100)
+    
+    });
+    
+    const savedImageFile = await this.savePicture(capturedPhoto);
+
+    // Add new photo to Photos array
+    this.photos.unshift(savedImageFile);
+
+    // Cache all photo data for future retrieval
+    Storage.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify(this.photos)
+    });
+  }
   // Save picture to file on device
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save

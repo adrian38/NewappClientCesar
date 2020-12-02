@@ -14,10 +14,21 @@ export class RegistroPage implements OnInit {
 
   ngOnInit() {
   }
-  addPhotoToGallery() {
+/*   addPhotoToGallery() {
 
     
     this.ver=false;
      this.photoService.addNewToGallery();
+  } */
+
+  camara(){
+    console.log("camara");
+    this.photoService.addNewToCamara();
+  }
+
+  
+  galeria(){
+    console.log("galeria");
+    this.photoService.addNewToGallery();
   }
 }
