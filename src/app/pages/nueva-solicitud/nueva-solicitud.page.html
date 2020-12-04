@@ -51,9 +51,12 @@
     </ion-slide>
 
     <ion-slide>
+
       <ion-card>
-        <img style="margin-top: 10px;" src="../../assets/logoNavbar.png">
-       </ion-card>
+
+    
+     </ion-card>
+
     </ion-slide>
    
     <ion-slide>
@@ -162,7 +165,8 @@
                       
                        <ion-col size="3" style="text-align: end; margin-top: 5px;" >
                          <div>
-                           <img   id="logo1"  src="../../assets/ubicacion.png"> 
+                           <img   id="logo1"  src="../../assets/ubicacion.png"
+                           (click)="localizacion()"> 
                          </div>
                        </ion-col>
      
@@ -176,7 +180,8 @@
      
        
                      
-       
+       <ion-label>Longi={{longuitud}}</ion-label>
+       <ion-label>lati={{latitud}}</ion-label>
      
      
      </ion-grid>

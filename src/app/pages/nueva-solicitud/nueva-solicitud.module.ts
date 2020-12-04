@@ -8,12 +8,15 @@ import { NuevaSolicitudPageRoutingModule } from './nueva-solicitud-routing.modul
 
 import { NuevaSolicitudPage } from './nueva-solicitud.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevaSolicitudPageRoutingModule
+    NuevaSolicitudPageRoutingModule,
+   
   ],
   declarations: [NuevaSolicitudPage]
 })

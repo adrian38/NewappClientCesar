@@ -8,7 +8,7 @@ import { Address, TaskModel } from '../../models/task.model';
 import { ActionSheetController } from '@ionic/angular';
 
 import { Photo,PhotoService } from '../../services/photo.service';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-nueva-solicitud',
   templateUrl: './nueva-solicitud.page.html',
@@ -32,12 +32,19 @@ export class NuevaSolicitudPage implements OnInit {
 
   task:TaskModel;
 
+  longuitud:number;
+  latitud:number;
+
   constructor(private datos:ObtSubSService,
               private _taskOdoo: TaskOdooService,
               private ngZone: NgZone,
               public navCtrl:NavController,
               public photoService: PhotoService, 
-              public actionSheetController: ActionSheetController) { 
+              public actionSheetController: ActionSheetController,
+              private geolocation: Geolocation) { 
+
+
+               
    
   }
 
@@ -151,4 +158,22 @@ public async showActionSheet(photo: Photo, position: number) {
   });
   await actionSheet.present();
 }
+
+localizacion(){
+  console.log("mi ubicacion");
+  this.geolocation.getCurrentPosition().then((resp) => {
+    
+    this.latitud = resp.coords.latitude;
+    this.longuitud=resp.coords.longitude;
+
+   /*   console.log("latitud",resp.coords.latitude);
+     console.log("longitus",resp.coords.longitude); */
+     
+    
+   }).catch((error) => {
+     console.log('Error getting location', error);
+   });
+
+}
+
 }
