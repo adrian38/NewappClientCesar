@@ -13,6 +13,7 @@ import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
 export class PhotoService {
 
   public photos: Photo[] = []; 
+ public unica :Photo;
  
   //------------------------
   private PHOTO_STORAGE: string = "photos";
@@ -24,7 +25,9 @@ export class PhotoService {
   public async loadSaved() {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
-    this.photos = JSON.parse(photoList.value) || [];
+    this.photos = JSON.parse(photoList.value) || []; 
+    
+
 
     // If running on the web...
     if (!this.platform.is('hybrid')) {
@@ -65,12 +68,15 @@ export class PhotoService {
     const savedImageFile = await this.savePicture(capturedPhoto);
 
     // Add new photo to Photos array
-    this.photos.unshift(savedImageFile);
+     this.photos.unshift(savedImageFile);
+     this.unica=this.photos[0];
+    
 
     // Cache all photo data for future retrieval
     Storage.set({
       key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos)
+       value: JSON.stringify(this.photos)
+    
     });
   }
 
@@ -174,20 +180,7 @@ export class PhotoService {
   });
 
 
- /*  public async addNewToGallery() {
-    // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri, 
-      source: CameraSource.Camera, 
-      quality: 100 
-    });
-   
-    
-    this.photos.unshift({
-      filepath: "soon...",
-      webviewPath: capturedPhoto.webPath,
-    }); 
-  } */
+ 
 
 
 

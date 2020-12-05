@@ -15,7 +15,7 @@
  
   
 
-   <form>
+   <form #formulario="ngForm" (ngSubmit)="onsubmit(formulario)">
        
 
          <ion-row style="margin-top: 25px;">
@@ -44,10 +44,19 @@
                                    type="email"
                                    required
                                    [(ngModel)]="user"
+                                   required
+                                   minlength=5
+                                   #nombre="ngModel"
                                    
 
                                    ></ion-input>
+                                   <div id="link">
+                                    <small *ngIf= "nombre.invalid && nombre.touched"   
+                                    class="text-danger">Su nombre de usuario debe ser de 5 caractere</small>
+                                   </div>
+                                   
                                  </ion-col >
+
                                  <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
                    </ion-row>
                   
@@ -69,9 +78,15 @@
                                        type="password"
                                        required
                                        [(ngModel)]="pass"
+                                        minlength=5
+                                        #pa="ngModel"
                                        
    
                                        ></ion-input>
+                                       <div id="link">
+                                        <small *ngIf= "pa.invalid && pa.touched"   
+                                        class="text-danger">Su pass debe ser de 5 caractere</small>
+                                       </div>
                                      </ion-col >
                                      <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
                        </ion-row>
@@ -105,7 +120,9 @@
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
                       color="primary"
-                        (click)="iniciar()">
+                        (click)="iniciar()"
+                       
+                        [disabled]="formulario.invalid">
            Iniciar Sesion
              </ion-button>
            </ion-col>

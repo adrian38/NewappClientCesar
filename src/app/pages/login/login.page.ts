@@ -70,4 +70,6 @@ checkUser(){
     this.usuario.password = this.pass;
     this._authOdoo.loginClientApk(this.usuario);
   }
+
+
 }

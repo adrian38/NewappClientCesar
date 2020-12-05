@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from '../../services/photo.service';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 @Component({
   selector: 'app-registro',
@@ -8,9 +9,12 @@ import { Photo } from '../../services/photo.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
- ver:boolean=true;
- foto:Photo
-  constructor(public photoService: PhotoService) { }
+
+ imgResultBeforeCompress:string;
+ imgResultAfterCompress:string;
+
+  constructor(public photoService: PhotoService,
+               private imageCompress: NgxImageCompressService) { }
 
   ngOnInit() {
   }
@@ -23,12 +27,35 @@ export class RegistroPage implements OnInit {
 
   camara(){
     console.log("camara");
+    this.photoService.photos=[];
     this.photoService.addNewToCamara();
+    this.compressFile();
+  
+    
   }
 
   
   galeria(){
     console.log("galeria");
+    this.photoService.photos=[];
     this.photoService.addNewToGallery();
+  }
+  
+compressFile() {
+  
+    this.imageCompress.uploadFile().then(({image, orientation}) => {
+    
+      this.imgResultBeforeCompress = image;
+      console.warn('Size in bytes was:', this.imageCompress.byteCount(image));
+      
+      this.imageCompress.compressFile(image, orientation, 50, 50).then(
+        result => {
+          this.imgResultAfterCompress = result;
+          console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
+        }
+      );
+      
+    });
+    
   }
 }

@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AuthGuardService,
     TaskOdooService,
     ObtSubSService,
-    Geolocation
+    Geolocation,
+    NgxImageCompressService
 
   ],
   bootstrap: [AppComponent]

@@ -28,6 +28,7 @@
     "@ionic/angular": "^5.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
     "jayson": "github:tedeh/jayson#typescript",
+    "ngx-image-compress": "^11.0.3",
     "primeicons": "^4.1.0",
     "primeng": "^11.0.0-rc.1",
     "rxjs": "~6.5.5",
