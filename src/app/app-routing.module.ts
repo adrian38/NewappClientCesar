@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'nueva-solicitud',
     loadChildren: () => import('./pages/nueva-solicitud/nueva-solicitud.module').then( m => m.NuevaSolicitudPageModule)
+  },  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   }
+
 
 ];
 @NgModule({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from '../../services/photo.service';
 import {NgxImageCompressService} from 'ngx-image-compress';
-
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -13,8 +13,10 @@ export class RegistroPage implements OnInit {
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
 
+
   constructor(public photoService: PhotoService,
-               private imageCompress: NgxImageCompressService) { }
+               private imageCompress: NgxImageCompressService,
+               public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,7 @@ export class RegistroPage implements OnInit {
      this.photoService.addNewToGallery();
   } */
 
-  camara(){
+ /*  camara(){
     console.log("camara");
     this.photoService.photos=[];
     this.photoService.addNewToCamara();
@@ -39,7 +41,7 @@ export class RegistroPage implements OnInit {
     console.log("galeria");
     this.photoService.photos=[];
     this.photoService.addNewToGallery();
-  }
+  } */
   
 compressFile() {
   
@@ -57,5 +59,45 @@ compressFile() {
       
     });
     
+  }
+
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '¿Desea colocar una foto?',
+      message: 'Selecione la opcion de camara o galeria para la foto ',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Galeria',
+          handler: () => {
+            this.photoService.photos=[];
+            this.photoService.addNewToGallery();
+           
+         
+            
+          }
+        },
+        {
+          text: 'Camara',
+          
+          handler: () => {
+            this.photoService.photos=[];
+            this.photoService.addNewToCamara();
+         
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

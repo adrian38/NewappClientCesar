@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chateando con  {{user.username}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card *ngFor="let mensaje of messagesList">
+    <ion-card-header>
+      <ion-label style="color: cornflowerblue;">Tu:</ion-label>
+    </ion-card-header>
+    <ion-list>
+      <ion-label style="margin-left: 5px;">{{mensaje.message}}</ion-label>
+    </ion-list>
+  </ion-card>
+  
+   
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input placeholder="Escribe mensaje..."
+                type="text"
+               [(ngModel)]="message.message">
+      
+    </ion-input>
+    <ion-buttons slot="end">
+      <ion-button (click)="enviarSMS()" >
+        enviar
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

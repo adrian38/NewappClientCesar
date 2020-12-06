@@ -5,6 +5,7 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -22,12 +23,15 @@ export class LoginPage implements OnInit {
   pass:string;
   islog:boolean
 
+  loading:any;
 
   constructor(private ngZone: NgZone,
     private _authOdoo:AuthOdooService,
     private _taskOdoo:TaskOdooService,
     private _chatOdoo:ChatOdooService,
-    private route:Router) {
+    private route:Router,
+    public loadingController: LoadingController) {
+
 this.usuario = new UsuarioModel;
 }
 
@@ -41,6 +45,7 @@ ngOnInit() {
   this.usuario$.subscribe(user => {
     this.ngZone.run( () => {
       this.usuario = user;
+      this.loading.dismiss();
       this.checkUser();
     });
   });
@@ -56,11 +61,14 @@ checkUser(){
   }
   else{
     console.log('no se pudo conectar');
+    this.loading.dismiss();
+
+    
   }
 }
 
   iniciar(){
-   
+    this.presentLoading();
    console.log("si");
    console.log("si");
     console.log("user",this.user);
@@ -71,5 +79,13 @@ checkUser(){
     this._authOdoo.loginClientApk(this.usuario);
   }
 
+async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'espere...',
+      //duration: 2000
+    });
+   return  this.loading.present();
 
+}
 }

@@ -8,7 +8,7 @@ import { NuevaSolicitudPageRoutingModule } from './nueva-solicitud-routing.modul
 
 import { NuevaSolicitudPage } from './nueva-solicitud.page';
 
-
+import { NgCalendarModule  } from 'ionic2-calendar';
 
 @NgModule({
   imports: [
@@ -16,6 +16,7 @@ import { NuevaSolicitudPage } from './nueva-solicitud.page';
     FormsModule,
     IonicModule,
     NuevaSolicitudPageRoutingModule,
+    NgCalendarModule
    
   ],
   declarations: [NuevaSolicitudPage]

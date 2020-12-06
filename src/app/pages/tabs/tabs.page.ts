@@ -4,7 +4,7 @@ import { TaskModel } from 'src/app/models/task.model';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-
+import { LoadingController } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 
@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class TabsPage {
 
+  
   
   task: TaskModel;
 
@@ -42,15 +43,18 @@ export class TabsPage {
    
 
   inicio = true;
+  loading:any;
 
   constructor(private _taskOdoo: TaskOdooService,
     private subServ:ObtSubSService,
     private _authOdoo: AuthOdooService,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    public loadingController: LoadingController) {
 
     this.observablesSubscriptions();
       
     this._taskOdoo.requestTaskListClient();
+    this.presentLoading();
     
 
 
@@ -158,7 +162,9 @@ export class TabsPage {
         this.subServ.setHistorialList(this.historialList);
 
         console.log(this.solicitudesList,"peticiones a Servidor");
+        this.loading.dismiss();
       });
+
       if (this.inicio){
         this.inicio = false;
         this._taskOdoo.notificationPull();
@@ -166,4 +172,13 @@ export class TabsPage {
     });
   }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'espere...',
+      //duration: 2000
+    });
+   return  this.loading.present();
+
+}
 }

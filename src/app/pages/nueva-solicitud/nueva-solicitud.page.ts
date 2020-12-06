@@ -6,9 +6,11 @@ import { Address, TaskModel } from '../../models/task.model';
 
 //-----------------------------------------------
 import { ActionSheetController } from '@ionic/angular';
-
+import { AlertController } from '@ionic/angular';
 import { Photo,PhotoService } from '../../services/photo.service';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
+
 @Component({
   selector: 'app-nueva-solicitud',
   templateUrl: './nueva-solicitud.page.html',
@@ -35,16 +37,25 @@ export class NuevaSolicitudPage implements OnInit {
   longuitud:number;
   latitud:number;
 
+  viewTitle;
+  fecha;
+  
+  calendar = {
+    mode: 'month',
+    currentDate: new Date(),
+  }
+
+
   constructor(private datos:ObtSubSService,
               private _taskOdoo: TaskOdooService,
               private ngZone: NgZone,
               public navCtrl:NavController,
               public photoService: PhotoService, 
               public actionSheetController: ActionSheetController,
-              private geolocation: Geolocation) { 
+              public alertController: AlertController) { 
 
 
-               
+                this.fecha= this.calendar.currentDate.getMonth();
    
   }
 
@@ -159,21 +170,46 @@ public async showActionSheet(photo: Photo, position: number) {
   await actionSheet.present();
 }
 
-localizacion(){
-  console.log("mi ubicacion");
-  this.geolocation.getCurrentPosition().then((resp) => {
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: '¿Desea colocar una foto?',
+    message: 'Selecione la opcion de camara o galeria para la foto ',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Galeria',
+        handler: () => {
+          this.photoService.photos=[];
+          this.photoService.addNewToGallery();
     
-    this.latitud = resp.coords.latitude;
-    this.longuitud=resp.coords.longitude;
+       
+          
+        }
+      },
+      {
+        text: 'Camara',
+        
+        handler: () => {
+          this.photoService.photos=[];
+          this.photoService.addNewToCamara();
+       
+          
+        }
+      }
+    ]
+  });
 
-   /*   console.log("latitud",resp.coords.latitude);
-     console.log("longitus",resp.coords.longitude); */
-     
-    
-   }).catch((error) => {
-     console.log('Error getting location', error);
-   });
-
+  await alert.present();
 }
-
+onViewTitleChanged(title) {
+  this.viewTitle = title;
+  console.log(this.calendar.currentDate);
+}
 }

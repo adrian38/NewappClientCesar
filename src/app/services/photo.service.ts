@@ -13,7 +13,7 @@ import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
 export class PhotoService {
 
   public photos: Photo[] = []; 
- public unica :Photo;
+
  
   //------------------------
   private PHOTO_STORAGE: string = "photos";
@@ -69,7 +69,7 @@ export class PhotoService {
 
     // Add new photo to Photos array
      this.photos.unshift(savedImageFile);
-     this.unica=this.photos[0];
+   
     
 
     // Cache all photo data for future retrieval

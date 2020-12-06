@@ -22,11 +22,12 @@ import { AppComponent } from './app.component';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { NgCalendarModule  } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ButtonModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ButtonModule,NgCalendarModule,],
   providers: [
     StatusBar,
     SplashScreen,
@@ -36,7 +37,7 @@ import {NgxImageCompressService} from 'ngx-image-compress';
     AuthGuardService,
     TaskOdooService,
     ObtSubSService,
-    Geolocation,
+   
     NgxImageCompressService
 
   ],

@@ -54,7 +54,19 @@
 
       <ion-card>
 
-    
+        <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3>
+ 
+ 
+        <calendar 
+        style="margin-top: 20px;"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        step="30">
+        
+      
+        
+      </calendar>
      </ion-card>
 
     </ion-slide>
@@ -166,7 +178,7 @@
                        <ion-col size="3" style="text-align: end; margin-top: 5px;" >
                          <div>
                            <img   id="logo1"  src="../../assets/ubicacion.png"
-                           (click)="localizacion()"> 
+                           > 
                          </div>
                        </ion-col>
      
@@ -179,9 +191,7 @@
         </ion-row>
      
        
-                     
-       <ion-label>Longi={{longuitud}}</ion-label>
-       <ion-label>lati={{latitud}}</ion-label>
+     
      
      
      </ion-grid>
@@ -235,10 +245,12 @@
            
           </ion-col>
           <ion-col>
-            <img src="../../assets/noImage.png">
+            <img src="../../assets/noImage.png"
+                  (click)="presentAlertConfirm()">
           </ion-col>
           <ion-col >
-            <img src="../../../assets/noImage.png">
+            <img src="../../../assets/noImage.png"
+                 (click)="presentAlertConfirm()">
           </ion-col>
           <ion-col size=2>
            
@@ -254,10 +266,12 @@
           <ion-col size=1>
             
           </ion-col>
+
       
           <ion-col size=8>
            
-            <img src="../../assets/noImage.png">
+            <img src="../../assets/noImage.png"
+                  (click)="presentAlertConfirm()">
           </ion-col>
       
           <ion-col size=1 >
