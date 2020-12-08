@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { NgCalendarModule  } from 'ionic2-calendar';
 

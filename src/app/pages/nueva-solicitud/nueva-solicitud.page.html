@@ -8,7 +8,10 @@
     <h2 style="text-align: center; margin-top: 2px;color: rgb(49 ,49 ,57);">Nueva Solicitud</h2>
     
   </div>
-</ion-header>
+
+
+</ion-header>   
+
 
 
 
@@ -56,17 +59,42 @@
 
         <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3>
  
- 
-        <calendar 
-        style="margin-top: 20px;"
-        [calendarMode]="calendar.mode"
-        [currentDate]="calendar.currentDate"
-        (onTitleChanged)="onViewTitleChanged($event)"
-        step="30">
-        
+ <ion-grid>
+   <ion-row>
+     <ion-col>
+      <calendar 
+      style="margin-top: 20px;"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
       
-        
-      </calendar>
+      
+     
+      >
+
+   
+    
+      
+    </calendar>
+
+     </ion-col>
+   </ion-row>
+
+   
+ </ion-grid>
+       
+<ion-row>
+  <ion-label display-format="YYYY">
+  
+    <!-- {{this.fecha.getDate() + "/" + (this.fecha.getMonth() +1) + "/" + this.fecha.getFullYear()}}
+  -->
+<!--  {{this.dia}} -->
+{{this.fecha.getFullYear() + "-" + (this.fecha.getMonth() +1) + "-" +this.fecha.getDate() }}
+ 
+</ion-label>
+</ion-row>
+ 
      </ion-card>
 
     </ion-slide>

@@ -9,7 +9,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Photo,PhotoService } from '../../services/photo.service';
 
-
+import { NgCalendarModule  } from 'ionic2-calendar';
 
 @Component({
   selector: 'app-nueva-solicitud',
@@ -38,7 +38,9 @@ export class NuevaSolicitudPage implements OnInit {
   latitud:number;
 
   viewTitle;
-  fecha;
+  fecha:Date ;
+
+  dia:string;
   
   calendar = {
     mode: 'month',
@@ -52,10 +54,13 @@ export class NuevaSolicitudPage implements OnInit {
               public navCtrl:NavController,
               public photoService: PhotoService, 
               public actionSheetController: ActionSheetController,
-              public alertController: AlertController) { 
+              public alertController: AlertController,
+              public calen:NgCalendarModule) { 
+
+                this.fecha =new Date();
 
 
-                this.fecha= this.calendar.currentDate.getMonth();
+               
    
   }
 
@@ -138,12 +143,11 @@ this.datos.setportal(this.portal);
     this.task.product_id = 39;
     this.task.type = ':Servicio de Fontaneria';
     this.task.date = '07:30:30';
-    this.task.time = '2020-10-20'
-
+   //this.task.time = '2020-2-20'
+   
+   this.task.time = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
+    console.log("Vet",this.task.time);
 this._taskOdoo.newTask(this.task);
-
-
-
 
   }
  
@@ -208,8 +212,26 @@ async presentAlertConfirm() {
 
   await alert.present();
 }
+
 onViewTitleChanged(title) {
   this.viewTitle = title;
-  console.log(this.calendar.currentDate);
+
+ // console.log(this.calendar.currentDate);
 }
+
+onCurrentDateChanged(event){
+  
+  this.fecha=event;
+  
+ //this.dia= this.fecha.getDate().toString();
+  }
+
+
+reloadSource(startTime, endTime){
+
+  console.log("Ver1",startTime);
+  console.log("Ver2",endTime);
+
+}
+
 }
