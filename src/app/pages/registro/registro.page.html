@@ -105,7 +105,7 @@
                      <ion-row>
                        <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
                        <ion-col size="11">
-                         <ion-label>USUARIO</ion-label>
+                         <ion-label>COREO</ion-label>
                        </ion-col>
                      </ion-row>
                    </div>
@@ -166,7 +166,7 @@
                                     <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
                       </ion-row>
                       
-                      <div id="datos">
+                     <!--  <div id="datos">
                         <ion-row>
                           <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
                           <ion-col size="11">
@@ -192,7 +192,110 @@
                                    
                                     </ion-col>
                                     <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-                      </ion-row>
+                      </ion-row> -->
+                      <ion-row style="margin-top:25px ;">
+         
+     
+                        <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                    
+                        <ion-col size="5">
+                          <ion-input name="calle"
+                                      type="text"
+                                      placeholder="No. de calle"
+                                      [(ngModel)]="calle"
+                                      ></ion-input>
+                                    </ion-col>
+                                
+                                    <ion-col size="5" 
+                                              style="margin-left: 15px;">
+                                      <ion-input name="piso"
+                                                  type="text"
+                                                  placeholder="Piso"
+                                                  [(ngModel)]="piso"
+                                                  ></ion-input>
+                                                </ion-col>
+                                  
+                                                <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                        
+                       </ion-row>
+                    
+                       <ion-row>
+                        <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                    
+                        <ion-col size="5">
+                          <ion-input name="numero"
+                                      type="text"
+                                      placeholder="Numero"
+                                      [(ngModel)]="numero"
+                                      ></ion-input>
+                                    </ion-col>
+                                
+                                    <ion-col size="5"   style="margin-left: 15px;">
+                                      <ion-input name="puerta"
+                                                  type="text"
+                                                  placeholder="Puerta"
+                                                  [(ngModel)]="puerta"
+                                                  ></ion-input>
+                                                </ion-col>
+                                  
+                                                <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                        
+                       </ion-row>
+                    
+                       <ion-row>
+                        <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                    
+                        <ion-col size="5">
+                          <ion-input name="portal"
+                                      type="text"
+                                      placeholder="Portal"
+                                      [(ngModel)]="portal"
+                                      ></ion-input>
+                                    </ion-col>
+                                
+                                    <ion-col size="5"   style="margin-left: 15px;">
+                                      <ion-input name="cod_postal"
+                                                  type="text"
+                                                  placeholder="Cod.Postal"
+                                                  [(ngModel)]="cod_postal"
+                                                  ></ion-input>
+                                                </ion-col>
+                                  
+                                                <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                     
+                       </ion-row>
+                    
+                       <ion-row>
+                        <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                     
+                        <ion-col size="5">
+                          <ion-input name="escalera"
+                                      type="text"
+                                      placeholder="Escalera"
+                                      [(ngModel)]="escalera"
+                                      ></ion-input>
+                                    </ion-col>
+                                
+                                    <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                     
+                                    
+                                     
+                                      <ion-col size="3" style="text-align: end; margin-top: 5px;" >
+                                        <div>
+                                          <img   id="imgGPS"  src="../../assets/ubicacion.png"
+                                          > 
+                                        </div>
+                                      </ion-col>
+                    
+                                     
+                                      <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+                     
+                                                
+                                  
+                                   
+                       </ion-row>
+                    
+                    
 </ion-list>
            </ion-col>
          </ion-row>
@@ -204,9 +307,10 @@
          <ion-row>
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
+                      
                       color="primary"
                         (click)="iniciar()">
-           Iniciar Sesion
+           REGISTRARSE
              </ion-button>
            </ion-col>
          </ion-row>

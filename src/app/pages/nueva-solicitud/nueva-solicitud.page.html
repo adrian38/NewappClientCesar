@@ -1,12 +1,23 @@
 <ion-header>
   <div id="barraSuperior">
     <div id="barraInferior">
-    
-     <img  id="logo" slot="start" src="../../assets/logoNavbar.png">
-    
+      <ion-row>
+      
+        <ion-col size=3 >
+          <img  id="logo"  src="../../assets/logoNavbar.png">
+      
+        </ion-col>
+        
+      
+       
+         <ion-col size=6>
+          <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
+      
+         </ion-col>
+        
+       </ion-row>
     </div>
-    <h2 style="text-align: center; margin-top: 2px;color: rgb(49 ,49 ,57);">Nueva Solicitud</h2>
-    
+   
   </div>
 
 
@@ -20,10 +31,33 @@
 
     <ion-slide >
      <ion-card>
-      
-      <div id="barra">
-        <ion-label >¿Dispone de los materiales?</ion-label>
-     </div>
+
+     
+
+     
+       <ion-row>
+        <div id="barra">
+          <ion-label >Titulo de la solicitud</ion-label>
+       </div>
+       </ion-row>
+       
+     
+      <ion-item style="margin-top: 20px;" >
+        <ion-label position="floating">Titulo</ion-label>
+          <ion-input type="text"
+                     name="password"
+                     ></ion-input>
+                     
+      </ion-item>
+     
+
+
+<ion-row style="margin-top: 70px;">
+  <div id="barra">
+    <ion-label >¿Dispone de los materiales?</ion-label>
+ </div>
+</ion-row>
+     
 
 
      <ion-list style="margin-top: 20px;">
@@ -110,7 +144,7 @@
          <ion-checkbox mode="ios"
                        
          ></ion-checkbox>
-     <ion-label style="margin-left: 20px;">Llenar con los datos de mi direccion</ion-label>
+     <ion-label style="margin-left: 20px;">Direccion personal</ion-label>
        </ion-item>
      
        
@@ -122,7 +156,8 @@
          <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
      
          <ion-col size="5">
-           <ion-input name="calle"
+           <ion-input  id="in"
+                       name="calle"
                        type="text"
                        placeholder="No. de calle"
                        [(ngModel)]="calle"
@@ -131,7 +166,7 @@
                  
                      <ion-col size="5" 
                                style="margin-left: 15px;">
-                       <ion-input name="piso"
+                       <ion-input id="in" name="piso"
                                    type="text"
                                    placeholder="Piso"
                                    [(ngModel)]="piso"
@@ -146,7 +181,7 @@
          <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
      
          <ion-col size="5">
-           <ion-input name="numero"
+           <ion-input id="in" name="numero"
                        type="text"
                        placeholder="Numero"
                        [(ngModel)]="numero"
@@ -154,7 +189,7 @@
                      </ion-col>
                  
                      <ion-col size="5"   style="margin-left: 15px;">
-                       <ion-input name="puerta"
+                       <ion-input id="in" name="puerta"
                                    type="text"
                                    placeholder="Puerta"
                                    [(ngModel)]="puerta"
@@ -169,7 +204,7 @@
          <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
      
          <ion-col size="5">
-           <ion-input name="portal"
+           <ion-input id="in" name="portal"
                        type="text"
                        placeholder="Portal"
                        [(ngModel)]="portal"
@@ -177,7 +212,7 @@
                      </ion-col>
                  
                      <ion-col size="5"   style="margin-left: 15px;">
-                       <ion-input name="cod_postal"
+                       <ion-input id="in" name="cod_postal"
                                    type="text"
                                    placeholder="Cod.Postal"
                                    [(ngModel)]="cod_postal"
@@ -192,7 +227,7 @@
          <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
       
          <ion-col size="5">
-           <ion-input name="escalera"
+           <ion-input id="in" name="escalera"
                        type="text"
                        placeholder="Escalera"
                        [(ngModel)]="escalera"
@@ -242,7 +277,7 @@
       
           </ion-col>
       
-          <ion-col size=10 style="text-align: center;margin-top: 60x;">
+          <ion-col size=10 style="margin-top: 60x;">
             <textarea name="Text1" cols="40" rows="5"
                           [(ngModel)]="comentario"></textarea>
           </ion-col>

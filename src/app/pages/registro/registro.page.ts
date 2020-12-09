@@ -68,14 +68,17 @@ compressFile() {
       header: '¿Desea colocar una foto?',
       message: 'Selecione la opcion de camara o galeria para la foto ',
       buttons: [
+        
         {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+          text: 'Camara',
+          
+          handler: () => {
+            this.photoService.photos=[];
+            this.photoService.addNewToCamara();
+         
+            
           }
-        }, {
+        },{
           text: 'Galeria',
           handler: () => {
             this.photoService.photos=[];
@@ -86,13 +89,11 @@ compressFile() {
           }
         },
         {
-          text: 'Camara',
-          
-          handler: () => {
-            this.photoService.photos=[];
-            this.photoService.addNewToCamara();
-         
-            
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
           }
         }
       ]

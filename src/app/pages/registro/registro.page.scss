@@ -28,9 +28,12 @@ ion-input:focus-within{
     //margin-left: 60px;
 }
 
-ion-button{
-    width: 50%;
+ ion-button{
+    //width: 50%;
+    width: 155px;
+    height: 39px;
     border-radius: 5px 5px 5px 5px ;
     background-color:  rgb(246, 183, 118);
     color: black;
-}
+} 
+
