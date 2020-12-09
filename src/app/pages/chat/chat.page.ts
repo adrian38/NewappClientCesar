@@ -32,9 +32,10 @@ export class ChatPage implements OnInit {
     private _taskOdoo:TaskOdooService,
     private _chatOdoo:ChatOdooService,
     
-               ) {
+               ) {}
+               ngOnInit(){}
               
-   
+ /*   
                 this.task = new TaskModel();
                 this.task =this._taskOdoo.getTaskCesar();
                 this.user = this._authOdoo.getUser();
@@ -80,6 +81,6 @@ export class ChatPage implements OnInit {
       this.message= new MessageModel();
       
     
-    }
+    } */
 
 }

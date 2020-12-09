@@ -10,6 +10,8 @@ import { AlertController } from '@ionic/angular';
 import { Photo,PhotoService } from '../../services/photo.service';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nueva-solicitud',
@@ -20,6 +22,9 @@ export class NuevaSolicitudPage implements OnInit {
 
   checkSi:boolean=false;
   checkNo:boolean=false; 
+
+  notificationNewSoClient$: Observable<boolean>;
+  notificationError$: Observable<boolean>;
   
   calle:string="";
   piso:string="";
@@ -55,7 +60,8 @@ export class NuevaSolicitudPage implements OnInit {
               public photoService: PhotoService, 
               public actionSheetController: ActionSheetController,
               public alertController: AlertController,
-              public calen:NgCalendarModule) { 
+              public calen:NgCalendarModule,
+              private route:Router) { 
 
                 this.fecha =new Date();
 
@@ -65,6 +71,34 @@ export class NuevaSolicitudPage implements OnInit {
   }
 
   async ngOnInit() {
+
+
+
+    this.notificationError$ = this._taskOdoo.getNotificationError$();
+    this.notificationError$.subscribe(notificationError => {
+      this.ngZone.run(() => {
+
+        if (notificationError) {
+          console.log("Error creando la tarea");
+        }
+
+      });
+
+    });
+
+    this.notificationNewSoClient$ = this._taskOdoo.getNotificationNewSoClient$();
+    this.notificationNewSoClient$.subscribe(notificationNewSoClient => {
+      this.ngZone.run(() => {
+
+        if (notificationNewSoClient) {
+          console.log("Se creo correctamente la tarea");
+          this.route.navigate(["/tabs/tab1"]);
+
+        }
+
+      });
+
+    });
 //-----------------------
 await this.photoService.loadSaved();
   }
@@ -142,12 +176,13 @@ this.datos.setportal(this.portal);
     this.task.title= 'Arreglo de llave'
     this.task.product_id = 39;
     this.task.type = ':Servicio de Fontaneria';
-    this.task.date = '07:30:30';
-   //this.task.time = '2020-2-20'
+    this.task.time = '12:12:12';
+    //this.task.date = '2020-02-20'
    
-   this.task.time = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
-    console.log("Vet",this.task.time);
-this._taskOdoo.newTask(this.task);
+   this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
+    //console.log("Vet",this.task.date);
+    
+    this._taskOdoo.newTask(this.task);
 
   }
  

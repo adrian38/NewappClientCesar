@@ -5,8 +5,8 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { LoadingController } from '@ionic/angular';
+import { Observable,Subscription,Unsubscribable } from 'rxjs';
 
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tabs',
@@ -34,7 +34,7 @@ export class TabsPage {
 
   notificationPoCancelled$: Observable<number[]>;
 
-  notificationNewSoClient$: Observable<boolean>;
+  
 
   notificationError$: Observable<boolean>;
   
@@ -57,7 +57,6 @@ export class TabsPage {
     this.presentLoading();
     
 
-
   }
 
   ngOnInit(): void {
@@ -69,6 +68,7 @@ export class TabsPage {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
 
+   
   }
 
 
@@ -79,17 +79,7 @@ export class TabsPage {
     
 
 
-      this.notificationNewSoClient$ = this._taskOdoo.getNotificationNewSoClient$();
-      this.notificationNewSoClient$.subscribe(notificationNewSoClient => {
-        this.ngZone.run(() => {
-
-          if (notificationNewSoClient) {
-            console.log("Se creo correctamente la tarea");
-          }
-
-        });
-
-      });
+    
 
       this.notificationSoCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
       this.notificationSoCancelled$.subscribe(notificationSoCancelled => {

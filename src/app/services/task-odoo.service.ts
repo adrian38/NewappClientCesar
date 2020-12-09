@@ -285,9 +285,6 @@ export class TaskOdooService {
     //////// De la forma de Michel
     newTask(task: TaskModel) {
     
-        //let newTask:TaskModel;
-
-
         let createService = function () {
 
         
@@ -305,7 +302,8 @@ export class TaskOdooService {
                 'title':task.title,
                 'require_materials':task.require_materials,
                 'note':task.description,//descripcion del servicio
-                'commitment_date':task.time + ' ' + task.date,//fecha y hora del pedido
+                'commitment_date':task.date + ' ' + task.time,
+                //'commitment_date':task.time + ' ' + task.date,//fecha y hora del pedido
                 'require_payment': false, 
                 'require_signature': false,
                 'state': 'draft',
@@ -339,6 +337,7 @@ export class TaskOdooService {
 
                 if (err || !value) {
                     console.log(err, "createService");
+                    notificationError$.next(true);
 
                 } else {
                     console.log(value, "createService");
@@ -376,6 +375,7 @@ export class TaskOdooService {
 
             if (err || !value) {
                 console.log(err, "newTask");
+                notificationError$.next(true);
 
             } else {
                 createService();
@@ -1110,6 +1110,8 @@ export class TaskOdooService {
                             order['address_zip_code'],
                             order['address_latitude'],
                             order['address_longitude'])
+
+                         
                         tasksList.push(temp);
                     }
                     if (SO_id.length) {
