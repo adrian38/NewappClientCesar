@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nueva-solicitud.page.scss'],
 })
 export class NuevaSolicitudPage implements OnInit {
-
+  titulo:String="";
   checkSi:boolean=false;
   checkNo:boolean=false; 
 
@@ -34,7 +34,7 @@ export class NuevaSolicitudPage implements OnInit {
   cod_postal:string="";
   escalera:string="";
 
-
+servicio:string="";
 
   comentario:string="";
 
@@ -46,7 +46,7 @@ export class NuevaSolicitudPage implements OnInit {
   viewTitle;
   fecha:Date ;
   reloj:Date;
-  dia:string;
+
   
   calendar = {
     mode: 'month',
@@ -73,7 +73,7 @@ this.reloj=new Date();
 
   async ngOnInit() {
 
-
+this.servicio=this.datos.getServ();
 
     this.notificationError$ = this._taskOdoo.getNotificationError$();
     this.notificationError$.subscribe(notificationError => {

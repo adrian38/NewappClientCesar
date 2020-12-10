@@ -20,8 +20,9 @@
        </ion-row>
 
        <ion-row>
-         <ion-col size=10>
-
+         <ion-col size=2></ion-col>
+         <ion-col size=8 style="text-align: center;">
+          <ion-label style="color:  rgb(49 ,49 ,57);">{{servicio}}</ion-label>
          </ion-col>
          <ion-col size=2>
           <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
@@ -61,7 +62,8 @@
       <ion-item style="margin-top: 20px;" >
         <ion-label position="floating">Titulo</ion-label>
           <ion-input type="text"
-                     name="password"
+                     name="titulo"
+                     [(ngModel)]="titulo"
                      ></ion-input>
                      
       </ion-item>
@@ -129,7 +131,7 @@
  </ion-grid>
 
  <ion-item>
-  <ion-label>Horario</ion-label>
+  <ion-icon name="alarm"></ion-icon>
   <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
 </ion-item>
  
@@ -379,6 +381,22 @@
  
  
    <ion-item-group>
+    <ion-item>
+      <ion-col>
+        <ion-row>
+         <ion-label>Titulo del servicio</ion-label>
+        </ion-row>
+        <ion-row>
+
+        
+         <ion-label >{{titulo}}</ion-label>
+        </ion-row>
+      </ion-col>
+      
+      
+    </ion-item>
+
+
      <ion-item>
        <ion-col>
          <ion-row>

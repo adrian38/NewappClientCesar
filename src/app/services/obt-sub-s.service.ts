@@ -152,6 +152,14 @@ getnumero(){
  return this.numero;
 }  
 
+setServ( valor:string){
+  this.subServicioActual=valor;
+    }
+  
+getServ(){
+      return this.subServicioActual;
+    }
+
   //-------------------------------------------------------------------------
 
 
@@ -170,13 +178,8 @@ this.idString=id;
  getidString(){
   return this.idString;
  }
-  setSubServ( valor:string){
-this.subServicioActual=valor;
-  }
 
-  getSubServ(){
-    return this.subServicioActual;
-  }
+  
 
 
  

@@ -67,7 +67,7 @@ export class Tab1Page implements OnInit {
 
   }
   irSolicitud(){
-    this.navCtrl.navigateRoot('nueva-solicitud');
+    this.navCtrl.navigateRoot('tarea');
     //this.navCtrl.navigateBack('back');
   }
 
