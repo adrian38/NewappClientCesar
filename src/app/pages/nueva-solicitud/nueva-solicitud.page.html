@@ -1,5 +1,6 @@
 <ion-header>
   <div id="barraSuperior">
+   
     <div id="barraInferior">
       <ion-row>
       
@@ -12,13 +13,28 @@
        
          <ion-col size=6>
           <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
-      
+       
+        
          </ion-col>
         
        </ion-row>
+
+       <ion-row>
+         <ion-col size=10>
+
+         </ion-col>
+         <ion-col size=2>
+          <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
+          routerLink="/tabs/tab1"></ion-icon>
+         </ion-col>
+       </ion-row>
+       
+        
     </div>
    
+   
   </div>
+
 
 
 </ion-header>   
@@ -102,32 +118,20 @@
       [currentDate]="calendar.currentDate"
       (onTitleChanged)="onViewTitleChanged($event)"
       (onCurrentDateChanged)="onCurrentDateChanged($event)"
-      
-      
-     
-      >
-
-   
-    
-      
+      >  
     </calendar>
 
+    
      </ion-col>
    </ion-row>
 
    
  </ion-grid>
-       
-<ion-row>
-  <ion-label display-format="YYYY">
-  
-    <!-- {{this.fecha.getDate() + "/" + (this.fecha.getMonth() +1) + "/" + this.fecha.getFullYear()}}
-  -->
-<!--  {{this.dia}} -->
-{{this.fecha.getFullYear() + "-" + (this.fecha.getMonth() +1) + "-" +this.fecha.getDate() }}
- 
-</ion-label>
-</ion-row>
+
+ <ion-item>
+  <ion-label>Horario</ion-label>
+  <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+</ion-item>
  
      </ion-card>
 
@@ -391,6 +395,8 @@
      </ion-item>
      <ion-item>
       <ion-label>Fecha y Hora</ion-label>
+      <ion-label>{{this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
+      }} y {{this.reloj.getHours().toString()+":"+this.reloj.getMinutes().toString()+":"+this.reloj.getSeconds().toString()}} </ion-label>
     </ion-item>
     <ion-item>
       <ion-col>
@@ -398,8 +404,8 @@
           <ion-label>Mi direccion es</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>calle:{{calle}},numero:{{numero}},piso:{{piso}}</ion-label>
-          <ion-label>escalera:{{escalera}},portal:{{portal}} y codigo P:{{cod_postal}}</ion-label>
+          <ion-label>{{calle}},{{numero}},{{piso}}</ion-label>
+          <ion-label>{{escalera}},{{portal}},{{cod_postal}}</ion-label>
         </ion-row>
        
       </ion-col>
@@ -420,20 +426,24 @@
    </ion-item-group>
    
    <ion-row style="margin-top: 90px;">
-    <ion-col size=2></ion-col> 
+  
+      
 
      <ion-col>
-      <ion-button size=4
-      routerLink='/tabs/tab1'>Cancelar</ion-button>
-     </ion-col>
-
-     <ion-col>
-      <ion-button size=4
+      <ion-button 
+                   style="margin-left: -25px;"
                   (click)="crearSolicitud()"
                   routerLink='/tabs/tab1'>Crear</ion-button>
      </ion-col>
 
-     <ion-col size=2></ion-col> 
+     <ion-col>
+      <ion-button 
+      routerLink='/tabs/tab1'>Cancelar</ion-button>
+     </ion-col>
+    
+    
+
+     
    </ion-row>
 
    

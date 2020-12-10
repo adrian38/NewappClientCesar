@@ -10,13 +10,14 @@ ion-input{
     
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
-  
+    background-color: rgb(245, 245, 245);
    
 }
 ion-input:focus-within{
     border: 3px solid  rgb(246, 183, 118);
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
+    background-color: rgb(255, 255, 255);
 }
 
 #datos{

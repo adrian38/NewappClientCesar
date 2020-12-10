@@ -35,6 +35,7 @@ export class NuevaSolicitudPage implements OnInit {
   escalera:string="";
 
 
+
   comentario:string="";
 
   task:TaskModel;
@@ -44,7 +45,7 @@ export class NuevaSolicitudPage implements OnInit {
 
   viewTitle;
   fecha:Date ;
-
+  reloj:Date;
   dia:string;
   
   calendar = {
@@ -64,7 +65,7 @@ export class NuevaSolicitudPage implements OnInit {
               private route:Router) { 
 
                 this.fecha =new Date();
-
+this.reloj=new Date();
 
                
    
@@ -173,12 +174,13 @@ this.datos.setportal(this.portal);
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
 
-    this.task.title= 'Arreglo de llave'
+    this.task.title= 'Arreglo'
     this.task.product_id = 39;
     this.task.type = ':Servicio de Fontaneria';
-    this.task.time = '12:12:12';
+    //this.task.time = '12:12:12';
     //this.task.date = '2020-02-20'
-   
+  this.task.time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
+    
    this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
     //console.log("Vet",this.task.date);
     
@@ -215,6 +217,22 @@ async presentAlertConfirm() {
     header: '¿Desea colocar una foto?',
     message: 'Selecione la opcion de camara o galeria para la foto ',
     buttons: [
+     
+      {
+        text: 'Camara',
+        
+        handler: () => {
+          this.photoService.photos=[];
+          this.photoService.addNewToCamara();
+       }
+      },
+      {
+        text: 'Galeria',
+        handler: () => {
+          this.photoService.photos=[];
+          this.photoService.addNewToGallery();
+       }
+      },
       {
         text: 'Cancelar',
         role: 'cancel',
@@ -222,26 +240,8 @@ async presentAlertConfirm() {
         handler: (blah) => {
           console.log('Confirm Cancel: blah');
         }
-      }, {
-        text: 'Galeria',
-        handler: () => {
-          this.photoService.photos=[];
-          this.photoService.addNewToGallery();
-    
-       
-          
-        }
-      },
-      {
-        text: 'Camara',
-        
-        handler: () => {
-          this.photoService.photos=[];
-          this.photoService.addNewToCamara();
-       
-          
-        }
       }
+      
     ]
   });
 
