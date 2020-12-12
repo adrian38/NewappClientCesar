@@ -313,14 +313,27 @@
           <ion-col size=2>
            
           </ion-col>
-          <ion-col>
+          <ion-col  *ngIf="verFotoInicial">
             <img src="../../assets/noImage.png"
                   (click)="presentAlertConfirm()">
           </ion-col>
-          <ion-col >
+         
+  
+           
+      
+      <ion-col  
+        *ngFor="let photo of photoService.photos;">
+          <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+      </ion-col>
+
+          <ion-col  *ngIf="verFotoInicial">
             <img src="../../../assets/noImage.png"
                  (click)="presentAlertConfirm()">
           </ion-col>
+          <ion-col
+        *ngFor="let photo of photoService.photos; ">
+          <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+      </ion-col>
           <ion-col size=2>
            
           </ion-col>
@@ -340,9 +353,13 @@
           <ion-col size=8>
            
             <img src="../../assets/noImage.png"
-                  (click)="presentAlertConfirm()">
+                  (click)="presentAlertConfirm()"
+                  *ngIf="verFotoInicial">
           </ion-col>
-      
+          <ion-col
+          *ngFor="let photo of photoService.photos; ">
+            <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+        </ion-col>
           <ion-col size=1 >
             
           </ion-col>
@@ -356,15 +373,15 @@
        
       </ion-grid>
 
-      <!-- lo nuevo -->
+      <!--lo nuevo -->
 
-      <ion-grid>
+    <!--   <ion-grid>
         <ion-row>
         <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
           <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
         </ion-col>
         </ion-row>
-      </ion-grid> 
+      </ion-grid>   -->
     
     
        </ion-card>

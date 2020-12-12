@@ -17,11 +17,20 @@
     
       <ion-row style="margin-top: 25px;">
         <ion-col size=4></ion-col>
-        <ion-col size=4>
+
+        <ion-col size=4 *ngIf="verFotoInicial"  >
           <img src="../../../assets/registro.png"
-                 (click)="presentAlertConfirm()"> 
-      
+                 (click)="presentAlertConfirm()"
+                  > 
         </ion-col>
+
+         
+    
+    <ion-col size="4"
+      *ngFor="let photo of photoService.photos; index as position">
+        <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+    </ion-col>
+ 
         <ion-col size=4 ></ion-col>
       </ion-row>
  
@@ -270,14 +279,14 @@
 
 
 
-  <ion-grid >
+ <!--  <ion-grid >
     <ion-row>
     <ion-col size="6"
       *ngFor="let photo of photoService.photos; index as position">
         <ion-img [src]="photo.webviewPath"></ion-img>
     </ion-col>
     </ion-row>
-  </ion-grid> 
+  </ion-grid>  -->
  
 
   

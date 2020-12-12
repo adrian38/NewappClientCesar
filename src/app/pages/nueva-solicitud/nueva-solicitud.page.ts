@@ -7,7 +7,7 @@ import { Address, TaskModel } from '../../models/task.model';
 //-----------------------------------------------
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { Photo,PhotoService } from '../../services/photo.service';
+import { Photo, PhotoService } from '../../services/photo.service';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Observable } from 'rxjs';
@@ -19,6 +19,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./nueva-solicitud.page.scss'],
 })
 export class NuevaSolicitudPage implements OnInit {
+  
+  f1:Photo[];
+  f2:Photo[];
+  f3:Photo[];
+  
   titulo:String="";
   checkSi:boolean=false;
   checkNo:boolean=false; 
@@ -26,6 +31,9 @@ export class NuevaSolicitudPage implements OnInit {
   notificationNewSoClient$: Observable<boolean>;
   notificationError$: Observable<boolean>;
   
+  verFoto:boolean=false;
+ verFotoInicial:boolean=true;
+
   calle:string="";
   piso:string="";
   numero:string="";
@@ -222,14 +230,20 @@ async presentAlertConfirm() {
         text: 'Camara',
         
         handler: () => {
+         
           this.photoService.photos=[];
+          this.verFoto=true;
+          this.verFotoInicial=false;
           this.photoService.addNewToCamara();
        }
       },
       {
         text: 'Galeria',
         handler: () => {
-          this.photoService.photos=[];
+         this.photoService.photos=[];
+     
+          this.verFoto=true;
+            this.verFotoInicial=false;
           this.photoService.addNewToGallery();
        }
       },
@@ -238,6 +252,8 @@ async presentAlertConfirm() {
         role: 'cancel',
         cssClass: 'secondary',
         handler: (blah) => {
+          this.verFoto=false;
+          this.verFotoInicial=true;
           console.log('Confirm Cancel: blah');
         }
       }

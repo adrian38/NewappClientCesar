@@ -1,6 +1,12 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: 'HelveticaNeueLTStd-Bd';
+
+  src: url('../assets/fonts/HelveticaNeueLTStd-Bd.otf');
+}
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -229,4 +235,6 @@
 
     --ion-card-background: #1e1e1e;
   }
+
+
 }

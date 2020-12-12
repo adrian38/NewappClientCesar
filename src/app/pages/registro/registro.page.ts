@@ -13,6 +13,8 @@ export class RegistroPage implements OnInit {
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
 
+ verFoto:boolean=false;
+ verFotoInicial:boolean=true;
 
   constructor(public photoService: PhotoService,
                private imageCompress: NgxImageCompressService,
@@ -74,6 +76,8 @@ compressFile() {
           
           handler: () => {
             this.photoService.photos=[];
+            this.verFoto=true;
+            this.verFotoInicial=false;
             this.photoService.addNewToCamara();
          
             
@@ -82,6 +86,8 @@ compressFile() {
           text: 'Galeria',
           handler: () => {
             this.photoService.photos=[];
+            this.verFoto=true;
+            this.verFotoInicial=false;
             this.photoService.addNewToGallery();
            
          
@@ -93,6 +99,8 @@ compressFile() {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
+            this.verFoto=false;
+            this.verFotoInicial=true;
             console.log('Confirm Cancel: blah');
           }
         }
