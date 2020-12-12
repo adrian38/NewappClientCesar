@@ -1,14 +1,6 @@
-<ion-header>
-
-</ion-header>
 
 <ion-content>
   <ion-grid>
-    
-
-
- 
-  
 
    <form #formulario="ngForm" >
        
@@ -40,8 +32,9 @@
                                    required
                                    [(ngModel)]="user"
                                    required
-                                   minlength=5
+                                
                                    #nombre="ngModel"
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                    
 
                                    ></ion-input>
