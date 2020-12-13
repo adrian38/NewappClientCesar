@@ -68,6 +68,8 @@ export class Tab1Page implements OnInit {
   }
   irSolicitud(){
     this.navCtrl.navigateRoot('tarea');
+   // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+ 
     //this.navCtrl.navigateBack('back');
   }
 

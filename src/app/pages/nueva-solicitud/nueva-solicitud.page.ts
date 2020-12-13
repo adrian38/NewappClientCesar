@@ -196,7 +196,9 @@ this.datos.setTitulo(this.titulo);
    //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
     
     this._taskOdoo.newTask(this.task);
-
+    this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
+ 
+ 
   }
  
 //-------------------------------

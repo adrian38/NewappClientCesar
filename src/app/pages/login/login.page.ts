@@ -5,13 +5,13 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
-
-
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
+//import { NavController } from 'ionic-angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  
 })
 export class LoginPage implements OnInit {
 
@@ -31,7 +31,8 @@ export class LoginPage implements OnInit {
     private _chatOdoo:ChatOdooService,
     private route:Router,
     public loadingController: LoadingController,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+   public navController:NavController) {
 
 this.usuario = new UsuarioModel;
 }
@@ -58,7 +59,11 @@ checkUser(){
     this._taskOdoo.setUser(this.usuario);
     this._chatOdoo.setUser(this.usuario);
     console.log('conectado');
-            this.route.navigate(["/tabs/tab1"]);    
+            //this.route.navigate(["/tabs/tab1"]);   
+            
+            this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+ 
+      
   }
   else{
     console.log('no se pudo conectar');
