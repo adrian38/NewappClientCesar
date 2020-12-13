@@ -19,28 +19,33 @@
     </div>
   
   </div> 
-  <div id="ServHist">
+   <div id="ServHist">
   <ion-segment  (ionChange)="segChange($event)" 
                 style="color: rgb(49 ,49 ,57);">
   
      
   
   <ion-segment-button value="servicio">
-  <ion-label>Contratados</ion-label>
+  <ion-label style="color: rgb(49 ,49 ,57)">Contratados</ion-label>
   
   
   
   </ion-segment-button>
   <ion-segment-button value="historial">
-  <ion-label>Historial</ion-label>
+  <ion-label style="color: rgb(49 ,49 ,57)">Historial</ion-label>
   </ion-segment-button>
   
   </ion-segment>
   </div>
   
+
 </ion-header>
 
+
+
 <ion-content >
+
+
 
   <ion-list  *ngIf="verservicios">
     <ion-item  
@@ -51,30 +56,32 @@
       
      <ion-grid >
      <ion-row>
-     <ion-col>
-     <ion-avatar>
+     <ion-col size=5>
+    
       <img src="../../assets/av-6.png">
-     </ion-avatar>
+     
      </ion-col>
-     <ion-col>
+     <ion-col size=7>
      <ion-row>
      
-      <h6> {{contratados.title}}</h6>
-       <ion-label style="margin-left: 5px;">{{contratados.title}}</ion-label> 
-      </ion-row>
-     <ion-row>
-      <ion-icon name="build"></ion-icon>
-      <ion-label style="margin-left: 5px;">Tipo: {{contratados.type}}</ion-label>
-     </ion-row>
-     <ion-row>
-      <ion-icon name="calendar"></ion-icon>
+      <h6> FONTANERIA XX</h6>
+       </ion-row>
+    
+
+     <ion-row style="margin-top: 7px;">
+      <ion-icon name="calendar" color="primary"></ion-icon>
       <ion-label style="margin-left: 5px;">Fecha: {{contratados.date_planned}}</ion-label>
      </ion-row>
-     <ion-row>
-      <ion-icon name="time" ></ion-icon>
+     <ion-row style="margin-top: 6px;">
+      <ion-icon name="time"  color="primary"></ion-icon>
       <ion-label style="margin-left: 5px;">Hora: {{contratados.time}}</ion-label>
      </ion-row>
      
+     <ion-row style="margin-top: 6px;">
+      <ion-icon name="build" color="primary"></ion-icon>
+      <ion-label style="margin-left: 5px;">Tipo: {{contratados.budget}} €</ion-label>
+     </ion-row>
+
      </ion-col>
      </ion-row>
      </ion-grid>
@@ -83,5 +90,9 @@
    </ion-list>   
  
  
+    
 
+ 
+
+   
 </ion-content>

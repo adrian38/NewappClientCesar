@@ -5,7 +5,7 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -30,7 +30,8 @@ export class LoginPage implements OnInit {
     private _taskOdoo:TaskOdooService,
     private _chatOdoo:ChatOdooService,
     private route:Router,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public alertController: AlertController) {
 
 this.usuario = new UsuarioModel;
 }
@@ -63,6 +64,8 @@ checkUser(){
     console.log('no se pudo conectar');
     this.loading.dismiss();
 
+    this.presentAlertConfirm();
+ 
     
   }
 }
@@ -88,4 +91,28 @@ async presentLoading() {
    return  this.loading.present();
 
 }
+
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Problema de conexion',
+    message: 'Intene e nuevo',
+    buttons: [
+      
+     
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+        
+          console.log('Confirm Cancel: blah');
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 }

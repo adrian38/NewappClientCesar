@@ -20,11 +20,9 @@ import { Router } from '@angular/router';
 })
 export class NuevaSolicitudPage implements OnInit {
   
-  f1:Photo[];
-  f2:Photo[];
-  f3:Photo[];
+
   
-  titulo:String="";
+  titulo:string="";
   checkSi:boolean=false;
   checkNo:boolean=false; 
 
@@ -168,6 +166,7 @@ this.datos.setescalera(this.escalera);
 this.datos.setcod_postal(this.cod_postal);
 this.datos.setnumero(this.numero);
 this.datos.setportal(this.portal);
+this.datos.setTitulo(this.titulo);
 
 
 
@@ -182,15 +181,19 @@ this.datos.setportal(this.portal);
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
 
-    this.task.title= 'Arreglo'
+
+   // this.task.title= 'Arreglo'
+     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;
     this.task.type = ':Servicio de Fontaneria';
+   
     //this.task.time = '12:12:12';
-    //this.task.date = '2020-02-20'
-  this.task.time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
+   // this.task.date = '2020-02-20'
+ this.task.time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
     
    this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
-    //console.log("Vet",this.task.date);
+   
+   //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
     
     this._taskOdoo.newTask(this.task);
 
@@ -278,11 +281,6 @@ onCurrentDateChanged(event){
   }
 
 
-reloadSource(startTime, endTime){
 
-  console.log("Ver1",startTime);
-  console.log("Ver2",endTime);
-
-}
 
 }

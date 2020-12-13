@@ -30,6 +30,8 @@ export class ObtSubSService {
     ContaratadosList:TaskModel[];
     HistorialList:TaskModel[];
 
+    titulo:string="";
+
    //-----------------------------------------------------------
 
     nombre:string="";
@@ -160,6 +162,12 @@ getServ(){
       return this.subServicioActual;
     }
 
+    setTitulo(t:string){
+this.titulo=t;
+    }
+    gettitulo(){
+      return this.titulo;
+    }
   //-------------------------------------------------------------------------
 
 
