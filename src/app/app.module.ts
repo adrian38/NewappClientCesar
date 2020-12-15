@@ -24,6 +24,11 @@ import { AppComponent } from './app.component';
 import {NgxImageCompressService} from 'ngx-image-compress';
 import { NgCalendarModule  } from 'ionic2-calendar';
 
+import { LOCALE_ID } from '@angular/core';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -38,7 +43,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
     TaskOdooService,
     ObtSubSService,
    
-    NgxImageCompressService
+    NgxImageCompressService,
+    {provide: LOCALE_ID, useValue:"es" }
 
   ],
   bootstrap: [AppComponent]

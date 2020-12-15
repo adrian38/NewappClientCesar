@@ -24,7 +24,7 @@ export class NuevaSolicitudPage implements OnInit {
   
   titulo:string="";
   checkSi:boolean=false;
-  checkNo:boolean=false; 
+  checkNo:boolean=true; 
 
   notificationNewSoClient$: Observable<boolean>;
   notificationError$: Observable<boolean>;
@@ -58,7 +58,7 @@ servicio:string="";
     mode: 'month',
     currentDate: new Date(),
   }
-
+   diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 
   constructor(private datos:ObtSubSService,
               private _taskOdoo: TaskOdooService,
@@ -111,7 +111,9 @@ await this.photoService.loadSaved();
   }
 
   checkSiF(){
-    if(this.checkSi)
+    this.checkNo=false;
+    this.checkSi=true;
+   /*  if(this.checkSi)
     {
      
       
@@ -128,11 +130,13 @@ await this.photoService.loadSaved();
      this.checkNo=false;
     }
    
-   
+    */
    
   }
   checkNoF(){
-    if(this.checkNo)
+    this.checkNo=true;
+    this.checkSi=false;
+    /* if(this.checkNo)
     {
      
       
@@ -148,7 +152,7 @@ await this.photoService.loadSaved();
      console.log("si lo toque",this.checkSi)
      this.checkSi=false;
     }
-   
+    */
    
    
   }
@@ -195,10 +199,16 @@ this.datos.setTitulo(this.titulo);
    
    //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
     
+   if(this.task.title != "" ){
     this._taskOdoo.newTask(this.task);
     this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
  
  
+   }
+   else
+   console.log("llene los campos");
+   this.presentAlertCampos();
+    
   }
  
 //-------------------------------
@@ -284,5 +294,28 @@ onCurrentDateChanged(event){
 
 
 
+  async presentAlertCampos() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Campo vacio',
+     
+      buttons: [
+       
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.verFoto=false;
+            this.verFotoInicial=true;
+            console.log('Confirm Cancel: blah');
+          }
+        }
+        
+      ]
+    });
+  
+    await alert.present();
+  }
 
 }

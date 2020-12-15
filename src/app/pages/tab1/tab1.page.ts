@@ -18,7 +18,8 @@ export class Tab1Page implements OnInit {
   id_string: string;
   task: TaskModel;
   solicitudesList: TaskModel[];
-  
+  diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+  fecha:number;
   
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
   tab: String;
@@ -34,6 +35,7 @@ export class Tab1Page implements OnInit {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
+    // this.fecha=new Date(this.task.date_planned).getDay();
 
   }
 
@@ -71,6 +73,7 @@ export class Tab1Page implements OnInit {
    // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
     //this.navCtrl.navigateBack('back');
+    
   }
 
 }
