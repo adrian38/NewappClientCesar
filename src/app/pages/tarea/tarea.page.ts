@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarea',
@@ -14,7 +15,8 @@ export class TareaPage implements OnInit {
   electricidad:boolean=false; 
 
   constructor(private Serv: ObtSubSService,
-              public navCtrl:NavController) { }
+              public navCtrl:NavController,
+              private route:Router) { }
 
   ngOnInit() {
   }
@@ -23,8 +25,10 @@ export class TareaPage implements OnInit {
     this.fontaneria=this.fontaneria;
     this.electricidad=false;
     this.Serv.setServ("FONTANERIA");
-  
-    this.navCtrl.navigateRoot('nueva-solicitud');
+    
+    this.route.navigateByUrl ('/nueva-solicitud', {skipLocationChange: true}) ;
+ 
+   // this.navCtrl.navigateRoot('nueva-solicitud');
   }
 
   electricidadF(){

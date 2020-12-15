@@ -201,7 +201,8 @@ this.datos.setTitulo(this.titulo);
     
    if(this.task.title != "" ){
     this._taskOdoo.newTask(this.task);
-    this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
+    //this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
+    this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
  
    }
@@ -318,4 +319,9 @@ onCurrentDateChanged(event){
     await alert.present();
   }
 
+
+  navegar(){
+    this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+ 
+  }
 }

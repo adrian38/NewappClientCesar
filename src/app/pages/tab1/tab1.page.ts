@@ -6,6 +6,7 @@ import {  TaskModel } from 'src/app/models/task.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,8 +21,6 @@ export class Tab1Page implements OnInit {
   id_string: string;
   task: TaskModel;
   solicitudesList: TaskModel[];
-  diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-  fecha:number;
   
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
   tab: String;
@@ -33,7 +32,8 @@ export class Tab1Page implements OnInit {
     private _taskOdoo: TaskOdooService,
     private _authOdoo: AuthOdooService,
     private ngZone: NgZone,
-    public navCtrl:NavController) {
+    public navCtrl:NavController,
+    private route:Router) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
@@ -71,7 +71,9 @@ export class Tab1Page implements OnInit {
 
   }
   irSolicitud(){
-    this.navCtrl.navigateRoot('tarea');
+    this.route.navigateByUrl ('/tarea', {skipLocationChange: true}) ;
+ 
+    //this.navCtrl.navigateRoot('tarea');
    // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
     //this.navCtrl.navigateBack('back');

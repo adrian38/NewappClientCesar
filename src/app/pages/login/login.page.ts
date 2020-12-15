@@ -61,7 +61,7 @@ checkUser(){
     console.log('conectado');
             //this.route.navigate(["/tabs/tab1"]);   
             
-            this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+          this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
       
   }
