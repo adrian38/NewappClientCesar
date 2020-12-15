@@ -7,6 +7,8 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
+
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -35,8 +37,7 @@ export class Tab1Page implements OnInit {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
-    // this.fecha=new Date(this.task.date_planned).getDay();
-
+     
   }
 
   ngOnInit(): void {
@@ -51,6 +52,7 @@ export class Tab1Page implements OnInit {
    });
 
    });
+  
 
   }
 
