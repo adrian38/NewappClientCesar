@@ -74,10 +74,10 @@ servicio:string="";
               private _location: Location) { 
 
                 this.fecha =new Date();
-                 //this.reloj=new Date();
+                this.reloj=new Date();
 
                   
-  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+   this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
     processNextHandler();
   
      this._location.back();
@@ -211,7 +211,7 @@ this.datos.setTitulo(this.titulo);
     this._taskOdoo.newTask(this.task);
     //this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
     
-    this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+    this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
  
  
    }
@@ -332,7 +332,7 @@ onCurrentDateChanged(event){
 
 
   cerrarServicios(){
-    this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+    this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
  
   }
 }

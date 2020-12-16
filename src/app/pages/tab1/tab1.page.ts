@@ -43,7 +43,7 @@ export class Tab1Page implements OnInit {
   this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
     processNextHandler();
   
-     this._location.back();
+     this._location.go('/login');
    });
      
   }
@@ -79,7 +79,7 @@ export class Tab1Page implements OnInit {
 
   }
   irSolicitud(){
-    this.route.navigateByUrl ('/tarea', {skipLocationChange: true}) ;
+    this.route.navigateByUrl ('/tarea', {replaceUrl : true}) ;
  
     //this.navCtrl.navigateRoot('tarea');
    // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;

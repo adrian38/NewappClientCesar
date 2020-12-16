@@ -27,8 +27,8 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
 navegar(){
-  this.route.navigateByUrl ('/login', {skipLocationChange: true}) ;
- 
+  this.route.navigateByUrl('/login', {replaceUrl : true}) ;
+  
 }
 
 initializeApp() {

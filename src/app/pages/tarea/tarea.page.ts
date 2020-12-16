@@ -21,33 +21,33 @@ export class TareaPage implements OnInit {
               private platform: Platform,
               private _location: Location) { 
 
-                this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+               this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
                   processNextHandler();
                 
                    this._location.back();
-                 });
+                 }); 
               }
 
   ngOnInit() {
   }
   fontaneriaF(){
-    console.log("f");
+   /*  console.log("f");
     this.fontaneria=this.fontaneria;
     this.electricidad=false;
-    this.Serv.setServ("FONTANERIA");
+    this.Serv.setServ("FONTANERIA"); */
     
-    this.route.navigateByUrl ('/nueva-solicitud', {skipLocationChange: true}) ;
- 
-   // this.navCtrl.navigateRoot('nueva-solicitud');
+    this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
+  
+  // this.navCtrl.navigateRoot('/nueva-solicitud');
   }
 
   electricidadF(){
-    console.log("e");
+   /*  console.log("e");
     this.fontaneria=false;
     this.electricidad=this.electricidad;
-    this.Serv.setServ("ELECTRICIDAD");
-    this.route.navigateByUrl ('/nueva-solicitud', {skipLocationChange: true}) ;
+    this.Serv.setServ("ELECTRICIDAD"); */
+    this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
  
-   //this.navCtrl.navigateRoot('nueva-solicitud');
+  // this.navCtrl.navigateRoot('/nueva-solicitud');
   }
 }
