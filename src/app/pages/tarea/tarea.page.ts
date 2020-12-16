@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController,Platform } from '@ionic/angular';
 
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tarea',
@@ -16,7 +17,16 @@ export class TareaPage implements OnInit {
 
   constructor(private Serv: ObtSubSService,
               public navCtrl:NavController,
-              private route:Router) { }
+              private route:Router,
+              private platform: Platform,
+              private _location: Location) { 
+
+                this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+                  processNextHandler();
+                
+                   this._location.back();
+                 });
+              }
 
   ngOnInit() {
   }
@@ -36,6 +46,8 @@ export class TareaPage implements OnInit {
     this.fontaneria=false;
     this.electricidad=this.electricidad;
     this.Serv.setServ("ELECTRICIDAD");
-    this.navCtrl.navigateRoot('nueva-solicitud');
+    this.route.navigateByUrl ('/nueva-solicitud', {skipLocationChange: true}) ;
+ 
+   //this.navCtrl.navigateRoot('nueva-solicitud');
   }
 }

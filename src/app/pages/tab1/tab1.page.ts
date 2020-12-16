@@ -1,5 +1,5 @@
 import { Component, NgZone ,OnInit} from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController,Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 
@@ -7,6 +7,7 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 
@@ -33,10 +34,17 @@ export class Tab1Page implements OnInit {
     private _authOdoo: AuthOdooService,
     private ngZone: NgZone,
     public navCtrl:NavController,
-    private route:Router) {
+    private route:Router,
+    private platform: Platform,
+    private _location: Location) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
+  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+    processNextHandler();
+  
+     this._location.back();
+   });
      
   }
 

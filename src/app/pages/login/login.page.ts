@@ -5,8 +5,13 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController,Platform } from '@ionic/angular';
+
 //import { NavController } from 'ionic-angular';
+
+import { Location } from '@angular/common';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,9 +37,18 @@ export class LoginPage implements OnInit {
     private route:Router,
     public loadingController: LoadingController,
     public alertController: AlertController,
-   public navController:NavController) {
+   public navController:NavController,
+   private platform: Platform,
+   private _location: Location) {
 
 this.usuario = new UsuarioModel;
+
+this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+   processNextHandler();
+ 
+    this._location.back();
+  });
+
 }
 
                
@@ -61,9 +75,10 @@ checkUser(){
     console.log('conectado');
             //this.route.navigate(["/tabs/tab1"]);   
             
-          this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
+          this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
  
-      
+     // this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
   }
   else{
     console.log('no se pudo conectar');

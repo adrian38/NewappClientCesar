@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController,Platform } from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Address, TaskModel } from '../../models/task.model';
@@ -12,6 +12,7 @@ import { Photo, PhotoService } from '../../services/photo.service';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-nueva-solicitud',
@@ -68,12 +69,19 @@ servicio:string="";
               public actionSheetController: ActionSheetController,
               public alertController: AlertController,
               public calen:NgCalendarModule,
-              private route:Router) { 
+              private route:Router,
+              private platform: Platform,
+              private _location: Location) { 
 
                 this.fecha =new Date();
-this.reloj=new Date();
+                 //this.reloj=new Date();
 
-               
+                  
+  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+    processNextHandler();
+  
+     this._location.back();
+   });  
    
   }
 
@@ -202,13 +210,15 @@ this.datos.setTitulo(this.titulo);
    if(this.task.title != "" ){
     this._taskOdoo.newTask(this.task);
     //this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
+    
     this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
  
    }
-   else
-   console.log("llene los campos");
-   this.presentAlertCampos();
+   else{ 
+     console.log("llene los campos");
+    this.presentAlertCampos();}
+  
     
   }
  
@@ -320,7 +330,8 @@ onCurrentDateChanged(event){
   }
 
 
-  navegar(){
+
+  cerrarServicios(){
     this.route.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
   }
