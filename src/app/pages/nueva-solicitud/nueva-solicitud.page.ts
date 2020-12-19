@@ -77,10 +77,8 @@ servicio:string="";
                 this.reloj=new Date();
 
                   
-   this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-    processNextHandler();
-  
-     this._location.back();
+   this.platform.backButton.subscribeWithPriority(10, () => {
+    this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'back' }) ;
    });  
    
   }
@@ -107,7 +105,9 @@ this.servicio=this.datos.getServ();
 
         if (notificationNewSoClient) {
           console.log("Se creo correctamente la tarea");
-          this.route.navigate(["/tabs/tab1"]);
+         //this.route.navigate(["/tabs/tab1"]);
+         this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
 
         }
 
@@ -211,9 +211,10 @@ this.datos.setTitulo(this.titulo);
     this._taskOdoo.newTask(this.task);
     //this.navCtrl.navigateRoot('/tabs/tab1', {skipLocationChange: true}) ;
     
-    this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
+    //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
  
- 
+    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
    }
    else{ 
      console.log("llene los campos");
@@ -332,7 +333,8 @@ onCurrentDateChanged(event){
 
 
   cerrarServicios(){
-    this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
- 
+    //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
+    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
   }
 }

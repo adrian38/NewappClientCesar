@@ -1,5 +1,5 @@
 import { Component, NgZone ,OnInit} from '@angular/core';
-import { NavController,Platform } from '@ionic/angular';
+import { AlertController, NavController,Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 
@@ -8,6 +8,8 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 
 
@@ -36,15 +38,16 @@ export class Tab1Page implements OnInit {
     public navCtrl:NavController,
     private route:Router,
     private platform: Platform,
-    private _location: Location) {
+    private _location: Location,
+    public alertController: AlertController, 
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      
-  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-    processNextHandler();
   
-     this._location.go('/login');
-   });
+  this.initializeApp();
+ 
      
   }
 
@@ -64,6 +67,7 @@ export class Tab1Page implements OnInit {
 
   }
 
+  
 
   in(i) {
     this.cant = i;
@@ -79,8 +83,9 @@ export class Tab1Page implements OnInit {
 
   }
   irSolicitud(){
-    this.route.navigateByUrl ('/tarea', {replaceUrl : true}) ;
- 
+    //this.route.navigateByUrl ('/tarea', {replaceUrl : true}) ;
+    this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'forward' }) ;
+    
     //this.navCtrl.navigateRoot('tarea');
    // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
  
@@ -88,4 +93,37 @@ export class Tab1Page implements OnInit {
     
   }
 
+
+
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  
+  
+    this.platform.backButton.subscribeWithPriority(1, (processNextHandler) => {
+      console.log('Back press handler!');
+      if (this._location.isCurrentPathEqualTo('/tabs/tab1')) {
+  
+        // Show Exit Alert!
+        console.log('Show Exit Alert!');
+        this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
+    
+        processNextHandler();
+      } else {
+  
+        // Navigate to back page
+        console.log('Navigate to back page');
+        this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
+    
+  
+      }
+  
+    });
+  
+    
+  }
+  
 }

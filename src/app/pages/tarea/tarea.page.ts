@@ -21,10 +21,8 @@ export class TareaPage implements OnInit {
               private platform: Platform,
               private _location: Location) { 
 
-               this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-                  processNextHandler();
-                
-                   this._location.back();
+               this.platform.backButton.subscribeWithPriority(10, () => {
+                this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
                  }); 
               }
 
@@ -36,8 +34,9 @@ export class TareaPage implements OnInit {
     this.electricidad=false;
     this.Serv.setServ("FONTANERIA"); */
     
-    this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
-  
+    //this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
+    this.navCtrl.navigateRoot('/nueva-solicitud', {animated: true, animationDirection: 'forward' }) ;
+    
   // this.navCtrl.navigateRoot('/nueva-solicitud');
   }
 
@@ -46,8 +45,9 @@ export class TareaPage implements OnInit {
     this.fontaneria=false;
     this.electricidad=this.electricidad;
     this.Serv.setServ("ELECTRICIDAD"); */
-    this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
- 
+   // this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
+   this.navCtrl.navigateRoot('/nueva-solicitud', {animated: true, animationDirection: 'forward' }) ;
+    
   // this.navCtrl.navigateRoot('/nueva-solicitud');
   }
 }

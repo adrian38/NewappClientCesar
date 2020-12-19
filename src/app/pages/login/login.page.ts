@@ -43,10 +43,9 @@ export class LoginPage implements OnInit {
 
 this.usuario = new UsuarioModel;
 
-this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-   processNextHandler();
- 
-    this._location.back();
+this.platform.backButton.subscribeWithPriority(10, () => {
+  this.navController.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+    
   });
 
 }
@@ -75,9 +74,9 @@ checkUser(){
     console.log('conectado');
             //this.route.navigate(["/tabs/tab1"]);   
             
-          this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
+          //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
  
-     // this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+     this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
     
   }
   else{

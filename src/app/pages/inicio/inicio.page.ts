@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, Platform, NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-inicio',
@@ -16,7 +16,7 @@ export class InicioPage implements OnInit {
     public alertController: AlertController, 
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-
+    private navCon:NavController,
     private _location: Location) { 
 
       this.initializeApp();
@@ -27,8 +27,9 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
 navegar(){
-  this.route.navigateByUrl('/login', {replaceUrl : true}) ;
-  
+ // this.route.navigateByUrl('/login', {replaceUrl : true}) ;
+     this.navCon.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
+    
 }
 
 initializeApp() {
