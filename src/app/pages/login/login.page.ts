@@ -44,8 +44,12 @@ export class LoginPage implements OnInit {
 this.usuario = new UsuarioModel;
 
 this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navController.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+  if (this._location.isCurrentPathEqualTo('/login')) {
     
+    this.navController.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+    
+  }
+  
   });
 
 }

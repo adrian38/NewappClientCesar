@@ -23,18 +23,20 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
-  {
-    path: 'nueva-solicitud',
-    loadChildren: () => import('./pages/nueva-solicitud/nueva-solicitud.module').then( m => m.NuevaSolicitudPageModule)
-  },
+  
  
   {
     path: 'tarea',
     loadChildren: () => import('./pages/tarea/tarea.module').then( m => m.TareaPageModule)
-  },  {
+  },
+  {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },  {
+    path: 'nuevasolicitd',
+    loadChildren: () => import('./pages/nuevasolicitd/nuevasolicitd.module').then( m => m.NuevasolicitdPageModule)
   }
+
 
 
 

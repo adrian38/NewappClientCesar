@@ -46,7 +46,10 @@ export class Tab1Page implements OnInit {
   this.solicitudesList = this.subServ.getSolicitudeList();
      
   
-  this.initializeApp();
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;
+      
+    });
  
      
   }
@@ -96,34 +99,8 @@ export class Tab1Page implements OnInit {
 
 
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  
-  
-    this.platform.backButton.subscribeWithPriority(1, (processNextHandler) => {
-      console.log('Back press handler!');
-      if (this._location.isCurrentPathEqualTo('/tabs/tab1')) {
-  
-        // Show Exit Alert!
-        console.log('Show Exit Alert!');
-        this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
-    
-        processNextHandler();
-      } else {
-  
-        // Navigate to back page
-        console.log('Navigate to back page');
-        this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
-    
-  
-      }
-  
-    });
   
     
-  }
+  
   
 }

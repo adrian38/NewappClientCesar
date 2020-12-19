@@ -35,7 +35,7 @@ export class TareaPage implements OnInit {
     this.Serv.setServ("FONTANERIA"); */
     
     //this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
-    this.navCtrl.navigateRoot('/nueva-solicitud', {animated: true, animationDirection: 'forward' }) ;
+    this.navCtrl.navigateRoot('/nuevasolicitd', {animated: true, animationDirection: 'forward' }) ;
     
   // this.navCtrl.navigateRoot('/nueva-solicitud');
   }
@@ -46,7 +46,7 @@ export class TareaPage implements OnInit {
     this.electricidad=this.electricidad;
     this.Serv.setServ("ELECTRICIDAD"); */
    // this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
-   this.navCtrl.navigateRoot('/nueva-solicitud', {animated: true, animationDirection: 'forward' }) ;
+   this.navCtrl.navigateRoot('/nuevasolicitd', {animated: true, animationDirection: 'forward' }) ;
     
   // this.navCtrl.navigateRoot('/nueva-solicitud');
   }

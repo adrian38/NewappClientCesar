@@ -55,12 +55,15 @@
     
     
     <ion-row>
-    <ion-col size=3 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
-        <img src="../../assets/av.png">
+   
+    <ion-col  size=3 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
+       
+      <img  src="../../assets/f.jpg">
     </ion-col>
-    <ion-col size=3 *ngIf="Solicitud.type == 'Servicio de Electricidad'">
+  
+  <!--   <ion-col size=3 *ngIf="Solicitud.type == 'Servicio de Electricidad'">
       <img src="../../assets/av-6.png">
-    </ion-col>
+    </ion-col> -->
     
     <ion-col size=9>
     
@@ -72,7 +75,7 @@
         
         <ion-col size=4>
           <ion-row style="margin-top: 5px">
-            <p style="font-size: xx-small; ">{{Solicitud.date |date:"shortDate" }}</p>
+            <p style="font-size: xx-small; ">{{Solicitud.date |date:"d-M-y" }}</p>
      
           </ion-row>
          
