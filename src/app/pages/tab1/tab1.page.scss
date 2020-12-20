@@ -29,7 +29,11 @@ h6{
         height: 70px;
         margin-top: 45px;
         border-radius: 20px 0px 0px 0px;
-        border: 0.5px solid  rgb(246, 183, 118);
+        filter:sepia(30%);
+        background-color: rgb(246, 183, 118);
+
+        
+        
     }
 
     #item{

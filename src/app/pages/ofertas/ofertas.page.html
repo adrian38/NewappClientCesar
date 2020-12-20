@@ -9,7 +9,8 @@
   </div>
   <div id="ServHist">
   <ion-segment  (ionChange)="segChange($event)" 
-                style="color: rgb(49 ,49 ,57);">
+                style="color: rgb(49 ,49 ,57); "
+                color="dark">
   
      
   
@@ -85,5 +86,15 @@
   </ion-row>
   
   </ion-card>
+  </div>
+
+  <div *ngIf="verdetalles">
+     <ion-card>
+       <p>Descripcion:{{task.description}}</p>
+       <p>Nombre:{{task.client_name}}</p>
+       <p *ngIf="task.require_materials">Materiales:Si</p>
+       <p *ngIf="!task.require_materials">Materiales:No</p>
+
+     </ion-card>
   </div>
 </ion-content>

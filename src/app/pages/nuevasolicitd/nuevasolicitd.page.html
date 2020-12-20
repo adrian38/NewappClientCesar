@@ -307,25 +307,36 @@
 
        <ion-grid>
         <ion-row style="margin-top: 35px;text-align: center;">
-          <ion-col size=2>
+          <ion-col size=1>
            
           </ion-col>
-          <ion-col  *ngIf="verFotoInicial">
-            <img src="../../assets/noImage.png"
+
+          <ion-col size=4    *ngFor="let photo of photoService.photos; ">
+            <img  *ngIf="verFotoInicial" src="../../assets/noImage.png"
                   (click)="presentAlertConfirm()">
+
+            <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+         
           </ion-col>
          
-  
-           
-      
-  
-
-          <ion-col  *ngIf="verFotoInicial">
-            <img src="../../../assets/noImage.png"
-                 (click)="presentAlertConfirm()">
-          </ion-col>
-      
           <ion-col size=2>
+           
+          </ion-col>
+     
+          <ion-col size=4    *ngFor="let photo of photoService.photos; ">
+            <img  *ngIf="verFotoInicial" src="../../assets/noImage.png"
+                  (click)="presentAlertConfirm()">
+
+            <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+         
+          </ion-col>
+           
+    
+
+
+          
+      
+          <ion-col size=1>
            
           </ion-col>
         </ion-row>
@@ -333,30 +344,27 @@
       
         <ion-row style="margin-top: 35px;text-align: center;">
           
-          <ion-col size=1>
-            
-          </ion-col>
-          <ion-col size=1>
+          <ion-col size=4>
+           
             
           </ion-col>
 
       
-          <ion-col size=8>
-           
+          <ion-col size=4  *ngIf="verFotoInicial">
             <img src="../../assets/noImage.png"
-                  (click)="presentAlertConfirm()"
-                  *ngIf="verFotoInicial">
+                  (click)="presentAlertConfirm()">
+
+                  
           </ion-col>
-         <!--  <ion-col
+         
+          <ion-col size=4
           *ngFor="let photo of photoService.photos; ">
             <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
-        </ion-col> -->
-          <ion-col size=1 >
-            
-          </ion-col>
-          <ion-col size=1>
-            
-          </ion-col>
+        </ion-col>
+           
+          <ion-col size=4 >
+            </ion-col>
+
         </ion-row>
       
       

@@ -201,7 +201,8 @@ this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMont
 this._taskOdoo.newTask(this.task);
 
 
-
+this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+  
 
 }
 
