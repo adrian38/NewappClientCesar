@@ -90,10 +90,27 @@
 
   <div *ngIf="verdetalles">
      <ion-card>
+      <p>Titulo:{{task.title}}</p>
        <p>Descripcion:{{task.description}}</p>
-       <p>Nombre:{{task.client_name}}</p>
+       <p>Fecha:{{task.date_planned}}</p>
+       <p>Hora:{{task.time}}</p>
        <p *ngIf="task.require_materials">Materiales:Si</p>
        <p *ngIf="!task.require_materials">Materiales:No</p>
+       <ion-row>
+         <ion-col size=1></ion-col>
+         <ion-col>
+          <img   src="../../assets/noImage.png">
+         </ion-col>
+         <ion-col>
+          <img   src="../../assets/noImage.png">
+        </ion-col>
+        <ion-col>
+          <img   src="../../assets/noImage.png">
+        </ion-col>
+        
+        <ion-col size=1></ion-col>
+       </ion-row>
+  
 
      </ion-card>
   </div>

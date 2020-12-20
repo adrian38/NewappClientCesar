@@ -130,20 +130,9 @@ export class ChatPage implements OnInit {
     }
   }
 
-  acceptProvider() {
-    this._taskOdoo.acceptProvider(this.purchaseOrderID,this.task.id);
-    this.router.navigate(['/dashboard']);
-  }
+  
 
-  declineProvider() {
-    this._taskOdoo.declineProvider(this.purchaseOrderID);
-    this.router.navigate(['/dashboard']);
-
-  }
-
-  updateTask() {
-
-  }
+  
 
 }
  
