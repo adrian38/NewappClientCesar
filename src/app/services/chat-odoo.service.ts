@@ -195,6 +195,7 @@ export class ChatOdooService {
             }
         });
     }
+
     getAllMessages$(): Observable<MessageModel[]> {
         return messagesList$.asObservable();
     }

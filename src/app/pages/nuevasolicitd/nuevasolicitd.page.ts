@@ -158,7 +158,7 @@ this.checkSi=false;
 
 crearSolicitud(){
 this.task=new TaskModel();
-this.task.address=new Address();
+this.task.address=new Address('','','','','','','','','');
 
 this.datos.setUtiles(this.checkSi);
 this.datos.setcomentario(this.comentario);

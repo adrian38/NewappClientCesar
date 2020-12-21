@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UsuarioModel } from '../models/usuario.model'
+import { UsuarioModel, Address } from '../models/usuario.model'
 import { Observable, Subject } from 'rxjs'
 let jayson = require('../../../node_modules/jayson/lib/client/');
 let jaysonServer = {
   //host: '192.168.0.106',
-  host: 'todoenunapp.com',
+  host: '192.168.43.155',
+  //host: 'todoenunapp.com',
   port: '8069',
   db: 'demo',
   username: '',
@@ -33,8 +34,60 @@ export class AuthOdooService {
   ///////////////login desde la web
   login(usuario: UsuarioModel): void {
 
-     jaysonServer.username = usuario.username;
+    jaysonServer.username = usuario.username;
     jaysonServer.password = usuario.password;
+
+    let search_partner_fields = function (id: number) {
+
+      let inParams = []
+      inParams.push([['id', '=', usuario.partner_id]])
+      inParams.push([
+        'name',
+        'address_street',
+        'address_floor',
+        'address_portal',
+        'address_number',
+        'address_door',
+        'address_stairs',
+        'address_zip_code',
+        'address_latitude',
+        'address_longitude',
+      ])
+      let params = []
+      params.push(inParams)
+
+      let fparams = [];
+      fparams.push(jaysonServer.db);
+      fparams.push(id);
+      fparams.push(jaysonServer.password);
+      fparams.push('res.partner');//model
+      fparams.push('search_read');//method
+
+      for (let i = 0; i < params.length; i++) {
+        fparams.push(params[i]);
+      }
+
+      client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
+        if (err) {
+
+        } else {
+
+          usuario.address = new Address(value[0].address_street,
+            value[0].address_number,
+            value[0].address_portal,
+            value[0].address_stairs,
+            value[0].address_floor,
+            value[0].address_door,
+            value[0].address_zip_code,
+            value[0].address_latitude,
+            value[0].address_longitude);
+
+          user$.next(userLogin);
+        }
+      })
+    }
+
+
 
     let get_user = function (id: number) {
       let inParams = []
@@ -64,7 +117,7 @@ export class AuthOdooService {
 
       client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
         if (err || !value) {
-          console.log(err , "Error get_user");
+          console.log(err, "Error get_user");
         } else {
 
           usuario.partner_id = value[0].partner_id[0];
@@ -74,24 +127,23 @@ export class AuthOdooService {
                         {
                           usuario.type = "client"
                           console.log("cliente");
-          
+
                         } else if(value[0].classification === "vendor")
                         {
                           usuario.type = "provider"
                           console.log("proveedor");
                         } */
 
-                        if(value[0].classification === "custumer")
-                        {
-                          usuario.type = "client"
-                          console.log("cliente");
-          
-                        } else 
-                        {
-                          usuario.type = "provider"
-                          console.log("proveedor");
-                        }
-          user$.next(userLogin);
+          if (value[0].classification === "custumer") {
+            usuario.type = "client"
+            console.log("cliente");
+
+          } else {
+            usuario.type = "provider"
+            console.log("proveedor");
+          }
+
+          search_partner_fields(usuario.id)
         }
       });
     }
@@ -152,27 +204,25 @@ export class AuthOdooService {
 
       client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
         if (err || !value) {
-          console.log(err , "Error get_user");
+          console.log(err, "Error get_user");
         } else {
 
-          
 
-                         if(value[0].classification === "custumer")
-                        {
-                          usuario.type = "client"
-                          console.log("cliente");
-                          usuario.connected = true;
-                          usuario.id = id;
-                          connected = usuario.connected;
-                          usuario.partner_id = value[0].partner_id[0];
-                          usuario.realname = value[0].name;
-                          userLogin = usuario;
-          
-                        } else 
-                        {
-                          usuario.connected = false;
-                          connected = usuario.connected;
-                        }
+
+          if (value[0].classification === "custumer") {
+            usuario.type = "client"
+            console.log("cliente");
+            usuario.connected = true;
+            usuario.id = id;
+            connected = usuario.connected;
+            usuario.partner_id = value[0].partner_id[0];
+            usuario.realname = value[0].name;
+            userLogin = usuario;
+
+          } else {
+            usuario.connected = false;
+            connected = usuario.connected;
+          }
           user$.next(userLogin);
         }
       });
@@ -188,7 +238,7 @@ export class AuthOdooService {
         user$.next(userLogin);;
       } else {
         console.log("Connected");
-        
+
         get_user(value);
       }
     });
