@@ -1,8 +1,10 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
+import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
 @Component({
@@ -26,9 +28,11 @@ export class OfertasPage implements OnInit {
   valorSegment:string="";
 
   constructor(
+    private router:Router,
     private _taskOdoo:TaskOdooService,
     private _authOdoo:AuthOdooService,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    private _chatOdoo: ChatOdooService) {
 
 
 this.veroferta=true;
@@ -133,6 +137,12 @@ console.log("esto",this._taskOdoo.requestOffersForTask(this.task.id_string));
  
 
  
+}
+
+openChat(id) {
+  console.log(id);
+  this._chatOdoo.setIdPo(id);
+  this.router.navigate(['/chat']);
 }
 
 }
