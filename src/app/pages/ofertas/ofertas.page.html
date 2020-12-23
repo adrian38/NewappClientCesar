@@ -1,117 +1,203 @@
-<ion-header>
+<ion-header >
   <div id="barraSuperior">
     <div id="barraInferior">
-      <img  id="logo" slot="start" src="../../assets/logoNavbar.png">
+      <ion-row>
       
+        <ion-col size=3 >
+          <img  id="logo"  src="../../assets/logoNavbar.png">
+      
+        </ion-col>
+        
+      
+       
+         <ion-col size=6>
+          <h2 style="text-align: center;color: rgb(246, 183, 118);">Solicitudes</h2>
+      
+         </ion-col>
+        
+       </ion-row>
     </div>
-    <h2 style="text-align: center; margin-top: 2px;color: rgb(49 ,49 ,57);">Contratados</h2>
-    
-  </div>
-  <div id="ServHist">
-  <ion-segment  (ionChange)="segChange($event)" 
-                style="color: rgb(49 ,49 ,57); "
-                color="dark">
   
+  </div> 
+   <div id="ServHist">
+  <ion-segment  (ionChange)="segChange($event)" 
+                style="color: rgb(49 ,49 ,57);"
+                color="dark">
+                 
      
   
   <ion-segment-button value="ofertas">
-  <ion-label style="color: rgb(49 ,49 ,57)">Ofertas</ion-label>
+  <ion-label style="color: rgb(49 ,49 ,57)">OFERTAS</ion-label>
   
   
   
   </ion-segment-button>
-  <ion-segment-button value="detalle"> 
-     <ion-label style="color: rgb(49 ,49 ,57)">Detalles</ion-label>
+  <ion-segment-button value="detalle">
+  <ion-label style="color: rgb(49 ,49 ,57)">DETALLES</ion-label>
   </ion-segment-button>
   
   </ion-segment>
   </div>
+  
+
 </ion-header>
+
+
+
 
 <ion-content>
   <div *ngIf="veroferta">
 
 
-    <ion-card *ngFor="let offer of offersList"
-    
-    >
+    <ion-row   *ngFor="let offer of offersList">
+      
+ <ion-col size=1></ion-col>
+ 
+ 
+  <ion-col  id="item" size=3>
+    <img id="fotopersonal" style="margin-top: 10px;"  src="../../assets/av.png" >
+   </ion-col>
   
-  <ion-row>
-  <ion-col>
-  <ion-avatar>
-    <img src="../../assets/av-6.png">
-  </ion-avatar>
-  <ion-button (click)="openChat(offer.id)"
-            color="secondary"
-             style="margin-top: 23px;">        
-             chat
-            </ion-button>
-  </ion-col>
-  <ion-col>
-  <ion-card-title >{{offer.provider_name}}</ion-card-title>
-  <ion-card-header>
-              <ion-icon name="star"></ion-icon> 
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-  </ion-card-header>
-  <h5 style="text-align: start;">{{offer.budget}}€</h5>
-  </ion-col>
-  
-  <ion-row>
-  
-  
-  <ion-col>
-  
-  <ion-buttons style="margin-top: 45px;">
-  <ion-button routerLink="/chat"
-              fill="clear">        
-  </ion-button>
-  <ion-icon  name="close" style="width: 25px;height: 25px;"></ion-icon>
-  </ion-buttons>
-  
-  </ion-col>
-  
-  <ion-col>
-  <ion-buttons style="margin-top: 45px;">
-  <ion-button routerLink="/chat"
-              fill="clear">        
-  </ion-button>
-  <ion-icon name="checkmark" style="width: 25px;height: 25px;"></ion-icon>
-  </ion-buttons>
-  
-  </ion-col>
+   <ion-col id="item" size=4>
+     <h4 >{{offer.client_name}}</h4>
+     <p style="color: rgb(246, 183, 118);">{{offer.budget}} $</p>
+   </ion-col>
+
+   <ion-col id="item" size=1>
+     
+      <ion-icon id="ico" name="chatbubbles" 
+                style="margin-top: 22px;"
+                (click)="openChat(offer.id)"></ion-icon>
+     
+   </ion-col>
+
+   <ion-col id="item" size=1>
+    <ion-button style="margin-top: 22px;" >
+      <div id="iconos">
+        <ion-icon name="checkmark" ></ion-icon>
+      </div>
+      
+    </ion-button>
+   </ion-col>
+
+    <ion-col id="item" size=1>
+    <ion-button style="margin-top: 22px;" >
+      <div id="iconos">
+        <ion-icon name="close"></ion-icon>
+      </div>
+    </ion-button>
+   </ion-col>
+
+   
+ <ion-col size=1></ion-col>
+
+
   </ion-row>
-  </ion-row>
-  
-  </ion-card>
+
   </div>
 
   <div *ngIf="verdetalles">
-     <ion-card>
-      <p>Titulo:{{task.title}}</p>
-       <p>Descripcion:{{task.description}}</p>
-       <p>Fecha:{{task.date_planned}}</p>
-       <p>Hora:{{task.time}}</p>
-       <p *ngIf="task.require_materials">Materiales:Si</p>
-       <p *ngIf="!task.require_materials">Materiales:No</p>
-       <ion-row>
-         <ion-col size=1></ion-col>
-         <ion-col>
-          <img   src="../../assets/noImage.png">
-         </ion-col>
-         <ion-col>
-          <img   src="../../assets/noImage.png">
-        </ion-col>
-        <ion-col>
-          <img   src="../../assets/noImage.png">
-        </ion-col>
-        
-        <ion-col size=1></ion-col>
-       </ion-row>
-  
+    <ion-row style="margin-top: 5px;">
+      <ion-col size=1></ion-col>
+      
+      <ion-col size=10 >
+       
+        <div id="item">
+          <ion-row >
+            <h5>{{task.type}}</h5>
+           
+          </ion-row>
+          <ion-row>
+            <p>{{task.title}}</p>
+          </ion-row>
+        </div>
 
-     </ion-card>
+        <div id="item">
+          <ion-row>
+            <h5>Horario</h5>
+          </ion-row>
+   
+          <ion-row>
+            <ion-col  size=2>
+              <ion-icon id="iconosdetalles" name="calendar" color="primary"></ion-icon>
+           </ion-col>
+            <ion-col size=10>
+              <ion-label>{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col  size=2>
+              <ion-icon id="iconosdetalles" name="time" color="primary"></ion-icon>
+           </ion-col>
+            <ion-col size=10>
+              <ion-label>{{task.time |date: 'h:mm a' }}</ion-label>
+            </ion-col>
+          </ion-row>
+          
+                 </div>
+
+        <div id="item">
+          <ion-row >
+            <h5>Direccion</h5>
+           
+          </ion-row>
+          <ion-row>
+            <ion-col size=10>
+              <p>{{task.address.street}}</p>
+            </ion-col >
+            <ion-col size=2>
+              <img   id="imgGPS"  src="../../assets/ubicacion.png"
+                                          >
+            </ion-col>
+            
+          </ion-row>
+        </div>
+
+
+        <div >
+          <ion-row >
+            <h5>Fotos</h5>
+           
+          </ion-row>
+          
+          <ion-row>
+            <ion-col size=1></ion-col>
+            <ion-col>
+             <img id="selecf"  src="../../assets/noImage.png">
+            </ion-col>
+            <ion-col>
+             <img id="selecf"  src="../../assets/noImage.png">
+           </ion-col>
+           <ion-col>
+             <img id="selecf"  src="../../assets/noImage.png">
+           </ion-col>
+       
+   
+           <ion-col size=1></ion-col>
+          </ion-row>
+     
+
+        </div>
+      </ion-col>
+       
+      
+
+
+      <ion-col size=1></ion-col>
+
+
+    </ion-row>
+    
+      
+    
+
+       
+       
+       
+      
+       
+
+     
   </div>
 </ion-content>

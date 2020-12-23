@@ -48,7 +48,7 @@
 
 
 
-  <ion-list  *ngIf="verservicios">
+ <!--  <ion-list  *ngIf="verservicios">
     <ion-item  
               *ngFor="let contratados of contratadosList ">
         
@@ -92,8 +92,100 @@
  
  
     
-
+ -->
+ <div *ngIf="verservicios">
+  <ion-grid >
+    <ion-row>
+      <ion-col size=1>
+    
+      </ion-col>
+    
+    <ion-col size=10>
+      <ion-list>
+        <div id="item" *ngFor="let contratados of contratadosList ,let i = index"
+               (click)="in(i)"
+              >
+        
+        
+        
+        
+        
+        <ion-row>
+      
+        <ion-col   size=3 *ngIf="contratados.type == 'Servicio de Fontanería'">
+           
+          <img  id="imagen" src="../../assets/f.jpg">
+        </ion-col>
+    
+      <!--   <ion-col size=3 *ngIf="Solicitud.type == 'Servicio de Electricidad'">
+          <img src="../../assets/av-6.png">
+        </ion-col> -->
+        
+        <ion-col size=9>
+        
+        <ion-row>
+         <ion-col size=8>
+          <h6> {{contratados.title | uppercase}}</h6>
+         </ion-col>
+            
+            
+            <ion-col size=4>
+              <ion-row style="margin-top: 5px">
+                <p style="font-size: xx-small; ">{{contratados.date |date:"d-M-y" }}</p>
+         
+              </ion-row>
+             
+          </ion-col>
+        
+        </ion-row >
+        <ion-row>
+          <ion-col size=1>
+            <ion-icon name="calendar" color="primary"></ion-icon>
+         
+          
+          </ion-col>
+          <ion-col size=11>
+            <ion-label style="margin-left: 5px;">{{ contratados.date_planned |date:'EEE d.MMM y' | lowercase}} </ion-label>
+            <!-- <p >{{this.diasSemana[this.fecha.getDay()]}},{{this.fecha  |  date:"dd MMMM yyyy"}} </p> -->
+           
+          </ion-col>
+          
+           
+          
+          
+        </ion-row>
+          <ion-row style="margin-top: 1px;">
+            <ion-col size=1>
+              <ion-icon name="time" color="primary" ></ion-icon>
+            </ion-col>
+            <ion-col size=7>
+              <ion-label style="margin-left: 5px;"> {{contratados.time |date: 'h:mm a' }}</ion-label>
+           
+            </ion-col>
+  
+            <ion-col size=4>
+              <ion-label style="margin-left: 7px; color: rgb(246, 183, 118); font-size: 20px;">{{contratados.budget}} €</ion-label>
+       
+            </ion-col>
+           
+          </ion-row>
+        
+         </ion-col>
+         </ion-row>
+    
+        </div>
+        </ion-list>   
+        
+    </ion-col>
+    
+    
+      <ion-col size=1>
+    
+      </ion-col>
+    </ion-row>
+    
+    </ion-grid>
+ </div>
  
-
    
 </ion-content>

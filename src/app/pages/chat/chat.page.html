@@ -18,15 +18,67 @@
 
 <ion-content>
   
-  <ion-card *ngFor="let mensaje of messagesList">
-    <ion-card-header>
-      <ion-label style="color: cornflowerblue;">Tu:</ion-label>
-    </ion-card-header>
-    <ion-list>
-      <ion-label style="margin-left: 5px;">{{mensaje.message}}</ion-label>
-    </ion-list>
-  </ion-card>
   
+   
+   
+   <!--  <div *ngIf="user.type == 'client'" >
+      <ion-card *ngFor="let mensaje of messagesList" style="background-color:rgb(49 ,49 ,57);">
+       <ion-label style="margin-left: 5px;">{{mensaje.message}}</ion-label>
+      </ion-card>
+       
+     </div>
+
+    <div *ngIf="user.type == 'provider'" >
+     <ion-card *ngFor="let mensaje of messagesList" style="background-color:rgb(246, 183, 118);">
+      <ion-label style="margin-left: 5px;">{{mensaje.message}}</ion-label>
+     </ion-card>
+      
+    </div> -->
+  
+  
+
+    <div >
+      <!-- <div class="p-dialog-header" *ngIf="user.type == 'client'">
+          <h5>{{ task.provider_name }}</h5>
+      </div>
+      <div class="p-dialog-header" *ngIf="user.type == 'provider'">
+          <h5>{{ task.client_name }}</h5>
+      </div> -->
+
+      <div >
+          <div *ngIf="user.type == 'client'" >
+              <div *ngFor="let message of messagesList" [ngSwitch]="message.author">
+                <ion-row>
+                  <ion-col>
+                    <ion-card id="mio" *ngSwitchCase="task.client_name"  role="alert">
+                      {{ message.message }}
+                  </ion-card>
+                  </ion-col>
+                  <ion-col>
+                    
+                  </ion-col>
+                </ion-row>
+                
+                  <div *ngSwitchDefault class="alert alert-secondary col-md-8" role="alert">
+                    <ion-row>
+                      <ion-col>
+
+                      </ion-col>
+                      <ion-col>
+                        <ion-card id="otro" > 
+                          {{ message.message }}
+                        </ion-card>
+                      </ion-col>
+                    </ion-row>
+                      
+                    
+                  </div>
+              </div>
+          </div>
+         
+         
+      </div>
+    </div>
    
 </ion-content>
 
