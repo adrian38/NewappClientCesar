@@ -1,5 +1,6 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController, Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -28,11 +29,12 @@ export class OfertasPage implements OnInit {
   valorSegment:string="";
 
   constructor(
-    private router:Router,
+    public navCtrl:NavController,
     private _taskOdoo:TaskOdooService,
     private _authOdoo:AuthOdooService,
     private ngZone: NgZone,
-    private _chatOdoo: ChatOdooService) {
+    private _chatOdoo: ChatOdooService,
+    private platform: Platform) {
 
 
 this.veroferta=true;
@@ -43,7 +45,10 @@ this.user = this._authOdoo.getUser();
 this.offersList =[];
 this.userType = this.user.type
 
-
+this.platform.backButton.subscribeWithPriority(10, () => {
+  this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
+    
+  });
 
 
 }
@@ -142,7 +147,9 @@ console.log("esto",this._taskOdoo.requestOffersForTask(this.task.id_string));
 openChat(id) {
   console.log(id);
   this._chatOdoo.setIdPo(id);
-  this.router.navigate(['/chat']);
+  this.navCtrl.navigateRoot(['/chat'], {animated: true, animationDirection: 'back' }) ;
+  
+ // this.router.navigate(['/chat']);
 }
 
 }

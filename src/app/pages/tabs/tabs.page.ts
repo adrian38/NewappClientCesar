@@ -137,7 +137,7 @@ export class TabsPage {
         });
         if (typeof this.contratadosList !== 'undefined' && this.contratadosList.length > 0) {
           Array.prototype.push.apply(this.contratadosList, temp);
-        } else { this.contratadosList = temp; }
+        } else { this.contratadosList = temp;this.historialList = temp; }
         
         console.log(this.contratadosList);
         this.subServ.setContratadosList(this.contratadosList);

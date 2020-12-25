@@ -33,15 +33,10 @@ export class Tab1Page implements OnInit {
 
   constructor(private subServ: ObtSubSService,
     private _taskOdoo: TaskOdooService,
-    private _authOdoo: AuthOdooService,
     private ngZone: NgZone,
     public navCtrl:NavController,
-    private route:Router,
     private platform: Platform,
-    private _location: Location,
-    public alertController: AlertController, 
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,) {
+    public alertController: AlertController) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
      

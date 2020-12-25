@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TaskModel } from '../models/task.model';
 import { empty, Observable, Subject } from 'rxjs';
+import { timeStamp } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,8 @@ export class ObtSubSService {
     HistorialList:TaskModel[];
 
     titulo:string="";
+    dat:string;
+    tim:string;
 
    //-----------------------------------------------------------
 
@@ -167,6 +170,24 @@ this.titulo=t;
     }
     gettitulo(){
       return this.titulo;
+    }
+
+    setCalendarioD(d:string){
+      this.dat=d;
+      
+    }
+    setCalendarioT(t:string){
+      
+      this.tim=t;
+    }
+    getCalendarioD(){
+      return this.dat;
+
+    }
+
+    getCalendarioT(){
+      return this.tim;
+
     }
   //-------------------------------------------------------------------------
 

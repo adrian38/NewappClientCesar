@@ -32,9 +32,31 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
-  },  {
-    path: 'nuevasolicitd',
-    loadChildren: () => import('./pages/nuevasolicitd/nuevasolicitd.module').then( m => m.NuevasolicitdPageModule)
+  },
+ 
+  {
+    path: 'titulo',
+    loadChildren: () => import('./pages/titulo/titulo.module').then( m => m.TituloPageModule)
+  },
+  {
+    path: 'horarios',
+    loadChildren: () => import('./pages/horarios/horarios.module').then( m => m.HorariosPageModule)
+  },
+  {
+    path: 'direccion',
+    loadChildren: () => import('./pages/direccion/direccion.module').then( m => m.DireccionPageModule)
+  },
+  {
+    path: 'comentario',
+    loadChildren: () => import('./pages/comentario/comentario.module').then( m => m.ComentarioPageModule)
+  },
+  {
+    path: 'foto',
+    loadChildren: () => import('./pages/foto/foto.module').then( m => m.FotoPageModule)
+  },
+  {
+    path: 'resumen',
+    loadChildren: () => import('./pages/resumen/resumen.module').then( m => m.ResumenPageModule)
   }
 
 

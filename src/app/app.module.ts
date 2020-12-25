@@ -18,6 +18,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DatePipe } from '@angular/common'
 
 
 
@@ -27,12 +28,25 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { LOCALE_ID } from '@angular/core';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ButtonModule,NgCalendarModule,],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(),
+     AppRoutingModule,
+     ButtonModule,
+     NgCalendarModule,
+      ToastModule,
+    BrowserAnimationsModule,
+    CommonModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -44,7 +58,9 @@ registerLocaleData(localeEs);
     ObtSubSService,
    
     NgxImageCompressService,
-    {provide: LOCALE_ID, useValue:"es" }
+    {provide: LOCALE_ID, useValue:"es" },
+    DatePipe,
+    MessageService,
 
   ],
   bootstrap: [AppComponent]

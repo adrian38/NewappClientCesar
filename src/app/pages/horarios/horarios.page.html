@@ -1,0 +1,80 @@
+<ion-header>
+  <div id="barraSuperior">
+   
+    <div id="barraInferior">
+      <ion-row>
+      
+        <ion-col size=3 >
+          <img  id="logo"  src="../../assets/logoNavbar.png">
+      
+        </ion-col>
+        
+      
+       
+         <ion-col size=6>
+          <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
+       
+        
+         </ion-col>
+        
+       </ion-row>
+
+       <ion-row>
+         <ion-col size=2></ion-col>
+         <ion-col size=8 style="text-align: center;">
+          <ion-label style="color:  rgb(49 ,49 ,57);">{{servicio}}</ion-label>
+         </ion-col>
+         <ion-col size=2>
+          <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
+          (click)="cerrarsolicitud()"></ion-icon>
+         </ion-col>
+       </ion-row>
+       
+        
+    </div>
+   
+   
+  </div>
+
+
+
+</ion-header> 
+
+<ion-content>
+  <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3>
+ 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+       <calendar 
+       style="margin-top: 20px;"
+       [calendarMode]="calendar.mode"
+       [currentDate]="calendar.currentDate"
+       (onTitleChanged)="onViewTitleChanged($event)"
+       (onCurrentDateChanged)="onCurrentDateChanged($event)"
+       >  
+     </calendar>
+ 
+   
+      </ion-col>
+    </ion-row>
+    
+  
+    <!--   <p>fecha{{this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
+   }}</p> -->
+  </ion-grid>
+ 
+  <ion-item>
+   <ion-icon name="alarm"></ion-icon>
+   <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+ </ion-item>
+
+ <ion-row style="margin-top: 55px;">
+  <ion-col ></ion-col>
+  <ion-col> <ion-button (click)="goto()">
+    Siguiente
+  </ion-button> </ion-col>
+  
+  <ion-col></ion-col>
+</ion-row>
+</ion-content>

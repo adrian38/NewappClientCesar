@@ -33,8 +33,17 @@
   </ion-row>
        
   
+  <ion-list>
+    <ion-item *ngFor="let serv of servicios_activos, let i = index" >
+      <ion-checkbox mode="ios"
+      color="primary"
+      
+      (click)="seleccionado(i)"></ion-checkbox>
+<ion-label style="margin-left: 20px;">{{this.serv}}</ion-label>
+    </ion-item>
+  </ion-list>
   
-     <ion-list style="margin-top: 20px;">
+     <!-- <ion-list style="margin-top: 20px;">
         <ion-item >
           <ion-checkbox mode="ios"
                         color="primary"
@@ -55,23 +64,6 @@
         </ion-item>
       </ion-list> 
     
-
-      <!-- <ion-list style="margin-top: 20px;">
-        <ion-radio-group value="fontane">
-         
-      
-          <ion-item (click)="fontaneriaF()">
-            <ion-label>Fontaneria</ion-label>
-            <ion-radio slot="start" value="fontane"></ion-radio>
-          </ion-item>
-      
-          <ion-item (click)="electricidadF()">
-            <ion-label>Electricidad</ion-label>
-            <ion-radio slot="start" value="electri"></ion-radio>
-          </ion-item>
-      
-          
-        </ion-radio-group>
-      </ion-list>
-                -->
+ -->
+     
 </ion-content>

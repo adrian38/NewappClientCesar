@@ -4,18 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NuevasolicitdPageRoutingModule } from './nuevasolicitd-routing.module';
-
-import { NuevasolicitdPage } from './nuevasolicitd.page';
+import { HorariosPageRoutingModule } from './horarios-routing.module';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { HorariosPage } from './horarios.page';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NuevasolicitdPageRoutingModule,
+    HorariosPageRoutingModule,
     NgCalendarModule
   ],
-  declarations: [NuevasolicitdPage]
+  declarations: [HorariosPage]
 })
-export class NuevasolicitdPageModule {}
+export class HorariosPageModule {}

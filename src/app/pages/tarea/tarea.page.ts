@@ -13,7 +13,9 @@ import { Location } from '@angular/common';
 export class TareaPage implements OnInit {
 
   fontaneria:boolean=false;
-  electricidad:boolean=false; 
+  electricidad:boolean=false;
+  
+  servicios_activos:string[]=["fontaneria","electricidad"];
 
   constructor(private Serv: ObtSubSService,
               public navCtrl:NavController,
@@ -28,26 +30,22 @@ export class TareaPage implements OnInit {
 
   ngOnInit() {
   }
-  fontaneriaF(){
-   /*  console.log("f");
-    this.fontaneria=this.fontaneria;
-    this.electricidad=false;
-    this.Serv.setServ("FONTANERIA"); */
-    
-    //this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
-    this.navCtrl.navigateRoot('/nuevasolicitd', {animated: true, animationDirection: 'forward' }) ;
-    
-  // this.navCtrl.navigateRoot('/nueva-solicitud');
+/*   fontaneriaF(){
+  
+    this.Serv.setServ("FONTANERIA"); 
+   
+    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
+
   }
 
   electricidadF(){
-   /*  console.log("e");
-    this.fontaneria=false;
-    this.electricidad=this.electricidad;
-    this.Serv.setServ("ELECTRICIDAD"); */
-   // this.route.navigateByUrl ('/nueva-solicitud', {replaceUrl : true}) ;
-   this.navCtrl.navigateRoot('/nuevasolicitd', {animated: true, animationDirection: 'forward' }) ;
-    
-  // this.navCtrl.navigateRoot('/nueva-solicitud');
+     this.Serv.setServ("ELECTRICIDAD"); 
+   this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
+  } */
+  seleccionado(i){
+    this.Serv.setServ(this.servicios_activos[i]); 
+   
+    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
+
   }
 }

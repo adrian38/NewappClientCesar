@@ -453,7 +453,7 @@ export class TaskOdooService {
                     'state': 'draft'
                 }]],
                 'note': task.description,
-                'partner_id': task.client_id,
+                'partner_id': user.partner_id,
                 'title': task.title,
                 'commitment_date': (task.date + ' ' + task.time),
                 'require_materials': task.require_materials,
@@ -494,10 +494,10 @@ export class TaskOdooService {
                 } else {
                     console.log(value, "createService");
 
-                    for (var index in task.photoNewTaskArray) {
+                  /*   for (var index in task.photoNewTaskArray) {
                         create_SO_attachment(value, index);
 
-                    }
+                    } */
                     confirmService(value);
                 }
             });
