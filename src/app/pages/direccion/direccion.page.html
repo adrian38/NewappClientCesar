@@ -47,8 +47,12 @@
  <ion-grid>
 
   <ion-item style="margin-top:35px ;"
-  (click)="direcPer()">
+  >
    <ion-checkbox mode="ios"
+   [(ngModel)]="Autofill"
+   [ngModelOptions]="{standalone: true}"
+   (ionChange)="autofillChange()"
+
                  
    ></ion-checkbox>
 <ion-label style="margin-left: 20px;">Direccion personal</ion-label>
@@ -56,115 +60,121 @@
 
  
 
- 
+ <form #formulario="ngForm" >
+
   <ion-row style="margin-top:25px ;">
    
 
-   <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-   <ion-col size="5">
-     <ion-input  id="in"
-                 name="calle"
-                 type="text"
-                 placeholder="No. de calle"
-                 [(ngModel)]="calle"
-                 >{{dpcalle}}</ion-input>
-               </ion-col>
-           
-               <ion-col size="5" 
-                         style="margin-left: 15px;">
-                 <ion-input id="in" name="piso"
-                             type="text"
-                             placeholder="Piso"
-                             [(ngModel)]="piso"
-                             ></ion-input>
-                           </ion-col>
-             
-                           <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-   
-  </ion-row>
-
-  <ion-row>
-   <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-   <ion-col size="5">
-     <ion-input id="in" name="numero"
-                 type="text"
-                 placeholder="Numero"
-                 [(ngModel)]="numero"
-                 ></ion-input>
-               </ion-col>
-           
-               <ion-col size="5"   style="margin-left: 15px;">
-                 <ion-input id="in" name="puerta"
-                             type="text"
-                             placeholder="Puerta"
-                             [(ngModel)]="puerta"
-                             ></ion-input>
-                           </ion-col>
-             
-                           <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-   
-  </ion-row>
-
-  <ion-row>
-   <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-   <ion-col size="5">
-     <ion-input id="in" name="portal"
-                 type="text"
-                 placeholder="Portal"
-                 [(ngModel)]="portal"
-                 ></ion-input>
-               </ion-col>
-           
-               <ion-col size="5"   style="margin-left: 15px;">
-                 <ion-input id="in" name="cod_postal"
-                             type="text"
-                             placeholder="Cod.Postal"
-                             [(ngModel)]="cod_postal"
-                             ></ion-input>
-                           </ion-col>
-             
-                           <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-  </ion-row>
-
-  <ion-row>
-   <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-   <ion-col size="5">
-     <ion-input id="in" name="escalera"
-                 type="text"
-                 placeholder="Escalera"
-                 [(ngModel)]="escalera"
-                 required></ion-input>
-               </ion-col>
-           
-               <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-               
-                
-                 <ion-col size="3" style="text-align: end; margin-top: 5px;" >
-                   <div>
-                     <img   id="logo1"  src="../../assets/ubicacion.png"
-                     > 
-                   </div>
-                 </ion-col>
-
-                
-                 <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
-
-                           
-             
+    <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+    <ion-col size="5">
+      <ion-input  id="in"
+                  name="calle"
+                  type="text"
+                  placeholder="No. de calle"
+                  [(ngModel)]="calle"
+                  required>{{dpcalle}}</ion-input>
+                </ion-col>
+            
+                <ion-col size="5" 
+                          style="margin-left: 15px;">
+                  <ion-input id="in" name="piso"
+                              type="text"
+                              placeholder="Piso"
+                              [(ngModel)]="piso"
+                              required></ion-input>
+                            </ion-col>
               
-  </ion-row>
-
+                            <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+    
+   </ion-row>
+ 
+   <ion-row>
+    <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+    <ion-col size="5">
+      <ion-input id="in" name="numero"
+                  type="text"
+                  placeholder="Numero"
+                  [(ngModel)]="numero"
+                  required></ion-input>
+                </ion-col>
+            
+                <ion-col size="5"   style="margin-left: 15px;">
+                  <ion-input id="in" name="puerta"
+                              type="text"
+                              placeholder="Puerta"
+                              [(ngModel)]="puerta"
+                              required></ion-input>
+                            </ion-col>
+              
+                            <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+    
+   </ion-row>
+ 
+   <ion-row>
+    <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+    <ion-col size="5">
+      <ion-input id="in" name="portal"
+                  type="text"
+                  placeholder="Portal"
+                  [(ngModel)]="portal"
+                 ></ion-input>
+                </ion-col>
+            
+                <ion-col size="5"   style="margin-left: 15px;">
+                  <ion-input id="in" name="cod_postal"
+                              type="text"
+                              placeholder="Cod.Postal"
+                              [(ngModel)]="cod_postal"
+                              required></ion-input>
+                            </ion-col>
+              
+                            <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+   </ion-row>
+ 
+   <ion-row>
+    <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+    <ion-col size="5">
+      <ion-input id="in" name="escalera"
+                  type="text"
+                  placeholder="Escalera"
+                  [(ngModel)]="escalera"
+                  ></ion-input>
+                </ion-col>
+            
+                <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+                
+                 
+                  <ion-col size="3" style="text-align: end; margin-top: 5px;" >
+                    <div>
+                      <img   id="logo1"  src="../../assets/ubicacion.png"
+                      > 
+                    </div>
+                  </ion-col>
+ 
+                 
+                  <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
+ 
+                            
+              
+               
+   </ion-row>
+ 
+ </form>
+  
  
 
   <ion-row style="margin-top: 55px;">
     <ion-col ></ion-col>
-    <ion-col> <ion-button (click)="goto()">
+    <ion-col>
+       <ion-button (click)="goto()"
+       [disabled]="formulario.invalid"
+       >
       Siguiente
     </ion-button> </ion-col>
     

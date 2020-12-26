@@ -22,6 +22,15 @@ export class DireccionPage implements OnInit {
   servicio:string="";
 
   dpcalle:string;
+  dppiso:string="";
+  dpnumero:string="";
+  dppuerta:string="";
+  dpportal:string="";
+  dpcod_postal:string="";
+  dpescalera:string="";
+  dpservicio:string="";
+
+  Autofill:boolean=false;
 
   user:UsuarioModel;
   task:TaskModel;
@@ -37,15 +46,15 @@ export class DireccionPage implements OnInit {
         });
 
         this.user = this._authOdoo.getUser();
-
+        console.log(this.user.address); 
     }
 
     
 
   ngOnInit() {
     this.servicio=this.datos.getServ();
-    /* this.task=this._taskOdoo.getTaskCesar();
-    console.log(this.task); */
+   
+    
   }
   cerrarsolicitud(){
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
@@ -69,16 +78,35 @@ this.datos.setportal(this.portal);
     this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'forward' }) ;
      
   }
-  direcPer(){
-   
-    for (let value in this.user.address) {
-      if (!this.user.address[value])
-        this.user.address[value] = '';
-    }
-    
-    console.log(this.user);
-    this.dpcalle=this.user.address.street;
-  
+
+ autofillChange(){
+   console.log("si")
+if (this.Autofill) {
+  for (let value in this.user.address) {
+    if (!this.user.address[value])
+      this.user.address[value] = '';
   }
   
+  console.log(this.user);
+  this.dpcalle=this.user.address.street;
+  this.puerta=this.user.address.door;
+  this.cod_postal=this.user.address.cp;
+  this.escalera=this.user.address.stair;
+  this.piso=this.user.address.floor;
+  this.numero=this.user.address.number;
+  this.portal=this.user.address.portal;
 }
+else{
+  console.log("vacio");
+  this.dpcalle="";
+  this.puerta="";
+  this.cod_postal="";
+  this.escalera="";
+  this.piso="";
+  this.numero="";
+  this.portal="";
+}
+}
+ }
+
+

@@ -14,6 +14,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { Observable } from 'rxjs';
 import {MessageService} from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
+import { style } from '@angular/animations';
 
 
 
@@ -91,6 +92,8 @@ export class ResumenPage implements OnInit {
     
     if (notificationError) {
     console.log("Error creando la tarea");
+    this.messageService.add({ severity: 'success', summary: 'Imcompleto', detail: 'No se creo la tarea.'});
+  
     }
     
     });
@@ -103,7 +106,8 @@ export class ResumenPage implements OnInit {
     
     if (notificationNewSoClient) {
     console.log("Se creo correctamente la tarea");
-    //this.presentToast();
+    this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
+  
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
         
     
@@ -169,8 +173,8 @@ export class ResumenPage implements OnInit {
     }
 
  
-  si(){
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-   
-  }
+  /* si(){
+
+     this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
+   } */
 }
