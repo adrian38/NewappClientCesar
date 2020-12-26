@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from '../../services/photo.service';
-import {NgxImageCompressService} from 'ngx-image-compress';
+
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-registro',
@@ -17,7 +17,7 @@ export class RegistroPage implements OnInit {
  verFotoInicial:boolean=true;
 
   constructor(public photoService: PhotoService,
-               private imageCompress: NgxImageCompressService,
+               
                public alertController: AlertController) { }
 
   ngOnInit() {
@@ -47,19 +47,7 @@ export class RegistroPage implements OnInit {
   
 compressFile() {
   
-    this.imageCompress.uploadFile().then(({image, orientation}) => {
-    
-      this.imgResultBeforeCompress = image;
-      console.warn('Size in bytes was:', this.imageCompress.byteCount(image));
-      
-      this.imageCompress.compressFile(image, orientation, 50, 50).then(
-        result => {
-          this.imgResultAfterCompress = result;
-          console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
-        }
-      );
-      
-    });
+   
     
   }
 

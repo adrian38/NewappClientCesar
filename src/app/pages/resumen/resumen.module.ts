@@ -10,8 +10,8 @@ import { ResumenPageRoutingModule } from './resumen-routing.module';
 
 import { ResumenPage } from './resumen.page';
 import {ToastModule} from 'primeng/toast';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   imports: [
@@ -20,8 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     IonicModule,
     ResumenPageRoutingModule,
     ToastModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+     
   ],
   declarations: [ResumenPage]
 })

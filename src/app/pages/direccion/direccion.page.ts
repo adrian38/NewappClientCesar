@@ -4,6 +4,7 @@ import { Address, TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 @Component({
   selector: 'app-direccion',
   templateUrl: './direccion.page.html',
@@ -27,14 +28,19 @@ export class DireccionPage implements OnInit {
 
   constructor(private datos:ObtSubSService,
     public navCtrl:NavController,
-    private platform: Platform) { 
+    private platform: Platform,
+    private _authOdoo: AuthOdooService,) { 
 
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
           
         });
 
+        this.user = this._authOdoo.getUser();
+
     }
+
+    
 
   ngOnInit() {
     this.servicio=this.datos.getServ();
@@ -64,10 +70,15 @@ this.datos.setportal(this.portal);
      
   }
   direcPer(){
+   
+    for (let value in this.user.address) {
+      if (!this.user.address[value])
+        this.user.address[value] = '';
+    }
     
-this.datos.setcalle(this.task.address.street);
-this.dpcalle=this.task.address.street;
-
-
+    console.log(this.user);
+    this.dpcalle=this.user.address.street;
+  
   }
+  
 }

@@ -20,9 +20,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DatePipe } from '@angular/common'
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import {NgxImageCompressService} from 'ngx-image-compress';
+
+
 import { NgCalendarModule  } from 'ionic2-calendar';
 
 import { LOCALE_ID } from '@angular/core';
@@ -31,7 +33,6 @@ import { registerLocaleData } from '@angular/common';
 
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 registerLocaleData(localeEs);
 
@@ -39,14 +40,14 @@ registerLocaleData(localeEs);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule, 
     IonicModule.forRoot(),
      AppRoutingModule,
      ButtonModule,
      NgCalendarModule,
       ToastModule,
-    BrowserAnimationsModule,
-    CommonModule],
+       CommonModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -57,7 +58,7 @@ registerLocaleData(localeEs);
     TaskOdooService,
     ObtSubSService,
    
-    NgxImageCompressService,
+    
     {provide: LOCALE_ID, useValue:"es" },
     DatePipe,
     MessageService,
