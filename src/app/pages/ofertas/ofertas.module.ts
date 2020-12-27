@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { OfertasPageRoutingModule } from './ofertas-routing.module';
 
 import { OfertasPage } from './ofertas.page';
-
+import {ToastModule} from 'primeng/toast';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OfertasPageRoutingModule
+    OfertasPageRoutingModule,
+    ToastModule,
   ],
   declarations: [OfertasPage]
 })

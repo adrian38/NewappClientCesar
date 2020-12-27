@@ -88,13 +88,15 @@ if (this.Autofill) {
   }
   
   console.log(this.user);
-  this.dpcalle=this.user.address.street;
+  this.calle=this.user.address.street;
   this.puerta=this.user.address.door;
   this.cod_postal=this.user.address.cp;
   this.escalera=this.user.address.stair;
   this.piso=this.user.address.floor;
   this.numero=this.user.address.number;
   this.portal=this.user.address.portal;
+  console.log("autofill",this.Autofill);
+  this.dpcalle=this.calle;
 }
 else{
   console.log("vacio");
@@ -105,6 +107,7 @@ else{
   this.piso="";
   this.numero="";
   this.portal="";
+  console.log("autofill",this.Autofill);
 }
 }
  }

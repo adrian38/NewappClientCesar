@@ -1,13 +1,13 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
-
+import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-ofertas',
   templateUrl: './ofertas.page.html',
@@ -28,13 +28,18 @@ export class OfertasPage implements OnInit {
   verdetalles:boolean;
   valorSegment:string="";
 
+  showSubCard = false;
+  subscriptionOffersList: Subscription;
+
   constructor(
     public navCtrl:NavController,
     private _taskOdoo:TaskOdooService,
     private _authOdoo:AuthOdooService,
     private ngZone: NgZone,
     private _chatOdoo: ChatOdooService,
-    private platform: Platform) {
+    private platform: Platform,
+    private messageService: MessageService,
+    private router:Router) {
 
 
 this.veroferta=true;
@@ -99,7 +104,7 @@ ngOnInit() {
 
   //////////////////////////////////////////////
 
-  this.offersList$ = this._taskOdoo.getOffers$();
+  /* this.offersList$ = this._taskOdoo.getOffers$();
   this.offersList$.subscribe(offersList => {
 
     this.ngZone.run(() => {
@@ -114,7 +119,28 @@ ngOnInit() {
       }
     });
   });
+} */
+
+this.offersList$ = this._taskOdoo.getOffers$();
+this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
+
+  this.ngZone.run(() => {
+    if ((offersList.findIndex(element => element.origin === this.task.id_string) !== -1)) {
+      if (offersList[0].budget !== 0) {
+        this.offersList = offersList;
+      
+        this.showSubCard = true;
+      }
+      else {
+        this.showSubCard = false;
+        console.log("No tienes Ofertas");
+        this.messageService.add({ key: 'myKey1',severity: 'error', summary: 'Disculpe', detail: 'Todavia no hay ofertas.' });
+      }
+    }
+  });
+});
 }
+
 
 segChange(event){
   this.valorSegment = event.detail.value;
@@ -147,9 +173,9 @@ console.log("esto",this._taskOdoo.requestOffersForTask(this.task.id_string));
 openChat(id) {
   console.log(id);
   this._chatOdoo.setIdPo(id);
-  this.navCtrl.navigateRoot(['/chat'], {animated: true, animationDirection: 'back' }) ;
+  //this.navCtrl.navigateRoot(['/chat'], {animated: true, animationDirection: 'back' }) ;
   
- // this.router.navigate(['/chat']);
+ this.router.navigate(['/chat']);
 }
 
 }

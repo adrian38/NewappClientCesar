@@ -56,7 +56,7 @@
     
     <ion-row>
   
-    <ion-col   size=3 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
+    <ion-col   size=4 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
        
       <img  id="imagen" src="../../assets/f.jpg">
     </ion-col>
@@ -65,21 +65,15 @@
       <img src="../../assets/av-6.png">
     </ion-col> -->
     
-    <ion-col size=9>
+    <ion-col size=8>
     
     <ion-row>
-     <ion-col size=8>
-      <h6> {{Solicitud.title | uppercase}}</h6>
-     </ion-col>
-        
-        
-        <ion-col size=4>
-          <ion-row >
-            <p style="font-size: xx-small; ">{{Solicitud.date |date:"d-M-y" }}</p>
      
-          </ion-row>
-         
-      </ion-col>
+      <h6> {{Solicitud.title | uppercase}}</h6>
+     
+        
+        
+      
     
     </ion-row >
     <ion-row>
@@ -103,7 +97,7 @@
           <ion-icon name="time" color="primary" ></ion-icon>
         </ion-col>
         <ion-col size=11>
-          <ion-label style="margin-left: 5px;"> {{Solicitud.time |date: 'h:mm a' }}</ion-label>
+          <ion-label style="margin-left: 5px;"> {{Solicitud.time | date: 'h:mm a' }}</ion-label>
        
         </ion-col>
        

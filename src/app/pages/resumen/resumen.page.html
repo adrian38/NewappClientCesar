@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <ion-header>
   <p-toast></p-toast>
   <div id="barraSuperior">
@@ -43,7 +43,8 @@
 </ion-header> 
 
 <ion-content>
-  
+ 
+
   <div id="barra">
     <ion-label >Resumen</ion-label>
  </div>
@@ -85,16 +86,17 @@
 </ion-item>
 <ion-item>
  <ion-label>Fecha y Hora</ion-label>
- <ion-label>{{this.fecha}}  y {{this.hora}} </ion-label>
+ <ion-label>{{fecha | date:'EEE d.MMM y' | lowercase}}  y {{hora }} </ion-label>
 </ion-item>
 <ion-item>
+  
  <ion-col>
    <ion-row>
      <ion-label>Mi direccion es</ion-label>
    </ion-row>
    <ion-row>
-     <ion-label>{{calle}},{{numero}},{{piso}}</ion-label>
-     <ion-label>{{escalera}},{{portal}},{{cod_postal}}</ion-label>
+     <ion-label>{{calle}} {{numero}} {{piso}}</ion-label>
+     <ion-label>{{escalera}} {{portal}} {{cod_postal}}</ion-label>
    </ion-row>
   
  </ion-col>

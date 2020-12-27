@@ -108,9 +108,12 @@ export class ResumenPage implements OnInit {
     console.log("Se creo correctamente la tarea");
     this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
   
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-        
-    
+     
+    setTimeout(() => {
+      this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+       
+    },
+      2000);
     }
     
     });

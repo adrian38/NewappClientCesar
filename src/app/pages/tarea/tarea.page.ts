@@ -15,7 +15,7 @@ export class TareaPage implements OnInit {
   fontaneria:boolean=false;
   electricidad:boolean=false;
   
-  servicios_activos:string[]=["fontaneria","electricidad"];
+  servicios_activos:string[]=["fontaneria"];
 
   constructor(private Serv: ObtSubSService,
               public navCtrl:NavController,
