@@ -1329,7 +1329,10 @@ export class TaskOdooService {
                     if (typeof offersList !== 'undefined' && offersList.length > 0) {
                         //console.log(id_po_offert,"lo q se esta mandando oferta eliminada")   
                         offersList$.next(offersList);
+                        console.log("oferta con algo");
                     } else {
+
+                        console.log("oferta vacia");
                         let temp = new TaskModel();
                         temp.origin = id;
                         temp.budget = 0;

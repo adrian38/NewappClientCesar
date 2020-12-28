@@ -101,26 +101,6 @@ ngOnInit() {
 
 
 
-
-  //////////////////////////////////////////////
-
-  /* this.offersList$ = this._taskOdoo.getOffers$();
-  this.offersList$.subscribe(offersList => {
-
-    this.ngZone.run(() => {
-
-      if (offersList.find(element => element.origin)) {
-        let temp = (offersList.find(element => element.origin));
-
-        if (this.task.id_string === temp.origin) {
-          this.offersList = offersList;
-          
-        }
-      }
-    });
-  });
-} */
-
 this.offersList$ = this._taskOdoo.getOffers$();
 this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
 
@@ -154,8 +134,10 @@ segChange(event){
 
  this.task=new TaskModel();
  this.task=this._taskOdoo.getTaskCesar();
-this._taskOdoo.requestOffersForTask(this.task.id_string);
-console.log("esto",this._taskOdoo.requestOffersForTask(this.task.id_string));
+ 
+
+ this._taskOdoo.requestOffersForTask(this.task.id_string);
+
    
   }
   
