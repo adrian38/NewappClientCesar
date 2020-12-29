@@ -50,45 +50,11 @@
  </div>
 
  <ion-grid>
-  <ion-row style="margin-top: 35px;text-align: center;">
-    <ion-col size=1>
-     
-    </ion-col>
+ 
 
-    <ion-col size=4    *ngFor="let photo of photoService.photos; ">
-      <img  *ngIf="verFotoInicial" src="../../assets/noImage.png"
-            (click)="presentAlertConfirm()">
-<div id="formasFoto">
-  <ion-img *ngIf="verFoto" style="width: 100%;height: 100%;" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
-   
-</div>
-      
-    </ion-col>
-   
-    <ion-col size=2>
-     
-    </ion-col>
-
-    <ion-col size=4    *ngFor="let photo of photoService.photos; ">
-      <img  *ngIf="verFotoInicial" src="../../assets/noImage.png"
-            (click)="presentAlertConfirm()">
-
-      <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
-   
-    </ion-col>
-     
-
-
-
-    
-
-    <ion-col size=1>
-     
-    </ion-col>
-  </ion-row>
-
-
-  <ion-row style="margin-top: 35px;text-align: center;">
+<!-- 
+   <ion-row style="margin-top: 35px;text-align: center;"
+   >
     
     <ion-col size=4>
      
@@ -104,7 +70,8 @@
     </ion-col>
    
     <ion-col size=4
-    *ngFor="let photo of photoService.photos; ">
+    *ngFor="let photo of photoService.photos; "
+    >
       <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
   </ion-col>
      
@@ -112,17 +79,32 @@
       </ion-col>
 
   </ion-row>
-
-
-  <ion-row style="margin-top: 55px;">
-    <ion-col ></ion-col>
-    <ion-col> <ion-button (click)="goto()">
-      Siguiente
-    </ion-button> </ion-col>
-    
-    <ion-col></ion-col>
-  </ion-row>
+  -->
+  <div
+  *ngIf="true"
+  class="avatar-profile"
+  fxFlex="row"
+  fxLayoutAlign="center center"
+  style="
+    background-size: cover;
+    background-position: center center;
+    flex: none;
+  "
  
-</ion-grid>
+></div>
+  
+ 
+</ion-grid> 
+
+
+
+<ion-row style="margin-top: 55px;">
+  <ion-col ></ion-col>
+  <ion-col> <ion-button (click)="goto()">
+    Siguiente
+  </ion-button> </ion-col>
+  
+  <ion-col></ion-col>
+</ion-row>
 
 </ion-content>

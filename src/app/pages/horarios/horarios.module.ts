@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { HorariosPageRoutingModule } from './horarios-routing.module';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { HorariosPage } from './horarios.page';
-
+import {CalendarModule} from 'primeng/calendar';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HorariosPageRoutingModule,
-    NgCalendarModule
+    NgCalendarModule,
+    CalendarModule
+
   ],
   declarations: [HorariosPage]
 })

@@ -16,6 +16,10 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+import {CalendarModule} from 'primeng/calendar';
+
+
+
 @Component({
   selector: 'app-horarios',
   templateUrl: './horarios.page.html',

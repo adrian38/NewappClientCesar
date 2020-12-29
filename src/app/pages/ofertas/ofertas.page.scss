@@ -75,17 +75,15 @@ ion-button{
     height: 34px;
 }
 
-// centers the toast window to the middle of the screen
-.custom-toast .ui-toast {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-  }
-  
-  // adjusts font, color and other elements of the toast window if needed
-  .custom-toast .ui-toast-message-content {
-    font-family: 'Courier New', Courier, monospace;
-    background: #FFD07B;
-  }
+/* :host ::ng-deep {
+    .p-toast-message-custom {
+        background-color: #E1CFE7;
+        border: solid #8A427A;
+        border-width: 0 0 0 6px;
+        color: #2c1e30;
+        .p-toast-icon-close {
+            color: #2c1e30;
+        }
+    }
+} */
+

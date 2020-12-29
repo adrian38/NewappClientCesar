@@ -34,6 +34,7 @@ import { registerLocaleData } from '@angular/common';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+
 registerLocaleData(localeEs);
 
 @NgModule({

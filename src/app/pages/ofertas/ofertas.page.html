@@ -1,9 +1,18 @@
 
- <ion-row>
-  <ion-col size=4></ion-col>
-  <ion-col size=4></ion-col>
-  <ion-col size=4><p-toast class="custom-toast"   key="myKey1"></p-toast></ion-col>
-</ion-row>
+  <p-toast position="top-left" key="c"  [baseZIndex]="5000"  >
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: auto;">
+            <div class="p-text-center">
+               
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+           
+        </div>
+    </ng-template>
+  </p-toast>
+
+
 <ion-header >
   
   <div id="barraSuperior">
@@ -74,10 +83,14 @@
      
    
       <ion-col id="item" size=1>
+        <img id="ico" 
+             style="width: 22px; height: 22px;margin-top: 24px;" 
+             src="../../assets/chat.png"
+             (click)="openChat(offer.id)">
         
-         <ion-icon id="ico" name="chatbubbles" 
+      <!--    <ion-icon id="ico" name="chatbubbles" 
                    style="margin-top: 22px;"
-                   (click)="openChat(offer.id)"></ion-icon>
+                   (click)="openChat(offer.id)"></ion-icon> -->
         
       </ion-col>
    

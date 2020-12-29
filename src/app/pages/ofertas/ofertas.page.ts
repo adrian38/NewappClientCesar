@@ -114,7 +114,7 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
       else {
         this.showSubCard = false;
         console.log("No tienes Ofertas");
-        this.messageService.add({ key: 'myKey1',severity: 'error', summary: 'Disculpe', detail: 'Todavia no hay ofertas.' });
+        this.messageService.add({ key: 'c',severity: 'error', summary: 'Disculpe', detail: 'Todavia no hay ofertas.' });
       }
     }
   });

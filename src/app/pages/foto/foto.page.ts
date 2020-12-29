@@ -9,6 +9,7 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Photo, PhotoService } from '../../services/photo.service';
+import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
 
 @Component({
@@ -20,6 +21,21 @@ export class FotoPage implements OnInit {
 
   verFoto:boolean=false;
   verFotoInicial:boolean=true;
+  //----------------------------------------------------------------
+  base64textString = null;
+
+
+  selectedTab: String;
+  isLoading: boolean;
+  loadImage: boolean[] = [false, false, false];
+  urlImage = 'data:type/example;base64,';
+
+  imageSizeLimit: number = 12000000;
+  imageSizeLimitKb = Math.round(this.imageSizeLimit / 1000);
+  errorMessageImage: string = 'La imagen sobrepasa los ';
+  imageArticle = ['', '', ''];
+  currentIndex: number;
+  //------------------------------------------------------------------
 
 servicio:string="";
   constructor(private datos:ObtSubSService,
@@ -27,7 +43,8 @@ servicio:string="";
     public photoService: PhotoService,
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    private platform: Platform) {
+    private platform: Platform,
+    private _taskOdoo: TaskOdooService) {
 
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
@@ -86,6 +103,7 @@ servicio:string="";
     this.verFoto=true;
     this.verFotoInicial=false;
     this.photoService.addNewToCamara();
+    
     }
     },
     {
@@ -115,4 +133,6 @@ servicio:string="";
     await alert.present();
     }
 
+
+   
 }

@@ -48,53 +48,10 @@
 
 
 
- <!--  <ion-list  *ngIf="verservicios">
-    <ion-item  
-              *ngFor="let contratados of contratadosList ">
-        
-       
-     
-      
-     <ion-grid >
-     <ion-row>
-     <ion-col size=5>
-    
-      <img src="../../assets/av-6.png">
-     
-     </ion-col>
-     <ion-col size=7>
-     <ion-row>
-     
-      <h6> FONTANERIA XX</h6>
-       </ion-row>
-    
-
-     <ion-row style="margin-top: 7px;">
-      <ion-icon name="calendar" color="primary"></ion-icon>
-      <ion-label style="margin-left: 5px;">Fecha: {{contratados.date_planned}}</ion-label>
-     </ion-row>
-     <ion-row style="margin-top: 6px;">
-      <ion-icon name="time"  color="primary"></ion-icon>
-      <ion-label style="margin-left: 5px;">Hora: {{contratados.time}}</ion-label>
-     </ion-row>
-     
-     <ion-row style="margin-top: 6px;">
-      <ion-icon name="build" color="primary"></ion-icon>
-      <ion-label style="margin-left: 5px;">Tipo: {{contratados.budget}} €</ion-label>
-     </ion-row>
-
-     </ion-col>
-     </ion-row>
-     </ion-grid>
-     
-     </ion-item>
-   </ion-list>   
  
- 
-    
- -->
+
  <div *ngIf="verservicios">
-  <ion-grid >
+  <ion-grid routerLink="/contratados" >
     <ion-row>
       <ion-col size=1>
     
@@ -121,30 +78,24 @@
           <img src="../../assets/av-6.png">
         </ion-col> -->
         
-        <ion-col size=7>
+        <ion-col size=8>
         
         <ion-row>
-         <ion-col size=8>
-          <h6> {{contratados.title | uppercase}}</h6>
-         </ion-col>
-            
-            
-            <ion-col size=4>
-              <ion-row style="margin-top: 5px">
-                <p style="font-size: xx-small; ">{{contratados.date |date:"d-M-y" }}</p>
          
-              </ion-row>
-             
-          </ion-col>
+          <h6> {{contratados.title | uppercase}}</h6>
+        
+            
+            
+           
         
         </ion-row >
         <ion-row>
-          <ion-col size=1>
-            <ion-icon name="calendar" color="primary"></ion-icon>
-         
+          <ion-col size=2>
+            <img style="width: 18px;height: 18px;" src="../../assets/calendario.png">
+        
           
           </ion-col>
-          <ion-col size=11>
+          <ion-col size=10>
             <ion-label style="margin-left: 5px;">{{ contratados.date_planned |date:'EEE d.MMM y' | lowercase}} </ion-label>
             <!-- <p >{{this.diasSemana[this.fecha.getDay()]}},{{this.fecha  |  date:"dd MMMM yyyy"}} </p> -->
            
@@ -155,10 +106,11 @@
           
         </ion-row>
           <ion-row style="margin-top: 1px;">
-            <ion-col size=1>
-              <ion-icon name="time" color="primary" ></ion-icon>
+            <ion-col size=2>
+              <img style="width: 18px;height: 18px;" src="../../assets/hora.png">
+        
             </ion-col>
-            <ion-col size=7>
+            <ion-col size=6>
               <ion-label style="margin-left: 5px;"> {{contratados.time |date: 'h:mm a' }}</ion-label>
            
             </ion-col>

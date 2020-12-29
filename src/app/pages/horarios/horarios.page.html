@@ -44,9 +44,16 @@
   <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3>
  
   <ion-grid>
-    <ion-row>
-      <ion-col>
-       <calendar 
+    <ion-row style="margin-top: 30px;">
+      <ion-col size=1></ion-col>
+    <ion-col size=3>Fecha</ion-col>
+      <ion-col size=7>
+        
+
+        <p-calendar [(ngModel)]="fecha" 
+                    dateFormat="D.d de M del yy"
+                    ></p-calendar>
+       <!-- <calendar 
        style="margin-top: 20px;"
        [calendarMode]="calendar.mode"
        [currentDate]="calendar.currentDate"
@@ -54,9 +61,10 @@
        (onCurrentDateChanged)="onCurrentDateChanged($event)"
        >  
      </calendar>
- 
+  -->
    
       </ion-col>
+      <ion-col size=1></ion-col>
     </ion-row>
     
   
@@ -64,10 +72,16 @@
    }}</p> -->
   </ion-grid>
  
-  <ion-item>
-   <ion-icon name="alarm"></ion-icon>
-   <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
- </ion-item>
+  <ion-row style="margin-top: 30px;">
+    <ion-col size=1></ion-col>
+    <ion-col size=3><ion-label>Hora</ion-label></ion-col>
+    <ion-col size=7><ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" ></ion-datetime>
+    </ion-col>
+    <ion-col size=1></ion-col>
+  </ion-row>
+
+  
+   
 
  <ion-row style="margin-top: 50px;">
   <ion-col ></ion-col>
