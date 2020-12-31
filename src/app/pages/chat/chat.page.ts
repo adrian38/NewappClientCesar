@@ -126,6 +126,8 @@ export class ChatPage implements OnInit {
 
   enviarSMS() {
 
+
+
     if(this.message.message.length){
     this.message.offer_id = this.purchaseOrderID;
     this._chatOdoo.sendMessageClient(this.message);

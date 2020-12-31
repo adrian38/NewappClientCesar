@@ -66,7 +66,7 @@ ion-button{
 }
 
 
-body {
+/* body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,4 +183,55 @@ body {
 .mensaje-der .cuerpo_msj:before {
   border-left-color: #dcebff;
   right: -25px;
+} */
+
+//-------------------------------------
+
+
+/* .triangulo-equilatero-bottom-left {
+  width: 0;
+  height: 0;
+  border-right: 50px solid transparent;
+  border-top: 50px solid transparent;
+  border-left: 50px solid rgb(246, 183, 118);
+  border-bottom: 50px solid rgb(246, 183, 118);
+} */
+
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+
+
+
+}
+
+.my-message {
+  background: rgb(246, 183, 118);
+  //background: var(--ion-color-tertiary);
+  color: #fff;
+}
+
+.other-message {
+  background: var(--ion-color-secondary);
+  color: #fff;
+}
+
+.time {
+  color: #dfdfdf;
+  float: right;
+  font-size: small;
+}
+
+.message-input {
+  margin-top: 0px;
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.msg-btn {
+  --padding-start: 0.5em;
+  --padding-end: 0.5em;
 }

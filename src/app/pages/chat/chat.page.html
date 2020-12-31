@@ -26,7 +26,7 @@
          </ion-col>
          <ion-col size=2>
           <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
-          (click)="cerrarsolicitud()"></ion-icon>
+         ></ion-icon>
         
          </ion-col>
        </ion-row>
@@ -48,12 +48,12 @@
 
 <ion-content>
   
-  <div *ngIf="user.type == 'client'" >
+  <!-- <div *ngIf="user.type == 'client'" >
     <div *ngFor="let message of messagesList" [ngSwitch]="message.author">
        <div  *ngSwitchCase="task.client_name"  role="alert">
-  <div class="contenedo_msj">
+  <div class="contenedo_msj"> -->
     <!-- mensaje izq -->
-    <div class="mensaje-izq">
+    <!-- <div class="mensaje-izq">
    
       <div class="cuerpo_msj">
         <div class="msj-texto">
@@ -66,8 +66,8 @@
 </div>
 
 <div *ngSwitchDefault  role="alert">
-    <!-- mensaje der -->
-    <div class="mensaje-der">
+ -->    <!-- mensaje der -->
+   <!--  <div class="mensaje-der">
       
       <div class="cuerpo_msj">
         <div class="msj-texto">
@@ -82,11 +82,40 @@
   </div>
 </div>
 </div>
-    
+     -->
    
+     <ion-grid>
+
+     <ion-text color="medium" text-center>
+      <p>You joined the chat as  </p>
+    </ion-text>
+
+    
+    <ion-row *ngFor="let message of messagesList">
+     
+      <ion-col size="9" *ngIf="user.type != 'client'" class="message other-message">
+        <b>{{message.author}}</b><br>
+        <span>{{ message.message }}</span>
+        <div class="time" text-right><br>15 min</div>
+      </ion-col>
+     
+     
+        <ion-col offset="3" size="9" *ngIf="user.type == 'client'" class="message my-message">
+          <b>{{message.author}}</b><br>
+          <span>{{ message.message }}</span>
+          <div class="time" text-right><br>12 min</div>
+        </ion-col>
+  
+  
+      
+     
+    </ion-row>
+  </ion-grid>
+
+  
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <textarea placeholder="Escribe mensaje..."
     type="text"
@@ -94,12 +123,12 @@
    >
 
     </textarea>
-    <!-- <ion-input placeholder="Escribe mensaje..."
+     --><!-- <ion-input placeholder="Escribe mensaje..."
                 type="text"
                [(ngModel)]="message.message">
       
     </ion-input> -->
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="enviarSMS()" >
        
         <ion-icon name="send"></ion-icon>
@@ -107,4 +136,23 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+ -->
+
+
+ <ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center>
+      <ion-col size="10">
+        <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="message.message === ' '" class="msg-btn"
+          (click)="enviarSMS()">
+          <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
 
