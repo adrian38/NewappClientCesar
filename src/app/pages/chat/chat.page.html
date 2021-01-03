@@ -101,7 +101,9 @@
      
      
         <ion-col offset="3" size="9" *ngIf="user.type == 'client'" class="message my-message">
-          <b>{{message.author}}</b><br>
+          <b style="font-size: xx-small;">{{message.author}}</b>
+          <br>
+          <br>
           <span>{{ message.message }}</span>
           <div class="time" text-right><br>12 min</div>
         </ion-col>

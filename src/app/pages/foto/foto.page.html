@@ -49,6 +49,7 @@
  
  </div>
 
+ 
  <ion-grid>
  
 
@@ -80,20 +81,43 @@
 
   </ion-row>
   -->
-  <div
-  *ngIf="true"
-  class="avatar-profile"
-  fxFlex="row"
-  fxLayoutAlign="center center"
-  style="
-    background-size: cover;
-    background-position: center center;
-    flex: none;
-  "
- 
-></div>
+
+  <ion-row style="margin-top: 35px;text-align: center;"
+   >
+    
+    <ion-col size=4>
+     
+      
+    </ion-col>
+
+
+    <ion-col size=4  *ngIf="verFotoInicial==0">
+      <img src="../../assets/noImage.png"
+            (click)="presentAlertConfirm(1)">
+
+            
+    </ion-col>
+   
+    <ion-col size=4
+    *ngFor="let photo of photoService.photos; "
+    >
+      <ion-img *ngIf="verFoto==1" [src]="photo.webviewPath" (click)="presentAlertConfirm(1)"></ion-img>
+  </ion-col>
+     
+    <ion-col size=4 >
+      </ion-col>
+
+  </ion-row>
+
   
- 
+
+
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+
+
 </ion-grid> 
 
 

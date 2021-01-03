@@ -37,6 +37,8 @@ import { CommonModule } from '@angular/common';
 
 registerLocaleData(localeEs);
 
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -48,7 +50,10 @@ registerLocaleData(localeEs);
      ButtonModule,
      NgCalendarModule,
       ToastModule,
-       CommonModule],
+       CommonModule,
+       AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyDyhFNqsSNhpW6NlBwwcocoZNyVyZTNThM'
+      }) ],
   providers: [
     StatusBar,
     SplashScreen,

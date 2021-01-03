@@ -19,8 +19,9 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class FotoPage implements OnInit {
 
-  verFoto:boolean=false;
-  verFotoInicial:boolean=true;
+  verFoto:number;
+  verFotoInicial:number=0;
+  public f1: Photo[] = []; 
   //----------------------------------------------------------------
   base64textString = null;
 
@@ -87,7 +88,7 @@ servicio:string="";
     await actionSheet.present();
     }
     
-    async presentAlertConfirm() {
+    async presentAlertConfirm(posc:number) {
     const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: '¿Desea colocar una foto?',
@@ -98,11 +99,13 @@ servicio:string="";
     text: 'Camara',
     
     handler: () => {
-    
+   // this.f1[0]=this.photoService.photos[0]
     this.photoService.photos=[];
-    this.verFoto=true;
-    this.verFotoInicial=false;
+    this.verFoto=posc;
+    this.verFotoInicial=posc;
     this.photoService.addNewToCamara();
+    
+  
     
     }
     },
@@ -110,9 +113,9 @@ servicio:string="";
     text: 'Galeria',
     handler: () => {
     this.photoService.photos=[];
-    
-    this.verFoto=true;
-      this.verFotoInicial=false;
+      
+   // this.verFoto=true;
+    //  this.verFotoInicial=false;
     this.photoService.addNewToGallery();
     }
     },
@@ -121,8 +124,8 @@ servicio:string="";
     role: 'cancel',
     cssClass: 'secondary',
     handler: (blah) => {
-    this.verFoto=false;
-    this.verFotoInicial=true;
+   // this.verFoto=false;
+    //this.verFotoInicial=true;
     console.log('Confirm Cancel: blah');
     }
     }

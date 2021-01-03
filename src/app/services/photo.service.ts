@@ -13,6 +13,7 @@ import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
 export class PhotoService {
 
   public photos: Photo[] = []; 
+ 
 
  
   //------------------------

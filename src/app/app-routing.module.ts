@@ -60,6 +60,10 @@ const routes: Routes = [
   },  {
     path: 'contratados',
     loadChildren: () => import('./pages/contratados/contratados.module').then( m => m.ContratadosPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
   }
 
 

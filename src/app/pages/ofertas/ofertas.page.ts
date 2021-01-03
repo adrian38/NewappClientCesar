@@ -1,6 +1,6 @@
-import { Component, OnInit ,NgZone} from '@angular/core';
+import { Component, OnInit ,NgZone, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, IonSegment} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -15,6 +15,8 @@ import {MessageService} from 'primeng/api';
 })
 export class OfertasPage implements OnInit {
 
+  @ViewChild (IonSegment) segment: IonSegment;
+
   userType:string="";
   user : UsuarioModel;
   task: TaskModel;
@@ -24,8 +26,8 @@ export class OfertasPage implements OnInit {
   notificationOffertCancelled$: Observable<number[]>;
   notificationNewOffertSuplier$: Observable<number[]>;
 
-  veroferta:boolean;
-  verdetalles:boolean;
+  veroferta:boolean=true;
+  verdetalles:boolean=false;
   valorSegment:string="";
 
   showSubCard = false;
@@ -60,6 +62,9 @@ this.platform.backButton.subscribeWithPriority(10, () => {
 
 
 ngOnInit() {
+
+  //this.segment.value = 'ofertas';
+  
 
   this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
   this.notificationOffertCancelled$.subscribe(notificationOffertCancelled => {

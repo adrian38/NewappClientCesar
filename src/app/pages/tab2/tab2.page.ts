@@ -1,10 +1,11 @@
-import { Component,NgZone } from '@angular/core';
+import { Component,NgZone, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Address, TaskModel } from 'src/app/models/task.model';
 
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+import { IonSegment } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -13,12 +14,14 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class Tab2Page {
 
+  @ViewChild (IonSegment) segment:IonSegment;
+
   cant;
   id_string: string;
   task: TaskModel;
   contratadosList: TaskModel[];
   
-  verservicios:boolean;
+  verservicios:boolean = true;
   verhistorial:boolean;
   
   valorSegment:string;
@@ -44,6 +47,9 @@ export class Tab2Page {
  
   }
   ngOnInit(): void {
+
+    this.segment.value = 'servicio';
+
     this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();
     this.notificationTabs2$.subscribe(notificationTab => {
   
