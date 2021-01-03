@@ -82,39 +82,69 @@
   </ion-row>
   -->
 
-  <ion-row style="margin-top: 35px;text-align: center;"
-   >
-    
-    <ion-col size=4>
-     
-      
-    </ion-col>
-
-
-    <ion-col size=4  *ngIf="verFotoInicial==0">
-      <img src="../../assets/noImage.png"
-            (click)="presentAlertConfirm(1)">
-
-            
-    </ion-col>
-   
-    <ion-col size=4
-    *ngFor="let photo of photoService.photos; "
-    >
-      <ion-img *ngIf="verFoto==1" [src]="photo.webviewPath" (click)="presentAlertConfirm(1)"></ion-img>
-  </ion-col>
-     
-    <ion-col size=4 >
-      </ion-col>
-
-  </ion-row>
+  
 
   
 
-
+  <ion-row style="margin-top: 35px;text-align: center;"
+  >
+   
+   <ion-col size=4>
+    
+     
+   </ion-col>
+  
+  
+   <ion-col size=4  *ngIf="verFotoInicial0">
+     <img src="../../assets/noImage.png"
+           (click)="presentAlertConfirm(0)">
+  
+           
+   </ion-col>
+  
+   <ion-col size=4
+   *ngFor="let photo of photoService.photos; "
+   >
+     <ion-img *ngIf="verFoto0" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
+  </ion-col>
+    
+   <ion-col size=4 >
+     </ion-col>
+  
+  </ion-row>
+  
 
 <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 
+
+<ion-row style="margin-top: 35px;text-align: center;"
+>
+ 
+ <ion-col size=4>
+  
+   
+ </ion-col>
+
+
+ <ion-col size=4  *ngIf="verFotoInicial1">
+   <img src="../../assets/noImage.png"
+         (click)="presentAlertConfirm(1)">
+
+         
+ </ion-col>
+
+ <ion-col size=4
+ *ngFor="let photo of photoService.photos; "
+ >
+   <ion-img *ngIf="verFoto1" [src]="photo.webviewPath[1]" (click)="presentAlertConfirm()"></ion-img>
+</ion-col>
+  
+ <ion-col size=4 >
+   </ion-col>
+
+</ion-row>
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 
 
 

@@ -19,24 +19,15 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class FotoPage implements OnInit {
 
-  verFoto:number;
-  verFotoInicial:number=0;
+  verFoto0:boolean;
+  verFotoInicial0:boolean=true;
+  
+  verFoto1:boolean;
+  verFotoInicial1:boolean=true;
+
   public f1: Photo[] = []; 
   //----------------------------------------------------------------
-  base64textString = null;
 
-
-  selectedTab: String;
-  isLoading: boolean;
-  loadImage: boolean[] = [false, false, false];
-  urlImage = 'data:type/example;base64,';
-
-  imageSizeLimit: number = 12000000;
-  imageSizeLimitKb = Math.round(this.imageSizeLimit / 1000);
-  errorMessageImage: string = 'La imagen sobrepasa los ';
-  imageArticle = ['', '', ''];
-  currentIndex: number;
-  //------------------------------------------------------------------
 
 servicio:string="";
   constructor(private datos:ObtSubSService,
@@ -99,11 +90,29 @@ servicio:string="";
     text: 'Camara',
     
     handler: () => {
-   // this.f1[0]=this.photoService.photos[0]
-    this.photoService.photos=[];
-    this.verFoto=posc;
-    this.verFotoInicial=posc;
-    this.photoService.addNewToCamara();
+    //  this.photoService.photos=[];
+   if(posc==0)
+   {
+    //this.photoService.photos=[];
+      
+    this.verFoto0=true;
+      this.verFotoInicial0=false;
+    this.photoService.addNewToGallery();
+
+   }
+    
+
+   if(posc==1)
+   {
+    //this.photoService.photos=[];
+      
+    this.verFoto1=true;
+      this.verFotoInicial1=false;
+    this.photoService.addNewToGallery();
+
+   }
+     
+  
     
   
     
