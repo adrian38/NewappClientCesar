@@ -13,8 +13,8 @@
   },
   "private": true,
   "dependencies": {
-    "@agm/core": "^3.0.0-beta.0",
-    "@angular/animations": "^10.0.0",
+    "@agm/core": "^1.1.0",
+    "@angular/animations": "^10.2.4",
     "@angular/common": "~10.0.0",
     "@angular/core": "~10.0.0",
     "@angular/forms": "~10.0.0",
@@ -29,7 +29,6 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.5.2",
     "@types/googlemaps": "^3.43.0",
-    "ionic2-calendar": "^0.6.6",
     "jayson": "github:tedeh/jayson#typescript",
     "primeicons": "^4.1.0",
     "primeng": "^11.0.0",

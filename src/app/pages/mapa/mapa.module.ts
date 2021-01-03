@@ -15,9 +15,7 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     IonicModule,
     MapaPageRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDyhFNqsSNhpW6NlBwwcocoZNyVyZTNThM'
-    })
+    AgmCoreModule
   ],
   declarations: [MapaPage]
 })

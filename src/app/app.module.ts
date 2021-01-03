@@ -25,7 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
-import { NgCalendarModule  } from 'ionic2-calendar';
+
 
 import { LOCALE_ID } from '@angular/core';
 import localeEs from '@angular/common/locales/es';
@@ -48,11 +48,11 @@ import { AgmCoreModule } from '@agm/core';
     IonicModule.forRoot(),
      AppRoutingModule,
      ButtonModule,
-     NgCalendarModule,
+     
       ToastModule,
        CommonModule,
        AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyDyhFNqsSNhpW6NlBwwcocoZNyVyZTNThM'
+        apiKey: 'AIzaSyBXq33cjYMCezL6xP-vo3m-qWQ5U9gRTfQ'
       }) ],
   providers: [
     StatusBar,

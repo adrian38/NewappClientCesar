@@ -10,7 +10,6 @@ import { DatePipe } from '@angular/common';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Photo, PhotoService } from '../../services/photo.service';
-import { NgCalendarModule  } from 'ionic2-calendar';
 import { Observable } from 'rxjs';
 import {MessageService} from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -54,7 +53,6 @@ export class ResumenPage implements OnInit {
     public photoService: PhotoService, 
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    public calen:NgCalendarModule,
     private platform: Platform,
     private messageService: MessageService,
     public sanitizer: DomSanitizer,

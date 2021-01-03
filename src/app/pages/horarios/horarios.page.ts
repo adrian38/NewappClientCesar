@@ -12,7 +12,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Photo, PhotoService } from '../../services/photo.service';
 
-import { NgCalendarModule  } from 'ionic2-calendar';
+
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -47,7 +47,6 @@ export class HorariosPage implements OnInit {
     public photoService: PhotoService, 
     public actionSheetController: ActionSheetController,
     public alertController: AlertController,
-    public calen:NgCalendarModule,
     private platform: Platform) { 
 
       this.fecha =new Date();

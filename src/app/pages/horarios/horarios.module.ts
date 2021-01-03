@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HorariosPageRoutingModule } from './horarios-routing.module';
-import { NgCalendarModule  } from 'ionic2-calendar';
+
 import { HorariosPage } from './horarios.page';
 import {CalendarModule} from 'primeng/calendar';
 @NgModule({
@@ -14,7 +14,7 @@ import {CalendarModule} from 'primeng/calendar';
     FormsModule,
     IonicModule,
     HorariosPageRoutingModule,
-    NgCalendarModule,
+    
     CalendarModule
 
   ],
