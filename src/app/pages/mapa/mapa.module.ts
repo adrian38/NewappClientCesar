@@ -15,7 +15,8 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     IonicModule,
     MapaPageRoutingModule,
-    AgmCoreModule
+    AgmCoreModule,
+    
   ],
   declarations: [MapaPage]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Marcador } from 'src/app/models/marcador.class';
 
 
 @Component({
@@ -8,13 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaPage implements OnInit {
 
+
+
+
+  marcadores: Marcador[] = [];
+
   title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007; 
-  constructor() { }
+  lat =23.087365;
+  lng =  -82.426493;  
 
-  ngOnInit() {
 
+  constructor(
+  ) {}
+
+  async ngOnInit() {
+
+  }
+  agregarMarcador( evento ) {
+
+    console.log(evento);
+    const coords: { lat: number, lng: number } = evento.coords;
+
+    const nuevoMarcador = new Marcador( coords.lat, coords.lng );
+
+    this.marcadores.push( nuevoMarcador ); 
+
+    //this.guardarStorage();
+   // this.snackBar.open('Marcador agregado', 'Cerrar', { duration: 3000 });
 
   }
 
