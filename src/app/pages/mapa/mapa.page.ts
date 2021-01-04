@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Marcador } from 'src/app/models/marcador.class';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 
 @Component({
@@ -19,24 +21,47 @@ export class MapaPage implements OnInit {
   lng =  -82.426493;  
 
 
-  constructor(
+  constructor(private Serv: ObtSubSService,
+              public toastController: ToastController
   ) {}
 
   async ngOnInit() {
 
   }
   agregarMarcador( evento ) {
-
+    this.marcadores=[];
     console.log(evento);
+    this.Serv.setLatitud(evento.coords.lat);
+    this.Serv.setLongitud(evento.coords.lng);
     const coords: { lat: number, lng: number } = evento.coords;
 
     const nuevoMarcador = new Marcador( coords.lat, coords.lng );
 
     this.marcadores.push( nuevoMarcador ); 
-
-    //this.guardarStorage();
-   // this.snackBar.open('Marcador agregado', 'Cerrar', { duration: 3000 });
+this.presentToast();
 
   }
 
+
+  borrarMarcador( i: number ) {
+    console.log(i);
+    this.marcadores.splice(i, 1);
+    this.presentToastBorrar();
+    }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Marcador agregado',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async presentToastBorrar() {
+    const toast = await this.toastController.create({
+      message: 'Marcador eliminado',
+      duration: 2000
+    });
+    toast.present();
+  }
 }

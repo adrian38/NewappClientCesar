@@ -110,6 +110,11 @@ else{
   console.log("autofill",this.Autofill);
 }
 }
+
+ubicacion(){
+  this.navCtrl.navigateRoot('/mapa', {animated: true, animationDirection: 'back' }) ;
+      
+}
  }
 
 

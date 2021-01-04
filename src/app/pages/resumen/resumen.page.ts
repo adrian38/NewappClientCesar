@@ -81,6 +81,7 @@ export class ResumenPage implements OnInit {
     this.escalera=this.datos.getescalera();
     this.piso=this.datos.getpiso();
     this.numero=this.datos.getnumero();
+    
 
     this.user=this._taskOdoo.getUser();
 
@@ -144,8 +145,8 @@ export class ResumenPage implements OnInit {
     this.task.address.cp=this.datos.getcod_postal();
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
-    
-    
+    this.task.address.latitude=this.datos.getlatitud().toString();
+    this.task.address.longitude=this.datos.getlongitud().toString();    
     // this.task.title= 'Arreglo'
     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;

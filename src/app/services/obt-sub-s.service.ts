@@ -35,6 +35,9 @@ export class ObtSubSService {
     dat:string;
     tim:string;
 
+    longitud:number;
+    latitud:number;
+
    //-----------------------------------------------------------
 
     nombre:string="";
@@ -188,6 +191,25 @@ this.titulo=t;
     getCalendarioT(){
       return this.tim;
 
+    }
+
+    setLongitud(lon:number){
+      this.longitud=lon;
+
+    }
+
+    getlongitud(){
+      return this.longitud;
+    }
+
+    
+    setLatitud(lat:number){
+      this.latitud=lat;
+
+    }
+
+    getlatitud(){
+      return this.latitud;
     }
   //-------------------------------------------------------------------------
 
