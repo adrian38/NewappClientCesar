@@ -1,5 +1,6 @@
  import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { MessageModel } from 'src/app/models/message.model';
 import { TaskModel } from 'src/app/models/task.model';
@@ -34,6 +35,7 @@ export class ChatPage implements OnInit {
   constructor(private _authOdoo: AuthOdooService,
     private _taskOdoo: TaskOdooService,
     private _chatOdoo: ChatOdooService,
+    public navCtrl:NavController,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private ngZone: NgZone) {
@@ -136,8 +138,11 @@ export class ChatPage implements OnInit {
   }
 
   
-
+  cerrarsolicitud(){
+    this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'forward' }) ;
+      
   
+  }
 
 }
  

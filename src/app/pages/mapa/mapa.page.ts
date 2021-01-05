@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Marcador } from 'src/app/models/marcador.class';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-
+import { Geolocation} from '@capacitor/core';
 
 @Component({
   selector: 'app-mapa',
@@ -17,13 +17,17 @@ export class MapaPage implements OnInit {
   marcadores: Marcador[] = [];
 
   title = 'My first AGM project';
-  lat =23.087365;
-  lng =  -82.426493;  
+  /* lat =23.087365;
+  lng =  -82.426493;  */ 
+  lat :number;
+  lng :number; 
 
 
   constructor(private Serv: ObtSubSService,
-              public toastController: ToastController
-  ) {}
+              public toastController: ToastController,
+             ) {
+             
+              }
 
   async ngOnInit() {
 
@@ -64,4 +68,19 @@ this.presentToast();
     });
     toast.present();
   }
+
+  async getLocation() {
+    const position = await Geolocation.getCurrentPosition();
+    this.lat = position.coords.latitude;
+    this.lng = position.coords.longitude;
+    console.log(this.lat);
+    console.log(this.lng);
+  }
+
+  irubicacion(){
+    this.getLocation();
+  }
+
+
+ 
 }

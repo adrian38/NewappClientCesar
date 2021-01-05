@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
- <!--    <h1>{{ title }}</h1> -->
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
 
@@ -15,7 +11,7 @@
   <!-- this creates a google map on the page with the given lat/lng from -->
   <!-- the component as the initial center of the map: -->
   
-   <agm-map (mapClick)="agregarMarcador($event)" [latitude]="lat" [longitude]="lng">
+   <agm-map (mapClick)="agregarMarcador($event)" [latitude]="lat" [longitude]="lng" [zoom]=15>
     <agm-marker *ngFor="let marcador of marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng">
 
       <agm-info-window>
@@ -34,6 +30,14 @@
   </agm-marker>
   </agm-map> 
 
- 
+  <ion-fab vertical="bottom" 
+  horizontal="end" 
+  slot="fixed"
+   (click)="irubicacion()" 
+  >
+<ion-fab-button>
+<ion-icon name="location"></ion-icon>
+</ion-fab-button>
+</ion-fab>
 
 </ion-content>

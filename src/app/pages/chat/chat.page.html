@@ -22,10 +22,12 @@
        <ion-row>
          <ion-col size=2></ion-col>
          <ion-col size=8 style="text-align: start;">
-          <ion-label style="color:  rgb(49 ,49 ,57);">Presupuesto</ion-label>
+          <ion-label style="color:  rgb(49 ,49 ,57);">Presupuesto:{{task.budget}} </ion-label>
          </ion-col>
          <ion-col size=2>
-          <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
+          <ion-icon  name="close" 
+                     (click)="cerrarsolicitud()"
+                     style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
          ></ion-icon>
         
          </ion-col>
@@ -87,21 +89,21 @@
      <ion-grid>
 
      <ion-text color="medium" text-center>
-      <p>You joined the chat as  </p>
+  <!--     <p>You joined the chat as  </p> -->
     </ion-text>
 
     
     <ion-row *ngFor="let message of messagesList">
      
       <ion-col size="9" *ngIf="user.type != 'client'" class="message other-message">
-        <b>{{message.author}}</b><br>
+        <!-- <b>{{message.author}}</b><br> -->
         <span>{{ message.message }}</span>
         <div class="time" text-right><br>15 min</div>
       </ion-col>
      
      
         <ion-col offset="3" size="9" *ngIf="user.type == 'client'" class="message my-message">
-          <b style="font-size: xx-small;">{{message.author}}</b>
+         <!--  <b style="font-size: xx-small;">{{message.author}}</b> -->
           <br>
           <br>
           <span>{{ message.message }}</span>
