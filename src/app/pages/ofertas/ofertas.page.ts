@@ -44,6 +44,9 @@ export class OfertasPage implements OnInit {
     private router:Router) {
 
 
+      this.task=new TaskModel();
+      this.task=this._taskOdoo.getTaskCesar();
+      
 this.veroferta=true;
 this.verdetalles=false;
 
@@ -136,9 +139,9 @@ segChange(event){
     this.veroferta=true;
     this.verdetalles=false;
     console.log("etiqueta",this.veroferta);
-
+/* 
  this.task=new TaskModel();
- this.task=this._taskOdoo.getTaskCesar();
+ this.task=this._taskOdoo.getTaskCesar(); */
  
 
  this._taskOdoo.requestOffersForTask(this.task.id_string);
@@ -165,4 +168,8 @@ openChat(id) {
  this.router.navigate(['/chat']);
 }
 
+verubicacion(){
+  console.log("lati",this.task.address.latitude);
+  console.log("long",this.task.address.longitude);
+}
 }

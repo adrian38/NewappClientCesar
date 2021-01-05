@@ -41,6 +41,8 @@ export class ResumenPage implements OnInit {
   portal:string="";
   cod_postal:string="";
   escalera:string="";
+  latitud:string="";
+  longitud:string="";
   
   notificationNewSoClient$: Observable<boolean>;
   notificationError$: Observable<boolean>;
@@ -81,7 +83,8 @@ export class ResumenPage implements OnInit {
     this.escalera=this.datos.getescalera();
     this.piso=this.datos.getpiso();
     this.numero=this.datos.getnumero();
-    
+   /*  this.longitud=this.datos.getlongitud().toString();
+    this.latitud=this.datos.getlatitud().toString(); */
 
     this.user=this._taskOdoo.getUser();
 
@@ -145,8 +148,8 @@ export class ResumenPage implements OnInit {
     this.task.address.cp=this.datos.getcod_postal();
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
-    this.task.address.latitude=this.datos.getlatitud().toString();
-    this.task.address.longitude=this.datos.getlongitud().toString();    
+    this.task.address.latitude="23.103659";
+    this.task.address.longitude="-82.427484";    
     // this.task.title= 'Arreglo'
     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;
@@ -166,7 +169,7 @@ export class ResumenPage implements OnInit {
     
     //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
     
-    console.log(this.task)
+    console.log("serv creado",this.task)
     this._taskOdoo.newTask(this.task);
     
     

@@ -14,7 +14,7 @@ import { IonSegment } from '@ionic/angular';
 })
 export class Tab2Page {
 
-  @ViewChild (IonSegment) segment:IonSegment;
+ // @ViewChild (IonSegment) segment:IonSegment;
 
   cant;
   id_string: string;
@@ -48,7 +48,7 @@ export class Tab2Page {
   }
   ngOnInit(): void {
 
-    this.segment.value = 'servicio';
+    //this.segment.value = 'servicio';
 
     this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();
     this.notificationTabs2$.subscribe(notificationTab => {
@@ -81,7 +81,7 @@ export class Tab2Page {
 
 
    segChange(event){
-    this.valorSegment = event.detail.value;
+    //this.valorSegment = event.detail.value;
     console.log(this.valorSegment);
 
     if(this.valorSegment==="servicio"){
