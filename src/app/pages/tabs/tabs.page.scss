@@ -17,6 +17,13 @@ ion-tab-button{
   font-weight: bold;
 } 
 
+svg{
+  fill: #ffffff !important;
+}
+.icon-image{
+  width: 35px;
+  height: 35px;
+}
 .tab-selected{
     color:rgb(246, 183, 118);
     background:rgb(49 ,49 ,57) ;
