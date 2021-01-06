@@ -9,5 +9,5 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/ic_launcher_background"/>
+        />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

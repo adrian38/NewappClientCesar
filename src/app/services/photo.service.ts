@@ -57,8 +57,7 @@ export class PhotoService {
      // source: CameraSource.Camera, // automatically take a new photo with the camera
       source: CameraSource.Photos, 
       quality: 50 // highest quality (0 to 100)
-    });
-    
+    });    
     const savedImageFile = await this.savePicture(capturedPhoto);
       // Add new photo to Photos array
     this.photos.unshift(savedImageFile);
