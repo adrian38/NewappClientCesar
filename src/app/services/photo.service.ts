@@ -14,8 +14,6 @@ export class PhotoService {
 
   public photos: Photo[] = []; 
  
-
- 
   //------------------------
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
@@ -28,8 +26,6 @@ export class PhotoService {
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || []; 
     
-
-
     // If running on the web...
     if (!this.platform.is('hybrid')) {
       // Display the photo by reading into base64 format
@@ -38,8 +34,7 @@ export class PhotoService {
         const readFile = await Filesystem.readFile({
             path: photo.filepath,
             directory: FilesystemDirectory.Data
-        });
-      
+        });      
         // Web platform only: Load the photo as base64 data
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
@@ -55,7 +50,6 @@ export class PhotoService {
   // Store a reference to all photo filepaths using Storage API:
   // https://capacitor.ionicframework.com/docs/apis/storage
   */
- 
  public async addNewToGallery() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
@@ -63,7 +57,7 @@ export class PhotoService {
      // source: CameraSource.Camera, // automatically take a new photo with the camera
       source: CameraSource.Photos, 
       quality: 60 // highest quality (0 to 100)
-    });
+  });
     
     const savedImageFile = await this.savePicture(capturedPhoto);
       // Add new photo to Photos array

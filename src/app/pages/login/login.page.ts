@@ -61,6 +61,8 @@ ngOnInit() {
   this.usuario$.subscribe(user => {
     this.ngZone.run( () => {
       this.usuario = user;
+   /*    sessionStorage.setItem('user', JSON.stringify(user));
+      this.usuario = JSON.parse(sessionStorage.getItem('user')); */
       console.log("Dismiss Loading");
       if(this.loading){
         this.loading.dismiss();
@@ -68,7 +70,6 @@ ngOnInit() {
       this.checkUser();
     });
   });
-
 }
 
 checkUser(){
