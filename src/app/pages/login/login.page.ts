@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
   pass:string;
   islog:boolean
 
-  loading:any;
+  loading:HTMLIonLoadingElement = null;
 
   constructor(private ngZone: NgZone,
     private _authOdoo:AuthOdooService,
@@ -37,9 +37,9 @@ export class LoginPage implements OnInit {
     private route:Router,
     public loadingController: LoadingController,
     public alertController: AlertController,
-   public navController:NavController,
-   private platform: Platform,
-   private _location: Location) {
+    public navController:NavController,
+    private platform: Platform,
+    private _location: Location) {
 
 this.usuario = new UsuarioModel;
 
@@ -54,9 +54,6 @@ this.platform.backButton.subscribeWithPriority(10, () => {
 
 }
 
-               
-              
-
 ngOnInit() {
 
   this.usuario$ = this._authOdoo.getUser$();
@@ -64,7 +61,10 @@ ngOnInit() {
   this.usuario$.subscribe(user => {
     this.ngZone.run( () => {
       this.usuario = user;
-      this.loading.dismiss();
+      console.log("Dismiss Loading");
+      if(this.loading){
+        this.loading.dismiss();
+      }
       this.checkUser();
     });
   });
@@ -79,24 +79,19 @@ checkUser(){
             //this.route.navigate(["/tabs/tab1"]);   
             
           //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
- 
-     this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-    
+    this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;   
   }
   else{
     console.log('no se pudo conectar');
     this.loading.dismiss();
-
-    this.presentAlertConfirm();
- 
-    
+    this.presentAlertConfirm(); 
   }
 }
 
-  iniciar(){
-    this.presentLoading();
-   console.log("si");
-   console.log("si");
+  async iniciar(){
+    await this.presentLoading();
+    console.log("si");
+    console.log("si");
     console.log("user",this.user);
     console.log("pass",this.pass);
 
@@ -106,20 +101,20 @@ checkUser(){
   }
 
 async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'espere...',
-      //duration: 2000
-    });
-   return  this.loading.present();
-
+  this.loading = await this.loadingController.create({
+    cssClass: 'my-custom-class',
+    message: 'Espere...',
+    //duration: 2000
+  });
+  console.log("Loading Ok");
+  return  this.loading.present();
 }
 
 async presentAlertConfirm() {
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
-    header: 'Problema de conexion',
-    message: 'Intene e nuevo',
+    header: 'Problema de conexión',
+    message: 'Intente de nuevo',
     buttons: [
       
      

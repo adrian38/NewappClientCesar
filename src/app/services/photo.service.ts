@@ -61,23 +61,17 @@ export class PhotoService {
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri, // file-based data; provides best performance
      // source: CameraSource.Camera, // automatically take a new photo with the camera
-     source: CameraSource.Photos, 
-     quality: 100 // highest quality (0 to 100)
-    
+      source: CameraSource.Photos, 
+      quality: 60 // highest quality (0 to 100)
     });
     
     const savedImageFile = await this.savePicture(capturedPhoto);
-
-    // Add new photo to Photos array
-     this.photos.unshift(savedImageFile);
-   
-    
-
-    // Cache all photo data for future retrieval
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-       value: JSON.stringify(this.photos)
-    
+      // Add new photo to Photos array
+      this.photos.unshift(savedImageFile);
+      // Cache all photo data for future retrieval
+      Storage.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.photos)    
     });
   }
 
@@ -85,28 +79,23 @@ export class PhotoService {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri, // file-based data; provides best performance
-     source: CameraSource.Camera, // automatically take a new photo with the camera
-    //source: CameraSource.Photos, 
-     quality: 100 // highest quality (0 to 100)
-    
-    });
-    
+      source: CameraSource.Camera, // automatically take a new photo with the camera
+      //source: CameraSource.Photos, 
+      quality: 100 // highest quality (0 to 100)    
+    });    
     const savedImageFile = await this.savePicture(capturedPhoto);
-
-    // Add new photo to Photos array
-    this.photos.unshift(savedImageFile);
-
-    // Cache all photo data for future retrieval
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos)
-    });
+      // Add new photo to Photos array
+      this.photos.unshift(savedImageFile);
+      // Cache all photo data for future retrieval
+      Storage.set({
+        key: this.PHOTO_STORAGE,
+        value: JSON.stringify(this.photos)
+      });
   }
   // Save picture to file on device
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
-
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({

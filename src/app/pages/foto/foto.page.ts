@@ -77,74 +77,51 @@ servicio:string="";
     }]
     });
     await actionSheet.present();
-    }
+  }
     
-    async presentAlertConfirm(posc:number) {
+  async presentAlertConfirm(posc:number) {
     const alert = await this.alertController.create({
-    cssClass: 'my-custom-class',
-    header: '¿Desea colocar una foto?',
-    message: 'Selecione la opcion de camara o galeria para la foto ',
-    buttons: [
-    
-    {
-    text: 'Camara',
-    
-    handler: () => {
-    //  this.photoService.photos=[];
-   if(posc==0)
-   {
-    //this.photoService.photos=[];
-      
-    this.verFoto0=true;
-      this.verFotoInicial0=false;
-    this.photoService.addNewToGallery();
-
-   }
-    
-
-   if(posc==1)
-   {
-    //this.photoService.photos=[];
-      
-    this.verFoto1=true;
-      this.verFotoInicial1=false;
-    this.photoService.addNewToGallery();
-
-   }
-     
-  
-    
-  
-    
-    }
-    },
-    {
-    text: 'Galeria',
-    handler: () => {
-    this.photoService.photos=[];
-      
-   // this.verFoto=true;
-    //  this.verFotoInicial=false;
-    this.photoService.addNewToGallery();
-    }
-    },
-    {
-    text: 'Cancelar',
-    role: 'cancel',
-    cssClass: 'secondary',
-    handler: (blah) => {
-   // this.verFoto=false;
-    //this.verFotoInicial=true;
-    console.log('Confirm Cancel: blah');
-    }
-    }
-    
-    ]
-    });
-    
+      cssClass: 'my-custom-class',
+      header: '¿Desea añadir una foto?',
+      message: 'Selecione la opción de cámara o galería para la foto ',
+      buttons: [{
+        text: 'Cámara',            
+        handler: () => {
+          //  this.photoService.photos=[];
+          if(posc==0){
+            //this.photoService.photos=[];          
+            this.verFoto0=true;
+            this.verFotoInicial0=false;
+            this.photoService.addNewToGallery();
+          }    
+          if(posc==1){
+            //this.photoService.photos=[];              
+            this.verFoto1=true;
+            this.verFotoInicial1=false;
+            this.photoService.addNewToGallery();
+          }
+        }
+      },
+      {
+        text: 'Galería',
+        handler: () => {
+          this.photoService.photos=[];          
+          // this.verFoto=true;
+          //  this.verFotoInicial=false;
+          this.photoService.addNewToGallery();
+        }
+      },
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          // this.verFoto=false;
+          //this.verFotoInicial=true;
+          console.log('Confirm Cancel: blah');
+        }
+      }]
+    });    
     await alert.present();
-    }
-
-
-   
+  }
 }

@@ -38,6 +38,7 @@ import { CommonModule } from '@angular/common';
 registerLocaleData(localeEs);
 
 import { AgmCoreModule } from '@agm/core';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,6 +46,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     BrowserAnimationsModule,
     BrowserModule, 
+    ComponentsModule,
     IonicModule.forRoot(),
      AppRoutingModule,
      ButtonModule,

@@ -15,8 +15,6 @@ import { Observable,Subscription,Unsubscribable } from 'rxjs';
 })
 export class TabsPage {
 
-  
-  
   task: TaskModel;
 
   solicitudesList: TaskModel[];
@@ -25,22 +23,16 @@ export class TabsPage {
   historialList: TaskModel[];
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
 
-   
-
   notificationNewPoSuplier: number[];
   notificationNewPoSuplier$: Observable<number[]>;
 
   notificationSoCancelled$: Observable<number>;
 
-  notificationPoCancelled$: Observable<number[]>;
-
-  
+  notificationPoCancelled$: Observable<number[]>
 
   notificationError$: Observable<boolean>;
   
   notificationOffertCancelled$: Observable<number[]>;
-
-   
 
   inicio = true;
   loading:any;
@@ -50,37 +42,21 @@ export class TabsPage {
     private _authOdoo: AuthOdooService,
     private ngZone: NgZone,
     public loadingController: LoadingController) {
-
     this.observablesSubscriptions();
-      
     this._taskOdoo.requestTaskListClient();
     this.presentLoading();
-    
-
   }
 
   ngOnInit(): void {
-
- 
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-
-   
   }
 
-
   observablesSubscriptions() {
-
     ////////////////////////////////Para el Cliente
-
-    
-
-
-    
-
       this.notificationSoCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
       this.notificationSoCancelled$.subscribe(notificationSoCancelled => {
         this.ngZone.run(() => {
@@ -93,26 +69,15 @@ export class TabsPage {
         });
 
       });
-
-    
-
-      
-
     //////////////////Para Todos
-
-    
-
     this.notificationError$ = this._taskOdoo.getNotificationError$();
     this.notificationError$.subscribe(notificationError =>{
       this.ngZone.run(()=>{
-
         if(notificationError){
         console.log("Error!!!!!!!!!!!");
         }
       });
-
     });
-
 
     this.tasksList$ = this._taskOdoo.getRequestedTaskList$();
     this.tasksList$.subscribe((tasksList: TaskModel[]) => {
@@ -125,7 +90,6 @@ export class TabsPage {
             return task.state === 'to invoice'; //Solicitadas
           
         });
-
         if (typeof this.solicitudesList !== 'undefined' && this.solicitudesList.length > 0) {
           Array.prototype.push.apply(this.solicitudesList, temp);
         } else { this.solicitudesList = temp; }
@@ -154,21 +118,18 @@ export class TabsPage {
         console.log(this.solicitudesList,"peticiones a Servidor");
         this.loading.dismiss();
       });
-
       if (this.inicio){
         this.inicio = false;
         this._taskOdoo.notificationPull();
       }
     });
   }
-
   async presentLoading() {
     this.loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      message: 'espere...',
+      message: 'Cargando Solicitudes...',
       //duration: 2000
     });
-   return  this.loading.present();
-
-}
+    return  this.loading.present();
+  }
 }

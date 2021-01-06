@@ -2,9 +2,7 @@
 <ion-content>
   <ion-grid>
 
-   <form #formulario="ngForm" >
-       
-
+   <form #formulario="ngForm" class="animated fadeIn">
          <ion-row style="margin-top: 25px;">
            <ion-col style="text-align: center;">
              <img src="../../assets/logi.png">
@@ -31,8 +29,7 @@
                                    type="email"
                                    required
                                    [(ngModel)]="user"
-                                   
-                                
+                                                          
                                    #nombre="ngModel"
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                    
@@ -78,21 +75,10 @@
                                      </ion-col >
                                      <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                        </ion-row>
-
-
-
-
-
-
-
-
-
                            
                </ion-list>
            </ion-col>
          </ion-row>
-
-
 
          <ion-row  style="margin-top: 30px;">
            <ion-col size="3" style="background: rgb(255, 255, 255);"></ion-col>
@@ -108,20 +94,15 @@
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
                       color="primary"
-                        (click)="iniciar()"
-                       
+                        (click)="iniciar()"                       
                         [disabled]="formulario.invalid">
            Iniciar Sesion
              </ion-button>
            </ion-col>
          </ion-row>
-
-
-     
+ 
      </form> 
     
-
-
 
    </ion-grid>
 </ion-content>

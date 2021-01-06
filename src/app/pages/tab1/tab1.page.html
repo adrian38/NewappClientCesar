@@ -1,122 +1,23 @@
-<ion-header [translucent]="true" class="ion-no-border" >
-  <!--  <div id="barraSuperior" >  -->
-    <div id="barraInferior"  >
-    <ion-row>
-      
-      <ion-col size=3 >
-        <img  id="logo"  src="../../assets/logoNavbar.png">
-    
-      </ion-col>
-      
-    
-     
-       <ion-col size=6>
-        <h2 style="text-align: center;color: rgb(246, 183, 118);">Solicitudes</h2>
-    
-       </ion-col>
-      
-     </ion-row>
-     
-     
-    </div>
-   
-  <!--  </div> --> 
-  
-</ion-header>
+<app-header headerText="Solicitudes"></app-header>
 
-<ion-content  >
-  <ion-fab vertical="bottom" 
-  horizontal="end" 
-  slot="fixed"
-   (click)="irSolicitud()" 
-  >
-<ion-fab-button>
-<ion-icon name="add"></ion-icon>
-</ion-fab-button>
-</ion-fab>
+<ion-content>
+  <ion-fab vertical="bottom" style="margin-right: 10px;"
+    horizontal="end" 
+    slot="fixed"
+    (click)="irSolicitud()" 
+    >
+    <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-
-
-
-<ion-grid routerLink="/ofertas">
-<ion-row>
-  <ion-col size=1>
-
-  </ion-col>
-
-<ion-col size=10>
-  <ion-list>
-    <div id="item" *ngFor="let Solicitud of solicitudesList ,let i = index"
-           (click)="in(i)"
-          >
-    
-    
-    
-    
-    
-    <ion-row>
-  
-    <ion-col   size=4 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
-       
-      <img  id="imagen" src="../../assets/f.jpg">
-    </ion-col>
-
-  <!--   <ion-col size=3 *ngIf="Solicitud.type == 'Servicio de Electricidad'">
-      <img src="../../assets/av-6.png">
-    </ion-col> -->
-    
-    <ion-col size=8>
-    
-    <ion-row>
-     
-      <h6> {{Solicitud.title | uppercase}}</h6>
-     
-        
-        
-      
-    
-    </ion-row >
-    <ion-row>
-      <ion-col size=2>
-      <!--   <ion-icon name="calendar" color="primary"></ion-icon> -->
-      <img style="width: 18px;height: 18px;" src="../../assets/calendario.png">
-      
-      </ion-col>
-      <ion-col size=10>
-        <ion-label style="margin-left: 5px;">{{ this.Solicitud.date_planned |date:'EEE d.MMM y' | lowercase}} </ion-label>
-        <!-- <p >{{this.diasSemana[this.fecha.getDay()]}},{{this.fecha  |  date:"dd MMMM yyyy"}} </p> -->
-       
-      </ion-col>
-      
-       
-      
-      
-    </ion-row>
-      <ion-row >
-        <ion-col size=2>
-         <!--  <ion-icon name="time" color="primary" ></ion-icon> -->
-         <img style="width: 18px;height: 18px;" src="../../assets/hora.png">
-        </ion-col>
-        <ion-col size=10>
-          <ion-label style="margin-left: 5px;"> {{Solicitud.time | date: 'h:mm a' }}</ion-label>
-       
-        </ion-col>
-       
-      </ion-row>
-    
-     </ion-col>
-     </ion-row>
-
-    </div>
-    </ion-list>   
-    
-</ion-col>
-
-
-  <ion-col size=1>
-
-  </ion-col>
-</ion-row>
-
-</ion-grid>
+  <ion-grid routerLink="/ofertas" style="padding-left: 35px; padding-right: 35px;">
+    <ion-list>  
+      <app-solicitud 
+        *ngFor="let Solicitud of solicitudesList; let i = index"
+        (click)="in(i)"              
+        [Solicitud]="this.Solicitud">
+      </app-solicitud>
+    </ion-list>    
+  </ion-grid>
 </ion-content>

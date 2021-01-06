@@ -1,0 +1,16 @@
+h6{
+    font-family: 'HelveticaNeueLTStd-Bd';
+}
+
+#imagen{
+    margin-top: 30px;
+    width: 110px;            
+    height: 80px;            
+    border-radius: 20px 3px 3px 3px;            
+    object-fit: cover; 
+    opacity: 0.9;           
+}
+
+#item{        
+    border-bottom: 2px solid  rgba(246, 183, 118, 0.7);
+}

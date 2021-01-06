@@ -7,49 +7,35 @@
           <img  id="logo"  src="../../assets/logoNavbar.png">
       
         </ion-col>
-        
-      
-       
-         <ion-col size=6>
+        <ion-col size=6>
           <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
-      
-         </ion-col>
-        
-       </ion-row>
+        </ion-col>       
+      </ion-row>
     </div>
   
   </div> 
-   <div id="ServHist">
-  <ion-segment  (ionChange)="segChange($event)" 
+  <div id="ServHist">
+  <ion-segment  (ionChange)="segChange($event)" mode="md"
                 style="color: rgb(49 ,49 ,57);"
                 color="dark"
-                #segment>
-                 
-     
-  
+                #segmentHist>
+
   <ion-segment-button value="servicio">
-  <ion-label style="color: rgb(49 ,49 ,57)">Contratados</ion-label>
-  
-  
-  
+    <ion-label style="color: rgb(49 ,49 ,57); border-radius: 20px 20px 0px 0px">Contratados</ion-label>
   </ion-segment-button>
+
   <ion-segment-button value="historial">
-  <ion-label style="color: rgb(49 ,49 ,57)">Historial</ion-label>
+    <ion-label style="color: rgb(49 ,49 ,57); border-radius: 20px 20px 0px 0px">Historial</ion-label>
   </ion-segment-button>
   
   </ion-segment>
   </div>
   
-
 </ion-header>
 
 
 
-<ion-content >
-
-
-
- 
+<ion-content>
 
  <div *ngIf="verservicios">
   <ion-grid routerLink="/contratados" >
@@ -63,11 +49,6 @@
         <div id="item" *ngFor="let contratados of contratadosList ,let i = index"
                (click)="in(i)"
               >
-        
-        
-        
-        
-        
         <ion-row>
       
         <ion-col   size=4 *ngIf="contratados.type == 'Servicio de Fontanería'">
@@ -87,7 +68,6 @@
         
             
             
-           
         
         </ion-row >
         <ion-row>

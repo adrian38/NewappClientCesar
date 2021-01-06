@@ -1,4 +1,4 @@
-import { Component,NgZone, ViewChild } from '@angular/core';
+import { Component,ElementRef,NgZone, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Address, TaskModel } from 'src/app/models/task.model';
 
@@ -14,18 +14,18 @@ import { IonSegment } from '@ionic/angular';
 })
 export class Tab2Page {
 
- // @ViewChild (IonSegment) segment:IonSegment;
+  @ViewChild ('segmentHist') segment:IonSegment;
+  // @ViewChild("segmentHist", { read: ElementRef }) private mySegment: any;
 
-  cant;
+  cant: number;
   id_string: string;
   task: TaskModel;
   contratadosList: TaskModel[];
   
   verservicios:boolean = true;
   verhistorial:boolean;
-  
+ 
   valorSegment:string;
-  
   
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
   tab: String;
@@ -34,38 +34,29 @@ export class Tab2Page {
   notificationTabs2$: Observable<boolean>;
 
   constructor(private subServ: ObtSubSService,
-    private _taskOdoo: TaskOdooService,
-    private _authOdoo: AuthOdooService,
-    private ngZone: NgZone
-
-  ) {
-
+              private _taskOdoo: TaskOdooService,
+              private _authOdoo: AuthOdooService,
+              private ngZone: NgZone) {
     this.contratadosList = this.subServ.getContratadosList();
     console.log(this.contratadosList,'tabs2 entro');
     this.verservicios=true;
     this.verhistorial=false;
- 
   }
   ngOnInit(): void {
-
-    //this.segment.value = 'servicio';
-
+    setTimeout(()=>{
+      console.log("ejecutando marcar 'contratados'");
+      this.segment.value = 'servicio';
+    }, 100);
+    
     this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();
     this.notificationTabs2$.subscribe(notificationTab => {
-  
-    this.ngZone.run(()=>{
- 
-     this.contratadosList = this.subServ.getContratadosList();
-      console.log('tabs2',this.contratadosList);
- 
+      this.ngZone.run(()=>{
+        this.contratadosList = this.subServ.getContratadosList();
+        console.log('tabs2',this.contratadosList);
+      });
     });
- 
-    });
- 
-   }
- 
- 
-   in(i) {
+  }
+   in(i: number) {
      this.cant = i;
      this.subServ.setposicion(this.cant);
  
