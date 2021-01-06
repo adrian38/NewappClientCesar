@@ -19,6 +19,7 @@ export class OfertasPage implements OnInit {
 
   @ViewChild (IonSegment) segment: IonSegment;
 
+  val: number;
   userType:string="";
   user : UsuarioModel;
   task: TaskModel;
@@ -53,6 +54,8 @@ export class OfertasPage implements OnInit {
       
 this.veroferta=true;
 this.verdetalles=false;
+
+
 
 
 this.user = this._authOdoo.getUser();

@@ -9,6 +9,7 @@ import { OfertasPageRoutingModule } from './ofertas-routing.module';
 import { OfertasPage } from './ofertas.page';
 import {ToastModule} from 'primeng/toast';
 import {DialogModule} from 'primeng/dialog';
+import {RatingModule} from 'primeng/rating';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import {DialogModule} from 'primeng/dialog';
     IonicModule,
     OfertasPageRoutingModule,
     ToastModule,
-    DialogModule
+    DialogModule,
+    RatingModule
   ],
   declarations: [OfertasPage]
 })
