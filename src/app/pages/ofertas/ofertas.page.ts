@@ -8,6 +8,8 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
+
+import {DialogModule} from 'primeng/dialog';
 @Component({
   selector: 'app-ofertas',
   templateUrl: './ofertas.page.html',
@@ -32,6 +34,8 @@ export class OfertasPage implements OnInit {
 
   showSubCard = false;
   subscriptionOffersList: Subscription;
+
+  display: boolean = false;
 
   constructor(
     public navCtrl:NavController,
@@ -171,5 +175,9 @@ openChat(id) {
 verubicacion(){
   console.log("lati",this.task.address.latitude);
   console.log("long",this.task.address.longitude);
+}
+
+showDialog(){
+  this.display=true;
 }
 }

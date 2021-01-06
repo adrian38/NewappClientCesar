@@ -4,20 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OfertasPageRoutingModule } from './ofertas-routing.module';
+import { DialogoPageRoutingModule } from './dialogo-routing.module';
 
-import { OfertasPage } from './ofertas.page';
-import {ToastModule} from 'primeng/toast';
+import { DialogoPage } from './dialogo.page';
 import {DialogModule} from 'primeng/dialog';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OfertasPageRoutingModule,
-    ToastModule,
+    DialogoPageRoutingModule,
     DialogModule
   ],
-  declarations: [OfertasPage]
+  declarations: [DialogoPage]
 })
-export class OfertasPageModule {}
+export class DialogoPageModule {}
