@@ -87,7 +87,11 @@ ion-button{
     }
 } */
 
-p-dialog{
+/* p-dialog{
     width: 20px;
     height: 55px;
+    
+} */
+#p-dialog-content {
+    border-radius: 0 0 15px 15px;
 }

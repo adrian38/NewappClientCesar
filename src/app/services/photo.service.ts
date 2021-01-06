@@ -34,8 +34,7 @@ export class PhotoService {
         const readFile = await Filesystem.readFile({
             path: photo.filepath,
             directory: FilesystemDirectory.Data
-        });
-      
+        });      
         // Web platform only: Load the photo as base64 data
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
@@ -51,7 +50,6 @@ export class PhotoService {
   // Store a reference to all photo filepaths using Storage API:
   // https://capacitor.ionicframework.com/docs/apis/storage
   */
- 
  public async addNewToGallery() {
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({

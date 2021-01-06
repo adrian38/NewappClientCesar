@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { IonicModule } from '@ionic/angular';
 import { SafeUrlPipePipe } from '../pipes/safe-url-pipe.pipe';
 
 
@@ -17,7 +18,8 @@ import { SafeUrlPipePipe } from '../pipes/safe-url-pipe.pipe';
     SafeUrlPipePipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule
   ]
 })
 export class ComponentsModule { }

@@ -42,11 +42,8 @@ export class Tab1Page implements OnInit {
      
   
   this.platform.backButton.subscribeWithPriority(10, () => {
-    this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;
-      
-    });
- 
-     
+    this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;      
+    });   
   }
 
   ngOnInit(): void {
