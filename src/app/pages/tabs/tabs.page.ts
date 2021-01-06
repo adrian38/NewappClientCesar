@@ -1,10 +1,10 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { TaskModel } from 'src/app/models/task.model';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-import { LoadingController } from '@ionic/angular';
+import { IonTabs, LoadingController } from '@ionic/angular';
 import { Observable,Subscription,Unsubscribable } from 'rxjs';
 
 
@@ -14,6 +14,11 @@ import { Observable,Subscription,Unsubscribable } from 'rxjs';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+
+  @ViewChild('tabs') tabs: IonTabs;
+  tab1_active: string = "";
+  tab2_active: string = "";
+  tab3_active: string = "";
 
   task: TaskModel;
 
@@ -131,5 +136,26 @@ export class TabsPage {
       //duration: 2000
     });
     return  this.loading.present();
+  }
+
+  setCurrentTab(event) {
+    console.log("setCurrentTab");   
+    let selectedTab = this.tabs.getSelected();
+    console.log("selectedTab", selectedTab);  
+    if(selectedTab === 'tab1'){
+      this.tab1_active = "_active";
+      this.tab2_active = "";
+      this.tab3_active = "";
+    }
+    else if(selectedTab === 'tab2'){
+      this.tab1_active = "";
+      this.tab2_active = "_active";
+      this.tab3_active = "";
+    }
+    else if(selectedTab === 'tab3'){
+      this.tab1_active = "";
+      this.tab2_active = "";
+      this.tab3_active = "_active";
+    }
   }
 }
