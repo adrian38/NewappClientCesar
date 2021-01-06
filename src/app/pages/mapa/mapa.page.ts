@@ -42,7 +42,7 @@ export class MapaPage implements OnInit {
     const nuevoMarcador = new Marcador( coords.lat, coords.lng );
 
     this.marcadores.push( nuevoMarcador ); 
-this.presentToast();
+    this.presentToast();
 
   }
 
@@ -51,7 +51,7 @@ this.presentToast();
     console.log(i);
     this.marcadores.splice(i, 1);
     this.presentToastBorrar();
-    }
+  }
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -75,6 +75,10 @@ this.presentToast();
     this.lng = position.coords.longitude;
     console.log(this.lat);
     console.log(this.lng);
+    
+    this.marcadores=[];
+    const nuevoMarcador = new Marcador( this.lat, this.lng );
+    this.marcadores.push( nuevoMarcador ); 
   }
 
   irubicacion(){
