@@ -1,15 +1,13 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
-
 //-----------------------------------------------
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { Photo, PhotoService } from '../../services/photo.service';
+import { PhotoService } from '../../services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+import { Photo } from 'src/app/interfaces/photo';
 
 
 @Component({
@@ -19,96 +17,99 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class FotoPage implements OnInit {
 
-  verFoto0:boolean;
-  verFotoInicial0:boolean=true;
-  
-  verFoto1:boolean;
-  verFotoInicial1:boolean=true;
+  foto0:string = '../../../assets/noImage.png';
+  foto1:string = '../../../assets/noImage.png';
 
-  public f1: Photo[] = []; 
   //----------------------------------------------------------------
+  servicio:string="";
 
-
-servicio:string="";
   constructor(private datos:ObtSubSService,
-    public navCtrl:NavController,
-    public photoService: PhotoService,
-    public actionSheetController: ActionSheetController,
-    public alertController: AlertController,
-    private platform: Platform,
-    private _taskOdoo: TaskOdooService) {
-
+              public navCtrl:NavController,
+              public photoService: PhotoService,
+              public actionSheetController: ActionSheetController,
+              public alertController: AlertController,
+              private platform: Platform,
+              private _taskOdoo: TaskOdooService) {
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
-          
-        });
-     }
+      });
+  }
 
   ngOnInit() {
     this.servicio=this.datos.getServ();
   }
   cerrarsolicitud(){
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-      
-  
+    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' });
   }
   goto(){
     this.navCtrl.navigateRoot('/resumen', {animated: true, animationDirection: 'forward' }) ;
-     
   }
 
   public async showActionSheet(photo: Photo, position: number) {
     const actionSheet = await this.actionSheetController.create({
-    header: 'Photos',
-    buttons: [{
-    text: 'Delete',
-    role: 'destructive',
-    icon: 'trash',
-    handler: () => {
-    this.photoService.deletePicture(photo, position);
-    }
-    }, {
-    text: 'Cancel',
-    icon: 'close',
-    role: 'cancel',
-    handler: () => {
-    // Nothing to do, action sheet is automatically closed
-    }
-    }]
+      header: 'Photos',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.photoService.deletePicture(photo, position);
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+        // Nothing to do, action sheet is automatically closed
+        }
+      }]
     });
     await actionSheet.present();
   }
-    
+
   async presentAlertConfirm(posc:number) {
+    console.log( "Foto", posc);
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: '¿Desea añadir una foto?',
       message: 'Selecione la opción de cámara o galería para la foto ',
       buttons: [{
         text: 'Cámara',            
-        handler: () => {
-          //  this.photoService.photos=[];
-          if(posc==0){
-            //this.photoService.photos=[];          
-            this.verFoto0=true;
-            this.verFotoInicial0=false;
-            this.photoService.addNewToGallery();
+        handler: async () => {
+          if(posc==0){          
+            let photo: Photo = await this.photoService.addNewToCamara();
+            console.log( "Foto",photo.webviewPath);
+            if(photo){
+              this.foto0 = photo.webviewPath;
+            }
           }    
-          if(posc==1){
-            //this.photoService.photos=[];              
-            this.verFoto1=true;
-            this.verFotoInicial1=false;
-            this.photoService.addNewToGallery();
+          if(posc==1){             
+            let photo: Photo = await this.photoService.addNewToCamara();            
+            console.log( "Foto",photo.webviewPath);
+            if(photo){
+              this.foto1 = photo.webviewPath;
+            }
           }
         }
       },
       {
         text: 'Galería',
-        handler: () => {
-          this.photoService.photos=[];          
-          // this.verFoto=true;
-          //  this.verFotoInicial=false;
-          this.photoService.addNewToGallery();
+        handler: async () => {  
+          this.photoService.photos = [];     
+          let photos: Photo[] = await this.photoService.addNewToGallery();
+          console.log("Fotos",JSON.stringify(this.photoService.photos));
+          if(photos.length == 1){
+            if(posc==0){ 
+              this.foto0 = photos[0].webviewPath;
+            }
+            if(posc==1){ 
+              this.foto1 = photos[0].webviewPath;
+            }            
+          }
+          if(photos.length > 1){
+            this.foto0 = photos[1].webviewPath;
+            this.foto1 = photos[0].webviewPath; //la primera del arreglo es la ultima seleccionada
+          }
         }
       },
       {
@@ -116,8 +117,6 @@ servicio:string="";
         role: 'cancel',
         cssClass: 'secondary',
         handler: (blah) => {
-          // this.verFoto=false;
-          //this.verFotoInicial=true;
           console.log('Confirm Cancel: blah');
         }
       }]

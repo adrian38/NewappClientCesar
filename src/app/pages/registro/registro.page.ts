@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
-import { Photo } from '../../services/photo.service';
 
 import { AlertController } from '@ionic/angular';
 @Component({

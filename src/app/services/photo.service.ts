@@ -3,6 +3,7 @@ import { async } from '@angular/core/testing';
 import { Plugins, CameraResultType, Capacitor, FilesystemDirectory, 
   CameraPhoto, CameraSource } from '@capacitor/core';
   import { Platform } from '@ionic/angular';
+import { Photo } from '../interfaces/photo';
   const { Camera, Filesystem, Storage } = Plugins;
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,7 @@ import { Plugins, CameraResultType, Capacitor, FilesystemDirectory,
 export class PhotoService {
 
   public photos: Photo[] = []; 
- 
 
- 
   //------------------------
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
@@ -27,9 +26,6 @@ export class PhotoService {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || []; 
-    
-
-
     // If running on the web...
     if (!this.platform.is('hybrid')) {
       // Display the photo by reading into base64 format
@@ -62,17 +58,18 @@ export class PhotoService {
       resultType: CameraResultType.Uri, // file-based data; provides best performance
      // source: CameraSource.Camera, // automatically take a new photo with the camera
       source: CameraSource.Photos, 
-      quality: 60 // highest quality (0 to 100)
+      quality: 50 // highest quality (0 to 100)
     });
     
     const savedImageFile = await this.savePicture(capturedPhoto);
       // Add new photo to Photos array
-      this.photos.unshift(savedImageFile);
+    this.photos.unshift(savedImageFile);
       // Cache all photo data for future retrieval
-      Storage.set({
-        key: this.PHOTO_STORAGE,
-        value: JSON.stringify(this.photos)    
+    Storage.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify(this.photos)    
     });
+    return this.photos;
   }
 
   public async addNewToCamara() {
@@ -81,16 +78,17 @@ export class PhotoService {
       resultType: CameraResultType.Uri, // file-based data; provides best performance
       source: CameraSource.Camera, // automatically take a new photo with the camera
       //source: CameraSource.Photos, 
-      quality: 100 // highest quality (0 to 100)    
+      quality: 50 // highest quality (0 to 100)    
     });    
     const savedImageFile = await this.savePicture(capturedPhoto);
       // Add new photo to Photos array
-      this.photos.unshift(savedImageFile);
+    this.photos.unshift(savedImageFile);
       // Cache all photo data for future retrieval
-      Storage.set({
-        key: this.PHOTO_STORAGE,
-        value: JSON.stringify(this.photos)
-      });
+    Storage.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify(this.photos)
+    });
+    return savedImageFile;
   }
   // Save picture to file on device
   private async savePicture(cameraPhoto: CameraPhoto) {
@@ -168,15 +166,5 @@ export class PhotoService {
     };
     reader.readAsDataURL(blob);
   });
-
-
- 
-
-
-
 }
 
-export interface Photo {
- filepath: string;
-  webviewPath: string;
-}

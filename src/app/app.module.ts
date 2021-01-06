@@ -22,11 +22,6 @@ import { DatePipe } from '@angular/common'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
-
-
-
 import { LOCALE_ID } from '@angular/core';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -48,14 +43,14 @@ import { ComponentsModule } from './components/components.module';
     BrowserModule, 
     ComponentsModule,
     IonicModule.forRoot(),
-     AppRoutingModule,
-     ButtonModule,
-     
-      ToastModule,
-       CommonModule,
-       AgmCoreModule.forRoot({
+    AppRoutingModule,
+    ButtonModule, 
+    ToastModule,
+    CommonModule,
+    AgmCoreModule.forRoot({
         apiKey: 'AIzaSyBXq33cjYMCezL6xP-vo3m-qWQ5U9gRTfQ'
-      }) ],
+    }) 
+  ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -65,9 +60,11 @@ import { ComponentsModule } from './components/components.module';
     AuthGuardService,
     TaskOdooService,
     ObtSubSService,
-   
-    
-    {provide: LOCALE_ID, useValue:"es" },
+    {
+      provide: 
+      LOCALE_ID, 
+      useValue:"es"
+    },
     DatePipe,
     MessageService,
 

@@ -25,46 +25,32 @@
 </ion-header> 
 
 <ion-content>
+
   <div id="barra">
     <ion-label >Fotos del proyecto</ion-label>
   </div>
-
   <ion-grid>
-
     <ion-row style="margin-top: 35px;text-align: center;">
       <ion-col size=4>
       </ion-col>
-      
-      <ion-col size=4  *ngIf="verFotoInicial0">
-        <img src="../../assets/noImage.png"
+      <ion-col size=4  *ngIf="foto0">
+        <img [src]="foto0 | safeUrlPipe"
             (click)="presentAlertConfirm(0)">
       </ion-col>
-      
-      <ion-col size=4 *ngFor="let photo of photoService.photos; ">
-        <ion-img *ngIf="verFoto0" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
-      </ion-col>
-        
       <ion-col size=4 >
       </ion-col>
     </ion-row>
-
     <ion-row style="margin-top: 35px;text-align: center;">
       <ion-col size=4>
       </ion-col>
-      <ion-col size=4  *ngIf="verFotoInicial1">
-        <img src="../../assets/noImage.png"        
+      <ion-col size=4  *ngIf="foto1">
+        <img [src]="foto1 | safeUrlPipe"        
         (click)="presentAlertConfirm(1)">
       </ion-col>
-
-      <ion-col size=4 *ngFor="let photo of photoService.photos; ">
-        <ion-img *ngIf="verFoto1" [src]="photo.webviewPath[1]" (click)="presentAlertConfirm()"></ion-img>
-      </ion-col>
-
       <ion-col size=4 >
       </ion-col>
     </ion-row>
   </ion-grid> 
-
   <ion-row style="margin-top: 55px;">
     <ion-col ></ion-col>
     <ion-col> <ion-button (click)="goto()">  

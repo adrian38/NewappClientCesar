@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 //-----------------------------------------------
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { Photo, PhotoService } from '../../services/photo.service';
+import { PhotoService } from '../../services/photo.service';
 
 
 import { Observable } from 'rxjs';

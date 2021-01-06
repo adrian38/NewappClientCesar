@@ -15,11 +15,9 @@ export class AppComponent {
 
   appVersion: string = 'Alpha 0.0.8';
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  constructor(private platform: Platform,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar) {
     this.initializeApp();
   }
 
