@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
+  @Output() clickedClose = new EventEmitter();
+  @Input() expandText: string = "Text";
+  @Input() expandHeader: boolean = false;
   @Input() fillBackground: boolean = false;
   @Input() headerText: string = "Header";
 
@@ -16,6 +18,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     console.log("ngOnInit fillBackground", this.fillBackground);
+  }
+
+  closeEvent(){
+    this.clickedClose.emit();
   }
 
 }

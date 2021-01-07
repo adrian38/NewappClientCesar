@@ -21,7 +21,7 @@ export class FotoPage implements OnInit {
   foto1:string = '../../../assets/noImage.png';
 
   //----------------------------------------------------------------
-  servicio:string="";
+  servicio:string="Fotos del proyecto";
 
   constructor(private datos:ObtSubSService,
               public navCtrl:NavController,
@@ -36,9 +36,9 @@ export class FotoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.servicio=this.datos.getServ();
+    // this.servicio=this.datos.getServ();
   }
-  cerrarsolicitud(){
+  cerrarsolicitud(event){
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' });
   }
   goto(){
