@@ -147,8 +147,12 @@ export class ResumenPage implements OnInit {
     this.task.address.cp=this.datos.getcod_postal();
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
-    this.task.address.latitude=this.datos.getlatitud().toString();
-    this.task.address.longitude=this.datos.getlongitud().toString();    
+
+    this.task.address.latitude=String(this.datos.getlatitud());
+    this.task.address.longitude=String(this.datos.getlongitud());
+/* 
+    this.task.address.latitude="4.44";
+    this.task.address.longitude="4.43"; */
     // this.task.title= 'Arreglo'
     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;
@@ -165,7 +169,7 @@ export class ResumenPage implements OnInit {
     //time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
     
 
-    
+
     //this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
     
     //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());

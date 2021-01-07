@@ -3,7 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { Marcador } from 'src/app/models/marcador.class';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { Geolocation} from '@capacitor/core';
-
+import { NavController, Platform } from '@ionic/angular';
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.page.html',
@@ -25,8 +25,13 @@ export class MapaPage implements OnInit {
 
   constructor(private Serv: ObtSubSService,
               public toastController: ToastController,
+              private platform: Platform,
+              public navCtrl:NavController
              ) {
-             
+              this.platform.backButton.subscribeWithPriority(10, () => {
+                this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
+                  
+                });
               }
 
   async ngOnInit() {

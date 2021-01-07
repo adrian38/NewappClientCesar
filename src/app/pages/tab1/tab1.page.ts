@@ -75,13 +75,8 @@ export class Tab1Page implements OnInit {
 
   }
   irSolicitud(){
-    //this.route.navigateByUrl ('/tarea', {replaceUrl : true}) ;
+  
     this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'forward' }) ;
-    
-    //this.navCtrl.navigateRoot('tarea');
-   // this.navCtrl.navigateByUrl ('/tabs/tab1', {skipLocationChange: true}) ;
- 
-    //this.navCtrl.navigateBack('back');
     
   }
 

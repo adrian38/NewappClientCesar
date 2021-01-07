@@ -30,18 +30,7 @@ export class TareaPage implements OnInit {
 
   ngOnInit() {
   }
-/*   fontaneriaF(){
-  
-    this.Serv.setServ("FONTANERIA"); 
-   
-    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
 
-  }
-
-  electricidadF(){
-     this.Serv.setServ("ELECTRICIDAD"); 
-   this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
-  } */
   seleccionado(i){
     this.Serv.setServ(this.servicios_activos[i]); 
    
