@@ -75,7 +75,8 @@ export class MapaPage implements OnInit {
     this.lng = position.coords.longitude;
     console.log(this.lat);
     console.log(this.lng);
-    
+    this.Serv.setLatitud(this.lat);
+    this.Serv.setLongitud(this.lng);
     this.marcadores=[];
     const nuevoMarcador = new Marcador( this.lat, this.lng );
     this.marcadores.push( nuevoMarcador ); 

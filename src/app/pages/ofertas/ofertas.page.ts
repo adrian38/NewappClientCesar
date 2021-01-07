@@ -87,6 +87,7 @@ ngOnInit() {
           let temp = this.offersList.findIndex(element => element.id === Po_id);
           if (temp !== -1) {
             this.offersList.splice(temp, 1);
+            
           }
 
         }
@@ -178,13 +179,17 @@ openChat(id) {
 verubicacion(){
   console.log("lati",this.task.address.latitude);
   console.log("long",this.task.address.longitude);
+  this.navCtrl.navigateRoot('/detallemapa', {animated: true, animationDirection: 'back' }) ;
+         
 }
 
-showDialog(){
+showDialog(i){
+  console.log(i);
   this.display=true;
 }
 
 cancelSOclient() {
+
   console.log("CancelarSo");
   this._taskOdoo.cancelSOclient(this.task.id);
   //this.isLoading3 = true;

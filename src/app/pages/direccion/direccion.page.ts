@@ -40,13 +40,15 @@ export class DireccionPage implements OnInit {
     private platform: Platform,
     private _authOdoo: AuthOdooService,) { 
 
+      this.user = this._authOdoo.getUser();
+      console.log(this.user.address); 
+
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
           
         });
 
-        this.user = this._authOdoo.getUser();
-        console.log(this.user.address); 
+      
     }
 
     
@@ -80,7 +82,8 @@ this.datos.setportal(this.portal);
   }
 
  autofillChange(){
-   console.log("si")
+   console.log("si");
+
 if (this.Autofill) {
   for (let value in this.user.address) {
     if (!this.user.address[value])

@@ -67,7 +67,7 @@
    
 
     <div *ngIf="showSubCard">
-  <ion-row   *ngFor="let offer of offersList">
+  <ion-row   *ngFor="let offer of offersList ;let i = index">
   
     <ion-col size=1></ion-col>
     
@@ -76,7 +76,7 @@
        <img id="fotopersonal" 
        style="margin-top: 10px;"  
        src="{{offer.photoProvider}}"
-       (click)="showDialog()" >
+       (click)="showDialog(offer.id)" >
       </ion-col>
      
       <ion-col id="item" size=4 >

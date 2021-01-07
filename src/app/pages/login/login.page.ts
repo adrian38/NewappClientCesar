@@ -4,7 +4,6 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
-import { Router } from '@angular/router';
 import { AlertController, LoadingController, NavController,Platform } from '@ionic/angular';
 
 //import { NavController } from 'ionic-angular';
@@ -34,7 +33,6 @@ export class LoginPage implements OnInit {
     private _authOdoo:AuthOdooService,
     private _taskOdoo:TaskOdooService,
     private _chatOdoo:ChatOdooService,
-    private route:Router,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public navController:NavController,
@@ -76,7 +74,8 @@ checkUser(){
   if(this.usuario.connected){
     this._taskOdoo.setUser(this.usuario);
     this._chatOdoo.setUser(this.usuario);
-    console.log('conectado');
+   // console.log('conectado',this.usuario.address);
+    
             //this.route.navigate(["/tabs/tab1"]);   
             
           //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;

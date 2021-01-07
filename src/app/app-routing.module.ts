@@ -68,6 +68,10 @@ const routes: Routes = [
   {
     path: 'dialogo',
     loadChildren: () => import('./pages/dialogo/dialogo.module').then( m => m.DialogoPageModule)
+  },
+  {
+    path: 'detallemapa',
+    loadChildren: () => import('./pages/detallemapa/detallemapa.module').then( m => m.DetallemapaPageModule)
   }
 
 

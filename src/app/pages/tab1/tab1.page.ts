@@ -3,13 +3,10 @@ import { AlertController, NavController,Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 
-import { AuthOdooService } from 'src/app/services/auth-odoo.service';
+
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 
 

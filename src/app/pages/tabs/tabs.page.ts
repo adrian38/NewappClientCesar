@@ -16,6 +16,7 @@ import { Observable,Subscription,Unsubscribable } from 'rxjs';
 export class TabsPage {
 
   @ViewChild('tabs') tabs: IonTabs;
+
   tab1_active: string = "";
   tab2_active: string = "";
   tab3_active: string = "";
@@ -44,9 +45,10 @@ export class TabsPage {
 
   constructor(private _taskOdoo: TaskOdooService,
     private subServ:ObtSubSService,
-    private _authOdoo: AuthOdooService,
     private ngZone: NgZone,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController)
+    
+    {
     this.observablesSubscriptions();
     this._taskOdoo.requestTaskListClient();
     this.presentLoading();

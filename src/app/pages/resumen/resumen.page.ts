@@ -147,8 +147,8 @@ export class ResumenPage implements OnInit {
     this.task.address.cp=this.datos.getcod_postal();
     this.task.address.number=this.datos.getnumero();
     this.task.address.floor=this.datos.getpiso();
-    this.task.address.latitude="23.103659";
-    this.task.address.longitude="-82.427484";    
+    this.task.address.latitude=this.datos.getlatitud().toString();
+    this.task.address.longitude=this.datos.getlongitud().toString();    
     // this.task.title= 'Arreglo'
     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;
