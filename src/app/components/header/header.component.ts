@@ -7,10 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() fillBackground: boolean = false;
   @Input() headerText: string = "Header";
 
-  constructor() { }
+  constructor() {
+    console.log("constructor fillBackground", this.fillBackground);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("ngOnInit fillBackground", this.fillBackground);
+  }
 
 }

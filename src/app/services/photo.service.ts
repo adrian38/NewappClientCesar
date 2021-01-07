@@ -14,13 +14,11 @@ import { Photo } from '../interfaces/photo';
 export class PhotoService {
 
   public photos: Photo[] = []; 
-
   //------------------------
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
 
   constructor(platform: Platform) {this.platform = platform; }
-
 
   public async loadSaved() {
     // Retrieve cached photo array data
