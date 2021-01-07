@@ -183,4 +183,10 @@ verubicacion(){
 showDialog(){
   this.display=true;
 }
+
+cancelSOclient() {
+  console.log("CancelarSo");
+  this._taskOdoo.cancelSOclient(this.task.id);
+  //this.isLoading3 = true;
+}
 }

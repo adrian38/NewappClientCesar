@@ -105,3 +105,10 @@ ion-button{
 		padding: 0.5rem;
     }
 }
+
+:host ::ng-deep.p-rating .p-rating-icon {
+    font-size: 15px;
+}
+:host ::ng-deep.p-rating .p-rating-icon.pi-star{
+    color: rgb(246, 183, 118);
+}

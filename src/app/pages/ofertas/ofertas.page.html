@@ -73,7 +73,10 @@
     
   
      <ion-col  id="item" size=3>
-       <img id="fotopersonal" style="margin-top: 10px;"  src="{{offer.photoProvider}}" >
+       <img id="fotopersonal" 
+       style="margin-top: 10px;"  
+       src="{{offer.photoProvider}}"
+       (click)="showDialog()" >
       </ion-col>
      
       <ion-col id="item" size=4 >
@@ -99,14 +102,14 @@
        <ion-button style="margin-top: 22px;" >
          <div id="iconos">
            <ion-icon name="checkmark" 
-           (click)="showDialog()"></ion-icon>
+           ></ion-icon>
          </div>
          
        </ion-button>
       </ion-col>
    
        <ion-col id="item" size=1>
-       <ion-button style="margin-top: 22px;" >
+       <ion-button style="margin-top: 22px;" (click)="cancelSOclient()">
          <div id="iconos">
            <ion-icon name="close"></ion-icon>
          </div>
@@ -126,7 +129,7 @@
       <ion-col size=8>
 
   <h2> {{offer.client_name}}</h2>
-  <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false" 
+  <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false" 
         ></p-rating>
 
       
