@@ -36,6 +36,7 @@ export class OfertasPage implements OnInit {
   subscriptionOffersList: Subscription;
 
   display: boolean = false;
+  displayAceptar: boolean = false;
 
   constructor(
     public navCtrl:NavController,
@@ -197,5 +198,10 @@ cancelSOclient() {
   console.log("CancelarSo");
   this._taskOdoo.cancelSOclient(this.task.id);
   //this.isLoading3 = true;
+}
+showDialogAceptar(){
+  console.log("aki")
+  this.displayAceptar=true;
+ 
 }
 }

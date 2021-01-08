@@ -43,6 +43,10 @@ ion-button{
     width: 18px;
     height: 25px; 
 }
+#botonpago{
+    width: 65px;
+    height: 25px; 
+}
 
 #ico{
     width: 30px;
@@ -101,7 +105,7 @@ ion-button{
 	.p-dialog-header {
 		background-color: white;
 		color: black;
-		border-radius: 15px 15px 0 0;
+		border-radius: 15px 15px 0px 0px;
 		padding: 0.5rem;
     }
 }
@@ -111,4 +115,19 @@ ion-button{
 }
 :host ::ng-deep.p-rating .p-rating-icon.pi-star{
     color: rgb(246, 183, 118);
+}
+
+ion-input{
+    border: 1px solid  rgb(246, 183, 118);
+    
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 10px;
+    background-color: rgb(245, 245, 245);
+   
+}
+ion-input:focus-within{
+    border: 3px solid  rgb(246, 183, 118);
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
 }

@@ -76,7 +76,7 @@
        <img id="fotopersonal" 
        style="margin-top: 10px;"  
        src="{{offer.photoProvider}}"
-       (click)="showDialog(offer.id)" >
+       (click)="showDialog(i)" >
       </ion-col>
      
       <ion-col id="item" size=4 >
@@ -99,7 +99,8 @@
       </ion-col>
    
       <ion-col id="item" size=1>
-       <ion-button style="margin-top: 22px;" >
+       <ion-button style="margin-top: 22px;"
+                  (click)="showDialogAceptar()" >
          <div id="iconos">
            <ion-icon name="checkmark" 
            ></ion-icon>
@@ -147,7 +148,25 @@
  
     
   </p-dialog>
+<!-- //--------------------- -->
 
+<p-dialog header="Opcion de pago " [(visible)]="displayAceptar" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+    [draggable]="false" [resizable]="false">
+    <ion-input name="codigo"
+    type="number"
+    required
+  
+    placeholder="Numero de la tarjeta"
+              
+    ></ion-input>
+    <ion-button  id="botonpago" 
+
+                      color="primary"
+                        (click)="pagar()"                       
+                        >
+          Pagar
+             </ion-button>
+  </p-dialog>
      </ion-row>
 
     </div>
