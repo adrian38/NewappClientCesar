@@ -2,6 +2,8 @@ import { Component, NgZone ,OnInit} from '@angular/core';
 import { AlertController, NavController,Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 
 
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
@@ -28,14 +30,21 @@ export class Tab1Page implements OnInit {
 
   notificationTabs$: Observable<boolean>;
 
+  
+  user:UsuarioModel;
+
   constructor(private subServ: ObtSubSService,
     private _taskOdoo: TaskOdooService,
     private ngZone: NgZone,
     public navCtrl:NavController,
     private platform: Platform,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    private _authOdoo: AuthOdooService) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
+
+  
+  
      
   
   this.platform.backButton.subscribeWithPriority(10, () => {

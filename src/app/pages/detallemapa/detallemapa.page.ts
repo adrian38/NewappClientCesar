@@ -23,7 +23,7 @@ export class DetallemapaPage implements OnInit {
  this.task=this._taskOdoo.getTaskCesar();
 
  this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+  this.navCtrl.navigateRoot('/ofertas ', {animated: true, animationDirection: 'back' }) ;
 });
  
   }

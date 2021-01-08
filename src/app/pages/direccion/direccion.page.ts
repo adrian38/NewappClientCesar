@@ -38,7 +38,7 @@ export class DireccionPage implements OnInit {
   constructor(private datos:ObtSubSService,
     public navCtrl:NavController,
     private platform: Platform,
-    private _authOdoo: AuthOdooService,) { 
+    private _authOdoo: AuthOdooService) { 
 
       this.user = this._authOdoo.getUser();
       console.log(this.user.address); 
