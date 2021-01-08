@@ -1,12 +1,22 @@
 @font-face {
     font-family: 'Aero';
     src: url("../../../assets/fonts/Aero.ttf") format("truetype");
-  }
-  $font-aero: 'Aero', sans-serif;
-  
+}
+@font-face {
+    font-family: 'Helvetica';
+    src: url("../../../assets/fonts/HelveticaNeueLTStd-Roman.otf") format("opentype");
+}
+$font-aero: 'Aero', sans-serif;
+$font-helvetica: 'Helvetica', sans-serif;
 
 h6{
     font-family: $font-aero;
+    font-size: 32;
+}
+
+.text-helvetica{
+    font-family: $font-helvetica !important;
+    font-size: 18 !important;
 }
 
 #imagen{

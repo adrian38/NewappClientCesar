@@ -21,3 +21,14 @@ h2{
 .fill-background{
     background-color: rgb(246, 183, 118);
 }
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url("../../../assets/fonts/HelveticaNeueLTStd-Md.otf") format("opentype");
+}
+$font-helvetica: 'Helvetica', sans-serif;
+
+.text-helvetica-medium{
+    font-family: $font-helvetica !important;
+    font-size: 21px;
+}

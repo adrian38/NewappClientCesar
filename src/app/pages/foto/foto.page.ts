@@ -17,8 +17,8 @@ import { Photo } from 'src/app/interfaces/photo';
 })
 export class FotoPage implements OnInit {
 
-  foto0:string = '../../../assets/noImage.png';
-  foto1:string = '../../../assets/noImage.png';
+  foto0:string = '../../../assets/icon/noImage.svg';
+  foto1:string = '../../../assets/icon/noImage.svg';
 
   //----------------------------------------------------------------
   servicio:string="Fotos del proyecto";

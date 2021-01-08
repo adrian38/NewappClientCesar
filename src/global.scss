@@ -26,6 +26,14 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+.content-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
