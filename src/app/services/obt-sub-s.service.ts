@@ -37,6 +37,7 @@ export class ObtSubSService {
 
     longitud:number;
     latitud:number;
+    coordenadas:boolean=false;
 
    //-----------------------------------------------------------
 
@@ -210,6 +211,17 @@ this.titulo=t;
 
     getlatitud(){
       return this.latitud;
+    }
+
+    //--mas
+
+    setcoordenada(c:boolean){
+      this.coordenadas=c;
+
+    }
+
+    getcoordenada(){
+      return this.coordenadas;
     }
   //-------------------------------------------------------------------------
 

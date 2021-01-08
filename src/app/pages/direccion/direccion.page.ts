@@ -29,8 +29,8 @@ export class DireccionPage implements OnInit {
   dpcod_postal:string="";
   dpescalera:string="";
   dpservicio:string="";
-  dplat:string;
-  dplng:string;
+
+  coordenadas:boolean;
 
   Autofill:boolean=false;
   
@@ -43,7 +43,7 @@ export class DireccionPage implements OnInit {
     private platform: Platform,
     private _authOdoo: AuthOdooService) { 
 
-      
+      this.coordenadas=this.datos.getcoordenada();
 
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
@@ -62,10 +62,10 @@ export class DireccionPage implements OnInit {
     this.user = this._authOdoo.getUser();
     console.log(this.user); 
     
-    this.dplat=String(this.datos.getlatitud());
-    this.dplng=String(this.datos.getlongitud());
-    console.log("1",this.dplat);
-    console.log("1",this.dplng);
+/*     this.dplat=String(this.datos.getlatitud());
+    this.dplng=String(this.datos.getlongitud()); */
+ /*    console.log("1",this.dplat);
+    console.log("1",this.dplng); */
    
   }
   cerrarsolicitud(){
@@ -94,7 +94,7 @@ this.datos.setportal(this.portal);
  autofillChange(){
    console.log("si");
 
-if (this.Autofill==true && this.dplat == "undefined"  && this.dplng == "undefined"  ) {
+if (this.Autofill) {
   for (let value in this.user.address) {
     if (!this.user.address[value])
       this.user.address[value] = '';
@@ -108,7 +108,7 @@ if (this.Autofill==true && this.dplat == "undefined"  && this.dplng == "undefine
   this.piso=this.user.address.floor;
   this.numero=this.user.address.number;
   this.portal=this.user.address.portal; */
-  console.log("autofill",this.Autofill);
+  console.log("autofillsi",this.Autofill);
   
 }
 else{
@@ -120,14 +120,18 @@ else{
   this.piso="";
   this.numero="";
   this.portal="";
-  console.log("autofill",this.Autofill);
+  console.log("autofillno",this.Autofill);
 }
 }
 
 ubicacion(){
- 
+  
   this.navCtrl.navigateRoot('/mapa', {animated: true, animationDirection: 'back' }) ;
       
+}
+
+ver(){
+  this.coordenadas=true;
 }
  }
 

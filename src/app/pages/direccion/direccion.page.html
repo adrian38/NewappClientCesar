@@ -175,13 +175,14 @@
     <ion-col ></ion-col>
     <ion-col>
        <ion-button (click)="goto()"
-       [disabled]="formulario.invalid && !Autofill "
-       >
+       [disabled]="formulario.invalid && !Autofill || !coordenadas"
+      >
       Siguiente
     </ion-button> </ion-col>
     
     <ion-col></ion-col>
   </ion-row>
+
 
 </ion-grid>
 

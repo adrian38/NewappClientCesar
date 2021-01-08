@@ -9,7 +9,6 @@ import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
 
-import {DialogModule} from 'primeng/dialog';
 @Component({
   selector: 'app-ofertas',
   templateUrl: './ofertas.page.html',
@@ -51,6 +50,7 @@ export class OfertasPage implements OnInit {
 
       this.task=new TaskModel();
       this.task=this._taskOdoo.getTaskCesar();
+     
       
 this.veroferta=true;
 this.verdetalles=false;
@@ -71,10 +71,14 @@ this.platform.backButton.subscribeWithPriority(10, () => {
 }
 
 
+
 ngOnInit() {
 
-  //this.segment.value = 'ofertas';
   
+  setTimeout(()=>{
+    console.log("ejecutando marcar 'contratados'");
+    this.segment.value = 'ofertas';
+  }, 100);
 
   this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
   this.notificationOffertCancelled$.subscribe(notificationOffertCancelled => {

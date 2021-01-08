@@ -21,7 +21,7 @@ export class MapaPage implements OnInit {
   lng =  -82.426493;  */ 
   lat :number;
   lng :number; 
-
+coordenadas:boolean=false;
 
   constructor(private Serv: ObtSubSService,
               public toastController: ToastController,
@@ -42,12 +42,15 @@ export class MapaPage implements OnInit {
     console.log(evento);
     this.Serv.setLatitud(evento.coords.lat);
     this.Serv.setLongitud(evento.coords.lng);
+    
     const coords: { lat: number, lng: number } = evento.coords;
 
     const nuevoMarcador = new Marcador( coords.lat, coords.lng );
 
     this.marcadores.push( nuevoMarcador ); 
     this.presentToast();
+    this.coordenadas=true;
+    this.Serv.setcoordenada(true);
 
   }
 
@@ -85,6 +88,7 @@ export class MapaPage implements OnInit {
     this.marcadores=[];
     const nuevoMarcador = new Marcador( this.lat, this.lng );
     this.marcadores.push( nuevoMarcador ); 
+    this.Serv.setcoordenada(true);
   }
 
   irubicacion(){
