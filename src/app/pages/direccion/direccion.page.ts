@@ -29,8 +29,11 @@ export class DireccionPage implements OnInit {
   dpcod_postal:string="";
   dpescalera:string="";
   dpservicio:string="";
+  dplat:string;
+  dplng:string;
 
   Autofill:boolean=false;
+  
 
   user:UsuarioModel;
   task:TaskModel;
@@ -40,8 +43,7 @@ export class DireccionPage implements OnInit {
     private platform: Platform,
     private _authOdoo: AuthOdooService) { 
 
-      this.user = this._authOdoo.getUser();
-      console.log(this.user.address); 
+      
 
       this.platform.backButton.subscribeWithPriority(10, () => {
         this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
@@ -54,9 +56,17 @@ export class DireccionPage implements OnInit {
     
 
   ngOnInit() {
-    this.servicio=this.datos.getServ();
-   
     
+  
+    this.servicio=this.datos.getServ();
+    this.user = this._authOdoo.getUser();
+    console.log(this.user); 
+    
+    this.dplat=String(this.datos.getlatitud());
+    this.dplng=String(this.datos.getlongitud());
+    console.log("1",this.dplat);
+    console.log("1",this.dplng);
+   
   }
   cerrarsolicitud(){
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
@@ -84,20 +94,20 @@ this.datos.setportal(this.portal);
  autofillChange(){
    console.log("si");
 
-if (this.Autofill) {
+if (this.Autofill==true && this.dplat == "undefined"  && this.dplng == "undefined"  ) {
   for (let value in this.user.address) {
     if (!this.user.address[value])
       this.user.address[value] = '';
   }
   
   console.log(this.user);
-  this.calle=this.user.address.street;
+ /*  this.calle=this.user.address.street;
   this.puerta=this.user.address.door;
   this.cod_postal=this.user.address.cp;
   this.escalera=this.user.address.stair;
   this.piso=this.user.address.floor;
   this.numero=this.user.address.number;
-  this.portal=this.user.address.portal;
+  this.portal=this.user.address.portal; */
   console.log("autofill",this.Autofill);
   
 }
@@ -115,6 +125,7 @@ else{
 }
 
 ubicacion(){
+ 
   this.navCtrl.navigateRoot('/mapa', {animated: true, animationDirection: 'back' }) ;
       
 }

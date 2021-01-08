@@ -74,7 +74,7 @@ checkUser(){
   if(this.usuario.connected){
     this._taskOdoo.setUser(this.usuario);
     this._chatOdoo.setUser(this.usuario);
-   // console.log('conectado',this.usuario.address);
+   console.log('conectado00000',this.usuario);
     
             //this.route.navigate(["/tabs/tab1"]);   
             
