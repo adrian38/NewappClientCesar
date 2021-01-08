@@ -1,66 +1,26 @@
-<ion-header>
-  <div id="barraSuperior">
-   
-    <div id="barraInferior">
-      <ion-row>
-      
-        <ion-col size=3 >
-          <img  id="logo"  src="../../assets/logoNavbar.png">
-      
-        </ion-col>
-        
-      
-       
-         <ion-col size=6>
-          <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
-       
-        
-         </ion-col>
-        
-       </ion-row>
-
-       <ion-row>
-         <ion-col size=2></ion-col>
-         <ion-col size=8 style="text-align: center;">
-          <ion-label style="color:  rgb(49 ,49 ,57);">{{servicio}}</ion-label>
-         </ion-col>
-         <ion-col size=2>
-          <ion-icon  name="close" style=" width: 28px;height: 28px;margin-top: -3px;color: rgb(49 ,49 ,57)"
-          (click)="cerrarsolicitud()"></ion-icon>
-         </ion-col>
-       </ion-row>
-       
-        
-    </div>
-   
-   
-  </div>
-
-
-
-</ion-header>   
+<app-header headerText="Solicitudes" [fillBackground]="true"
+[expandHeader]="true" [expandText]="'Fontanería'"
+(clickedClose)="cerrarsolicitud($event)"></app-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid style="margin-top: 40px;">
     <ion-row>
-  <div id="barra">
-    <ion-label >Titulo de la solicitud</ion-label>
- </div>
- </ion-row>
- 
- <form #formulario="ngForm" >
-  <ion-item style="margin-top: 20px;" >
-    <ion-label position="floating">Titulo</ion-label>
-      <ion-input type="text"
-                 name="titulo"
-                 [(ngModel)]="titulo"
-                 required
-                 maxlength=11
-                 
-                 ></ion-input>
-                 
-  </ion-item>
- </form>
+      <div id="barra">
+        <ion-label >Titulo de la solicitud</ion-label>
+      </div>
+    </ion-row>
+
+    <form #formulario="ngForm" >
+      <ion-item style="margin-top: 20px;" >
+        <ion-label position="floating">Titulo</ion-label>
+          <ion-input type="text"
+          name="titulo"
+          [(ngModel)]="titulo"
+          required
+          maxlength=11                               
+          ></ion-input>
+      </ion-item>
+    </form>
 
 
 

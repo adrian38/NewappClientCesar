@@ -14,12 +14,16 @@
 
       <ion-row *ngIf="expandHeader" class="fill-background">
         <ion-col size=2></ion-col>
-        <ion-col size=8 style="text-align: center;">
-        <ion-label style="color:  rgb(49 ,49 ,57);">{{ expandText }}</ion-label>
+        <ion-col size=8>
+          <ion-label class="text-helvetica-medium content-center"
+          style="color: rgb(49 ,49 ,57); width: 250px; text-align: center;">
+          {{ expandText }}
+          </ion-label>
         </ion-col>
-        <ion-col size=2>
-          <ion-icon  name="close" style=" width: 28px;height: 28px;
-          margin-top: -3px;color: rgb(49 ,49 ,57)"
+        <ion-col size=2 style="text-align: center;">
+          <ion-icon   
+          name="close" style=" width: 28px;height: 28px; margin-top: 5px;
+          color: rgb(49 ,49 ,57)"
           (click)="closeEvent()"></ion-icon>
         </ion-col>
       </ion-row>
