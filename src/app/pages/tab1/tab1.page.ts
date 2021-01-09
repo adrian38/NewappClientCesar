@@ -10,6 +10,7 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
 
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class Tab1Page implements OnInit {
     public navCtrl:NavController,
     private platform: Platform,
     public alertController: AlertController,
-    private _authOdoo: AuthOdooService) {
+    private _authOdoo: AuthOdooService,
+    private _location: Location) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
 
@@ -47,9 +49,23 @@ export class Tab1Page implements OnInit {
   
      
   
-  this.platform.backButton.subscribeWithPriority(10, () => {
-    this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;      
-    });   
+  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+    console.log('Back press handler!');
+    if (this._location.isCurrentPathEqualTo('/tabs/tab1')) {
+
+      // Show Exit Alert!
+      console.log('Show Exit Alert!');
+      this.showExitConfirm();
+      processNextHandler();
+    } else {
+
+      // Navigate to back page
+      console.log('Navigate to back page');
+      this._location.back();
+
+    }
+
+  });
   }
 
   ngOnInit(): void {
@@ -92,7 +108,28 @@ export class Tab1Page implements OnInit {
 
 
 
-  
+  showExitConfirm() {
+    this.alertController.create({
+      header: 'App termination',
+      message: 'Do you want to close the app?',
+      backdropDismiss: false,
+      buttons: [{
+        text: 'Stay',
+        role: 'cancel',
+        handler: () => {
+          console.log('Application exit prevented!');
+        }
+      }, {
+        text: 'Exit',
+        handler: () => {
+          navigator['app'].exitApp();
+        }
+      }]
+    })
+      .then(alert => {
+        alert.present();
+      });
+  }
     
   
   

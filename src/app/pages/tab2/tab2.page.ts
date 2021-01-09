@@ -5,7 +5,7 @@ import { Address, TaskModel } from 'src/app/models/task.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
-import { IonSegment } from '@ionic/angular';
+import { IonSegment, NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -35,12 +35,19 @@ export class Tab2Page {
 
   constructor(private subServ: ObtSubSService,
               private _taskOdoo: TaskOdooService,
-              private _authOdoo: AuthOdooService,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              public navCtrl:NavController,
+              private platform: Platform)
+               {
+
     this.contratadosList = this.subServ.getContratadosList();
     console.log(this.contratadosList,'tabs2 entro');
     this.verservicios=true;
     this.verhistorial=false;
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
+      });
   }
   ngOnInit(): void {
     setTimeout(()=>{
