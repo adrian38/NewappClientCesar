@@ -62,9 +62,13 @@
 
 
 <ion-content>
- 
+
+
   <div *ngIf="veroferta">
-   
+    
+    <div *ngIf="!showSubCard">
+      <h4>no hay solicitud</h4>
+    </div>
 
     <div *ngIf="showSubCard">
   <ion-row   *ngFor="let offer of offersList ;let i = index">

@@ -8,9 +8,11 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
-
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { Location } from '@angular/common';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -39,33 +41,16 @@ export class Tab1Page implements OnInit {
     private ngZone: NgZone,
     public navCtrl:NavController,
     private platform: Platform,
-    public alertController: AlertController,
-    private _authOdoo: AuthOdooService,
-    private _location: Location) {
+    public alertCtrl: AlertController) {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
 
   
-  
-     
-  
-  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-    console.log('Back press handler!');
-    if (this._location.isCurrentPathEqualTo('/tabs/tab1')) {
-
-      // Show Exit Alert!
-      console.log('Show Exit Alert!');
-      this.showExitConfirm();
-      processNextHandler();
-    } else {
-
-      // Navigate to back page
-      console.log('Navigate to back page');
-      this._location.back();
-
-    }
-
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    this.presentAlert();
   });
+  
+  
   }
 
   ngOnInit(): void {
@@ -107,30 +92,32 @@ export class Tab1Page implements OnInit {
 
 
 
-
-  showExitConfirm() {
-    this.alertController.create({
-      header: 'App termination',
-      message: 'Do you want to close the app?',
-      backdropDismiss: false,
-      buttons: [{
-        text: 'Stay',
-        role: 'cancel',
-        handler: () => {
-          console.log('Application exit prevented!');
-        }
-      }, {
-        text: 'Exit',
-        handler: () => {
-          navigator['app'].exitApp();
-        }
-      }]
-    })
-      .then(alert => {
-        alert.present();
-      });
-  }
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Desea ir al login',
+     
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Login',
+          handler: (datos) => {
+            this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;      
     
-  
-  
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  } 
+
+
 }

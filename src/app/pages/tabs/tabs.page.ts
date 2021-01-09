@@ -4,7 +4,7 @@ import { TaskModel } from 'src/app/models/task.model';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-import { IonTabs, LoadingController } from '@ionic/angular';
+import { AlertController, IonTabs, LoadingController, NavController, Platform } from '@ionic/angular';
 import { Observable,Subscription,Unsubscribable } from 'rxjs';
 
 
@@ -46,12 +46,14 @@ export class TabsPage {
   constructor(private _taskOdoo: TaskOdooService,
     private subServ:ObtSubSService,
     private ngZone: NgZone,
-    public loadingController: LoadingController)
+    public loadingController: LoadingController,
+   )
     
     {
     this.observablesSubscriptions();
     this._taskOdoo.requestTaskListClient();
     this.presentLoading();
+    
   }
 
   ngOnInit(): void {
@@ -160,4 +162,6 @@ export class TabsPage {
       this.tab3_active = "_active";
     }
   }
+
+ 
 }
