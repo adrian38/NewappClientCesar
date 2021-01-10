@@ -50,13 +50,16 @@ export class TabsPage {
    )
     
     {
-    this.observablesSubscriptions();
+    
     this._taskOdoo.requestTaskListClient();
     this.presentLoading();
     
   }
 
   ngOnInit(): void {
+
+    this.observablesSubscriptions();
+
   }
 
   ngOnDestroy(): void {

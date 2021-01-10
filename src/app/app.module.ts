@@ -23,14 +23,15 @@ import { DatePipe } from '@angular/common'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LOCALE_ID } from '@angular/core';
-import localeEs from '@angular/common/locales/es';
+import localeEsAr from '@angular/common/locales/es-AR';
+registerLocaleData(localeEsAr, 'es')
 import { registerLocaleData } from '@angular/common';
 
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 
-registerLocaleData(localeEs);
+registerLocaleData(localeEsAr);
 
 import { AgmCoreModule } from '@agm/core';
 import { ComponentsModule } from './components/components.module';
@@ -63,7 +64,7 @@ import { ComponentsModule } from './components/components.module';
     {
       provide: 
       LOCALE_ID, 
-      useValue:"es"
+      useValue:'es'
     },
     DatePipe,
     MessageService,

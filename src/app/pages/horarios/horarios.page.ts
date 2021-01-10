@@ -52,14 +52,18 @@ export class HorariosPage implements OnInit {
       this.fecha =new Date();
 this.reloj=new Date();
 
-this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+
     
-  });
+ 
      
 
 }
 ngOnInit() {
+
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+  });
+
   this.servicio=this.datos.getServ();
  
 }

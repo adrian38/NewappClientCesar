@@ -45,15 +45,14 @@ export class Tab1Page implements OnInit {
 
   this.solicitudesList = this.subServ.getSolicitudeList();
 
-  
-  this.platform.backButton.subscribeWithPriority(10, () => {
-    this.presentAlert();
-  });
-  
-  
   }
 
   ngOnInit(): void {
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.presentAlert();
+    });
+
    this.notificationTabs$ = this.subServ.getNotificationSetTab$();
    this.notificationTabs$.subscribe(notificationTab => {
  

@@ -30,13 +30,15 @@ export class FotoPage implements OnInit {
               public alertController: AlertController,
               private platform: Platform,
               private _taskOdoo: TaskOdooService) {
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
-      });
+     
   }
 
   ngOnInit() {
     // this.servicio=this.datos.getServ();
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
+    });
   }
   cerrarsolicitud(event){
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' });

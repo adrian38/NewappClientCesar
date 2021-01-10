@@ -28,15 +28,18 @@ coordenadas:boolean=false;
               private platform: Platform,
               public navCtrl:NavController
              ) {
-              this.platform.backButton.subscribeWithPriority(10, () => {
-                this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
-                  
-                });
               }
 
-  async ngOnInit() {
+    ngOnInit() {
 
-  }
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
+        
+      });
+
+  } 
+
+  
   agregarMarcador( evento ) {
     this.marcadores=[];
     console.log(evento);

@@ -45,18 +45,16 @@ export class DireccionPage implements OnInit {
 
       this.coordenadas=this.datos.getcoordenada();
 
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
-          
-        });
-
-      
     }
 
     
 
   ngOnInit() {
     
+      this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
+        
+      });
   
     this.servicio=this.datos.getServ();
     this.user = this._authOdoo.getUser();

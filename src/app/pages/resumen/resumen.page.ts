@@ -59,13 +59,15 @@ export class ResumenPage implements OnInit {
     public sanitizer: DomSanitizer,
    ) { 
 
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;
-          
-        });
+      
     }
 
-  async ngOnInit() {
+   ngOnInit() {
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
     this.servicio=this.datos.getServ();
 
@@ -121,7 +123,7 @@ export class ResumenPage implements OnInit {
     
     });
     //-----------------------
-    await this.photoService.loadSaved();
+   
     }
 
   cerrarsolicitud(){
@@ -132,11 +134,7 @@ export class ResumenPage implements OnInit {
   crearSolicitud(){
     this.task=new TaskModel();
     this.task.address=new Address('','','','','','','','','');
-    
-    
-    
-    
-    
+        
     this.task.require_materials=this.datos.getUtiles();
     this.task.description=this.datos.getcomentario();
     

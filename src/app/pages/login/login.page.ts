@@ -97,7 +97,8 @@ checkUser(){
 
     this.usuario.username = this.user;
     this.usuario.password = this.pass;
-    this._authOdoo.loginClientApk(this.usuario);
+    this._authOdoo.login(this.usuario);
+    //this._authOdoo.loginClientApk(this.usuario);
   }
 
 async presentLoading() {

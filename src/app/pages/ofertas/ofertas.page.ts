@@ -23,17 +23,25 @@ export class OfertasPage implements OnInit {
   user : UsuarioModel;
   task: TaskModel;
 
+  
   offersList:TaskModel[];
+
+  
   offersList$: Observable<TaskModel[]>;
   notificationOffertCancelled$: Observable<number[]>;
   notificationNewOffertSuplier$: Observable<number[]>;
 
+  subscriptionOffersList: Subscription;
+  subscriptionOffertCancelled: Subscription;
+  subscriptioNewPoSuplier: Subscription;
+
+
+
   veroferta:boolean=true;
   verdetalles:boolean=false;
   valorSegment:string="";
-
   showSubCard = false;
-  subscriptionOffersList: Subscription;
+  
 
   display: boolean = false;
   displayAceptar: boolean = false;
@@ -63,26 +71,30 @@ this.user = this._authOdoo.getUser();
 this.offersList =[];
 this.userType = this.user.type
 
-this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
-    
-  });
+}
 
+ngOnDestroy(): void {
+
+  this.subscriptioNewPoSuplier.unsubscribe();
+  this.subscriptionOffersList.unsubscribe();
+  this.subscriptionOffertCancelled.unsubscribe();
 
 }
 
-
-
 ngOnInit() {
 
-  
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
+      
+    });
+ 
   setTimeout(()=>{
     console.log("ejecutando marcar 'contratados'");
     this.segment.value = 'ofertas';
   }, 100);
 
   this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
-  this.notificationOffertCancelled$.subscribe(notificationOffertCancelled => {
+  this.subscriptionOffertCancelled = this.notificationOffertCancelled$.subscribe(notificationOffertCancelled => {
     this.ngZone.run(() => {
 
 
@@ -103,16 +115,13 @@ ngOnInit() {
   });
 
   this.notificationNewOffertSuplier$ = this._taskOdoo.getRequestedNotificationNewOffertSuplier$();
-  this.notificationNewOffertSuplier$.subscribe(notificationNewOffertSuplier=>{
-
+  this.subscriptioNewPoSuplier = this.notificationNewOffertSuplier$.subscribe(notificationNewOffertSuplier=>{
     this.ngZone.run(()=>{
 
 /*           for (let Po_id of notificationNewOffertSuplier) {
 
-        
           ////////como asocio una po con un task
-        
-
+  
       } */
 
       console.log("nueva oferta ha llegado")
@@ -126,7 +135,12 @@ this.offersList$ = this._taskOdoo.getOffers$();
 this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
 
   this.ngZone.run(() => {
+
+
     if ((offersList.findIndex(element => element.origin === this.task.id_string) !== -1)) {
+
+      ////Parar cargando
+
       if (offersList[0].budget !== 0) {
         this.offersList = offersList;
       
@@ -143,6 +157,8 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
 }
 
 
+
+
 segChange(event){
   this.valorSegment = event.detail.value;
   console.log(this.valorSegment);
@@ -152,10 +168,8 @@ segChange(event){
     this.veroferta=true;
     this.verdetalles=false;
     console.log("etiqueta",this.veroferta);
-/* 
- this.task=new TaskModel();
- this.task=this._taskOdoo.getTaskCesar(); */
- 
+
+    ///// Sacar cargando
 
  this._taskOdoo.requestOffersForTask(this.task.id_string);
 
