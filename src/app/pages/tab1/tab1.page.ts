@@ -117,6 +117,20 @@ export class Tab1Page implements OnInit {
 
     await alert.present();
   } 
+  cancelar(i:number){
+    console.log("cancel",i)
 
+
+   
+
+    this.task = this.solicitudesList[i];
+    this._taskOdoo.setTaskCesar(this.task);
+    console.log(this.task);
+    // console.log("f",this.solicitudesList[this.cant].id_string);
+     //let id = this.solicitudesList[this.cant].id;
+    
+
+    this._taskOdoo.cancelSOclient(this.task.id); 
+  }
 
 }

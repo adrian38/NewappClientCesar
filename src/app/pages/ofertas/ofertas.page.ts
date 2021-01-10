@@ -1,6 +1,6 @@
 import { Component, OnInit ,NgZone, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, IonSegment} from '@ionic/angular';
+import { NavController, Platform, IonSegment, LoadingController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -45,6 +45,7 @@ export class OfertasPage implements OnInit {
 
   display: boolean = false;
   displayAceptar: boolean = false;
+  loading:HTMLIonLoadingElement = null;
 
   constructor(
     public navCtrl:NavController,
@@ -54,7 +55,8 @@ export class OfertasPage implements OnInit {
     private _chatOdoo: ChatOdooService,
     private platform: Platform,
     private messageService: MessageService,
-    private router:Router) {
+    private router:Router,
+    public loadingController: LoadingController) {
 
 
       this.task=new TaskModel();
@@ -140,7 +142,8 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
     if ((offersList.findIndex(element => element.origin === this.task.id_string) !== -1)) {
 
       ////Parar cargando
-
+      this.loading.dismiss();
+      
       if (offersList[0].budget !== 0) {
         this.offersList = offersList;
       
@@ -170,7 +173,7 @@ segChange(event){
     console.log("etiqueta",this.veroferta);
 
     ///// Sacar cargando
-
+     this.presentLoading();
  this._taskOdoo.requestOffersForTask(this.task.id_string);
 
    
@@ -217,5 +220,14 @@ showDialogAceptar(){
   console.log("aki")
   this.displayAceptar=true;
  
+}
+async presentLoading() {
+  this.loading = await this.loadingController.create({
+    cssClass: 'my-custom-class',
+    message: 'Espere...',
+    //duration: 2000
+  });
+  console.log("Loading Ok");
+  return  this.loading.present();
 }
 }

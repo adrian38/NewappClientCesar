@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController,Platform } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonCheckbox, NavController,Platform } from '@ionic/angular';
 
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { Router } from '@angular/router';
@@ -12,9 +12,8 @@ import { Location } from '@angular/common';
 })
 export class TareaPage implements OnInit {
 
-  fontaneria:boolean=false;
-  electricidad:boolean=false;
-  
+
+
   servicios_activos:string[]=["fontaneria"];
 
   constructor(private Serv: ObtSubSService,
@@ -29,6 +28,10 @@ export class TareaPage implements OnInit {
               }
 
   ngOnInit() {
+  
+  
+    
+
   }
 
   seleccionado(i){

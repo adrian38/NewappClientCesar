@@ -96,12 +96,15 @@ ion-button{
     height: 55px;
     
 } */
-/* .p-dialog-content {
-    border-radius: 0 0 15px 15px;
-} */
+/*  .p-dialog-content {
+    border-radius: 15px 15px 15px 15px;
+}  */
 
 :host ::ng-deep .p-dialog {
-	border-radius: 15px !important;
+    border-radius: 15px !important;
+    .p-dialog-content {
+        border-radius: 0px 0px 15px 15px;
+    }
 	.p-dialog-header {
 		background-color: white;
 		color: black;

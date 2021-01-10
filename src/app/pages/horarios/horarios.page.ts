@@ -46,8 +46,8 @@ export class HorariosPage implements OnInit {
     public navCtrl:NavController,
     public photoService: PhotoService, 
     public actionSheetController: ActionSheetController,
-    public alertController: AlertController,
-    private platform: Platform) { 
+    private platform: Platform,
+    public alertCtrl: AlertController) { 
 
       this.fecha =new Date();
 this.reloj=new Date();
@@ -80,9 +80,8 @@ ngOnInit() {
     //this.dia= this.fecha.getDate().toString();
     }
     cerrarsolicitud(){
-      this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-        
-    
+  
+      this.presentAlert();
     }  
     goto(){
 
@@ -94,5 +93,47 @@ ngOnInit() {
       
       this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'forward' }) ;
        
-    }  
+    } 
+    
+async presentAlert() {
+  const alert = await this.alertCtrl.create({
+    cssClass: 'my-custom-class',
+    header: 'Alerta',
+    message: 'Desea cancelar la solicitud',
+   
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Aceptar',
+        handler: (datos) => {
+          this.borrar_campos();
+          this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}  
+borrar_campos(){
+
+  this.datos.setTitulo("");
+
+  this.datos.setcalle("");
+  this.datos.setpuerta("");
+  this.datos.setpiso("");
+  this.datos.setescalera("");
+  this.datos.setcod_postal("");
+  this.datos.setnumero("");
+  this.datos.setportal("");
+
+  this.datos.setcomentario("");
+}
 }

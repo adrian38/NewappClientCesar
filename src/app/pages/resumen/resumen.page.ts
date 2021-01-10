@@ -127,6 +127,7 @@ export class ResumenPage implements OnInit {
     }
 
   cerrarsolicitud(){
+this.borrar_campos();
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
       
   
@@ -185,4 +186,19 @@ export class ResumenPage implements OnInit {
 
      this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
    } */
+
+   borrar_campos(){
+
+    this.datos.setTitulo("");
+  
+    this.datos.setcalle("");
+    this.datos.setpuerta("");
+    this.datos.setpiso("");
+    this.datos.setescalera("");
+    this.datos.setcod_postal("");
+    this.datos.setnumero("");
+    this.datos.setportal("");
+  
+    this.datos.setcomentario("");
+  }
 }

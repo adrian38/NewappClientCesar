@@ -40,8 +40,9 @@ export class FotoPage implements OnInit {
       this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
     });
   }
-  cerrarsolicitud(event){
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' });
+  cerrarsolicitud(){
+  
+    this.presentAlert();
   }
   goto(){
     this.navCtrl.navigateRoot('/resumen', {animated: true, animationDirection: 'forward' }) ;
@@ -125,4 +126,48 @@ export class FotoPage implements OnInit {
     });    
     await alert.present();
   }
+
+  
+async presentAlert() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Alerta',
+    message: 'Desea cancelar la solicitud',
+   
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Aceptar',
+        handler: (datos) => {
+          this.borrar_campos();
+          this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+} 
+
+borrar_campos(){
+
+  this.datos.setTitulo("");
+
+  this.datos.setcalle("");
+  this.datos.setpuerta("");
+  this.datos.setpiso("");
+  this.datos.setescalera("");
+  this.datos.setcod_postal("");
+  this.datos.setnumero("");
+  this.datos.setportal("");
+
+  this.datos.setcomentario("");
+}
 }

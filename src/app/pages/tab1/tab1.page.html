@@ -12,13 +12,26 @@ class="animated fadeIn"></app-header>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-grid routerLink="/ofertas" style="padding-left: 30px; padding-right: 30px;">
+  <ion-grid  style="padding-left: 30px; padding-right: 30px;">
     <ion-list>  
-      <app-solicitud 
-        *ngFor="let Solicitud of solicitudesList; let i = index"
-        (click)="in(i)"              
-        [Solicitud]="this.Solicitud">
-      </app-solicitud>
+      <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
+<ion-item>
+  <app-solicitud 
+  (click)="in(i)"              
+  [Solicitud]="this.Solicitud"
+  routerLink="/ofertas">
+</app-solicitud>
+</ion-item>
+        
+
+        <ion-item-options side="end" >
+          <ion-item-option (click)="cancelar(i)"
+                            color="tertiary" expandable>cancelar</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      
+
+      
     </ion-list>    
   </ion-grid>
 </ion-content>

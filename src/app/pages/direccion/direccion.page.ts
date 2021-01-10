@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, AlertController } from '@ionic/angular';
 import { Address, TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
@@ -41,7 +41,8 @@ export class DireccionPage implements OnInit {
   constructor(private datos:ObtSubSService,
     public navCtrl:NavController,
     private platform: Platform,
-    private _authOdoo: AuthOdooService) { 
+    private _authOdoo: AuthOdooService,
+    public alertCtrl: AlertController) { 
 
       this.coordenadas=this.datos.getcoordenada();
 
@@ -50,7 +51,9 @@ export class DireccionPage implements OnInit {
     
 
   ngOnInit() {
-    
+
+    console.log("autofillcomo",this.Autofill);
+
       this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
         
@@ -59,6 +62,8 @@ export class DireccionPage implements OnInit {
     this.servicio=this.datos.getServ();
     this.user = this._authOdoo.getUser();
     console.log(this.user); 
+
+this.mantener_campos(1);
     
 /*     this.dplat=String(this.datos.getlatitud());
     this.dplng=String(this.datos.getlongitud()); */
@@ -67,25 +72,15 @@ export class DireccionPage implements OnInit {
    
   }
   cerrarsolicitud(){
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-      
   
+    this.presentAlert();
   }
   goto(){
    
+this.mantener_campos(0);
 
 
-
-this.datos.setcalle(this.calle);
-this.datos.setpuerta(this.puerta);
-this.datos.setpiso(this.piso);
-this.datos.setescalera(this.escalera);
-this.datos.setcod_postal(this.cod_postal);
-this.datos.setnumero(this.numero);
-this.datos.setportal(this.portal);
-
-
-    this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'forward' }) ;
+this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'forward' }) ;
      
   }
 
@@ -99,13 +94,14 @@ if (this.Autofill) {
   }
   
   console.log(this.user);
- /*  this.calle=this.user.address.street;
+  this.calle=this.user.address.street;
   this.puerta=this.user.address.door;
   this.cod_postal=this.user.address.cp;
   this.escalera=this.user.address.stair;
   this.piso=this.user.address.floor;
   this.numero=this.user.address.number;
-  this.portal=this.user.address.portal; */
+  this.portal=this.user.address.portal;
+
   console.log("autofillsi",this.Autofill);
   
 }
@@ -124,12 +120,81 @@ else{
 
 ubicacion(){
   
+this.mantener_campos(0);
+
   this.navCtrl.navigateRoot('/mapa', {animated: true, animationDirection: 'back' }) ;
       
 }
 
-ver(){
-  this.coordenadas=true;
+
+async presentAlert() {
+  const alert = await this.alertCtrl.create({
+    cssClass: 'my-custom-class',
+    header: 'Alerta',
+    message: 'Desea cancelar la solicitud',
+   
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Aceptar',
+        handler: (datos) => {
+
+this.borrar_campos();
+
+          this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+    
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+} 
+
+mantener_campos(i:number){
+  if(i==0)
+  {
+    this.datos.setcalle(this.calle);
+    this.datos.setpuerta(this.puerta);
+    this.datos.setpiso(this.piso);
+    this.datos.setescalera(this.escalera);
+    this.datos.setcod_postal(this.cod_postal);
+    this.datos.setnumero(this.numero);
+    this.datos.setportal(this.portal);
+  }
+else{
+
+  this.calle=this.datos.getcalle();
+  this.puerta=this.datos.getpuerta();
+  this.piso=this.datos.getpiso();
+  this.escalera=this.datos.getescalera();
+  this.cod_postal=this.datos.getcod_postal();
+  this.numero=this.datos.getnumero();
+  this.portal=this.datos.getportal();
+}
+
+
+}
+
+borrar_campos(){
+
+  this.datos.setTitulo("");
+
+  this.datos.setcalle("");
+  this.datos.setpuerta("");
+  this.datos.setpiso("");
+  this.datos.setescalera("");
+  this.datos.setcod_postal("");
+  this.datos.setnumero("");
+  this.datos.setportal("");
+
+  this.datos.setcomentario("");
 }
  }
 
