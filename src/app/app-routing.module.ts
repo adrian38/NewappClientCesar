@@ -72,6 +72,10 @@ const routes: Routes = [
   {
     path: 'detallemapa',
     loadChildren: () => import('./pages/detallemapa/detallemapa.module').then( m => m.DetallemapaPageModule)
+  },
+  {
+    path: 'regismapa',
+    loadChildren: () => import('./pages/regismapa/regismapa.module').then( m => m.RegismapaPageModule)
   }
 
 

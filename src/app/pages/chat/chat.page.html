@@ -114,38 +114,60 @@
     </ion-row>
   </ion-grid>
 
-  
+
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu de cambios</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        
+      <br>
+      <br>
+       
+<ion-item>
+  <ion-label>Fecha</ion-label>
+  <ion-datetime displayFormat=",DD MMM,YYYY" 
+                placeholder="Selecciona una nueva fecha"
+                cancelText="cancelar"
+                doneText="Cambiar"
+                [(ngModel)]="fecha"></ion-datetime>
+</ion-item>
+
+<br>
+
+<ion-item>
+  <ion-label>Hora</ion-label>
+  <ion-datetime displayFormat="h:mm a"
+                placeholder="Selecciona un nuevo horario"
+                [(ngModel)]="reloj"
+                cancelText="cancelar"
+                doneText="Cambiar"></ion-datetime>
+</ion-item>    
+        <br>
+
+        <ion-button (click)="actualizar()">Actualizar</ion-button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-content>
 
-<!-- <ion-footer>
-  <ion-toolbar>
-    <textarea placeholder="Escribe mensaje..."
-    type="text"
-    [(ngModel)]="message.message"
-   >
-
-    </textarea>
-     --><!-- <ion-input placeholder="Escribe mensaje..."
-                type="text"
-               [(ngModel)]="message.message">
-      
-    </ion-input> -->
-    <!-- <ion-buttons slot="end">
-      <ion-button (click)="enviarSMS()" >
-       
-        <ion-icon name="send"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
- -->
 
 
  <ion-footer>
   <ion-toolbar color="light">
     <ion-row align-items-center>
-      <ion-col size="10">
+      <ion-col size="8">
         <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" class="msg-btn"
+          (click)="enviarSMS()">
+          <ion-icon name="attach" slot="icon-only"></ion-icon>
+        </ion-button>
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="message.message === ' '" class="msg-btn"
@@ -153,8 +175,8 @@
           <ion-icon name="send" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
+      
     </ion-row>
   </ion-toolbar>
 </ion-footer>
-
 

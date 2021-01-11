@@ -50,7 +50,7 @@ export class HorariosPage implements OnInit {
     public alertCtrl: AlertController) { 
 
       this.fecha =new Date();
-this.reloj=new Date();
+      this.reloj=new Date();
 
 
     

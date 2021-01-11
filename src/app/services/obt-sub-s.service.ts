@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskModel } from '../models/task.model';
 import { empty, Observable, Subject } from 'rxjs';
 import { timeStamp } from 'console';
+import { UsuarioModel } from '../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,18 @@ export class ObtSubSService {
    notificationSetTabs2$ = new Subject<boolean>();
    notificationSetTabs3$ = new Subject<boolean>();
    
-   calle:string="";
+    calle:string="";
     numero:string="";
     portal:string="";
     escalera:string="";
     piso:string="";
     puerta:string="";
     codigo_postal:string="";
+    
+    nombrereal:string="";
+    telefono:string="";
+    correo:string="";
+    contraseña:string="";
 
     SolicitudesList:TaskModel[];
     ContaratadosList:TaskModel[];
@@ -222,6 +228,46 @@ this.titulo=t;
 
     getcoordenada(){
       return this.coordenadas;
+    }
+
+    setnombre(n:string)
+    {
+       this.nombrereal=n;
+    }
+
+    getnombre()
+    {
+      return this.nombrereal;
+    }
+
+    setcontraseña(c:string)
+    {
+       this.contraseña=c;
+    }
+
+    getcontraseña()
+    {
+      return this.contraseña;
+    }
+
+    setcorreo(co:string)
+    {
+       this.correo=co;
+    }
+
+    getcorreo()
+    {
+      return this.correo;
+    }
+
+    settelefono(t:string)
+    {
+       this.telefono=t;
+    }
+
+    gettelefono()
+    {
+      return this.telefono;
     }
   //-------------------------------------------------------------------------
 
