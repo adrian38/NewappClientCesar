@@ -85,7 +85,7 @@
      
       <ion-col id="item" size=4 >
         <h4 >{{offer.client_name}}</h4>
-        <p style="color: rgb(246, 183, 118);">{{offer.budget}} $</p>
+        <p style="color: rgb(246, 183, 118);">{{offer.budget}} €</p>
       </ion-col>
    
      
@@ -246,13 +246,13 @@
           <ion-row>
             <ion-col size=1></ion-col>
             <ion-col>
-             <img id="selecf"  src="../../assets/icon/noImage.svg">
+             <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'">
             </ion-col>
             <ion-col>
-             <img id="selecf"  src="../../assets/icon/noImage.svg">
+             <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
            </ion-col>
            <ion-col>
-             <img id="selecf"  src="../../assets/icon/noImage.svg">
+             <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
            </ion-col>
        
    

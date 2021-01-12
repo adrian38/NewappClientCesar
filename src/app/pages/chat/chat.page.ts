@@ -1,12 +1,13 @@
  import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { MessageModel } from 'src/app/models/message.model';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
 @Component({
@@ -16,6 +17,8 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class ChatPage implements OnInit {
   purchaseOrderID: number;
+  fecha:Date ;
+  reloj:Date;
 
   subscriptionMessList: Subscription;
   subscriptionNewMsg: Subscription;
@@ -36,8 +39,8 @@ export class ChatPage implements OnInit {
     private _taskOdoo: TaskOdooService,
     private _chatOdoo: ChatOdooService,
     public navCtrl:NavController,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private datos:ObtSubSService,
+    private menu: MenuController,
     private ngZone: NgZone) {
 
 
@@ -142,6 +145,19 @@ export class ChatPage implements OnInit {
     this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'forward' }) ;
       
   
+  }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+
+  actualizar(){
+    /* this.datos.setCalendarioD(String(this.fecha));
+    this.datos.setCalendarioT(String(this.reloj)); */
+    
+  /*   this.task.date=(String(this.fecha));
+    this.task.time==(String(this.reloj)); */
+ 
   }
 
 }

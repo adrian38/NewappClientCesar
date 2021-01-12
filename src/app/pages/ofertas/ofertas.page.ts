@@ -22,7 +22,7 @@ export class OfertasPage implements OnInit {
   userType:string="";
   user : UsuarioModel;
   task: TaskModel;
-
+  //foto0:string = '../../../assets/icon/noImage.svg';
   
   offersList:TaskModel[];
 
