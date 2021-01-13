@@ -121,12 +121,17 @@
 
 
 
-
  <ion-footer>
   <ion-toolbar color="light">
     <ion-row align-items-center>
-      <ion-col size="10">
+      <ion-col size="8">
         <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" class="msg-btn"
+          (click)="enviarSMS()">
+          <ion-icon name="attach" slot="icon-only"></ion-icon>
+        </ion-button>
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="message.message === ' '" class="msg-btn"
@@ -134,8 +139,8 @@
           <ion-icon name="send" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>
+      
     </ion-row>
   </ion-toolbar>
 </ion-footer>
-
 

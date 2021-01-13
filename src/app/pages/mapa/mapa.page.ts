@@ -11,17 +11,10 @@ import { NavController, Platform } from '@ionic/angular';
 })
 export class MapaPage implements OnInit {
 
-
-
-
   marcadores: Marcador[] = [];
-
-  title = 'My first AGM project';
-  /* lat =23.087365;
-  lng =  -82.426493;  */ 
   lat :number;
   lng :number; 
-coordenadas:boolean=false;
+  coordenadas:boolean=false;
 
   constructor(private Serv: ObtSubSService,
               public toastController: ToastController,
@@ -58,11 +51,11 @@ coordenadas:boolean=false;
   }
 
 
-  borrarMarcador( i: number ) {
+  /* borrarMarcador( i: number ) {
     console.log(i);
     this.marcadores.splice(i, 1);
     this.presentToastBorrar();
-  }
+  } */
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -72,13 +65,13 @@ coordenadas:boolean=false;
     toast.present();
   }
 
-  async presentToastBorrar() {
+/*   async presentToastBorrar() {
     const toast = await this.toastController.create({
       message: 'Marcador eliminado',
       duration: 2000
     });
     toast.present();
-  }
+  } */
 
   async getLocation() {
     const position = await Geolocation.getCurrentPosition();

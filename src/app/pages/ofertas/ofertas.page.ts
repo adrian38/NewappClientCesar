@@ -60,7 +60,7 @@ export class OfertasPage implements OnInit {
 
 
       this.task=new TaskModel();
-      this.task=this._taskOdoo.getTaskCesar();
+        
      
       
 this.veroferta=true;

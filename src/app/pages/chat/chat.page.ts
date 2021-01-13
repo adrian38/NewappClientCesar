@@ -45,6 +45,8 @@ export class ChatPage implements OnInit {
 
 
     this.task = new TaskModel();
+    this.fecha =new Date();
+    this.reloj=new Date();
     
     this.task =this._taskOdoo.getTaskCesar();
     this.user = this._authOdoo.getUser();
@@ -145,6 +147,7 @@ export class ChatPage implements OnInit {
     this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'forward' }) ;
       
   
+
   }
   openFirst() {
     this.menu.enable(true, 'first');
