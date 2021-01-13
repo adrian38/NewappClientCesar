@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { UsuarioModel } from 'src/app/models/usuario.model';
+import { Address } from '../../models/task.model';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -15,39 +18,30 @@ export class RegistroPage implements OnInit {
  verFoto:boolean=false;
  verFotoInicial:boolean=true;
 
+ usuario:UsuarioModel;
+ address:Address;
+
+ nombre:string="";
+ correo:string="";
+ pass:string="";
+ telefono:number=0;
+ calle:string="";
+ piso:string="";
+ numero:string="";
+ puerta:string="";
+ portal:string="";
+ cod_postal:string="";
+ escalera:string="";
   constructor(public photoService: PhotoService,
-               
-               public alertController: AlertController) { }
+              public datos:ObtSubSService,
+              public navCtrl:NavController, 
+               public alertController: AlertController) {
+
+              
+                }
 
   ngOnInit() {
-  }
-/*   addPhotoToGallery() {
 
-    
-    this.ver=false;
-     this.photoService.addNewToGallery();
-  } */
-
- /*  camara(){
-    console.log("camara");
-    this.photoService.photos=[];
-    this.photoService.addNewToCamara();
-    this.compressFile();
-  
-    
-  }
-
-  
-  galeria(){
-    console.log("galeria");
-    this.photoService.photos=[];
-    this.photoService.addNewToGallery();
-  } */
-  
-compressFile() {
-  
-   
-    
   }
 
 
@@ -95,5 +89,53 @@ compressFile() {
     });
 
     await alert.present();
+  }
+
+  iniciar(){
+    this.usuario = new UsuarioModel;
+    this.usuario.address=new Address('','','','','','','','','');
+            
+/* 
+this.datos.setnombre(this.nombre);
+this.datos.settelefono(this.telefono);
+this.datos.setcorreo(this.correo);
+this.datos.setcontraseña(this.pass);
+this.datos.setpiso(this.piso);
+this.datos.setnumero(this.numero);
+this.datos.setpuerta(this.puerta);
+this.datos.setportal(this.portal);
+this.datos.setcod_postal(this.cod_postal);
+this.datos.setescalera(this.escalera); */
+
+this.usuario.realname=this.nombre;
+this.usuario.password=this.pass;
+this.usuario.phone=this.telefono;
+this.usuario.username=this.correo;
+this.usuario.date='2020-02-20';
+this.usuario.type = 'client';
+   /*  this.usuario.address.street="1"; */
+    this.usuario.address.door=this.puerta;
+    this.usuario.address.stair=this.escalera;
+    this.usuario.address.portal=this.portal;
+    this.usuario.address.cp=this.cod_postal;
+    this.usuario.address.number=this.numero;
+    this.usuario.address.floor=this.piso;
+
+    this.usuario.address.latitude="4";
+    this.usuario.address.longitude="4";
+    console.log("se creo un nuevo usuario");
+
+    /* this.task.address.latitude=String(this.datos.getlatitud());
+    this.task.address.longitude=String(this.datos.getlongitud()); */
+
+
+  }
+
+  ubicacion(){
+    console.log("entre a maparegistro")
+    
+      this.navCtrl.navigateRoot('/regismapa', {animated: true, animationDirection: 'forward' }) ;
+      
+     
   }
 }

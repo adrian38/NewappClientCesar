@@ -57,7 +57,8 @@ const routes: Routes = [
   {
     path: 'resumen',
     loadChildren: () => import('./pages/resumen/resumen.module').then( m => m.ResumenPageModule)
-  },  {
+  },
+  {
     path: 'contratados',
     loadChildren: () => import('./pages/contratados/contratados.module').then( m => m.ContratadosPageModule)
   },
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: 'detallemapa',
     loadChildren: () => import('./pages/detallemapa/detallemapa.module').then( m => m.DetallemapaPageModule)
+  },
+  {
+    path: 'regismapa',
+    loadChildren: () => import('./pages/regismapa/regismapa.module').then( m => m.RegismapaPageModule)
   }
 
 

@@ -72,20 +72,23 @@
 
     <div *ngIf="showSubCard">
   <ion-row   *ngFor="let offer of offersList ;let i = index">
-  
+    
+
     <ion-col size=1></ion-col>
     
   
-     <ion-col  id="item" size=3>
+     <ion-col  id="item" size=2>
        <img id="fotopersonal" 
-       style="margin-top: 10px;"  
+       style="margin-top: 15px; "  
        src="{{offer.photoProvider}}"
        (click)="showDialog(i)" >
       </ion-col>
      
       <ion-col id="item" size=4 >
-        <h4 >{{offer.client_name}}</h4>
-        <p style="color: rgb(246, 183, 118);">{{offer.budget}} €</p>
+        <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
+        <ion-row style="margin-top: -15px;"><p style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</p>
+        </ion-row>
+        
       </ion-col>
    
      
@@ -96,29 +99,42 @@
              src="../../assets/chat.png"
              (click)="openChat(offer.id)">
         
-      <!--    <ion-icon id="ico" name="chatbubbles" 
-                   style="margin-top: 22px;"
-                   (click)="openChat(offer.id)"></ion-icon> -->
+   
         
       </ion-col>
+      <ion-col id="item" size=0.5></ion-col>
    
       <ion-col id="item" size=1>
-       <ion-button style="margin-top: 22px;"
-                  (click)="showDialogAceptar()" >
-         <div id="iconos">
+         <div  >
+          <ion-icon name="checkmark" 
+          (click)="showDialogAceptar()"
+          style="margin-top: 24px;width: 24px; height: 24px; color: rgb(246, 183, 118);"
+          ></ion-icon>
+        </div> 
+       <!--  <ion-button id="buton" style="font-size: 8px; margin-top: 24px;"
+                  (click)="showDialogAceptar()" 
+                  >
+         <div id="ico">
            <ion-icon name="checkmark" 
            ></ion-icon>
          </div>
          
-       </ion-button>
+       </ion-button>   -->
       </ion-col>
    
+      <ion-col id="item" size=0.5></ion-col>
        <ion-col id="item" size=1>
-       <ion-button style="margin-top: 22px;" (click)="cancelSOclient()">
-         <div id="iconos">
+        <div >
+          <ion-icon name="close"
+          (click)="cancelSOclient()"
+           style="margin-top: 24px;width: 24px; height: 24px;color: rgb(246, 183, 118);" ></ion-icon>
+        </div> 
+      <!-- <ion-button id="buton" style="font-size: 10px;margin-top: 24px; padding: 0px;"
+                  (click)="cancelSOclient()">
+         <div id="ico">
            <ion-icon name="close"></ion-icon>
          </div>
-       </ion-button>
+       </ion-button>   -->
       </ion-col>
    
       
