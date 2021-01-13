@@ -78,7 +78,8 @@
     
   
      <ion-col  id="item" size=2>
-       <img id="fotopersonal" 
+
+         <img id="fotopersonal" 
        style="margin-top: 15px; "  
        src="{{offer.photoProvider}}"
        (click)="showDialog(i)" >
@@ -145,7 +146,7 @@
     [draggable]="false" [resizable]="false">
     <ion-row>
       <ion-col size=4>
-        <img  style="width: 60px; height: 60px;  " src="{{offer.photoProvider}}" >
+        <img  style="width: 60px; height: 60px;  " src="{{offer.photoProvider}}" onError="this.src='assets/noImage.png'">
       </ion-col>
       <ion-col size=8>
 
@@ -215,8 +216,8 @@
    
           <ion-row>
             <ion-col  size=2>
-              <ion-icon id="iconosdetalles" name="calendar" color="primary"></ion-icon>
-           </ion-col>
+              <img style="width: 18px;height: 18px;" src="../../../assets/calendario.png">
+            </ion-col>
             <ion-col size=10>
               <ion-label>{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
             </ion-col>
@@ -224,7 +225,7 @@
 
           <ion-row>
             <ion-col  size=2>
-              <ion-icon id="iconosdetalles" name="time" color="primary"></ion-icon>
+              <img style="width: 18px;height: 18px;" src="../../../assets/hora.png">
            </ion-col>
             <ion-col size=10>
               <ion-label>{{task.time |date: 'h:mm a' }}</ion-label>
@@ -261,21 +262,30 @@
           
           <ion-row>
             <ion-col size=1></ion-col>
-            <ion-col>
-             <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'">
-            </ion-col>
-            <ion-col>
-             <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
-           </ion-col>
-           <ion-col>
-             <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
-           </ion-col>
-       
+            <ion-col >
+              <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'">
+              </ion-card>
+              </ion-col>
+              <ion-col >
+                <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px; margin-left: 30px;border-radius: 5px 5px 5px 5px;">
+                  <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
+                </ion-card>
+                </ion-col>
+            
    
            <ion-col size=1></ion-col>
           </ion-row>
      
-
+          <ion-row>
+            <ion-col size=4></ion-col>
+            <ion-col size=4>
+              <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
+              </ion-card>
+              </ion-col>
+           <ion-col size=4></ion-col>
+          </ion-row>
         </div>
       </ion-col>
        

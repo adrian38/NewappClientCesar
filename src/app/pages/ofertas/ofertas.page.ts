@@ -9,6 +9,7 @@ import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
 
+
 @Component({
   selector: 'app-ofertas',
   templateUrl: './ofertas.page.html',
