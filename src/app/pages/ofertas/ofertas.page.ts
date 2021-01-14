@@ -10,6 +10,7 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
 
 
+
 @Component({
   selector: 'app-ofertas',
   templateUrl: './ofertas.page.html',
@@ -24,7 +25,7 @@ export class OfertasPage implements OnInit {
   user : UsuarioModel;
   task: TaskModel;
   //foto0:string = '../../../assets/icon/noImage.svg';
-  
+   box;
   offersList:TaskModel[];
 
   
@@ -42,10 +43,12 @@ export class OfertasPage implements OnInit {
   verdetalles:boolean=false;
   valorSegment:string="";
   showSubCard = false;
+  ofertaDisponible=false;
   
 
   display: boolean = false;
   displayAceptar: boolean = false;
+  fotoZoom: boolean = false;
   loading:HTMLIonLoadingElement = null;
 
   constructor(
@@ -143,18 +146,22 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
     if ((offersList.findIndex(element => element.origin === this.task.id_string) !== -1)) {
 
       ////Parar cargando
-      this.loading.dismiss();
+       this.loading.dismiss(); 
       
       if (offersList[0].budget !== 0) {
         this.offersList = offersList;
       
         this.showSubCard = true;
+        this.ofertaDisponible=false;
       }
       else {
-        this.showSubCard = false;
+       // this.showSubCard = false;
         console.log("No tienes Ofertas");
         this.messageService.add({ key: 'c',severity: 'error', summary: 'Disculpe', detail: 'Todavia no hay ofertas.' });
+        this.showSubCard = false;
+        this.ofertaDisponible=true;
       }
+      
     }
   });
 });
@@ -230,5 +237,10 @@ async presentLoading() {
   });
   console.log("Loading Ok");
   return  this.loading.present();
+}
+
+zoom(){
+  this.navCtrl.navigateRoot('/fotozoom', {animated: true, animationDirection: 'back' }) ;
+    
 }
 }

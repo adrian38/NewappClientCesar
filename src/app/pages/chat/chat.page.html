@@ -91,28 +91,41 @@
       <br>
       <br>
        
-<ion-item>
-  <ion-label>Fecha</ion-label>
-  <ion-datetime displayFormat="DD MMM,YYYY" 
-                placeholder="Selecciona una nueva fecha"
-                cancelText="cancelar"
-                doneText="Cambiar"
-                [(ngModel)]="fecha"></ion-datetime>
-</ion-item>
+
+ 
+         <ion-label style="margin-left: 10px;">Fecha</ion-label>
+         <ion-datetime displayFormat="DD MMMM,YYYY" 
+        placeholder="Cambiar fecha"
+        cancelText="cancelar"
+        doneText="Cambiar"
+        [(ngModel)]="fecha"
+        style="margin-left: 100px;"></ion-datetime>
+
+
 
 <br>
 
-<ion-item>
-  <ion-label>Hora</ion-label>
+
+  <ion-label style="margin-left: 10px;">Hora</ion-label>
   <ion-datetime displayFormat="h:mm a"
-                placeholder="Selecciona un nuevo horario"
+                placeholder="Cambiar horario"
                 [(ngModel)]="reloj"
                 cancelText="cancelar"
-                doneText="Cambiar"></ion-datetime>
-</ion-item>    
+                doneText="Cambiar"
+                style="margin-left: 100px;"></ion-datetime>
+   
         <br>
-
-        <ion-button (click)="actualizar()">Actualizar</ion-button>
+        <br>
+        <br>
+<ion-row>
+  <ion-col size=3></ion-col>
+  <ion-col size=4> 
+    <ion-button (click)="actualizar()">Actualizar</ion-button>
+  </ion-col>
+ 
+  <ion-col size=5></ion-col>
+</ion-row>
+       
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -125,8 +138,14 @@
  <ion-footer>
   <ion-toolbar color="light">
     <ion-row align-items-center>
-      <ion-col size="10">
+      <ion-col size="8">
         <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" class="msg-btn"
+          (click)="adjuntar()">
+          <ion-icon name="attach" slot="icon-only"></ion-icon>
+        </ion-button>
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="message.message === ' '" class="msg-btn"
@@ -139,3 +158,37 @@
 </ion-footer>
 
 
+<p-dialog header="Adjuntos"
+          [(visible)]="displayAdjunto" 
+          [modal]="true"  
+          [style]="{ width: '85vw' }" 
+          [baseZIndex]="1000" 
+           [draggable]="false" 
+           [resizable]="false"
+           icon="attach" 
+           position="bottom">
+
+           <ion-chip>
+            <ion-avatar>
+              <img src="../../../assets/camara.png">
+            </ion-avatar>
+            <ion-label>Camara</ion-label>
+          </ion-chip>
+          
+          <ion-chip>
+            <ion-avatar>
+              <img src="../../../assets/galeria.png">
+            </ion-avatar>
+            <ion-label>Galeria</ion-label>
+          </ion-chip>
+
+          <ion-chip>
+            <ion-avatar>
+              <img src="../../../assets/documento.png">
+            </ion-avatar>
+            <ion-label>Doc</ion-label>
+          </ion-chip>
+ 
+  </p-dialog>
+
+ 

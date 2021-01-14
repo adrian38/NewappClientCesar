@@ -77,7 +77,11 @@ const routes: Routes = [
   {
     path: 'regismapa',
     loadChildren: () => import('./pages/regismapa/regismapa.module').then( m => m.RegismapaPageModule)
+  },  {
+    path: 'fotozoom',
+    loadChildren: () => import('./pages/fotozoom/fotozoom.module').then( m => m.FotozoomPageModule)
   }
+
 
 
 

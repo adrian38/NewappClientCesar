@@ -21,9 +21,10 @@ import {RatingModule} from 'primeng/rating';
     ToastModule,
     DialogModule,
     RatingModule,
- 
+    
   
   ],
   declarations: [OfertasPage]
+  
 })
 export class OfertasPageModule {}

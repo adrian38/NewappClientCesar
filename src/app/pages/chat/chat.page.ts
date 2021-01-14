@@ -19,6 +19,7 @@ export class ChatPage implements OnInit {
   purchaseOrderID: number;
   fecha:Date ;
   reloj:Date;
+  displayAdjunto:boolean=false;
 
   subscriptionMessList: Subscription;
   subscriptionNewMsg: Subscription;
@@ -158,6 +159,10 @@ export class ChatPage implements OnInit {
   /*   this.task.date=(String(this.fecha));
     this.task.time==(String(this.reloj)); */
  
+  }
+
+  adjuntar(){
+   this.displayAdjunto=true;
   }
 
 }

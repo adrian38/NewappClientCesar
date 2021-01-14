@@ -4,21 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChatPageRoutingModule } from './chat-routing.module';
+import { FotozoomPageRoutingModule } from './fotozoom-routing.module';
 
-import { ChatPage } from './chat.page';
-import {DialogModule} from 'primeng/dialog';
+import { FotozoomPage } from './fotozoom.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPageRoutingModule,
-    DialogModule,
-    
-  
+    FotozoomPageRoutingModule
   ],
-  declarations: [ChatPage]
+  declarations: [FotozoomPage]
 })
-export class ChatPageModule {}
+export class FotozoomPageModule {}
