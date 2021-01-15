@@ -45,7 +45,10 @@ export class ObtSubSService {
     i:number=0;
     idString:String;
     private subServicioActual:string;
- 
+
+    foto0:string="";
+    foto1:string="";
+    foto2:string="";
   constructor() { 
     
     this.SolicitudesList = [];
@@ -222,7 +225,27 @@ this.titulo=t;
 
     getcoordenada(){
       return this.coordenadas;
+
     }
+
+    setfoto0(f0:string){
+       this.foto0=f0;
+      
+    }
+    setfoto1(f1:string){
+    ;
+      this.foto1=f1;
+      
+   }
+   setfoto2(f2:string){
+    
+    this.foto2=f2;
+ }
+   
+   getfoto0(){
+   return this.foto0;
+ }
+
   //-------------------------------------------------------------------------
 
 

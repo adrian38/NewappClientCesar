@@ -46,6 +46,8 @@ export class ResumenPage implements OnInit {
   notificationNewSoClient$: Observable<boolean>;
   notificationError$: Observable<boolean>;
 
+  foto0:string="";
+
   constructor(private datos:ObtSubSService,
     private date: DatePipe,
     private _taskOdoo: TaskOdooService,
@@ -63,6 +65,9 @@ export class ResumenPage implements OnInit {
     }
 
    ngOnInit() {
+
+    this.foto0=this.datos.getfoto0();
+    console.log("tengo la foto")
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;
@@ -173,7 +178,7 @@ this.borrar_campos();
     
     //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
     
-    console.log("serv creado",this.task)
+   
     this._taskOdoo.newTask(this.task);
     
     

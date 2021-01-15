@@ -12,7 +12,7 @@ import { Photo } from '../interfaces/photo';
 
 
 export class PhotoService {
-
+  
   public photos: Photo[] = []; 
   //------------------------
   private PHOTO_STORAGE: string = "photos";
@@ -35,6 +35,7 @@ export class PhotoService {
         });      
         // Web platform only: Load the photo as base64 data
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
+        
       }
     }
   }
@@ -116,7 +117,7 @@ export class PhotoService {
   }
 
   // Read camera photo into base64 format based on the platform the app is running on
-  private async readAsBase64(cameraPhoto: CameraPhoto) {
+  public async readAsBase64(cameraPhoto: CameraPhoto) {
     // "hybrid" will detect Cordova or Capacitor
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format

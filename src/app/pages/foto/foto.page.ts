@@ -8,6 +8,9 @@ import { AlertController } from '@ionic/angular';
 import { PhotoService } from '../../services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Photo } from 'src/app/interfaces/photo';
+import { TaskModel } from 'src/app/models/task.model';
+import { CameraPhoto } from '@capacitor/core';
+import { HexBase64Latin1Encoding } from 'crypto';
 
 
 @Component({
@@ -19,7 +22,9 @@ export class FotoPage implements OnInit {
 
   foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
-
+  foto2:string = '../../../assets/icon/noImage.svg';
+  task:TaskModel;
+  
   //----------------------------------------------------------------
   servicio:string="Fotos del proyecto";
 
@@ -45,6 +50,8 @@ export class FotoPage implements OnInit {
     this.presentAlert();
   }
   goto(){
+    this.task.photoNewTaskArray[0]=this.photoService.loadSaved();
+    console.log("serv creado",this.task)
     this.navCtrl.navigateRoot('/resumen', {animated: true, animationDirection: 'forward' }) ;
   }
 
@@ -84,6 +91,10 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto0 = photo.webviewPath;
+             
+              //this.datos.setfoto0(this.foto0);
+              console.log("mi foto",this.foto0);
+             
             }
           }    
           if(posc==1){             
@@ -91,6 +102,14 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto1 = photo.webviewPath;
+
+            }
+          }
+          if(posc==2){             
+            let photo: Photo = await this.photoService.addNewToCamara();            
+            console.log( "Foto",photo.webviewPath);
+            if(photo){
+              this.foto2 = photo.webviewPath;
             }
           }
         }
@@ -104,13 +123,18 @@ export class FotoPage implements OnInit {
           if(photos.length == 1){
             if(posc==0){ 
               this.foto0 = photos[0].webviewPath;
+              
             }
             if(posc==1){ 
               this.foto1 = photos[0].webviewPath;
-            }            
+            }   
+            if(posc==2){ 
+              this.foto1 = photos[0].webviewPath;
+            }          
           }
           if(photos.length > 1){
-            this.foto0 = photos[1].webviewPath;
+            this.foto0 = photos[2].webviewPath;
+            this.foto1 = photos[1].webviewPath;
             this.foto1 = photos[0].webviewPath; //la primera del arreglo es la ultima seleccionada
           }
         }

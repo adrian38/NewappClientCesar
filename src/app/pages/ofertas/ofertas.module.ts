@@ -12,6 +12,9 @@ import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
 
 
+import {LightboxModule} from 'primeng/lightbox';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +24,8 @@ import {RatingModule} from 'primeng/rating';
     ToastModule,
     DialogModule,
     RatingModule,
-    
+    LightboxModule,
+  
   
   ],
   declarations: [OfertasPage]

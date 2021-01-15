@@ -2,44 +2,51 @@
 <ion-content >
   <div id="contenido" > 
   <ion-grid >
+<ion-row>
+  <!-- size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12" -->
+  <ion-col > 
+    <ion-row>
+      
+      <ion-col style="text-align: center;">
+        <img  id="logo"  src="../../assets/logoNavbar.png">
+      </ion-col>
+    </ion-row>
 
-     
-      <ion-row>
-        <ion-col style="text-align: center;">
-          <img  id="logo"  src="../../assets/logoNavbar.png">
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col style="text-align: center;">
-          <h1 style="color: rgb(246, 183, 118);">TodoenunApp</h1>
-        </ion-col>
-      </ion-row>
-    
     <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button color="clear" 
-        id="colorB" 
-        style="margin-top: 180px;"
-       (click)="navegar()">
-    INICIAR SESION
-    </ion-button>
-     
-    
+        <h1 style="color: rgb(246, 183, 118);">TodoenunApp</h1>
       </ion-col>
-    
-    
     </ion-row>
+  
+  <ion-row>
+    <ion-col style="text-align: center;">
+      <ion-button color="clear" 
+      id="colorB" 
+      style="margin-top: 180px;"
+     (click)="navegar()">
+  INICIAR SESION
+  </ion-button>
+   
+  
+    </ion-col>
+  
+  
+  </ion-row>
+  
     
+  
+   <ion-row>
+     <ion-col style="text-align: center;">
+      <ion-button color="clear" id="colorB" style="margin-top: 30px;"
+      routerLink='/registro'>CREAR CUENTA</ion-button>
+  
+     </ion-col>
+     
+   </ion-row>
+  </ion-col>
+</ion-row>
+     
       
-    
-     <ion-row>
-       <ion-col style="text-align: center;">
-        <ion-button color="clear" id="colorB" style="margin-top: 30px;"
-        routerLink='/registro'>CREAR CUENTA</ion-button>
-    
-       </ion-col>
-     </ion-row>
     
      
 

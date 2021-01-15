@@ -8,6 +8,7 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
+import { LightboxModule } from 'primeng/lightbox';
 
 
 
@@ -25,7 +26,7 @@ export class OfertasPage implements OnInit {
   user : UsuarioModel;
   task: TaskModel;
   //foto0:string = '../../../assets/icon/noImage.svg';
-   box;
+   
   offersList:TaskModel[];
 
   
@@ -60,7 +61,8 @@ export class OfertasPage implements OnInit {
     private platform: Platform,
     private messageService: MessageService,
     private router:Router,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    private _lightbox: LightboxModule) {
 
 
       this.task=new TaskModel();
@@ -76,6 +78,7 @@ this.verdetalles=false;
 this.user = this._authOdoo.getUser();
 this.offersList =[];
 this.userType = this.user.type
+
 
 }
 
@@ -243,4 +246,6 @@ zoom(){
   this.navCtrl.navigateRoot('/fotozoom', {animated: true, animationDirection: 'back' }) ;
     
 }
+
+
 }

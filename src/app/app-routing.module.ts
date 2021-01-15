@@ -66,10 +66,7 @@ const routes: Routes = [
     path: 'mapa',
     loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
   },
-  {
-    path: 'dialogo',
-    loadChildren: () => import('./pages/dialogo/dialogo.module').then( m => m.DialogoPageModule)
-  },
+  
   {
     path: 'detallemapa',
     loadChildren: () => import('./pages/detallemapa/detallemapa.module').then( m => m.DetallemapaPageModule)
@@ -77,10 +74,8 @@ const routes: Routes = [
   {
     path: 'regismapa',
     loadChildren: () => import('./pages/regismapa/regismapa.module').then( m => m.RegismapaPageModule)
-  },  {
-    path: 'fotozoom',
-    loadChildren: () => import('./pages/fotozoom/fotozoom.module').then( m => m.FotozoomPageModule)
-  }
+  },
+ 
 
 
 
