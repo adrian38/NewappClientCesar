@@ -36,7 +36,7 @@ export class PhotoService {
         });      
         // Web platform only: Load the photo as base64 data
         photo.webviewPath= `data:image/jpeg;base64,${readFile.data}`;
-         this.foto= `data:image/jpeg;base64,${readFile.data}`; 
+         //this.foto= `data:image/jpeg;base64,${readFile.data}`; 
        /* this.foto= `${readFile.data}`;  */
         console.log("Paso 1",this.foto);
       }
@@ -96,6 +96,9 @@ export class PhotoService {
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
+    this.foto= base64Data.slice(22,);
+    console.log("Paso 111",base64Data);
+    console.log("Paso 111",this.foto);
     // Write the file to the data directory
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({

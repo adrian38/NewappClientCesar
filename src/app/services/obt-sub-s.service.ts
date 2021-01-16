@@ -246,6 +246,14 @@ this.titulo=t;
    return this.foto0;
  }
 
+ getfoto1(){
+  return this.foto1;
+}
+
+getfoto2(){
+  return this.foto2;
+}
+
   //-------------------------------------------------------------------------
 
 

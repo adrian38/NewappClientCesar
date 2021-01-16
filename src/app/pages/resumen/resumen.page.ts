@@ -163,9 +163,11 @@ this.borrar_campos();
     this.task.time = this.hora;
     this.task.client_id = this.user.partner_id;
    
-     this.task.photoNewTaskArray[0]= this.photoService.devuelve64(); 
-/*this.task.photoNewTaskArray[0]= this.datos.getfoto0(); */
-    console.log("en resumen foto",this.task.photoNewTaskArray[0]);
+  // this.task.photoNewTaskArray[0]= this.photoService.devuelve64(); 
+this.task.photoNewTaskArray[0]= this.datos.getfoto0(); 
+this.task.photoNewTaskArray[1]= this.datos.getfoto1(); 
+this.task.photoNewTaskArray[2]= this.datos.getfoto2(); 
+    //console.log("en resumen foto",this.task.photoNewTaskArray[0]);
     this._taskOdoo.newTask(this.task);
 
 
