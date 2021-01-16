@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { InicioPageRoutingModule } from './inicio-routing.module';
 
 import { InicioPage } from './inicio.page';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule
+    InicioPageRoutingModule,
+   
   ],
-  declarations: [InicioPage]
+  declarations: [InicioPage],
+  providers: [
+    ScreenOrientation
+ ]
 })
 export class InicioPageModule {}

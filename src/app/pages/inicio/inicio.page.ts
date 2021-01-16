@@ -4,6 +4,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AlertController, Platform, NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
+
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -17,11 +20,29 @@ export class InicioPage implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private navCon:NavController,
-    private _location: Location) { 
+    private _location: Location,
+    private screenOrientation: ScreenOrientation) { 
+
+
 
       this.initializeApp();
 
-      
+      // get current
+console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
+
+// set to landscape
+this.screenOrientation.lock('portrait');
+/* this.screenOrientation.ORIENTATIONS.PORTRAIT */
+
+/* this.screenOrientation.unlock();
+
+
+this.screenOrientation.onChange().subscribe(
+   () => {
+       console.log("Orientation Changed");
+     
+   }
+); */
     }
 
   ngOnInit() {
