@@ -1,5 +1,5 @@
 <app-header headerText="Solicitudes" [fillBackground]="true"
-[expandHeader]="true" [expandText]="'Fontanería'"
+[expandHeader]="true" expandText="{{servicio}}"
 (clickedClose)="cerrarsolicitud($event)"></app-header>
 
 <ion-content>
@@ -51,10 +51,10 @@
 </ion-radio-group>
 </ion-list>
 
-<ion-row style="margin-top: 55px;">
+<ion-row >
   <ion-col ></ion-col>
   <ion-col> 
-    <ion-button (click)="goto()"
+    <ion-button id="boton" (click)="goto()"
     [disabled]="formulario.invalid">
     Siguiente
   </ion-button> </ion-col>

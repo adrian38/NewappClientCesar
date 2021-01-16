@@ -14,6 +14,7 @@ import { Photo } from '../interfaces/photo';
 export class PhotoService {
   
   public photos: Photo[] = []; 
+  foto
   //------------------------
   private PHOTO_STORAGE: string = "photos";
   private platform: Platform;
@@ -34,10 +35,15 @@ export class PhotoService {
             directory: FilesystemDirectory.Data
         });      
         // Web platform only: Load the photo as base64 data
-        photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
-        
+        photo.webviewPath= `data:image/jpeg;base64,${readFile.data}`;
+         this.foto= `data:image/jpeg;base64,${readFile.data}`; 
+       /* this.foto= `${readFile.data}`;  */
+        console.log("Paso 1",this.foto);
       }
+      console.log("Paso 11",this.foto);
     }
+   
+    
   }
 
   /* Use the device camera to take a photo:
@@ -162,5 +168,9 @@ export class PhotoService {
     };
     reader.readAsDataURL(blob);
   });
+  
+devuelve64(){
+//  console.log("2",this.foto);
+  return this.foto
 }
-
+}

@@ -171,10 +171,10 @@
   
  
 
-  <ion-row style="margin-top: 50px;">
+  <ion-row >
     <ion-col ></ion-col>
     <ion-col>
-       <ion-button (click)="goto()"
+       <ion-button id="boton" (click)="goto()"
        [disabled]="formulario.invalid && !Autofill || !coordenadas"
       >
       Siguiente
