@@ -230,7 +230,7 @@ this.titulo=t;
 
     setfoto0(f0:string){
        this.foto0=f0;
-      
+      console.log("tengo f1",this.foto0);
     }
     setfoto1(f1:string){
     ;
@@ -245,6 +245,14 @@ this.titulo=t;
    getfoto0(){
    return this.foto0;
  }
+
+ getfoto1(){
+  return this.foto1;
+}
+
+getfoto2(){
+  return this.foto2;
+}
 
   //-------------------------------------------------------------------------
 

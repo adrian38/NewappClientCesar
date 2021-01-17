@@ -15,13 +15,13 @@ class="animated fadeIn"></app-header>
   <ion-grid  style="padding-left: 30px; padding-right: 30px;">
     <ion-list>  
       <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
-<ion-item style="visibility: false;">
+<ion-item style="visibility: false;" lines="none">
   <app-solicitud 
   (click)="in(i)"              
   [Solicitud]="this.Solicitud"
   routerLink="/ofertas">
 </app-solicitud>
-</ion-item>
+</ion-item >
         
 
         <ion-item-options side="end" >

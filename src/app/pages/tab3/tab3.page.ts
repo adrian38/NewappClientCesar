@@ -16,4 +16,9 @@ export class Tab3Page {
       });
   }
 
+  datospersonales(){
+    this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'back' }) ;      
+     
+  }
+
 }

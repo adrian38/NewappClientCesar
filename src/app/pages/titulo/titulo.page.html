@@ -1,14 +1,20 @@
 <app-header headerText="Solicitudes" [fillBackground]="true"
-[expandHeader]="true" [expandText]="'Fontanería'"
+[expandHeader]="true" expandText="{{servicio}}"
 (clickedClose)="cerrarsolicitud($event)"></app-header>
 
 <ion-content>
-  <ion-grid style="margin-top: 40px;">
-    <ion-row>
+  
+  <div id="barra">
+    <ion-label >Titulo de la solicitud</ion-label>
+  </div>
+
+  <!-- <ion-grid style="margin-top: 20px;"> -->
+   
+   <!--  <ion-row>
       <div id="barra">
         <ion-label >Titulo de la solicitud</ion-label>
       </div>
-    </ion-row>
+    </ion-row> -->
 
     <form #formulario="ngForm" >
       <ion-item style="margin-top: 20px;" >
@@ -25,11 +31,11 @@
 
 
 
-<ion-row style="margin-top: 70px;">
-<div id="barra">
+
+<div id="barra" style="margin-top: 60px;">
 <ion-label >¿Dispone de los materiales?</ion-label>
 </div>
-</ion-row>
+
 
 
 
@@ -51,17 +57,17 @@
 </ion-radio-group>
 </ion-list>
 
-<ion-row style="margin-top: 55px;">
+<ion-row >
   <ion-col ></ion-col>
   <ion-col> 
-    <ion-button (click)="goto()"
+    <ion-button id="boton" (click)="goto()"
     [disabled]="formulario.invalid">
     Siguiente
   </ion-button> </ion-col>
   
   <ion-col></ion-col>
 </ion-row>
-</ion-grid>
+<!-- </ion-grid> -->
 
 
 </ion-content>

@@ -11,6 +11,7 @@ import { Photo } from 'src/app/interfaces/photo';
 import { TaskModel } from 'src/app/models/task.model';
 import { CameraPhoto } from '@capacitor/core';
 import { HexBase64Latin1Encoding } from 'crypto';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
 @Component({
@@ -23,6 +24,9 @@ export class FotoPage implements OnInit {
   foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
   foto2:string = '../../../assets/icon/noImage.svg';
+  foto064:string = '';
+  foto164:string = '';
+  foto264:string = '';
   task:TaskModel;
   
   //----------------------------------------------------------------
@@ -50,8 +54,13 @@ export class FotoPage implements OnInit {
     this.presentAlert();
   }
   goto(){
-    this.task.photoNewTaskArray[0]=this.photoService.loadSaved();
-    console.log("serv creado",this.task)
+   
+    console.log("paso2",this.photoService.devuelve64());
+   /*  this.task=new TaskModel();
+    this.task.photoNewTaskArray[0]= this.photoService.devuelve64()
+    console.log(this.photoService.loadSaved()); 
+    console.log("resumen",this.photoService.devuelve64());
+    console.log("serv creado",this.task); */
     this.navCtrl.navigateRoot('/resumen', {animated: true, animationDirection: 'forward' }) ;
   }
 
@@ -93,6 +102,9 @@ export class FotoPage implements OnInit {
               this.foto0 = photo.webviewPath;
              
               //this.datos.setfoto0(this.foto0);
+              this.foto064=this.photoService.devuelve64();
+              this.datos.setfoto0(this.foto064);
+              console.log("paso..../",this.photoService.devuelve64());
               console.log("mi foto",this.foto0);
              
             }
@@ -102,6 +114,8 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto1 = photo.webviewPath;
+              this.foto164=this.photoService.devuelve64();
+              this.datos.setfoto1(this.foto164);
 
             }
           }
@@ -110,6 +124,8 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto2 = photo.webviewPath;
+              this.foto264=this.photoService.devuelve64();
+              this.datos.setfoto2(this.foto264);
             }
           }
         }

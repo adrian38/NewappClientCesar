@@ -154,43 +154,41 @@ this.borrar_campos();
 
     this.task.address.latitude=String(this.datos.getlatitud());
     this.task.address.longitude=String(this.datos.getlongitud());
-/* 
-    this.task.address.latitude="4.44";
-    this.task.address.longitude="4.43"; */
-    // this.task.title= 'Arreglo'
+
     this.task.title= this.datos.gettitulo();
     this.task.product_id = 39;
     this.task.type = ':Servicio de Fontaneria';
     
-    //this.task.time = '12:12:12';
-    // this.task.date = '2020-02-20'
-    
-   // this.task.date = this.date.transform(this.fecha, 'yyyy-MM-dd');
-   // this.task.time = this.date.transform(this.reloj, 'HH:mm:ss');
     this.task.date = this.fecha;
     this.task.time = this.hora;
     this.task.client_id = this.user.partner_id;
-    //time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
-    
-
-
-    //this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
-    
-    //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
-    
    
+  // this.task.photoNewTaskArray[0]= this.photoService.devuelve64(); 
+this.task.photoNewTaskArray[0]= this.datos.getfoto0(); 
+this.task.photoNewTaskArray[1]= this.datos.getfoto1(); 
+this.task.photoNewTaskArray[2]= this.datos.getfoto2(); 
+    //console.log("en resumen foto",this.task.photoNewTaskArray[0]);
     this._taskOdoo.newTask(this.task);
+
+
+   /*  53338707 */
     
-    
-         
+          //time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 
+       //this.task.time = '12:12:12';
+    // this.task.date = '2020-02-20'
+   // this.task.date = this.date.transform(this.fecha, 'yyyy-MM-dd');
+   // this.task.time = this.date.transform(this.reloj, 'HH:mm:ss');
+//this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
+     //console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
+    /* 
+    this.task.address.latitude="4.44";
+    this.task.address.longitude="4.43"; */
+    // this.task.title= 'Arreglo'
     
     }
 
  
-  /* si(){
-
-     this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
-   } */
+  
 
    borrar_campos(){
 
