@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegistroPageRoutingModule } from './registro-routing.module';
 
 import { RegistroPage } from './registro.page';
+import {AvatarModule} from 'primeng/avatar';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { RegistroPage } from './registro.page';
     FormsModule,
     IonicModule,
     RegistroPageRoutingModule,
+    AvatarModule,
     
   ],
   declarations: [RegistroPage]

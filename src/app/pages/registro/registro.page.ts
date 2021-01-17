@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
-
+import {AvatarModule} from 'primeng/avatar';
 import { AlertController, NavController } from '@ionic/angular';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { Address } from '../../models/task.model';

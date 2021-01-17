@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import {ButtonModule} from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 
 //Services
@@ -12,7 +11,9 @@ import {ObtSubSService} from './services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
 
 
-//import {ButtonModule} from 'primeng/button';
+import {ButtonModule} from 'primeng/button';
+import {AvatarModule} from 'primeng/avatar';
+
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -48,6 +49,7 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     ButtonModule, 
+    AvatarModule,
     ToastModule,
     CommonModule,
     AgmCoreModule.forRoot({
