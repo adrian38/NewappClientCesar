@@ -11,7 +11,7 @@ import { ResumenPageRoutingModule } from './resumen-routing.module';
 import { ResumenPage } from './resumen.page';
 import {ToastModule} from 'primeng/toast';
 
-
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -20,6 +20,7 @@ import {ToastModule} from 'primeng/toast';
     IonicModule,
     ResumenPageRoutingModule,
     ToastModule,
+    ComponentsModule
      
   ],
   declarations: [ResumenPage]

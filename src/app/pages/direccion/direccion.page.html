@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <div id="barraSuperior">
    
     <div id="barraInferior">
@@ -40,13 +40,22 @@
 
 </ion-header> 
 
-<ion-content>
+ -->
+ <app-header headerText="Solicitudes" [fillBackground]="true"
+[expandHeader]="true" expandText="{{servicio}}"
+(clickedClose)="cerrarsolicitud($event)"></app-header>
+
+
+ <ion-content>
+
+ 
   <div id="barra">
-    <ion-label >Direccion en que se realiza el servicio</ion-label>
+    <ion-label >Direccion donde se realiza el servicio</ion-label>
   </div>
+
  <ion-grid>
 
-  <ion-item style="margin-top:35px ;"
+  <ion-item style="margin-top:55px ;"
   >
    <ion-checkbox mode="ios"
    [(ngModel)]="Autofill"

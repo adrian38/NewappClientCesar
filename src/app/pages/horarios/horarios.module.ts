@@ -8,12 +8,14 @@ import { HorariosPageRoutingModule } from './horarios-routing.module';
 
 import { HorariosPage } from './horarios.page';
 import {CalendarModule} from 'primeng/calendar';
+import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HorariosPageRoutingModule,
+    ComponentsModule,
     
     CalendarModule
 

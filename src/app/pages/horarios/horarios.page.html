@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <div id="barraSuperior">
    
     <div id="barraInferior">
@@ -37,12 +37,21 @@
 
 
 
-</ion-header> 
+</ion-header>  -->
+<app-header headerText="Solicitudes" [fillBackground]="true"
+[expandHeader]="true" expandText="{{servicio}}"
+(clickedClose)="cerrarsolicitud($event)"></app-header>
 
 <ion-content>
-  <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3>
- 
-  <ion-grid>
+  <!-- <h3 style="margin-top: 20px; text-align: center">{{viewTitle}}</h3> -->
+  <div id="barra">
+    <ion-label >¿Cuando necesita el servicio?</ion-label>
+  </div>
+
+  <ion-grid style="margin-top: 40px;">
+
+   
+
     <ion-row style="margin-top: 30px;">
       <ion-col size=1></ion-col>
     <ion-col size=3>Fecha</ion-col>

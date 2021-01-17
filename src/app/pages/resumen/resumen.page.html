@@ -1,6 +1,6 @@
 <p-toast></p-toast>
-<ion-header>
-  <p-toast></p-toast>
+<!-- <ion-header>
+  
   <div id="barraSuperior">
    
     <div id="barraInferior">
@@ -40,20 +40,24 @@
 
  
 
-</ion-header> 
+</ion-header>  -->
+
+<app-header headerText="Solicitudes" [fillBackground]="true"
+[expandHeader]="true" expandText="{{servicio}}"
+(clickedClose)="cerrarsolicitud($event)"></app-header>
 
 <ion-content>
  
 
   <div id="barra">
     <ion-label >Resumen</ion-label>
- </div>
+  </div>
 
 
-<ion-item-group>
+<ion-item-group style="margin-top: 40px;">
 <ion-item>
  <ion-col>
-   <ion-row>
+   <ion-row >
     <ion-label>Titulo del servicio</ion-label>
    </ion-row>
    <ion-row>
