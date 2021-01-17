@@ -74,7 +74,15 @@ const routes: Routes = [
   {
     path: 'regismapa',
     loadChildren: () => import('./pages/regismapa/regismapa.module').then( m => m.RegismapaPageModule)
+  },  {
+    path: 'datospersonales',
+    loadChildren: () => import('./pages/datospersonales/datospersonales.module').then( m => m.DatospersonalesPageModule)
   },
+  {
+    path: 'factura',
+    loadChildren: () => import('./pages/factura/factura.module').then( m => m.FacturaPageModule)
+  },
+
  
 
 
