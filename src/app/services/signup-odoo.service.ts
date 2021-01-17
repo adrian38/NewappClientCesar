@@ -45,6 +45,7 @@ export class SignUpOdooService {
         'login': usuario.username,
         'email': usuario.username,
         'password': usuario.password,
+        'image_1920': usuario.avatar,
         'groups_id': [22, 1, 11, 17, 34, 23, 6, 35, 20, 19]
         /* groups_id son los mismos para custumer y vendor para admin son: [2,21,36,22,26,7,1,11,17,34,3,23,6,35,20,19]*/
 
