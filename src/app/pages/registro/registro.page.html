@@ -24,6 +24,17 @@
                   > 
         </ion-col>
 
+        <!-- <ion-row style="margin-top: 25px;">
+          <ion-col size=4></ion-col>
+  
+          <ion-col size=4 *ngIf="verFotoInicial"  >
+            <p-avatar image = "../../../assets/registro.png" size="xlarge" (click)="presentAlertConfirm()"></p-avatar>
+            
+           
+          </ion-col> -->
+
+   
+
          
     
     <ion-col size="4"
@@ -94,7 +105,7 @@
                            <ion-input name="usuario"
                                        type="text"
                                        required
-                                       [(ngModel)]="usuario"
+                                       [(ngModel)]="correo"
                                        
    
                                        ></ion-input>

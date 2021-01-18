@@ -45,22 +45,23 @@ export class SignUpOdooService {
         'login': usuario.username,
         'email': usuario.username,
         'password': usuario.password,
+        'image_1920': usuario.avatar,
         'groups_id': [22, 1, 11, 17, 34, 23, 6, 35, 20, 19]
         /* groups_id son los mismos para custumer y vendor para admin son: [2,21,36,22,26,7,1,11,17,34,3,23,6,35,20,19]*/
 
       }
 
       partner_update = {
-        'date': '1992-08-10', //birthdate
-        'address_street': 'Av. de Monforte de Lemos',
-        'address_floor': '1',
-        'address_portal': '',
-        'address_number': '36',
-        'address_door': '21',
-        'address_stairs': '',
-        'address_zip_code': '28029',
-        'address_latitude': '40,47558',
-        'address_longitude': '-3,68992',
+        'date': usuario.date, //birthdate
+        'address_street': usuario.address.street,
+        'address_floor': usuario.address.floor,
+        'address_portal': usuario.address.portal,
+        'address_number': usuario.address.number,
+        'address_door': usuario.address.door,
+        'address_stairs': usuario.address.stair,
+        'address_zip_code': usuario.address.cp,
+        'address_latitude': usuario.address.latitude,
+        'address_longitude': usuario.address.longitude,
         'mobile': usuario.phone,
 
       }
