@@ -8,7 +8,8 @@ import { RegistroPageRoutingModule } from './registro-routing.module';
 
 import { RegistroPage } from './registro.page';
 import {AvatarModule} from 'primeng/avatar';
-
+import { SafeUrlPipePipe } from 'src/app/pipes/safe-url-pipe.pipe';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -17,8 +18,10 @@ import {AvatarModule} from 'primeng/avatar';
     IonicModule,
     RegistroPageRoutingModule,
     AvatarModule,
+    ComponentsModule
     
   ],
   declarations: [RegistroPage]
+  
 })
 export class RegistroPageModule {}

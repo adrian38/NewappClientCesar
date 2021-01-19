@@ -139,19 +139,28 @@ export class FotoPage implements OnInit {
           if(photos.length == 1){
             if(posc==0){ 
               this.foto0 = photos[0].webviewPath;
+              this.foto064=this.photoService.devuelve64();
+              this.datos.setfoto0(this.foto064);
+              console.log("paso..../",this.photoService.devuelve64());
+              console.log("mi foto",this.foto0);
               
             }
             if(posc==1){ 
               this.foto1 = photos[0].webviewPath;
+              this.foto164=this.photoService.devuelve64();
+              this.datos.setfoto1(this.foto164);
             }   
             if(posc==2){ 
-              this.foto1 = photos[0].webviewPath;
+              this.foto2 = photos[0].webviewPath;
+              this.foto264=this.photoService.devuelve64();
+              this.datos.setfoto2(this.foto264);
+
             }          
           }
           if(photos.length > 1){
             this.foto0 = photos[2].webviewPath;
             this.foto1 = photos[1].webviewPath;
-            this.foto1 = photos[0].webviewPath; //la primera del arreglo es la ultima seleccionada
+            this.foto2 = photos[0].webviewPath; //la primera del arreglo es la ultima seleccionada
           }
         }
       },
@@ -161,6 +170,10 @@ export class FotoPage implements OnInit {
         cssClass: 'secondary',
         handler: (blah) => {
           console.log('Confirm Cancel: blah');
+          this.foto0 = '../../../assets/icon/noImage.svg';
+          this.foto1 = '../../../assets/icon/noImage.svg';
+          this.foto2 = '../../../assets/icon/noImage.svg';
+          
         }
       }]
     });    

@@ -95,7 +95,7 @@ export class Tab1Page implements OnInit {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
-      message: 'Desea ir al login',
+      message: 'Desea registrarse con otro usuario',
      
       buttons: [
         {
@@ -106,7 +106,7 @@ export class Tab1Page implements OnInit {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Login',
+          text: 'Aceptar',
           handler: (datos) => {
             this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;      
     

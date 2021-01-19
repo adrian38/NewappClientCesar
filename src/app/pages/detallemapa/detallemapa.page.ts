@@ -22,13 +22,15 @@ export class DetallemapaPage implements OnInit {
  this.task=new TaskModel();
  this.task=this._taskOdoo.getTaskCesar();
 
- this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navCtrl.navigateRoot('/ofertas ', {animated: true, animationDirection: 'back' }) ;
-});
- 
+
   }
 
   ngOnInit() {
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
     this.lat=Number(this.task.address.latitude);
     this.lng=Number(this.task.address.longitude);

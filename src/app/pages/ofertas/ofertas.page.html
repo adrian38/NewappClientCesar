@@ -104,7 +104,8 @@
              style="width: 22px; height: 22px;margin-top: 24px;" 
              src="../../assets/chat.png"
              (click)="openChat(offer.id)">
-        
+             <ion-label style="font-size: xx-small;margin-top: -15px;">CHAT</ion-label>
+          
    
         
       </ion-col>
@@ -162,9 +163,12 @@
     </ion-row>
     
      <ion-row>
-      <p style="margin-top: 5px;">
-    {{offer.comment}}
+      <p *ngIf="offer.comment" style="margin-top: 5px;">
+         {{offer.comment}} 
       </p>
+      <p *ngIf="!offer.comment" style="margin-top: 5px;">
+        No hay comentarios del trabajador
+     </p>
      </ion-row> 
    
       
@@ -244,7 +248,11 @@
           </ion-row>
           <ion-row>
             <ion-col size=10>
-              <p>{{task.address.street}}</p>
+              <ion-row>
+                <ion-label>Calle:{{task.address.street}} Numero:{{task.address.number}} Piso:{{task.address.floor}}</ion-label>
+                <ion-label>Escalera:{{task.address.stair}} Portal:{{task.address.portal}} Cod_postal:{{task.address.cp}}</ion-label>
+                
+              </ion-row>
             </ion-col >
             <ion-col size=2 >
               <img   id="imgGPS"
