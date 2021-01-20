@@ -101,11 +101,11 @@
    
       <ion-col id="item" size=1>
         <img id="ico" 
-             style="width: 22px; height: 22px;margin-top: 24px;" 
-             src="../../assets/chat.png"
+             style="width: 22px; height: 30px;margin-top: 24px;" 
+             src="../../assets/chatl.png"
              (click)="openChat(offer.id)">
-             <ion-label style="font-size: xx-small;margin-top: -15px;">CHAT</ion-label>
-          
+            <!--  <ion-label style="font-size: xx-small;margin-top: -15px;">CHAT</ion-label>
+           -->
    
         
       </ion-col>
@@ -116,21 +116,7 @@
         style="width: 22px; height: 22px;margin-top: 24px;" 
         src="../../assets/acep.png"
         (click)="showDialogAceptar()">
-         <!-- <div  >
-          <ion-icon name="checkmark" 
-          (click)="showDialogAceptar()"
-          style="margin-top: 24px;width: 24px; height: 24px; color: rgb(246, 183, 118);"
-          ></ion-icon>
-        </div>  -->
-       <!--  <ion-button id="buton" style="font-size: 8px; margin-top: 24px;"
-                  (click)="showDialogAceptar()" 
-                  >
-         <div id="ico">
-           <ion-icon name="checkmark" 
-           ></ion-icon>
-         </div>
-         
-       </ion-button>   -->
+        
       </ion-col>
    
       
@@ -206,71 +192,88 @@
       
       <ion-col size=10 >
        
-        <div id="item">
+        <div >
           <ion-row >
-            <h5>{{task.type}}</h5>
            
+            <h5 style="   font-family: 'HelveticaNeueLTStd-Bd';">{{task.type}}</h5>
           </ion-row>
-          <ion-row>
+          <ion-row >
             <p>{{task.title}}</p>
           </ion-row>
         </div>
 
         <div id="item">
           <ion-row>
-            <h5>Horario</h5>
-          </ion-row>
-   
-          <ion-row>
             <ion-col  size=2>
               <img style="width: 18px;height: 18px;" src="../../../assets/calendario.png">
             </ion-col>
             <ion-col size=10>
-              <ion-label>{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
-            </ion-col>
+              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Fecha</ion-label>
+               </ion-col>
           </ion-row>
-
-          <ion-row>
-            <ion-col  size=2>
-              <img style="width: 18px;height: 18px;" src="../../../assets/hora.png">
-           </ion-col>
-            <ion-col size=10>
-              <ion-label>{{task.time |date: 'h:mm a' }}</ion-label>
-            </ion-col>
-          </ion-row>
-          
-                 </div>
-
-        <div id="item">
-          <ion-row >
-            <h5>Direccion</h5>
+          <ion-row style="margin-bottom: 9px;">
+            <ion-label style="margin-top: 5px;">{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
            
           </ion-row>
-          <ion-row>
+        </div>
+
+        <div id="item">
+          <ion-row style="margin-top: 5px;">
+            <ion-col  size=2>
+              <img style="width: 18px;height: 18px;" src="../../../assets/hora.png">
+            </ion-col>
             <ion-col size=10>
+              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Horario</ion-label>
+               </ion-col>
+          </ion-row>
+          <ion-row style="margin-bottom: 9px;">
+            <ion-label style="margin-top: 5px;">{{task.time |date: 'h:mm a' }}</ion-label>
+           
+          </ion-row>
+        </div>
+
+        <div id="item">
+          <ion-row style="margin-top: 5px;">
+            <ion-col  size=2>
+              <img style="width: 18px;height: 22px;" src="../../../assets/2.png">
+            </ion-col>
+            <ion-col size=10>
+              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Direccion</ion-label>
+               </ion-col>
+          </ion-row>
+          <ion-row style="margin-bottom: 9px;">
+            
+          <ion-col size=10>
               <ion-row>
-                <ion-label>Calle:{{task.address.street}} Numero:{{task.address.number}} Piso:{{task.address.floor}}</ion-label>
-                <ion-label>Escalera:{{task.address.stair}} Portal:{{task.address.portal}} Cod_postal:{{task.address.cp}}</ion-label>
-                
+                <ion-label>{{task.address.street}} {{task.address.number}} {{task.address.floor}}</ion-label>
+                <ion-label style="margin-top: 5px;">{{task.address.stair}} {{task.address.portal}} {{task.address.cp}}</ion-label>
+               
               </ion-row>
             </ion-col >
             <ion-col size=2 >
               <img   id="imgGPS"
-                      src="../../assets/ubicacion.png"
+                      src="../../../assets/ubicacion.png"
                       (click)="verubicacion()"
                                           >
             </ion-col>
-            
           </ion-row>
         </div>
 
 
+
         <div >
-          <ion-row >
-            <h5>Fotos</h5>
-           
+          <ion-row style="margin-top: 5px;">
+            <ion-col  size=2>
+              <img style="width: 18px;height: 18px;" src="../../../assets/cam.png">
+            </ion-col>
+            <ion-col size=10>
+              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Foto</ion-label>
+               </ion-col>
           </ion-row>
-          
+          <ion-row>
+         <ion-label style="font-size: smaller;">Antes</ion-label> 
+            
+          </ion-row>
           <ion-row>
             
             <ion-col size=4  style="text-align: center;">
@@ -297,7 +300,7 @@
           </ion-row>
      
             <ion-row >
-            <h6>Finalizado</h6>
+              <ion-label style="font-size: smaller;">Despues</ion-label>
             </ion-row>
 
             <ion-row>

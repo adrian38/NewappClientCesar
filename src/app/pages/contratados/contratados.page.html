@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <div id="barraSuperior">
    
     <div id="barraInferior">
@@ -35,10 +35,35 @@
 
 
 
-</ion-header> 
+</ion-header>  -->
+<ion-header [translucent]="true" class="ion-no-border">
+
+  <div id="barraInferior">
+    <ion-row>
+      
+      <ion-col size=3 >
+        <img  id="logo"  src="../../assets/logoNavbar.png">
+    
+      </ion-col>
+      
+    
+     
+       <ion-col size=6>
+        <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicio</h2>
+    
+       </ion-col>
+      
+     </ion-row>
+     
+     
+    </div>
+   
+  
+  
+</ion-header>
 
 <ion-content>
-  <ion-row style="margin-top: 5px;">
+  <ion-row style="margin-top: 15px;">
     <ion-col size=1></ion-col>
     
     <ion-col size=10 >
@@ -53,8 +78,9 @@
           </ion-col>
         </ion-row>
  
-        <ion-row style="margin-top: -4px;">
-            <p>{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</p>
+        <ion-row style="margin-bottom: 9px;">
+          <ion-label style="margin-top: 5px;">{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
+         
         </ion-row>
         </div>
 
@@ -70,9 +96,10 @@
    
           <ion-row>
             
-            <ion-col style="margin-top: -4px;">
-              <p>{{task.time |date: 'h:mm a' }}</p>
-            </ion-col>
+            <ion-row style="margin-bottom: 9px;">
+              <ion-label style="margin-top: 5px;">{{task.time |date: 'h:mm a' }}</ion-label>
+             
+            </ion-row>
           </ion-row>
           </div>
 
@@ -86,17 +113,29 @@
             </ion-row>
      
             <ion-row>
-              
-              <ion-col style="margin-top: -4px;">
-                <p>{{task.address.street}} {{task.address.number}} {{task.address.door}}</p>
-              </ion-col>
+              <ion-row style="margin-bottom: 9px;">
+            
+                <ion-col size=10>
+                    <ion-row>
+                      <ion-label>{{task.address.street}} {{task.address.number}} {{task.address.floor}}</ion-label>
+                      <ion-label style="margin-top: 5px;">{{task.address.stair}} {{task.address.portal}} {{task.address.cp}}</ion-label>
+                     
+                    </ion-row>
+                  </ion-col >
+                  <ion-col size=2 >
+                    <img   id="imgGPS"
+                            src="../../../assets/ubicacion.png"
+                            (click)="verubicacion()"
+                                                >
+                  </ion-col>
+                </ion-row>
             </ion-row>
             </div>
 
             <div id="item">
               <ion-row style="margin-top: 10px;" >
                 <ion-col size=1.3>
-                  <img style="width: 19px; height: 20px;" src="../../assets/calendario.png">
+                  <img style="width: 19px; height: 20px;" src="../../assets/bolsa.png">
                 </ion-col>
                 <ion-col size=10.7>
                   <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Precio</ion-label>
@@ -110,7 +149,7 @@
                 </ion-col>
                 <ion-col size=4></ion-col>
                 <ion-col size=3>
-                  <ion-button id="buton" style="font-size: 8px;">Denunciar</ion-button>
+                  <ion-button id="buton" style="font-size: 8px;">Ver factura</ion-button>
                 </ion-col>
                  
               </ion-row>
@@ -119,15 +158,15 @@
               <div id="item">
 
                 <ion-row style="margin-top: 10px;">
-                  <ion-col size=1.3> <img style="width: 19px;height: 20px;" src="../../assets/hora.png">
+                  <ion-col size=1.3> <img style="width: 20px;height: 20px;" src="../../assets/cam.png">
                   </ion-col>
                   <ion-col size=10.7>
                     <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Fotos</ion-label>
                   </ion-col>
                   
                 </ion-row>
-                <ion-row style="margin-top: -4px; ">
-                  <h6 >Antes</h6>
+                <ion-row>
+                  <ion-label style="font-size: smaller;">Antes</ion-label> 
                 </ion-row>
                 <ion-row >
             
@@ -153,25 +192,25 @@
       
       
                 </ion-row>
-                <ion-row style="margin-top: -4px;">
-                  <h6>Despues</h6>
+                <ion-row>
+                  <ion-label style="font-size: smaller;">Despues</ion-label> 
                 </ion-row>
 
                 <ion-row>
             
-                  <ion-col size=4  style="text-align: center;">
+                  <ion-col size=4  style="text-align: start;">
                     <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                       <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'" 
                       >
                     </ion-card>
                     </ion-col>
-                    <ion-col size=4  style="text-align: center;">
+                    <ion-col size=4  style="text-align:start;">
                       <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                         <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
                       </ion-card>
                       </ion-col>
                   
-                      <ion-col size=4  style="text-align: center;">
+                      <ion-col size=4  style="text-align: start;">
                         <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                           <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
                         </ion-card>
@@ -192,26 +231,23 @@
               </ion-row>
        
               <ion-row>
-                <ion-col size=5>
-                  <ion-label>{{task.client_name}}</ion-label>
+                <ion-col size=4>
+                  <ion-label style="font-size: small;">{{task.client_name}}</ion-label>
                 </ion-col>
-                <ion-col size=4></ion-col>
-                <ion-col size=3>
-                  <ion-button id="buton" style="font-size: 8px;">Denunciar</ion-button>
+                
+                <ion-col size=4 style="text-align: end;">
+                  <ion-button id="buton" 
+                               style="font-size: 8px;"
+                               (click)="clasificar()">Clasificar</ion-button>
+                </ion-col>
+                <ion-col size=4 style="text-align: end;">
+                  <ion-button id="buton" 
+                              style="font-size: 8px;"
+                              (click)="denunciar()">Denunciar</ion-button>
                 </ion-col>
                  
               </ion-row>
-              <ion-row >
-                <ion-col size=4><ion-label>Clasificar</ion-label></ion-col>
-                <ion-col size=8>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                  <ion-icon name="star"></ion-icon>
-                </ion-col>
-                
-            </ion-row>
+            
               </div>
 
       
@@ -242,5 +278,37 @@
       </ion-col>
       <ion-col size=2></ion-col>
     </ion-row>
+
+    <p-dialog  [(visible)]="displayClasificar" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+    [draggable]="false" [resizable]="false">
+   
+    <ion-row>
+      <ion-col>
+        <img id="photoProvider"  src="{{task.photoProvider}}"  onError="this.src='assets/noImage.png'">
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';">{{task.client_name}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label >{{task.type}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false" (click)="punto()"
+        ></p-rating>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10x;">
+      <ion-col size=1></ion-col>
+      <ion-col>
+        <ion-col size=10 style="text-align: center;" >
+          <textarea name="Text1" cols="32" rows="30"
+                        [(ngModel)]="comentario"></textarea>
+        </ion-col>
+      </ion-col>
+      <ion-col size=1></ion-col>
+    </ion-row>
+  </p-dialog>
      
 </ion-content>

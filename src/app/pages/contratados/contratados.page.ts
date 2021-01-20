@@ -11,6 +11,8 @@ export class ContratadosPage implements OnInit {
 
 
   task: TaskModel;
+  displayClasificar:boolean=false;
+
   constructor( private _taskOdoo:TaskOdooService) { }
 
   ngOnInit() {
@@ -23,4 +25,14 @@ export class ContratadosPage implements OnInit {
    
   }
 
+  clasificar(){
+    this.displayClasificar=true;
+  }
+
+  denunciar(){
+
+  }
+punto(){
+  console.log("estrella");
+}
 }

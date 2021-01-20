@@ -5,15 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ContratadosPageRoutingModule } from './contratados-routing.module';
-
+import {DialogModule} from 'primeng/dialog';
 import { ContratadosPage } from './contratados.page';
-
+import {RatingModule} from 'primeng/rating';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContratadosPageRoutingModule
+    ContratadosPageRoutingModule,
+    DialogModule,
+    RatingModule
   ],
   declarations: [ContratadosPage]
 })

@@ -84,26 +84,7 @@ ion-button{
     height: 34px;
 }
 
-/*  :host ::ng-deep .p-toast-message{
-    .p-toast-message-custom {
-        background-color: #E1CFE7;
-        border: solid #8A427A;
-        border-width: 0 0 0 6px;
-        color: #2c1e30;
-        .p-toast-icon-close {
-            color: #2c1e30;
-        }
-    }
-}  */
 
-/* p-dialog{
-    width: 20px;
-    height: 55px;
-    
-} */
-/*  .p-dialog-content {
-    border-radius: 15px 15px 15px 15px;
-}  */
 
 :host ::ng-deep .p-dialog {
     border-radius: 15px !important;
@@ -160,5 +141,3 @@ ion-input:focus-within{
   .center-v {
     align-items: center;
   }
-
- 
