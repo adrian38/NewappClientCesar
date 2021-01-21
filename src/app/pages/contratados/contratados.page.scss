@@ -54,10 +54,19 @@
   
 }
 
+ion-button{
+    color: rgb(49 ,49 ,57); 
+    font-family: 'HelveticaNeueLTStd-Bd';
+    border-radius: 5px 5px 5px 5px ;
+}
 #selecf{
     width: 79px;
     height: 79px;  
     
+}
+#fotoDenuncia{
+    width: auto;
+    height: auto;
 }
 
 :host ::ng-deep .p-dialog {

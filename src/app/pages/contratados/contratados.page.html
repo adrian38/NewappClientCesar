@@ -274,10 +274,14 @@
      
     <ion-row style="margin-top: 25px;">
       <ion-col size=2></ion-col>
-      <ion-col size=8 style="text-align: center;"><ion-button>Finalizar tarea</ion-button>
+      <ion-col size=8 style="text-align: center;">
+        <ion-button>Finalizar tarea</ion-button>
       </ion-col>
       <ion-col size=2></ion-col>
     </ion-row>
+
+    <!-- ---------------------Separador Dialogo Clasificar------------------------------------ -->
+  
 
     <p-dialog  [(visible)]="displayClasificar" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
     [draggable]="false" [resizable]="false">
@@ -304,11 +308,73 @@
       <ion-col>
         <ion-col size=10 style="text-align: center;" >
           <textarea name="Text1" cols="32" rows="30"
-                        [(ngModel)]="comentario"></textarea>
+                        [(ngModel)]="comentario"
+                        placeholder="Escribe tu valoracion"></textarea>
         </ion-col>
       </ion-col>
       <ion-col size=1></ion-col>
     </ion-row>
   </p-dialog>
-     
+
+  <!-- ---------------------Separador Dialogo Denunciar------------------------------------ -->
+  
+  <p-dialog  [(visible)]="displayDenunciar" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+    [draggable]="false" [resizable]="false">
+   
+    <ion-row>
+      <ion-col>
+        <img id="photoProvider"  src="{{task.photoProvider}}"  onError="this.src='assets/noImage.png'">
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';">{{task.client_name}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label >{{task.type}}</ion-label>
+        </ion-row>
+       
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 10x;">
+      <ion-col size=1></ion-col>
+
+      <ion-col>
+        <ion-row>
+          <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';">{{task.title}}</ion-label>
+        </ion-row>
+
+        <ion-row>
+          <ion-label style="font-size: small;margin-bottom: 0px;margin-top: 6px;" >Evidencia</ion-label>
+        </ion-row>
+        <ion-row style="margin-top: 0px;">
+          <ion-col size=4 >
+            <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 70px;height: 70px;border-radius: 5px 5px 5px 5px; margin-left: 0px;">
+              <img id="fotoDenuncia"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'" 
+              >
+            </ion-card>
+            </ion-col>
+            <ion-col size=4  style="text-align:start;">
+              <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 70px;height: 70px;border-radius: 5px 5px 5px 5px;margin-left: 0px;">
+                <img id="fotoDenuncia"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
+              </ion-card>
+              </ion-col>
+          
+              <ion-col size=4  style="text-align: start;">
+                <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 70px;height: 70px;border-radius: 5px 5px 5px 5px;margin-left: 0px;">
+                  <img id="fotoDenuncia"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
+                </ion-card>
+                </ion-col>
+
+        </ion-row>
+
+        <ion-col size=10 style="text-align: center;" >
+          <textarea name="Text1" cols="32" rows="30"
+                        [(ngModel)]="comentario"
+                        placeholder="Escribe tu valoracion"></textarea>
+        </ion-col>
+      </ion-col>
+      <ion-col size=1></ion-col>
+    </ion-row>
+  </p-dialog>
 </ion-content>

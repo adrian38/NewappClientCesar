@@ -29,18 +29,16 @@ img{
     height: 90%;
 }
 
-#item{
-        
-    border-bottom: 0.5px solid  rgb(246, 183, 118);
- 
+#item{        
+    border-bottom: 2px solid  rgba(246, 183, 118, 0.7);
 }
+
 #fotopersonal{
-    width: 70px;
+    width: 60px;
     height: 60px; 
    // border: 0.5px solid  rgb(246, 183, 118);
     border-radius: 5px 5px 5px 5px;
     opacity: 0.9;
-
 }
 
 ion-button{
@@ -126,6 +124,28 @@ ion-input:focus-within{
     border-radius: 5px 5px 5px 5px ;
     
   
+}
+
+#botonguardar{
+    width: 145px;
+    height: 25px;
+    border-radius: 5px 5px 5px 5px ;
+    
+    font-size: small;
+    background-color: rgb(246, 183, 118);
+    color: rgb(49 ,49 ,57);
+
+}
+
+#botonpagar{
+    width: 80px;
+    height: 25px;
+    border-radius: 5px 5px 5px 5px ;
+  
+    font-size: small;
+    background-color: rgb(246, 183, 118);
+    color: rgb(49 ,49 ,57);
+
 }
 .container {
     background: rgb(255, 255, 255);

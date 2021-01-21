@@ -75,113 +75,171 @@
       
     </div>
 
-    <div *ngIf="showSubCard">
-  <ion-row   *ngFor="let offer of offersList ;let i = index">
-    
+ <div *ngIf="showSubCard">
 
-    <ion-col size=1></ion-col>
-    
+
+
   
-     <ion-col  id="item" size=2>
+   <ion-row   *ngFor="let offer of offersList ;let i = index">
+    
+       <ion-col size=1></ion-col>
+       <ion-col size=10>
+        <ion-row id="item">
 
-         <img id="fotopersonal" 
-       style="margin-top: 15px; "  
-       src="{{offer.photoProvider}}"
-       (click)="showDialog(i)" >
-      </ion-col>
+       <ion-col size=3>
+          <img id="fotopersonal"
+                style="margin-top: 15px;"  
+               src="{{offer.photoProvider}}"  onError="this.src='assets/noImage.png'"
+               (click)="showDialog(i)" >
+        </ion-col>
+  
+         <ion-col size=4>
+          <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
+          <ion-row ><ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
+          </ion-row>
+          
+         </ion-col>
+  
+         <ion-col size=0.5></ion-col>
+
+         <ion-col size=1.5>
+          <img id="ico" 
+               style="width: 22px; height: 30px;margin-top: 24px;" 
+               src="../../assets/chatl.png"
+               (click)="openChat(offer.id)">
+              <!--  <ion-label style="font-size: xx-small;margin-top: -15px;">CHAT</ion-label>
+             -->
+         </ion-col>
+  
+         <ion-col size=1.5 >
+          <img id="icono" 
+          style="width: 22px; height: 22px;margin-top: 24px;" 
+          src="../../assets/acep.png"
+          (click)="showDialogAceptar()">
+          
+         </ion-col>
      
-      <ion-col id="item" size=4 >
-        <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
-        <ion-row style="margin-top: -15px;"><p style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</p>
-        </ion-row>
         
-      </ion-col>
-   
-     
-   
-      <ion-col id="item" size=1>
-        <img id="ico" 
-             style="width: 22px; height: 30px;margin-top: 24px;" 
-             src="../../assets/chatl.png"
-             (click)="openChat(offer.id)">
-            <!--  <ion-label style="font-size: xx-small;margin-top: -15px;">CHAT</ion-label>
-           -->
-   
+         <ion-col size=1.5>
+          <img id="icono" 
+          style="width: 22px; height: 22px;margin-top: 24px;" 
+          src="../../assets/nega.png"
+          (click)="cancelSOclient()">
+      
+         </ion-col>
+  
+        <!-- -----------------------Nueva card desplegable------------------- -->
+   <ion-row *ngIf="displayAceptar">
+  
+  <!-- <ion-col size=10>  -->
+    
+    <ion-card style="background-color: rgb(241, 241, 241);
+                      border-radius: 0px 0px 0px 0px;">
+  
+      <ion-row (click)="seleccionado()"
+                style="margin-top: 10px;">
         
-      </ion-col>
-      
-   <ion-col id="item" size=0.5></ion-col>
-      <ion-col id="item" size=1.5>
-        <img id="icono" 
-        style="width: 22px; height: 22px;margin-top: 24px;" 
-        src="../../assets/acep.png"
-        (click)="showDialogAceptar()">
-        
-      </ion-col>
-   
-      
-       <ion-col id="item" size=1.5>
-        <img id="icono" 
-        style="width: 22px; height: 22px;margin-top: 24px;" 
-        src="../../assets/nega.png"
-        (click)="cancelSOclient()">
-    
-      </ion-col>
-   
-      
-    <ion-col size=1></ion-col>
-   
-    
-    <p-dialog header=" " [(visible)]="display" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
-    [draggable]="false" [resizable]="false">
-    <ion-row>
-      <ion-col size=4>
-        <img  style="width: 60px; height: 60px;  " src="{{offer.photoProvider}}" onError="this.src='assets/noImage.png'">
-      </ion-col>
-      <ion-col size=8>
-
-  <h2> {{offer.client_name}}</h2>
-  <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false" 
-        ></p-rating>
-
-      
-</ion-col>
-    </ion-row>
-    
-     <ion-row>
-      <p *ngIf="offer.comment" style="margin-top: 5px;">
-         {{offer.comment}} 
-      </p>
-      <p *ngIf="!offer.comment" style="margin-top: 5px;">
-        No hay comentarios del trabajador
-     </p>
-     </ion-row> 
-   
-      
-    
+          <ion-checkbox mode="ios"
+                        color="primary"
+                        value="select"
+                        style="width: 20px; height: 20px;margin-left: 8px;"
+                        
+                        ></ion-checkbox>
+    <ion-label style="margin-left: 20px;">Pagar con tarjeta </ion-label>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col size=7>
+          <ion-input name="password"
+                     type="password"
+                     required
+                     [(ngModel)]="pass"
+                     minlength=5
+                     placeholder="Numero de la tarjeta">
+          </ion-input>
+        </ion-col>
+        <ion-col size=5>
+          <ion-input name="password"
+                     type="password"
+                     required
+                     [(ngModel)]="pass"
+                     minlength=5
+                     placeholder="Expiracion">
+          </ion-input>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size=7>
+          <ion-button id="botonguardar" >
+             Tarjeta guardada
+               </ion-button>
+        </ion-col>
+  
+        <ion-col size=5>
+          <ion-button id="botonpagar" >
+            Pagar
+               </ion-button>
+        </ion-col>
+      </ion-row>
+  
+    </ion-card>
+  
+<!-- </ion-col> -->
  
-    
-  </p-dialog>
-<!-- //--------------------- -->
-
-<p-dialog header="Opcion de pago " [(visible)]="displayAceptar" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
-    [draggable]="false" [resizable]="false">
-    <ion-input name="codigo"
-    type="number"
-    required
+  </ion-row> 
+     
   
-    placeholder="Numero de la tarjeta"
-              
-    ></ion-input>
-    <ion-button  id="botonpago" 
+        
+         </ion-row>
+       </ion-col>
+    
+      
+      
+       
+  
 
-                      color="primary"
-                        (click)="pagar()"                       
-                        >
-          Pagar
-             </ion-button>
-  </p-dialog>
-     </ion-row>
+       <ion-col size=1></ion-col>
+
+        
+
+  <p-dialog header=" " [(visible)]="display" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+  [draggable]="false" [resizable]="false">
+  <ion-row>
+    <ion-col size=4>
+      <img  style="width: 60px; height: 60px;  " src="{{offer.photoProvider}}" onError="this.src='assets/noImage.png'">
+    </ion-col>
+    <ion-col size=8>
+
+<h2> {{offer.client_name}}</h2>
+<p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false" 
+      ></p-rating>
+
+    
+</ion-col>
+  </ion-row>
+  
+   <ion-row>
+    <p *ngIf="offer.comment" style="margin-top: 5px;">
+       {{offer.comment}} 
+    </p>
+    <p *ngIf="!offer.comment" style="margin-top: 5px;">
+      No hay comentarios del trabajador
+   </p>
+   </ion-row> 
+   
+</p-dialog>
+
+      </ion-row>
+    
+   
+    
+      
+   
+    
+  
+
+
 
     </div>
   </div>

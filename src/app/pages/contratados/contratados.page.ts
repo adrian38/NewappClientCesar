@@ -12,6 +12,7 @@ export class ContratadosPage implements OnInit {
 
   task: TaskModel;
   displayClasificar:boolean=false;
+  displayDenunciar:boolean=false;
 
   constructor( private _taskOdoo:TaskOdooService) { }
 
@@ -30,6 +31,7 @@ export class ContratadosPage implements OnInit {
   }
 
   denunciar(){
+    this.displayDenunciar=true;
 
   }
 punto(){
