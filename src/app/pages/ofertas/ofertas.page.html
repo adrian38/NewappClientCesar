@@ -115,7 +115,7 @@
           <img id="icono" 
           style="width: 22px; height: 22px;margin-top: 24px;" 
           src="../../assets/acep.png"
-          (click)="showDialogAceptar()">
+          (click)="showDialogAceptar(offer.id)">
           
          </ion-col>
      
@@ -129,9 +129,9 @@
          </ion-col>
   
         <!-- -----------------------Nueva card desplegable------------------- -->
-   <ion-row *ngIf="displayAceptar">
+   <ion-row *ngIf="displayAceptar==offer.id">
   
-  <!-- <ion-col size=10>  -->
+
     
     <ion-card style="background-color: rgb(241, 241, 241);
                       border-radius: 0px 0px 0px 0px;">
@@ -185,7 +185,7 @@
   
     </ion-card>
   
-<!-- </ion-col> -->
+
  
   </ion-row> 
      
@@ -203,7 +203,7 @@
 
         
 
-  <p-dialog header=" " [(visible)]="display" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+  <!-- <p-dialog header=" " [(visible)]="display" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
   [draggable]="false" [resizable]="false">
   <ion-row>
     <ion-col size=4>
@@ -228,7 +228,7 @@
    </p>
    </ion-row> 
    
-</p-dialog>
+</p-dialog> -->
 
       </ion-row>
     
@@ -236,7 +236,32 @@
     
       
    
+      <p-dialog header=" " [(visible)]="display" [modal]="true"  [style]="{ width: '85vw' }" [baseZIndex]="1000" 
+      [draggable]="false" [resizable]="false">
+      <ion-row>
+        <ion-col size=4>
+          <img  style="width: 60px; height: 60px;  " src="{{task.photoProvider}}" onError="this.src='assets/noImage.png'">
+        </ion-col>
+        <ion-col size=8>
     
+    <h2> {{task.client_name}}</h2>
+    <p-rating  [ngModel]="3" readonly="true" stars="5" [cancel]="false" 
+          ></p-rating>
+    
+        
+    </ion-col>
+      </ion-row>
+      
+       <ion-row>
+        <p *ngIf="task.comment" style="margin-top: 5px;">
+           {{task.comment}} 
+        </p>
+        <p *ngIf="!task.comment" style="margin-top: 5px;">
+          No hay comentarios del trabajador
+       </p>
+       </ion-row> 
+       
+    </p-dialog>
   
 
 

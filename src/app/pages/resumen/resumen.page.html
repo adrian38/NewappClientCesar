@@ -53,8 +53,135 @@
     <ion-label >Resumen</ion-label>
   </div>
 
+  <ion-row style="margin-top: 40px;">
+    <ion-col size=1></ion-col>
+    <ion-col size=10>
 
-<ion-item-group style="margin-top: 40px;">
+      <div id="item">
+        <ion-row style="margin-top: 10px;" >
+          <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Titulo</ion-label>
+        </ion-row>
+ 
+        <ion-row style="margin-bottom: 9px;">
+          <ion-label style="margin-top: 5px;">{{titulo}}</ion-label>
+        </ion-row>
+        </div>
+
+
+        <div id="item">
+          <ion-row style="margin-top: 10px;" >
+            <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">¿Dispone de los materiales?</ion-label>
+          </ion-row>
+   
+          <ion-row style="margin-bottom: 9px;">
+            <ion-label style="margin-top: 5px;" *ngIf=" check">Si</ion-label>
+            <ion-label style="margin-top: 5px;" *ngIf=" !check">No</ion-label> 
+           </ion-row>
+          </div>
+
+          <div id="item">
+            <ion-row style="margin-top: 10px;" >
+              <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Fecha</ion-label>
+            </ion-row>
+     
+            <ion-row style="margin-bottom: 9px;">
+              <ion-label style="margin-top: 5px;">{{fecha | date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
+            </ion-row>
+            </div>
+
+            <div id="item">
+              <ion-row style="margin-top: 10px;" >
+                <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Hora</ion-label>
+              </ion-row>
+       
+              <ion-row style="margin-bottom: 9px;">
+                <ion-label style="margin-top: 5px;">{{hora}}</ion-label>
+              </ion-row>
+              </div>
+
+              <div id="item">
+                <ion-row style="margin-top: 10px;" >
+                  <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Direccion</ion-label>
+                </ion-row>
+         
+                <ion-row style="margin-bottom: 9px;">
+                 <ion-label>{{calle}} {{numero}} {{piso}}</ion-label>
+                  <ion-label>{{escalera}} {{portal}} {{cod_postal}}</ion-label>
+                  
+                </ion-row>
+                </div>
+
+                <div id="item">
+                  <ion-row style="margin-top: 10px;" >
+                    <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Comentario</ion-label>
+                  </ion-row>
+           
+                  <ion-row style="margin-bottom: 9px;">
+                    <ion-label *ngIf="comentario" style="margin-top: 5px;">{{comentario }}</ion-label>
+                    <ion-label *ngIf="!comentario" style="margin-top: 5px;">Esta solicitud no tiene comentario</ion-label>
+                  
+                  </ion-row>
+                  </div>
+
+                  <ion-row style="margin-top: 10px;" >
+                    <ion-label style="font-family:'HelveticaNeueLTStd-Bd' ;color: rgb(49 ,49 ,57);">Fotos</ion-label>
+                  </ion-row>
+
+                  <ion-row >
+            
+                    <ion-col size=4  style="margin-left: -3px;">
+                      <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                        <img   src="data:image/png;base64,{{foto0}}" onError="this.src='assets/noImage.png'"
+                        >
+                      </ion-card>
+                      </ion-col>
+                      <ion-col size=4  style="text-align: center;">
+                        <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                          <img   src="data:image/png;base64,{{foto1}}"  onError="this.src='assets/noImage.png'">
+                        </ion-card>
+                        </ion-col>
+                    
+                        <ion-col size=4  style="text-align: center;">
+                          <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                            <img  src="data:image/png;base64,{{foto2}}"  onError="this.src='assets/noImage.png'">
+                          </ion-card>
+                          </ion-col>
+                  </ion-row>
+
+                  <ion-row style="margin-top: 50px;">
+
+                    <ion-col size=1>
+                    </ion-col>
+
+                    
+                   
+                   <ion-col>
+                    <ion-button size=5
+                                
+                                (click)="crearSolicitud()"
+                                >Crear</ion-button>
+                   </ion-col>
+                   
+               
+                   
+                   <ion-col size=5>
+                    <ion-button 
+                    (click)="cerrarsolicitud()">Cancelar</ion-button>
+                   </ion-col>
+                   
+                   
+                   <ion-col size=1>
+                  </ion-col>
+                   
+                   
+                   </ion-row>
+
+    </ion-col>
+    <ion-col size=1></ion-col>
+
+  </ion-row >
+
+<!-- <ion-item-group style="margin-top: 40px;">
 <ion-item>
  <ion-col>
    <ion-row >
@@ -180,6 +307,6 @@
 
 
 
-
+ -->
 
 </ion-content>

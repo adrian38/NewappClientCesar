@@ -54,20 +54,22 @@
   </ion-row> 
  -->
 
- <ion-row>
+  <ion-row>
    <ion-col size=1></ion-col>
   <ion-col size=5>
-    <ion-card *ngIf="foto0" style="margin-top: 80px;text-align: start">
+     <ion-card  style="text-align: start">
       <img id="selecf" [src]="foto0 | safeUrlPipe"
           (click)="presentAlertConfirm(0)">
-    </ion-card>
+    </ion-card> 
+    
   </ion-col>
   
   <ion-col size=5>
-    <ion-card *ngIf="foto0" style="margin-top: 80px; margin-left: 30px;">
+    <ion-card  style="margin-left: 30px;">
       <img id="selecf" [src]="foto1 | safeUrlPipe"        
       (click)="presentAlertConfirm(1)">
     </ion-card>
+    
   </ion-col>
   <ion-col size=1></ion-col>
 </ion-row> 
@@ -75,14 +77,15 @@
 <ion-row>
   <ion-col size=4></ion-col>
  <ion-col size=4>
-   <ion-card *ngIf="foto2" style="margin-top: 30px;">
+   <ion-card  style="margin-top: 30px;">
      <img id="selecf" [src]="foto2 | safeUrlPipe"
          (click)="presentAlertConfirm(2)">
    </ion-card>
+  
  </ion-col>
  <ion-col size=4></ion-col>
 </ion-row> 
-
+ 
  
   <ion-row >
     <ion-col ></ion-col>

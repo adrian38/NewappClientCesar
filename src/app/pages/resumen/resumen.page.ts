@@ -47,6 +47,8 @@ export class ResumenPage implements OnInit {
   notificationError$: Observable<boolean>;
 
   foto0:string="";
+  foto1:string = "";
+  foto2:string = '';
 
   constructor(private datos:ObtSubSService,
     private date: DatePipe,
@@ -67,7 +69,10 @@ export class ResumenPage implements OnInit {
    ngOnInit() {
 
     this.foto0=this.datos.getfoto0();
-    console.log("tengo la foto")
+    this.foto1=this.datos.getfoto1();
+    this.foto2=this.datos.getfoto2();
+
+    console.log("tengo la foto",this.foto0)
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;

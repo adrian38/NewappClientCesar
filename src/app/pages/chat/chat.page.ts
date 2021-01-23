@@ -1,6 +1,6 @@
  import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { MessageModel } from 'src/app/models/message.model';
 import { TaskModel } from 'src/app/models/task.model';
@@ -42,7 +42,8 @@ export class ChatPage implements OnInit {
     public navCtrl:NavController,
     private datos:ObtSubSService,
     private menu: MenuController,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    private platform: Platform) {
 
 
     this.task = new TaskModel();
@@ -66,7 +67,10 @@ export class ChatPage implements OnInit {
 
   ngOnInit(): void {
 
-   
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/contratados', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
     this.messageSendOk$ = this._chatOdoo.getRequestedNotificationSendMessage$();
     this.subscriptionNewMsg = this.messageSendOk$.subscribe(messageSendOk =>{

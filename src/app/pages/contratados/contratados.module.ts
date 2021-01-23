@@ -8,6 +8,7 @@ import { ContratadosPageRoutingModule } from './contratados-routing.module';
 import {DialogModule} from 'primeng/dialog';
 import { ContratadosPage } from './contratados.page';
 import {RatingModule} from 'primeng/rating';
+import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,8 @@ import {RatingModule} from 'primeng/rating';
     IonicModule,
     ContratadosPageRoutingModule,
     DialogModule,
-    RatingModule
+    RatingModule,
+    ComponentsModule 
   ],
   declarations: [ContratadosPage]
 })

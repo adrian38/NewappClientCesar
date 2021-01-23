@@ -9,6 +9,7 @@ import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import {MessageService} from 'primeng/api';
 import { LightboxModule } from 'primeng/lightbox';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 
 
@@ -48,7 +49,7 @@ export class OfertasPage implements OnInit {
   
 
   display: boolean = false;
-  displayAceptar: boolean = false;
+  displayAceptar: number;
   fotoZoom: boolean = false;
   loading:HTMLIonLoadingElement = null;
 
@@ -62,7 +63,8 @@ export class OfertasPage implements OnInit {
     private messageService: MessageService,
     private router:Router,
     public loadingController: LoadingController,
-    private _lightbox: LightboxModule) {
+    private _lightbox: LightboxModule,
+    private subServ: ObtSubSService) {
 
 
       this.task=new TaskModel();
@@ -218,6 +220,17 @@ verubicacion(){
 
 showDialog(i){
   console.log(i);
+  
+    this.subServ.setposicion(i);
+
+    this.task = this.offersList[i];
+    this._taskOdoo.setTaskCesar(this.task);
+    console.log(this.task);
+    // console.log("f",this.solicitudesList[this.cant].id_string);
+   /*  this.id_string = this.offersList[i].id_string;
+    this.subServ.setidString(this.id_string);
+ */
+
   this.display=true;
 }
 
@@ -227,9 +240,15 @@ cancelSOclient() {
   this._taskOdoo.cancelSOclient(this.task.id);
   //this.isLoading3 = true;
 }
-showDialogAceptar(){
-  console.log("aki")
-  this.displayAceptar=true;
+showDialogAceptar(id){
+  console.log("aki",id)
+
+ /*  this.subServ.setposicion(id);
+
+  this.task = this.offersList[id];
+  this._taskOdoo.setTaskCesar(this.task);
+  console.log(this.task); */
+  this.displayAceptar=id;
  
 }
 async presentLoading() {

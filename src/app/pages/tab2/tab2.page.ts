@@ -23,7 +23,7 @@ export class Tab2Page {
   contratadosList: TaskModel[];
   
   verservicios:boolean = true;
-  verhistorial:boolean;
+  verhistorial:boolean=false;
  
   valorSegment:string;
   
@@ -79,7 +79,7 @@ export class Tab2Page {
 
 
    segChange(event){
-    //this.valorSegment = event.detail.value;
+    this.valorSegment = event.detail.value;
     console.log(this.valorSegment);
 
     if(this.valorSegment==="servicio"){
