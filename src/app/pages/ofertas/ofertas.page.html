@@ -1,10 +1,11 @@
 
-  <p-toast position="top-left" key="c"  [baseZIndex]="5000"   >
+  <p-toast  key="c"  [showTransformOptions]="'translateX(100%)'" [baseZIndex]="3" [style]="{width: '250px', height: '25px' , minWidth: '200px'}" 
+    >
     <ng-template let-message pTemplate="message">
         <div class="p-flex p-flex-column" style="flex: auto;">
             <div class="p-text-center">
                
-                <h4>{{message.summary}}</h4>
+                <!-- <h4>{{message.summary}}</h4> -->
                 <p>{{message.detail}}</p>
             </div>
            

@@ -2,12 +2,14 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController, NavController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
+import { Photo } from 'src/app/interfaces/photo';
 import { MessageModel } from 'src/app/models/message.model';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
+import { PhotoService } from 'src/app/services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class ChatPage implements OnInit {
   fecha:Date ;
   reloj:Date;
   displayAdjunto:boolean=false;
+  foto:string = "";
 
   subscriptionMessList: Subscription;
   subscriptionNewMsg: Subscription;
@@ -43,7 +46,8 @@ export class ChatPage implements OnInit {
     private datos:ObtSubSService,
     private menu: MenuController,
     private ngZone: NgZone,
-    private platform: Platform) {
+    private platform: Platform,
+    public photoService: PhotoService) {
 
 
     this.task = new TaskModel();
@@ -169,5 +173,39 @@ export class ChatPage implements OnInit {
    this.displayAdjunto=true;
   }
 
+  documento(){
+    console.log("documento")
+  }
+  async camara(){
+    console.log("camara")
+    let photo: Photo = await this.photoService.addNewToCamara();
+    console.log( "Foto",photo.webviewPath);
+    if(photo){
+      this.foto = photo.webviewPath;
+     
+      //this.datos.setfoto0(this.foto0);
+      /* this.foto064=this.photoService.devuelve64();
+      this.datos.setfoto0(this.foto064);
+      console.log("paso..../",this.photoService.devuelve64());
+      console.log("mi foto",this.foto0); */
+     
+    }
+  }
+  async galeria(){
+    console.log("galeria")
+    let photos: Photo[] = await this.photoService.addNewToGallery();
+    console.log("Fotos",JSON.stringify(this.photoService.photos));
+    if(photos.length == 1){
+     
+        this.foto = photos[0].webviewPath;
+        /* this.foto064=this.photoService.devuelve64();
+        this.datos.setfoto0(this.foto064);
+        console.log("paso..../",this.photoServ */
+        
+        
+      
+  }
+
+}
 }
  

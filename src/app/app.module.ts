@@ -34,7 +34,7 @@ import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 
-registerLocaleData(localeEsAr);
+//registerLocaleData(localeEsAr);
 
 import { AgmCoreModule } from '@agm/core';
 import { ComponentsModule } from './components/components.module';

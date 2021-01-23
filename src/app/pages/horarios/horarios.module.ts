@@ -9,6 +9,7 @@ import { HorariosPageRoutingModule } from './horarios-routing.module';
 import { HorariosPage } from './horarios.page';
 import {CalendarModule} from 'primeng/calendar';
 import { ComponentsModule } from 'src/app/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CalendarModule
 
   ],
+
+
   declarations: [HorariosPage]
 })
 export class HorariosPageModule {}

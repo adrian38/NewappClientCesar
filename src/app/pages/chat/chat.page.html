@@ -170,15 +170,17 @@
 
            
             <ion-row>
-              <ion-col style="text-align: center ;">
+              <ion-col style="text-align: center ;" (click)="documento()">
                 <img style="width:38px;height: 40px; " src="../../../assets/documento.png">
-             <ion-label style="font-size: small;">Documento</ion-label>
+             <ion-label style="font-size: small;"
+                        >Documento</ion-label>
               </ion-col>
-              <ion-col style="text-align: center ;">
+              <ion-col style="text-align: end ;" (click)="camara()">
                 <img style="width:42px;height: 38px;" src="../../../assets/cam.png">
-                <ion-label style="font-size: small;">Camara</ion-label>
+                <ion-label style="font-size: small;" >Camara</ion-label>
               </ion-col>
-              <ion-col style="text-align: end ;">
+              <ion-col style="text-align: end ;"
+                       (click)="galeria()">
                 <img style="width:42px;height: 38px;" src="../../../assets/galeria.png">
                 <ion-label style="font-size: small;">Galeria</ion-label>
               </ion-col>
