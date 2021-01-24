@@ -72,7 +72,7 @@ export class ChatPage implements OnInit {
   ngOnInit(): void {
 
     this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/contratados', {animated: true, animationDirection: 'back' }) ;
+      this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
         
       });
 
@@ -190,6 +190,7 @@ export class ChatPage implements OnInit {
       console.log("mi foto",this.foto0); */
      
     }
+    this.displayAdjunto=false;
   }
   async galeria(){
     console.log("galeria")
@@ -205,7 +206,7 @@ export class ChatPage implements OnInit {
         
       
   }
-
+  this.displayAdjunto=false;
 }
 }
  

@@ -195,6 +195,7 @@ segChange(event){
   if(this.valorSegment==="detalle"){
     this.veroferta=false;
     this.verdetalles=true;
+    this.displayAceptar=-1;
     console.log("etiqueta",this.verdetalles);
   }
 
@@ -205,22 +206,24 @@ segChange(event){
 
 openChat(id) {
   console.log(id);
+  this.displayAceptar=-1;
   this._chatOdoo.setIdPo(id);
-  //this.navCtrl.navigateRoot(['/chat'], {animated: true, animationDirection: 'back' }) ;
+  this.navCtrl.navigateRoot(['/chat'], {animated: true, animationDirection: 'back' }) ;
   
- this.router.navigate(['/chat']);
+ //this.router.navigate(['/chat']);
 }
 
 verubicacion(){
   console.log("lati",this.task.address.latitude);
   console.log("long",this.task.address.longitude);
+  this.subServ.setruta("/ofertas");
   this.navCtrl.navigateRoot('/detallemapa', {animated: true, animationDirection: 'back' }) ;
          
 }
 
 showDialog(i){
   console.log(i);
-  
+  this.displayAceptar=-1;
     this.subServ.setposicion(i);
 
     this.task = this.offersList[i];
@@ -237,6 +240,7 @@ showDialog(i){
 cancelSOclient() {
 
   console.log("CancelarSo");
+  this.displayAceptar=-1;
   this._taskOdoo.cancelSOclient(this.task.id);
   //this.isLoading3 = true;
 }
@@ -261,10 +265,7 @@ async presentLoading() {
   return  this.loading.present();
 }
 
-zoom(){
-  this.navCtrl.navigateRoot('/fotozoom', {animated: true, animationDirection: 'back' }) ;
-    
-}
+
 
 
 }

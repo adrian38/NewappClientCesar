@@ -38,6 +38,7 @@ export class ObtSubSService {
     longitud:number;
     latitud:number;
     coordenadas:boolean=false;
+    ruta:string="";
 
    //-----------------------------------------------------------
 
@@ -254,6 +255,13 @@ getfoto2(){
   return this.foto2;
 }
 
+setruta(r){
+  this.ruta=r;
+}
+
+getruta(){
+ return this.ruta; 
+}
   //-------------------------------------------------------------------------
 
 

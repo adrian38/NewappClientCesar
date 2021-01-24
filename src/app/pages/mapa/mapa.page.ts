@@ -17,8 +17,7 @@ export class MapaPage implements OnInit {
   marcadores: Marcador[] = [];
 
   title = 'My first AGM project';
-  /* lat =23.087365;
-  lng =  -82.426493;  */ 
+  
   lat :number;
   lng :number; 
 coordenadas:boolean=false;

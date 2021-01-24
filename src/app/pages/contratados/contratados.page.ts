@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
 import { Photo } from 'src/app/interfaces/photo';
 import { TaskModel } from 'src/app/models/task.model';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 
@@ -24,7 +25,8 @@ export class ContratadosPage implements OnInit {
                 public photoService: PhotoService,
                 public alertController: AlertController,
                 public navCtrl:NavController,
-                private platform: Platform) { }
+                private platform: Platform,
+                private subServ: ObtSubSService) { }
 
   ngOnInit() {
 
@@ -35,7 +37,7 @@ export class ContratadosPage implements OnInit {
     this._taskOdoo.requestOffersForTask(this.task.id_string);
 
     this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+      this.navCtrl.navigateRoot('/tabs/tab2', {animated: true, animationDirection: 'back' }) ;
         
       });
    
@@ -150,6 +152,13 @@ verFactura(){
    this.navCtrl.navigateRoot('/factura', {animated: true, animationDirection: 'back' }) ;
       
    
+}
+verubicacion(){
+  console.log("lati",this.task.address.latitude);
+  console.log("long",this.task.address.longitude);
+  this.subServ.setruta("/contratados");
+  this.navCtrl.navigateRoot('/detallemapa', {animated: true, animationDirection: 'back' }) ;
+         
 }
 
 }

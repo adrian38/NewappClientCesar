@@ -54,25 +54,13 @@
 
     <ion-row style="margin-top: 30px;">
       <ion-col size=1></ion-col>
-    <ion-col size=3>Fecha</ion-col>
-      <ion-col size=7>
-        
-
+      <ion-col size=10 style="text-align: center;">
         <p-calendar [(ngModel)]="fecha" 
-                    dateFormat="D. d M yy"
-                    [readonlyInput]="true"
-                    ></p-calendar>
-       <!-- <calendar 
-       style="margin-top: 20px;"
-       [calendarMode]="calendar.mode"
-       [currentDate]="calendar.currentDate"
-       (onTitleChanged)="onViewTitleChanged($event)"
-       (onCurrentDateChanged)="onCurrentDateChanged($event)"
-       >  
-     </calendar>
-  -->
-   
+                  
+                    [inline]="true"
+                    locale="Es"></p-calendar>
       </ion-col>
+ 
       <ion-col size=1></ion-col>
     </ion-row>
     
@@ -90,7 +78,8 @@
     <p-calendar [(ngModel)]="reloj" 
                  showTime="true" 
                  hourFormat="12"
-                 [timeOnly]="true"></p-calendar>
+                 [timeOnly]="true"
+                 ></p-calendar>
     </ion-col>
     <ion-col size=1></ion-col>
   </ion-row>

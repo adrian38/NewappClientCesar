@@ -57,10 +57,10 @@ export class ResumenPage implements OnInit {
     public navCtrl:NavController,
     public photoService: PhotoService, 
     public actionSheetController: ActionSheetController,
-    public alertController: AlertController,
     private platform: Platform,
     private messageService: MessageService,
     public sanitizer: DomSanitizer,
+    public alertCtrl: AlertController
    ) { 
 
       
@@ -119,8 +119,9 @@ export class ResumenPage implements OnInit {
     
     if (notificationNewSoClient) {
     console.log("Se creo correctamente la tarea");
-    this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Se creo correctamente la tarea.'});
-  
+    this.messageService.add({ severity: 'success', detail: 'Tarea creada correctamente'});
+    /* this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Tarea creada correctamente'});
+   */
      
     setTimeout(() => {
       this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
@@ -137,9 +138,9 @@ export class ResumenPage implements OnInit {
     }
 
   cerrarsolicitud(){
-this.borrar_campos();
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
-      
+    
+    this.presentAlert();
+    
   
   }
   crearSolicitud(){
@@ -209,4 +210,37 @@ this.task.photoNewTaskArray[2]= this.datos.getfoto2();
   
     this.datos.setcomentario("");
   }
+
+  verubicacion(){
+    this.navCtrl.navigateRoot('/maparesumen', {animated: true, animationDirection: 'back' }) ;
+      
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Desea cancelar la solicitud',
+     
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: (datos) => {
+            this.borrar_campos();
+            this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+      
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }  
 }

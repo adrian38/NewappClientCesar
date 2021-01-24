@@ -82,6 +82,10 @@ const routes: Routes = [
     path: 'factura',
     loadChildren: () => import('./pages/factura/factura.module').then( m => m.FacturaPageModule)
   },
+  {
+    path: 'maparesumen',
+    loadChildren: () => import('./pages/maparesumen/maparesumen.module').then( m => m.MaparesumenPageModule)
+  },
 
  
 
