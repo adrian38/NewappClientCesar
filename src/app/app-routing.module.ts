@@ -86,6 +86,10 @@ const routes: Routes = [
     path: 'maparesumen',
     loadChildren: () => import('./pages/maparesumen/maparesumen.module').then( m => m.MaparesumenPageModule)
   },
+  {
+    path: 'aceptarregistro',
+    loadChildren: () => import('./pages/aceptarregistro/aceptarregistro.module').then( m => m.AceptarregistroPageModule)
+  },
 
  
 

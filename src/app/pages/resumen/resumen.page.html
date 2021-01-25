@@ -5,12 +5,11 @@
 [expandHeader]="true" expandText="{{servicio}}"
 (clickedClose)="cerrarsolicitud($event)"></app-header>
 
-<ion-content>
- 
+<div id="barra" slot="fixed">
+  <ion-label >Resumen</ion-label>
+</div>
 
-  <div id="barra">
-    <ion-label >Resumen</ion-label>
-  </div>
+<ion-content>
 
   <ion-row style="margin-top: 40px;">
     <ion-col size=1></ion-col>

@@ -1,0 +1,46 @@
+
+<ion-content>
+
+  <h1>CREAR CUENTA</h1>
+
+  <ion-row style="margin-top: 25px;">
+
+    <ion-col size=1></ion-col>
+    <ion-col size=10>
+      <p style="font-size: small;  text-align: center;">
+        El trabajo consistió en la aplicación de una metodología de evaluación de riesgos para la salud por exposición a desechos peligrosos a nivel local en la Litográfica Habana. Para la aplicación de la metodología se realizaron visitas a la Litográfica, así como entrevistas a especialistas del Centro Municipal de Higiene y Epidemiología (CMHE) para conocer los antecedentes del sitio. Se aplicó una encuesta a líderes formales de la comunidad para identificar las preocupaciones de la comunidad en relación con la salud y la contaminación del medio ambiente. La metodología es de rápida aplicación por lo que permite adoptar medidas preventivas durante el desarrollo de la misma.
+      </p>
+    </ion-col>
+    <ion-col size=1></ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size=1></ion-col>
+    <ion-col size=10>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-checkbox mode="ios"
+                        color="primary"
+                        value="select"
+                        style="width: 15px; height: 15px;"
+          
+          (click)="condiciones()"></ion-checkbox>
+    <ion-label style="margin-left: 10px; font-size: small;">Acepto los terminos y condiciones </ion-label>
+        </ion-item> 
+      </ion-list>
+    </ion-col>
+    <ion-col size=1></ion-col>
+    
+
+  </ion-row>
+
+  <ion-row >
+    <ion-col ></ion-col>
+    <ion-col>
+       <ion-button [disabled]=aceptar>
+       Aceptar
+    </ion-button> </ion-col>
+    
+    <ion-col></ion-col>
+  </ion-row>
+</ion-content>
