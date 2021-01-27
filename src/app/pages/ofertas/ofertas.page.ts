@@ -26,7 +26,7 @@ export class OfertasPage implements OnInit {
   userType:string="";
   user : UsuarioModel;
   task: TaskModel;
-  //foto0:string = '../../../assets/icon/noImage.svg';
+  foto0:string = '../../../assets/icon/noImage.svg';
    
   offersList:TaskModel[];
 
@@ -52,6 +52,10 @@ export class OfertasPage implements OnInit {
   displayAceptar: number;
   fotoZoom: boolean = false;
   loading:HTMLIonLoadingElement = null;
+  
+  displayBasic2;
+  images:any[];
+  activeIndex ;
 
   constructor(
     public navCtrl:NavController,
@@ -93,6 +97,8 @@ ngOnDestroy(): void {
 }
 
 ngOnInit() {
+
+  
 
   this.platform.backButton.subscribeWithPriority(10, () => {
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
@@ -170,6 +176,7 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
     }
   });
 });
+
 }
 
 
@@ -266,6 +273,11 @@ async presentLoading() {
 }
 
 
-
+imageClick(index: number) {
+  this.activeIndex = index;
+  this.foto0=this.task.photoNewTaskArray[index];
+  this.displayBasic2 = true;
+  
+}
 
 }

@@ -1,8 +1,5 @@
 
-/* img {
-    width: 330px;
 
-} */
 
 #imgGPS{
     width: 39px;
@@ -34,8 +31,9 @@ ion-input:focus-within{
     width: 155px;
     height: 39px;
     border-radius: 5px 5px 5px 5px ;
-    background-color:  rgb(246, 183, 118);
-    color: black;
+    font-family: 'HelveticaNeueLTStd-Bd';
+    background-color: rgb(246, 183, 118);
+    color: rgb(49 ,49 ,57);
 } 
 
 
@@ -44,6 +42,7 @@ ion-card{
     width:110px;
     height: 110px;
     border-radius: 5px 5px 5px 5px;
+  
     }
     
     #selecf{

@@ -11,7 +11,7 @@ import {ToastModule} from 'primeng/toast';
 import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
 
-
+import {GalleriaModule} from 'primeng/galleria';
 import {LightboxModule} from 'primeng/lightbox';
 
 
@@ -25,6 +25,7 @@ import {LightboxModule} from 'primeng/lightbox';
     DialogModule,
     RatingModule,
     LightboxModule,
+    GalleriaModule
   
   
   ],

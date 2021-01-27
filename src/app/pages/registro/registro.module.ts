@@ -10,7 +10,7 @@ import { RegistroPage } from './registro.page';
 import {AvatarModule} from 'primeng/avatar';
 import { SafeUrlPipePipe } from 'src/app/pipes/safe-url-pipe.pipe';
 import { ComponentsModule } from 'src/app/components/components.module';
-
+import {CalendarModule} from 'primeng/calendar';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +18,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     RegistroPageRoutingModule,
     AvatarModule,
-    ComponentsModule
+    ComponentsModule,
+    CalendarModule
+   
     
   ],
   declarations: [RegistroPage]

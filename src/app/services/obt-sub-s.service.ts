@@ -19,7 +19,7 @@ export class ObtSubSService {
    notificationSetTabs2$ = new Subject<boolean>();
    notificationSetTabs3$ = new Subject<boolean>();
    
-   calle:string="";
+    calle:string="";
     numero:string="";
     portal:string="";
     escalera:string="";
@@ -35,6 +35,13 @@ export class ObtSubSService {
     dat:string;
     tim:string;
 
+    nombre:string="";
+    telefono:number;
+    Fech_nacimiento:string="";
+    correo:string="";
+    contraseña:string="";
+
+
     longitud:number;
     latitud:number;
     coordenadas:boolean=false;
@@ -42,7 +49,7 @@ export class ObtSubSService {
 
    //-----------------------------------------------------------
 
-    nombre:string="";
+    
     i:number=0;
     idString:String;
     private subServicioActual:string;
@@ -98,7 +105,49 @@ getNotificationSetTab3$(): Observable<boolean> {
 
   getHistorialList(){
     return this.HistorialList;
+
   }
+
+  setnombre(n:string){
+    this.nombre=n
+  }
+  getnombre(){
+      return this.nombre;
+  }
+
+  setcorreo( c:string){
+  this.correo=c;
+  }
+
+  getcorreo(){
+    return this.correo;
+  }
+
+  setcontraseña( c:string){
+    this.contraseña=c;
+    }
+  
+    getcontraseña(){
+      return this.contraseña;
+    }
+
+    setfecha(f){
+this.Fech_nacimiento=f;
+
+    }
+     
+    getfecha(){
+    return this.Fech_nacimiento
+    }
+
+    settelefono(t){
+this.telefono=t;
+    }
+    gettelefono(){
+    return this.telefono;
+    }
+
+
   setUtiles(v:boolean){
     this.estado=v;
     

@@ -335,19 +335,19 @@
           </ion-row>
           <ion-row >
             
-            <ion-col size=4  style="text-align: center;">
+            <ion-col size=4  style="text-align: center;" (click)="imageClick(0)">
               <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                 <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'" 
                >
               </ion-card>
               </ion-col>
-              <ion-col size=4  style="text-align: center;">
+              <ion-col size=4  style="text-align: center;"(click)="imageClick(1)">
                 <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                   <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
                 </ion-card>
                 </ion-col>
             
-                <ion-col size=4  style="text-align: center;">
+                <ion-col size=4  style="text-align: center;"(click)="imageClick(2)">
                   <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                     <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
                   </ion-card>
@@ -357,6 +357,17 @@
 
 
           </ion-row>
+<div >
+  <p-galleria [(value)]="foto0" [(visible)]="displayBasic2" [containerStyle]="{'max-width': '250px'}" [numVisible]="3"
+          [circular]="true" [fullScreen]="true" [showItemNavigators]="false" [showThumbnails]="false" [baseZIndex]="100" >
+          <ng-template pTemplate="item" let-item
+          >
+            <img src="{{foto0}}"  style="width: 95%; display: block;" />
+          </ng-template>
+        
+        </p-galleria>
+</div>
+        
      <!-- 
             <ion-row >
               <ion-label style="font-size: smaller;">Despues</ion-label>
@@ -410,6 +421,6 @@
   </div>
 
  
-  
+
 
 </ion-content>

@@ -17,37 +17,19 @@
 
    
     
-      <ion-row >
-        <ion-col size=4></ion-col>
+      <ion-row  style="margin-top: 30px;">
+        <ion-col size=3.5></ion-col>
 
-        <ion-col size=4 style="text-align:start;">
-           <ion-card *ngIf="avatarusuario" style="margin-top: 30px;text-align: start">
+        <ion-col size=5 style="text-align:center;">
+           <ion-card *ngIf="avatarusuario" >
                     <img id="selecf" [src]="avatarusuario | safeUrlPipe "
                     (click)="presentAlertConfirm()" >
                   </ion-card>
                   
         </ion-col>
-        
 
-        <!-- <ion-row style="margin-top: 25px;">
-          <ion-col size=4></ion-col>
-  
-          <ion-col size=4 *ngIf="verFotoInicial"  >
-            <p-avatar image = "../../../assets/registro.png" size="xlarge" (click)="presentAlertConfirm()"></p-avatar>
-            
-           
-          </ion-col> -->
-
-   
-
-         
-    
-    <!-- <ion-col size="4"
-      *ngFor="let photo of photoService.photos; index as position">
-        <ion-img *ngIf="verFoto" [src]="photo.webviewPath" (click)="presentAlertConfirm()"></ion-img>
-    </ion-col>
  
-        <ion-col size=4 ></ion-col> -->
+        <ion-col size=3.5></ion-col> 
       </ion-row>
  
     
@@ -86,7 +68,7 @@
                                    type="text"
                                    required
                                    [(ngModel)]="nombre"
-                                   placeholder="Jose Antonio Garcia Diaz "
+                                  
                                    
 
                                    ></ion-input>
@@ -96,15 +78,33 @@
                   
 
                    <div id="datos">
-                    <ion-row>
+                     <ion-row>
                       <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                       <ion-col size="11">
                         <ion-label>Fecha de nacimiento</ion-label>
                       </ion-col>
-                    </ion-row>
+                    </ion-row> 
+                    
                   </div>
+                  
+                  <ion-row style="margin-top:4px ;">
+                    <ion-col size="1.3" style="background: rgb(255, 255, 255);"></ion-col>
+                    <ion-col size="9.4" style="border: 1px solid  rgb(246, 183, 118); border-radius: 5px 5px 5px 5px;height: 41px;   background-color: rgb(245, 245, 245);">
+                     
+                      <ion-datetime displayFormat="DD MMMM,YYYY" 
+                      name="calendario"
+                     
+                      cancelText="Cancelar"
+                      doneText="Cambiar"
+                      [(ngModel)]="fecha"
+                      style="margin-left: 0px;padding-left: 0px;margin-bottom: 3px;"></ion-datetime>
+                    </ion-col>
+                   
+                    <ion-col size="1.3" style="background: rgb(255, 255, 255);"></ion-col>
+                  </ion-row>
+                  
    
-                      <ion-row >
+                 <!--      <ion-row >
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                         <ion-col size="10">
                           <ion-input name="fecha"
@@ -117,7 +117,7 @@
                                       ></ion-input>
                                     </ion-col >
                                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                      </ion-row>
+                      </ion-row> -->
                            
 
                    <div id="datos">
@@ -136,7 +136,7 @@
                                        type="text"
                                        required
                                        [(ngModel)]="correo"
-                                       placeholder="jagd@gmail.com "
+                                      
                                        
 
                                        
@@ -157,10 +157,10 @@
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                         <ion-col size="10">
                           <ion-input name="password"
-                                      type="password"
+                                      type="text"
                                       required
                                       [(ngModel)]="pass"
-                                      placeholder="***** "
+                                     
                                       
   
                                       ></ion-input>
@@ -182,7 +182,7 @@
                                       type="tel"
                                       required
                                       [(ngModel)]="telefono"
-                                      placeholder="55689562"
+                                     
                                       
   
                                       ></ion-input>
@@ -197,7 +197,7 @@
                           <ion-input name="calle"
                                       type="text"
                                       placeholder="Calle"
-                                      [(ngModel)]="calle"
+                                   
                                       ></ion-input>
                                     </ion-col>
                                 
@@ -251,7 +251,7 @@
                                     <ion-col size="5"   style="margin-right: 5px;">
                                       <ion-input name="cod_postal"
                                                   type="number"
-                                                  placeholder="Cod.Postal"
+                                                  placeholder="Cod_pstal"
                                                   [(ngModel)]="cod_postal"
                                                   ></ion-input>
                                                 </ion-col>
@@ -303,7 +303,6 @@
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
                       
-                      color="primary"
                         (click)="iniciar()">
            REGISTRARSE
              </ion-button>
@@ -335,5 +334,4 @@
   </ion-grid>  -->
  
 
-  
 </ion-content>
