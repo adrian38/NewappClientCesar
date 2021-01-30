@@ -214,7 +214,10 @@
       [draggable]="false" [resizable]="false">
       <ion-row>
         <ion-col size=4>
-          <img  style="width: 60px; height: 60px;  " src="{{task.photoProvider}}" onError="this.src='assets/noImage.png'">
+          <img  style="width: 60px; height: 60px; border: 0.5px solid  rgb(241, 241, 241);
+                        border-radius: 7px 7px 7px 7px; margin-top: 17px; " 
+                        src="{{task.photoProvider}}" 
+                        onError="this.src='assets/noImage.png'">
         </ion-col>
         <ion-col size=8>
     
@@ -302,9 +305,11 @@
             
           <ion-col size=10>
               <ion-row>
-                <ion-label>Calle: {{task.address.street}}, Numero: {{task.address.number}} </ion-label>
-                <ion-label >Piso: {{task.address.floor}}, Escalera: {{task.address.stair}} </ion-label>
-                <ion-label>Portal: {{task.address.portal}}, C_postal: {{task.address.cp}} </ion-label>
+                <ion-label>{{task.address.street}}, Numero: {{task.address.number}}, </ion-label>
+                <ion-label *ngIf="task.address.door" >Piso: {{task.address.floor}}, </ion-label>
+                <ion-label *ngIf="task.address.stair" >Escalera: {{task.address.stair}}, </ion-label>
+                <ion-label *ngIf="task.address.portal" >Portal: {{task.address.portal}},  </ion-label>
+                <ion-label *ngIf="task.address.cp">  C_postal: {{task.address.cp}} </ion-label>
               </ion-row>
             </ion-col >
             <ion-col size=2 >

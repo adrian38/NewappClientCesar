@@ -39,7 +39,7 @@ export class RegistroPage implements OnInit {
  cod_postal:string="";
  escalera:string="";
  fechactual:string="";
- avatarusuario =  '../../../assets/icon/noImage.svg';
+ avatarusuario =  '../../../assets/fotoadd.png';
  avatarusuario64:string="";
 
 

@@ -21,9 +21,12 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 })
 export class FotoPage implements OnInit {
 
-  foto0:string = '../../../assets/icon/noImage.svg';
+ /*  foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
-  foto2:string = '../../../assets/icon/noImage.svg';
+  foto2:string = '../../../assets/icon/noImage.svg'; */
+  foto0:string = '../../../assets/fotoadd.png';
+  foto1:string = '../../../assets/fotoadd.png';
+  foto2:string = '../../../assets/fotoadd.png';
   foto064:string = '';
   foto164:string = '';
   foto264:string = '';

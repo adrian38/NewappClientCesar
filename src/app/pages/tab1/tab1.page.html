@@ -2,7 +2,10 @@
 class="animated fadeIn"></app-header>
 
 <ion-content class="animated fadeIn">
-  <ion-fab vertical="bottom" style="margin-right: 10px;"
+  
+    
+    
+      <ion-fab vertical="bottom" style="margin-right: 10px;"
     horizontal="end" 
     slot="fixed"
     (click)="irSolicitud()" 
@@ -12,10 +15,11 @@ class="animated fadeIn"></app-header>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-grid  style="padding-left: 30px; padding-right: 30px;">
+  <ion-grid  >
+
     <ion-list>  
       <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
-<ion-item style="visibility: false;" lines="none">
+      <ion-item style="visibility: false;" lines="none">
   <app-solicitud 
   (click)="in(i)"              
   [Solicitud]="this.Solicitud"
@@ -32,6 +36,11 @@ class="animated fadeIn"></app-header>
       
 
       
-    </ion-list>    
+    </ion-list> 
+
+      
   </ion-grid>
+
+
+  
 </ion-content>

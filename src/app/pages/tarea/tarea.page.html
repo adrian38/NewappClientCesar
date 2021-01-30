@@ -25,14 +25,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-row style="margin-top: 70px;margin-left: 55px;">
+  <ion-row style="margin-top: 50px;margin-left: 55px;">
     <div id="barra">
-      <ion-label >Dispone de los siguientes servicios</ion-label>
+      <ion-label >¿Que tipo de servicio necesita?</ion-label>
    </div>
   </ion-row>
        
   
-  <ion-list>
+<!--   <ion-list>
     <ion-item *ngFor="let serv of servicios_activos, let i = index" >
       <ion-checkbox mode="ios"
                     color="primary"
@@ -41,7 +41,37 @@
       (click)="seleccionado(i)"></ion-checkbox>
 <ion-label style="margin-left: 20px;">{{this.serv | uppercase}} </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
+  <ion-row style="margin-top: 20px;">
+    <ion-col size=1></ion-col>
+    <ion-col size=4.5>
+      <ion-row>
+        <img src="../../../assets/fontaneria.png"
+             (click)="seleccionado(0)">
+      </ion-row>
+      <ion-row>
+        <ion-label style="margin-left: 20px;">{{this.servicios_activos[0]}} </ion-label>
+      </ion-row>
+     
+    </ion-col>
+    <ion-col size=1></ion-col>
+    <ion-col size=4.5>
+      <ion-row>
+        <img src="../../../assets/fontaneria.png"
+              (click)="seleccionado(1)">
+      </ion-row>
+      <ion-row>
+        <ion-label style="margin-left: 20px;">{{this.servicios_activos[0]}} </ion-label>
+      </ion-row>
+    </ion-col>
+    <ion-col size=1></ion-col>
+  </ion-row>
+ 
+              
+  
+    
+ 
+ 
     
 </ion-content>

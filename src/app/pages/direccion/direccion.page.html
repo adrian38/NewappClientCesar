@@ -116,11 +116,18 @@
                 
                  
                   <ion-col size="3" style="text-align: end; margin-top: 5px;" >
-                    <div>
-                      <img   id="logo1"  
-                               (click)="ubicacion()"
-                              src="../../assets/ubicacion.png"
-                      > 
+                    <div >
+                   <ion-card id="logo1" 
+                             [disabled]="Autofill"
+                             (click)="ubicacion()">
+                    <img   style="width: 51px;height: 51px;"   
+                           src="../../assets/ubicacion.png"
+                   >
+                   </ion-card>
+                    
+                  
+                    
+
                     </div>
                   </ion-col>
  
@@ -140,7 +147,7 @@
     <ion-col ></ion-col>
     <ion-col>
        <ion-button id="boton" (click)="goto()"
-       [disabled]="formulario.invalid && !Autofill || !coordenadas"
+       [disabled]="(formulario.invalid || !coordenadas) && !Autofill  "
       >
       Siguiente
     </ion-button> </ion-col>
@@ -153,3 +160,4 @@
 
 
 </ion-content>
+<!-- [disabled]="formulario.invalid && !Autofill || !coordenadas" -->
