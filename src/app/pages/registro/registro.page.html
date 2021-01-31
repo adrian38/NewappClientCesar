@@ -44,9 +44,7 @@
 
   
         
-  <form>
-
-
+  <form #formulario="ngForm">
 
          <ion-row >
            <ion-col >
@@ -68,10 +66,12 @@
                                    type="text"
                                    required
                                    [(ngModel)]="nombre"
-                                  
-                                   
-
+                                   #nom_apell="ngModel"
                                    ></ion-input>
+                                   <div id="link">
+                                    <small *ngIf= "nom_apell.invalid && nom_apell.touched"   
+                                    class="text-danger">Debe escribir su nombre completo</small>
+                                   </div>
                                  </ion-col >
                                  <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                    </ion-row>
@@ -97,7 +97,14 @@
                       cancelText="Cancelar"
                       doneText="Cambiar"
                       [(ngModel)]="fecha"
-                      style="margin-left: 0px;padding-left: 0px;margin-bottom: 3px;"></ion-datetime>
+                      
+                      required
+                      style="margin-left: 0px;padding-left: 0px;padding-bottom: 3px;">
+                    </ion-datetime>
+                    <div id="link">
+                      <small *ngIf= "calen"   
+                      class="text-danger">Debe ser mayor de 18 años</small>
+                     </div>
                     </ion-col>
                    
                     <ion-col size="1.3" style="background: rgb(255, 255, 255);"></ion-col>
@@ -136,12 +143,13 @@
                                        type="text"
                                        required
                                        [(ngModel)]="correo"
-                                      
-                                       
-
-                                       
-   
+                                       #corr="ngModel"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                        ></ion-input>
+                                       <div id="link">
+                                        <small *ngIf= "corr.invalid && corr.touched"   
+                                        class="text-danger">Debe escribir su correo</small>
+                                       </div>
                                      </ion-col >
                                      <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                        </ion-row>
@@ -157,13 +165,16 @@
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                         <ion-col size="10">
                           <ion-input name="password"
-                                      type="text"
+                                      type="password"
                                       required
                                       [(ngModel)]="pass"
-                                     
-                                      
-  
+                                      minlength=5
+                                      #contra="ngModel"
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "contra.invalid && contra.touched"   
+                                        class="text-danger">Su pass debe ser de 5 caracteres</small>
+                                       </div>
                                     </ion-col >
                                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                       </ion-row>
@@ -176,16 +187,21 @@
                         </ion-row>
                       </div>
                       <ion-row >
+
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                         <ion-col size="10">
                           <ion-input name="telefono"
                                       type="tel"
                                       required
                                       [(ngModel)]="telefono"
-                                     
-                                      
-  
+                                      minlength=8
+                                      #tele="ngModel"
+                    
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "tele.invalid && tele.touched"   
+                                        class="text-danger">El telefono contiene 8 digitos</small>
+                                       </div>
                                     </ion-col >
                                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                       </ion-row>
@@ -196,9 +212,16 @@
                         <ion-col size="5">
                           <ion-input name="calle"
                                       type="text"
+                                      [(ngModel)]="calle"
                                       placeholder="Calle"
-                                   
+                                      #call="ngModel"
+                                      required
+                                      
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "call.invalid && call.touched"   
+                                        class="text-danger">Campo obligatorio</small>
+                                       </div>
                                     </ion-col>
                                 
                                     <ion-col size="5" 
@@ -207,7 +230,13 @@
                                                   type="number"
                                                   placeholder="Piso"
                                                   [(ngModel)]="piso"
+                                                  #pis="ngModel"
+                                                  required
                                                   ></ion-input>
+                                                  <div id="link">
+                                                    <small *ngIf= "pis.invalid && pis.touched"   
+                                                    class="text-danger">Campo obligatorio</small>
+                                                   </div>
                                                 </ion-col>
                                   
                                                 <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -222,7 +251,13 @@
                                       type="number"
                                       placeholder="Numero"
                                       [(ngModel)]="numero"
+                                      #num="ngModel"
+                                      required
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "num.invalid && num.touched"   
+                                        class="text-danger">Campo obligatorio</small>
+                                       </div>
                                     </ion-col>
                                 
                                     <ion-col size="5"   style="margin-right: 5px;">
@@ -230,7 +265,13 @@
                                                   type="number"
                                                   placeholder="Puerta"
                                                   [(ngModel)]="puerta"
+                                                  #pue="ngModel"
+                                                  required
                                                   ></ion-input>
+                                                  <div id="link">
+                                                    <small *ngIf= "pue.invalid && pue.touched"   
+                                                    class="text-danger">Campo obligatorio</small>
+                                                   </div>
                                                 </ion-col>
                                   
                                                 <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -245,7 +286,13 @@
                                       type="number"
                                       placeholder="Portal"
                                       [(ngModel)]="portal"
+                                      #port="ngModel"
+                                      required
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "port.invalid && port.touched"   
+                                        class="text-danger">Campo obligatorio</small>
+                                       </div>
                                     </ion-col>
                                 
                                     <ion-col size="5"   style="margin-right: 5px;">
@@ -253,7 +300,13 @@
                                                   type="number"
                                                   placeholder="Cod_pstal"
                                                   [(ngModel)]="cod_postal"
+                                                  #c_post="ngModel"
+                                                  required
                                                   ></ion-input>
+                                                  <div id="link">
+                                                    <small *ngIf= "c_post.invalid && c_post.touched"   
+                                                    class="text-danger">Campo obligatorio</small>
+                                                   </div>
                                                 </ion-col>
                                   
                                                 <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -268,7 +321,13 @@
                                       type="number"
                                       placeholder="Escalera"
                                       [(ngModel)]="escalera"
+                                      #esc="ngModel"
+                                      required
                                       ></ion-input>
+                                      <div id="link">
+                                        <small *ngIf= "esc.invalid && esc.touched"   
+                                        class="text-danger">Campo obligatorio</small>
+                                       </div>
                                     </ion-col>
                                 
                                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -302,7 +361,7 @@
          <ion-row>
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
-                      
+                         [disabled]="formulario.invalid || !this.datos.getcoordenada()"
                         (click)="iniciar()">
            REGISTRARSE
              </ion-button>

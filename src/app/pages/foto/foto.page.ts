@@ -24,6 +24,7 @@ export class FotoPage implements OnInit {
  /*  foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
   foto2:string = '../../../assets/icon/noImage.svg'; */
+  /* foto0:string = '../../../assets/fotoadd.png'; */
   foto0:string = '../../../assets/fotoadd.png';
   foto1:string = '../../../assets/fotoadd.png';
   foto2:string = '../../../assets/fotoadd.png';
@@ -47,7 +48,9 @@ export class FotoPage implements OnInit {
 
   ngOnInit() {
     // this.servicio=this.datos.getServ();
-
+ 
+    /* this.foto0="data:image/png;base64,"+this.datos.getfoto0(); */
+    console.log("q1",this.foto0)
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/comentario', {animated: true, animationDirection: 'back' }) ;
     });
@@ -57,7 +60,7 @@ export class FotoPage implements OnInit {
     this.presentAlert();
   }
   goto(){
-   
+ 
     console.log("paso2",this.photoService.devuelve64());
    /*  this.task=new TaskModel();
     this.task.photoNewTaskArray[0]= this.photoService.devuelve64()
@@ -104,10 +107,12 @@ export class FotoPage implements OnInit {
             if(photo){
               this.foto0 = photo.webviewPath;
              
-              //this.datos.setfoto0(this.foto0);
+              /* console.log(this.servicio); */
               this.foto064=this.photoService.devuelve64();
               this.datos.setfoto0(this.foto064);
-              console.log("paso..../",this.photoService.devuelve64());
+              
+             
+             /*  console.log("paso..../",this.photoService.devuelve64()); */
               console.log("mi foto",this.foto0);
              
             }

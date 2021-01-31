@@ -41,6 +41,7 @@ export class RegistroPage implements OnInit {
  fechactual:string="";
  avatarusuario =  '../../../assets/fotoadd.png';
  avatarusuario64:string="";
+ calen:boolean=false;
 
 
  
@@ -162,11 +163,14 @@ export class RegistroPage implements OnInit {
 
              */
  if(fechavalida > 17){ 
+  this.calen=false;
   this.datos.setfecha(fechalarga);
   this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ; 
  }
  else{
   console.log("no  entro");
+  this.calen=true;
+
  }
 
 

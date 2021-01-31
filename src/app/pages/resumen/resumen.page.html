@@ -64,9 +64,14 @@
          
                 <ion-row style="margin-bottom: 9px;">
                    <ion-col size=10>
-                    <ion-label>{{calle}} {{numero}} {{piso}}</ion-label>
-                    <ion-label>{{escalera}} {{portal}} {{cod_postal}}</ion-label>
-                     
+
+                    <ion-row>
+                      <ion-label>{{calle}}, Numero: {{numero}}, </ion-label>
+                      <ion-label *ngIf="piso" >Piso: {{piso}}, </ion-label>
+                      <ion-label *ngIf="escalera" >Escalera: {{escalera}}, </ion-label>
+                      <ion-label *ngIf="portal" >Portal: {{portal}},  </ion-label>
+                      <ion-label *ngIf="cod_postal">  C_postal: {{cod_postal}} </ion-label>
+                    </ion-row>
                    </ion-col>
                    <ion-col size=2>
                     <img   id="imgGPS"

@@ -47,6 +47,7 @@ export class ObtSubSService {
     coordenadas:boolean=false;
     ruta:string="";
 
+
    //-----------------------------------------------------------
 
     
@@ -54,7 +55,7 @@ export class ObtSubSService {
     idString:String;
     private subServicioActual:string;
 
-    foto0:string="";
+    foto0:string = '../../../assets/fotoadd.png';
     foto1:string="";
     foto2:string="";
   constructor() { 

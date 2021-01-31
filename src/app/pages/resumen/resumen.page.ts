@@ -30,7 +30,8 @@ export class ResumenPage implements OnInit {
   titulo:string;
   check:boolean;
   fecha:string;
-  hora:string;
+  hora:string; 
+ 
   comentario:string;
 
   calle:string="";
@@ -144,7 +145,7 @@ export class ResumenPage implements OnInit {
   
   }
   crearSolicitud(){
-    this.task=new TaskModel();
+     this.task=new TaskModel(); 
     this.task.address=new Address('','','','','','','','','');
         
     this.task.require_materials=this.datos.getUtiles();
