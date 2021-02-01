@@ -17,28 +17,39 @@ class="animated fadeIn"></app-header>
 
   <ion-grid  >
 
-    <ion-list>  
-      <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
-      <ion-item style="visibility: false;" lines="none">
-  <app-solicitud 
-  (click)="in(i)"              
-  [Solicitud]="this.Solicitud"
-  routerLink="/ofertas">
-</app-solicitud>
-</ion-item >
+  <ion-row>
+    <ion-col size=0.5>      
+    </ion-col>
+    <ion-col size=11>   
+      <ion-list>  
+        <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
+        
+           <ion-item  lines="none">
+       
+          <app-solicitud 
+          (click)="in(i)"              
+          [Solicitud]="this.Solicitud"
+          routerLink="/ofertas">
+          </app-solicitud>
         
 
-        <ion-item-options side="end" >
-          <ion-item-option (click)="cancelar(i)"
-                            color="tertiary" expandable>cancelar</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-      
+       </ion-item >
+     
+         
+          
+  
+          <ion-item-options side="end" >
+            <ion-item-option (click)="cancelar(i)"
+                              color="tertiary" expandable>cancelar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
 
-      
-    </ion-list> 
+      </ion-list>    
+    </ion-col>
+    <ion-col size=0.5>      
+    </ion-col>
+  </ion-row>
 
-      
   </ion-grid>
 
 

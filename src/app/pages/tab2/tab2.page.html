@@ -24,9 +24,9 @@
  <div *ngIf="verservicios">  
     <ion-grid routerLink="/contratados" >    
       <ion-row>      
-        <ion-col size=1>      
+        <ion-col size=0.5>      
         </ion-col>    
-        <ion-col size=10>      
+        <ion-col size=11>      
           <ion-list>        
             <div *ngFor="let contrato of contratadosList;        
             let i = index"  (click)="in(i)">        
@@ -34,7 +34,7 @@
             </div>        
           </ion-list>       
         </ion-col>    
-        <ion-col size=1> 
+        <ion-col size=0.5> 
         </ion-col> 
       </ion-row>    
     </ion-grid>

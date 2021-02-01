@@ -78,8 +78,29 @@ this.aceptar=true;
 
 
     
-
+this.limpiar_campos();
 
    /*  this._signupOdoo.newUser(this.usuario);  */
+
+   this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+        
+  }
+
+  limpiar_campos(){
+    this.datos.setnombre("");
+    /* console.log("registronombre",this.nombre); */
+      this.datos.setcorreo("");
+     this.datos.setcontraseña("");
+      
+     this.datos.settelefono("");
+     
+     this.datos.setcalle("");
+     this.datos.setpiso("");
+     this.datos.setnumero("");
+     this.datos.setpuerta("");
+     this.datos.setportal("");
+     this.datos.setcod_postal("");
+     this.datos.setescalera("");
+     this.datos.setfoto0("");
   }
 }

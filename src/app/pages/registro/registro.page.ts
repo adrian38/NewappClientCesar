@@ -56,6 +56,10 @@ export class RegistroPage implements OnInit {
                 }
 
   ngOnInit() {
+
+    this.obtener_campos();
+   
+
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
         
@@ -134,20 +138,7 @@ export class RegistroPage implements OnInit {
 
   iniciar(){
 
-   this.datos.setnombre(this.nombre);
-   /* console.log("registronombre",this.nombre); */
-     this.datos.setcorreo(this.correo);
-    this.datos.setcontraseña(this.pass);
-     
-    this.datos.settelefono(this.telefono);
-    
-    this.datos.setcalle(this.calle);
-    this.datos.setpiso(this.piso);
-    this.datos.setnumero(this.numero);
-    this.datos.setpuerta(this.puerta);
-    this.datos.setportal(this.portal);
-    this.datos.setcod_postal(this.cod_postal); 
-    this.datos.setfoto0(this.avatarusuario64);
+  this.entrar_campos();
 
 
     this.fechactual = new Date().getFullYear().toString();
@@ -209,9 +200,41 @@ this.usuario.type = 'client';
 
   ubicacion(){
     console.log("entre a maparegistro")
+    this.entrar_campos();
     
       this.navCtrl.navigateRoot('/regismapa', {animated: true, animationDirection: 'forward' }) ;
       
      
+  }
+  entrar_campos(){
+    this.datos.setnombre(this.nombre);
+    /* console.log("registronombre",this.nombre); */
+      this.datos.setcorreo(this.correo);
+     this.datos.setcontraseña(this.pass);
+      
+     this.datos.settelefono(this.telefono);
+     
+     this.datos.setcalle(this.calle);
+     this.datos.setpiso(this.piso);
+     this.datos.setnumero(this.numero);
+     this.datos.setpuerta(this.puerta);
+     this.datos.setportal(this.portal);
+     this.datos.setescalera(this.escalera);
+     this.datos.setcod_postal(this.cod_postal); 
+     this.datos.setfoto0(this.avatarusuario64);
+  }
+
+  obtener_campos(){
+    this.nombre=this.datos.getnombre();
+    this.correo=this.datos.getcorreo();
+    this.pass=this.datos.getcontraseña();
+    this.telefono=this.datos.gettelefono();
+    this.calle=this.datos.getcalle();
+    this.numero=this.datos.getnumero();
+    this.piso=this.datos.getpiso();
+    this.puerta=this.datos.getpuerta();
+    this.portal=this.datos.getportal();
+    this.escalera=this.datos.getescalera();
+    this.cod_postal=this.datos.getcod_postal();
   }
 }

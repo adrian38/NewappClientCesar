@@ -62,7 +62,7 @@ ion-button{
 
 #item{
         
-    border-bottom: 0.5px solid  rgb(246, 183, 118);
+    border-bottom: 2px solid  rgb(246, 183, 118);
  
 }
 
@@ -161,4 +161,9 @@ ion-input:focus-within{
   }
   .center-v {
     align-items: center;
+  }
+  :host ::ng-deep .p-galleria-mask{
+      width: 100%;
+     
+      
   }

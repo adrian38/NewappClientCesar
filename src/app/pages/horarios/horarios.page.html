@@ -11,15 +11,15 @@
 
   <ion-grid style="margin-top: 25px;">
     <ion-row>
-      <ion-col size=1></ion-col>
-      <ion-col size=10 style="text-align: center;">
+      <ion-col size=0.5></ion-col>
+      <ion-col size=11 style="text-align: center;padding: 0px;">
 
         <p-calendar [(ngModel)]="fecha"
                     [inline]="true"
                     locale="Es"></p-calendar>
       </ion-col>
  
-      <ion-col size=1></ion-col>
+      <ion-col size=0.5></ion-col>
     </ion-row>
     
   
@@ -48,7 +48,7 @@
 
  <ion-row >
   <ion-col ></ion-col>
-  <ion-col><ion-button id="boton" (click)="goto()">
+  <ion-col style="text-align: center;"><ion-button id="boton" (click)="goto()">
     Siguiente
   </ion-button> </ion-col>
   

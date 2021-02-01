@@ -62,7 +62,12 @@ textarea:focus-within{
 
 ion-button{
    
-    border: 1px   rgb(246, 183, 118);
+  background-color: rgb(246, 183, 118);
+  color: rgb(49 ,49 ,57);
+  width: 145px;
+  height: 35px;
+  border-radius: 5px 5px 5px 5px ;
+  font-family: 'HelveticaNeueLTStd-Bd';
 }
 
 
