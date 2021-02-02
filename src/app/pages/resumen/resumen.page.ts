@@ -30,7 +30,8 @@ export class ResumenPage implements OnInit {
   titulo:string;
   check:boolean;
   fecha:string;
-  hora:string; 
+  hora:string;
+  hora1:Date; 
  
   comentario:string;
 
@@ -86,6 +87,8 @@ export class ResumenPage implements OnInit {
     this.check=this.datos.getUtiles();
     this.fecha=this.datos.getCalendarioD();
     this.hora=this.datos.getCalendarioT();
+  
+  
     this.comentario=this.datos.getcomentario();
 
     this.calle=this.datos.getcalle();

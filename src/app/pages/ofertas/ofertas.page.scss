@@ -162,8 +162,12 @@ ion-input:focus-within{
   .center-v {
     align-items: center;
   }
-  :host ::ng-deep .p-galleria-mask{
+/*   :host ::ng-deep .p-galleria-mask{
       width: 100%;
      
       
+  } */
+
+  :host ::ng-deep .p-galleria .p-galleria-close{
+      margin-right: 9em;
   }
