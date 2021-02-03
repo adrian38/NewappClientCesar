@@ -38,6 +38,7 @@ import { CommonModule } from '@angular/common';
 
 import { AgmCoreModule } from '@agm/core';
 import { ComponentsModule } from './components/components.module';
+import { ImagenmodalPageModule } from './pages/imagenmodal/imagenmodal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +53,7 @@ import { ComponentsModule } from './components/components.module';
     AvatarModule,
     ToastModule,
     CommonModule,
+    ImagenmodalPageModule,
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyBXq33cjYMCezL6xP-vo3m-qWQ5U9gRTfQ'
     }) 

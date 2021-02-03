@@ -1,6 +1,6 @@
 import { Component, OnInit ,NgZone, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, IonSegment, LoadingController} from '@ionic/angular';
+import { NavController, Platform, IonSegment, LoadingController,ModalController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -11,7 +11,8 @@ import {MessageService} from 'primeng/api';
 import { LightboxModule } from 'primeng/lightbox';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
-
+import {ImagenmodalPage} from '../imagenmodal/imagenmodal.page';
+import { Modals } from '@capacitor/core';
 
 @Component({
   selector: 'app-ofertas',
@@ -53,9 +54,11 @@ export class OfertasPage implements OnInit {
   fotoZoom: boolean = false;
   loading:HTMLIonLoadingElement = null;
   
-  displayBasic2;
+ /*  displayBasic2;
   images:any[];
-  activeIndex ;
+  activeIndex ;  */
+
+  imagenes:string[]=[];
 
   constructor(
     public navCtrl:NavController,
@@ -68,7 +71,8 @@ export class OfertasPage implements OnInit {
     private router:Router,
     public loadingController: LoadingController,
     private _lightbox: LightboxModule,
-    private subServ: ObtSubSService) {
+    private subServ: ObtSubSService,
+    private modalCtrl:ModalController) {
 
 
       this.task=new TaskModel();
@@ -273,11 +277,20 @@ async presentLoading() {
 }
 
 
-imageClick(index: number) {
+/* imageClick(index: number) {
   this.activeIndex = index;
   this.foto0=this.task.photoNewTaskArray[index];
   this.displayBasic2 = true;
   
+} */
+
+imageClick(imagen){
+this.modalCtrl.create({
+  component : ImagenmodalPage,
+  componentProps :{
+    imagen:imagen
+  }
+}).then(modal => modal.present() )
 }
 
 }

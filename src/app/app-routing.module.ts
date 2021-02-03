@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'aceptarregistro',
     loadChildren: () => import('./pages/aceptarregistro/aceptarregistro.module').then( m => m.AceptarregistroPageModule)
   },
+  {
+    path: 'imagenmodal',
+    loadChildren: () => import('./pages/imagenmodal/imagenmodal.module').then( m => m.ImagenmodalPageModule)
+  },
 
  
 

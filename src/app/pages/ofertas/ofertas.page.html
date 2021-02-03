@@ -337,19 +337,19 @@
           </ion-row>
           <ion-row >
             
-            <ion-col size=4  style="text-align: center;padding-top: 0px;" (click)="imageClick(0)">
+            <ion-col size=4  style="text-align: center;padding-top: 0px;" (click)="imageClick(task.photoNewTaskArray[0])">
               <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                 <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'" 
                >
               </ion-card>
               </ion-col>
-              <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(1)">
+              <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(task.photoNewTaskArray[1])">
                 <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                   <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
                 </ion-card>
                 </ion-col>
             
-                <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(2)">
+                <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="task.photoNewTaskArray[2]">
                   <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                     <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
                   </ion-card>
@@ -359,7 +359,7 @@
 
 
           </ion-row>
-<div >
+<!-- <div >
   <p-galleria [(value)]="foto0" [(visible)]="displayBasic2"  [numVisible]="3"
           [circular]="true" [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="true" [baseZIndex]="100" >
           <ng-template pTemplate="item" let-item
@@ -368,7 +368,7 @@
           </ng-template>
         
         </p-galleria>
-</div>
+</div> -->
         
      <!-- 
             <ion-row >
