@@ -1,7 +1,7 @@
 
 
-<ion-content fullscreen id="contenido">
-
+<ion-content fullscreen id="contenido" zooming="true" direction="xy">
+ 
 <div id="contenido">
 <ion-row >
     <ion-col size=7></ion-col>
@@ -13,13 +13,27 @@
     
   </ion-row>
 
-<ion-row id="contenido" >
-  <ion-col size=0.5></ion-col>
-  <ion-col size=11>
-    <img   src="{{imagen}}"  alt="" >
-  </ion-col>
-  <ion-col size=0.5></ion-col>
-</ion-row>
+  
+    <ion-row id="contenido" >
+      <ion-col size=0.5></ion-col>
+      <ion-col size=11>
+
+        <ion-slides [options]="sliderOption" zoom="true" direction="xy">
+          <ion-slide>
+            <div>
+              <img   src="{{imagen}}"  alt="" >
+            </div>
+          </ion-slide>
+        </ion-slides>
+       
+      </ion-col>
+      <ion-col size=0.5></ion-col>
+    </ion-row>
+
+
+
+
+
 
 </div>
 

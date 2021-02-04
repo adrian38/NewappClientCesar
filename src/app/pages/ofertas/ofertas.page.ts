@@ -292,5 +292,8 @@ this.modalCtrl.create({
   }
 }).then(modal => modal.present() )
 }
-
+editnombre(name){
+  let nombre=name.split(' ');
+return nombre[0] + ' ' + nombre[1].slice(0,1) + '.';
+}
 }

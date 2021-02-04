@@ -76,11 +76,11 @@ this.aceptar=true;
      
 
 
-
+  this._signupOdoo.newUser(this.usuario);  
     
 this.limpiar_campos();
 
-   /*  this._signupOdoo.newUser(this.usuario);  */
+  
 
    this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
         

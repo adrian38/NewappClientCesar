@@ -9,6 +9,11 @@ import { ModalController, NavParams } from '@ionic/angular';
 export class ImagenmodalPage implements OnInit {
 
   imagen:string;
+  sliderOption ={
+    zoom:{
+      maxRatio:2
+    }
+  }
   constructor(private modalCtrl:ModalController,
               private navparams:NavParams)  {
 

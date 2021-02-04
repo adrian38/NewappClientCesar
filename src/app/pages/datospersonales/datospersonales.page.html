@@ -40,9 +40,14 @@
 
 <ion-content>
   <ion-row style="margin-top: 25px;">
-    <ion-col style="text-align: center;">
-      <img src="../../assets/logi.png">
+    <ion-col size=3.5></ion-col>
+    <ion-col size=5 style="text-align: center;">
+      <ion-card *ngIf="avatarusuario" >
+        <img id="selecf" [src]="avatarusuario | safeUrlPipe "
+        (click)="presentAlertConfirm()" >
+      </ion-card>
     </ion-col>
+    <ion-col size=3.5></ion-col>
   </ion-row>
 
 <ion-row>
@@ -52,10 +57,11 @@
 
     <!-- Nombre y Apellidos -->
     <ion-item lines="none">
-      <ion-label position="floating">Nombre y Apellidos</ion-label>
+      <!-- <ion-label position="floating">Nombre y Apellidos</ion-label> -->
       <ion-input type="text"
     name="nombre"
-    [(ngModel)]="nombre"                            
+    [(ngModel)]="nombre"  
+    placeholder="Nombre y Apellidos"                          
     ></ion-input> 
     </ion-item>
     <div id="item"></div>
@@ -63,10 +69,11 @@
     <!-- Fecha de nacimiento -->
 
     <ion-item lines="none">
-      <ion-label position="floating">Fecha de nacimientos</ion-label>
+     <!--  <ion-label position="floating">Fecha de nacimientos</ion-label> -->
       <ion-input type="text"
     name="nombre"
     [(ngModel)]="nombre"
+    placeholder="Fecha de nacimiento"
     
                                   
     ></ion-input>
@@ -78,10 +85,11 @@
 
     
     <ion-item lines="none">
-      <ion-label position="floating">Contraseña</ion-label>
+      <!-- <ion-label position="floating">Contraseña</ion-label> -->
       <ion-input type="text"
     name="nombre"
-    [(ngModel)]="nombre"
+    [(ngModel)]="pass"
+    placeholder="Contraseña"
     
                                   
     ></ion-input>
@@ -94,7 +102,7 @@
       <!-- <ion-label position="floating">Contraseña</ion-label> -->
       <ion-input type="text"
     name="nombre"
-    [(ngModel)]="nombre"
+    [(ngModel)]="correo"
     placeholder="Correo"
     
                                   
@@ -115,7 +123,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="calle"
         placeholder="Calle"
         
                                       
@@ -130,7 +138,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="piso"
         placeholder="Piso"
         
                                       
@@ -148,7 +156,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="numero"
         placeholder="Numero"
         
                                       
@@ -163,7 +171,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="puerta"
         placeholder="Puerta"
         
                                       
@@ -180,7 +188,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="portal"
         placeholder="Portal"
         
                                       
@@ -195,7 +203,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="nombre"
+        [(ngModel)]="cpostal"
         placeholder="Codigo Postal"
         
                                       
@@ -215,7 +223,7 @@
           <!-- <ion-label position="floating">Contraseña</ion-label> -->
           <ion-input type="text"
         name="nombre"
-        [(ngModel)]="Escalera"
+        [(ngModel)]="escalera"
         placeholder="Escalera"
         
                                       
@@ -234,6 +242,17 @@
       </ion-col>
 
     </ion-row>
+    <ion-row >
+      <ion-col ></ion-col>
+      <ion-col>
+         <ion-button [disabled]=aceptar
+                      (click)="editar()">
+         Aceptar
+      </ion-button> </ion-col>
+      
+      <ion-col></ion-col>
+    </ion-row>
+   
   </ion-col>
   
   <ion-col size=1></ion-col>

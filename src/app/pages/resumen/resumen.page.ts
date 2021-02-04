@@ -180,7 +180,7 @@ this.task.photoNewTaskArray[2]= this.datos.getfoto2();
     //console.log("en resumen foto",this.task.photoNewTaskArray[0]);
     this._taskOdoo.newTask(this.task);
 
-
+this.borrar_campos();
    /*  53338707 */
     
           //time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString() 

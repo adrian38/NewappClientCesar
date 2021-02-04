@@ -90,9 +90,13 @@
                src="{{offer.photoProvider}}"  onError="this.src='assets/noImage.png'"
                (click)="showDialog(i)" >
         </ion-col>
+        
   
          <ion-col size=4>
-          <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
+         <!--  <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
+           -->
+           <ion-row><h4>{{editnombre(offer.client_name)}}</h4></ion-row>
+         
           <ion-row ><ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
           </ion-row>
           
@@ -349,7 +353,7 @@
                 </ion-card>
                 </ion-col>
             
-                <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="task.photoNewTaskArray[2]">
+                <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(task.photoNewTaskArray[2])">
                   <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
                     <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
                   </ion-card>

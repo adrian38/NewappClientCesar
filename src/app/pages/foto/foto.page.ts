@@ -110,8 +110,6 @@ export class FotoPage implements OnInit {
               /* console.log(this.servicio); */
               this.foto064=this.photoService.devuelve64();
               this.datos.setfoto0(this.foto064);
-              
-             
              /*  console.log("paso..../",this.photoService.devuelve64()); */
               console.log("mi foto",this.foto0);
              
