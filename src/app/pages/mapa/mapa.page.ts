@@ -21,20 +21,36 @@ export class MapaPage implements OnInit {
   lat :number;
   lng :number; 
 coordenadas:boolean=false;
+ruta:string="";
 
   constructor(private Serv: ObtSubSService,
               public toastController: ToastController,
               private platform: Platform,
-              public navCtrl:NavController
+              public navCtrl:NavController,
+              private datos:ObtSubSService
              ) {
               }
 
     ngOnInit() {
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
+      this.ruta=this.datos.getruta();
+      console.log("ruta",this.ruta);
+  
+      
+        this.platform.backButton.subscribeWithPriority(10, () => {
+          if(this.ruta=="datospersonales")
+          {
+          this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'back' }) ;
+        }
+        else{
+      
+          this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
         
-      });
+  
+        }
+          }); 
+
+   
 
   } 
 

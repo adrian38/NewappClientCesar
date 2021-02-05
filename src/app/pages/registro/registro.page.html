@@ -167,10 +167,10 @@
                           <ion-input name="password"
                                       type="password"
                                       required
-                                      [(ngModel)]="pass"
                                       minlength=5
                                       #contra="ngModel"
-                                      ></ion-input>
+                                      [(ngModel)]="pass"
+                                     ></ion-input>
                                       <div id="link">
                                         <small *ngIf= "contra.invalid && contra.touched"   
                                         class="text-danger">Su pass debe ser de 5 caracteres</small>

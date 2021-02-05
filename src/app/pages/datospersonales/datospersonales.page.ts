@@ -40,6 +40,8 @@ export class DatospersonalesPage implements OnInit {
                public photoService: PhotoService) { }
 
   ngOnInit() {
+
+    this.obtener_campos();
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/tabs/tab3', {animated: true, animationDirection: 'back' }) ;
         
@@ -70,6 +72,7 @@ export class DatospersonalesPage implements OnInit {
  */
 
     /*  console.log(this.usuario,"nuevo usuario"); */
+  this.datos.setcoordenada(false);
 
   this._signupOdoo.newUser(this.usuario);  
   }
@@ -139,5 +142,41 @@ export class DatospersonalesPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  ubicacion(){
+    this.entrar_campos();
+    this.datos.setruta("datospersonales");
+    this.navCtrl.navigateRoot('/regismapa', {animated: true, animationDirection: 'forward' }) ;
+  }
+
+  entrar_campos(){
+    this.datos.setnombre(this.nombre);
+    /* console.log("registronombre",this.nombre); */
+      this.datos.setcorreo(this.correo);
+     this.datos.setcontraseña(this.pass);
+ 
+     
+     this.datos.setcalle(this.calle);
+     this.datos.setpiso(this.piso);
+     this.datos.setnumero(this.numero);
+     this.datos.setpuerta(this.puerta);
+     this.datos.setportal(this.portal);
+     this.datos.setescalera(this.escalera);
+     this.datos.setcod_postal(this.cpostal); 
+     this.datos.setfoto0(this.avatarusuario64);
+  }
+  obtener_campos(){
+    this.nombre=this.datos.getnombre();
+    this.correo=this.datos.getcorreo();
+    this.pass=this.datos.getcontraseña();
+    
+    this.calle=this.datos.getcalle();
+    this.numero=this.datos.getnumero();
+    this.piso=this.datos.getpiso();
+    this.puerta=this.datos.getpuerta();
+    this.portal=this.datos.getportal();
+    this.escalera=this.datos.getescalera();
+    this.cpostal=this.datos.getcod_postal();
   }
 }
