@@ -67,14 +67,14 @@ export class DatospersonalesPage implements OnInit {
     this.usuario.address.floor=this.piso;
     this.usuario.avatar = this.avatarusuario64;
 
-   /*  this.usuario.address.latitude=String(this.datos.getlatitud());
+    this.usuario.address.latitude=String(this.datos.getlatitud());
     this.usuario.address.longitude=String(this.datos.getlongitud());
- */
+
 
     /*  console.log(this.usuario,"nuevo usuario"); */
-  this.datos.setcoordenada(false);
+    this.datos.setcoordenada(false);
 
-  this._signupOdoo.newUser(this.usuario);  
+    this._signupOdoo.newUser(this.usuario);  
   }
 
   async presentAlertConfirm() {
@@ -166,6 +166,8 @@ export class DatospersonalesPage implements OnInit {
      this.datos.setcod_postal(this.cpostal); 
      this.datos.setfoto0(this.avatarusuario64);
   }
+  
+  
   obtener_campos(){
     this.nombre=this.datos.getnombre();
     this.correo=this.datos.getcorreo();
