@@ -67,7 +67,7 @@
         <ion-input type="text"
       name="nombre"
       [(ngModel)]="nombre"  
-      placeholder="Nombre y Apellidos"
+      placeholder={{this.usuario.realname}}
       required  
       #nom_apell="ngModel"                        
       ></ion-input> 
@@ -116,7 +116,7 @@
         <ion-input type="text"
       name="nombre"
       [(ngModel)]="pass"
-      placeholder="Contraseña"
+      placeholder={{this.usuario.password}}
       required
       minlength=5
       #contra="ngModel"
@@ -136,7 +136,7 @@
         <ion-input type="text"
       name="nombre"
       [(ngModel)]="correo"
-      placeholder="Correo"
+      placeholder={{this.usuario.username}}
       #corr="ngModel"
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
       required
@@ -163,7 +163,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="calle"
-          placeholder="Calle"
+          placeholder={{this.usuario.address.street}}
           #call="ngModel"
           required
                                         
@@ -183,7 +183,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="piso"
-          placeholder="Piso"
+          placeholder={{this.usuario.address.floor}}
           #pis="ngModel"
           required
           
@@ -207,7 +207,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="numero"
-          placeholder="Numero"
+          placeholder={{this.usuario.address.number}}
           #num="ngModel"
           required
                                         
@@ -227,7 +227,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="puerta"
-          placeholder="Puerta"
+          placeholder={{this.usuario.address.door}}
           #pue="ngModel"
           required
                              
@@ -248,7 +248,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="portal"
-          placeholder="Portal"
+          placeholder={{this.usuario.address.portal}}
           #port="ngModel"
           required
                                         
@@ -267,7 +267,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="cpostal"
-          placeholder="Codigo Postal"
+          placeholder={{this.usuario.address.cp}}
           #c_post="ngModel"
           required
                                         
@@ -292,7 +292,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="escalera"
-          placeholder="Escalera"
+          placeholder={{this.usuario.address.stair}} 
           #esc="ngModel"
           required
                                         

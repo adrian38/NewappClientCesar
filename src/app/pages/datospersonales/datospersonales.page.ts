@@ -5,7 +5,7 @@ import { Address, UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
-
+import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 @Component({
   selector: 'app-datospersonales',
   templateUrl: './datospersonales.page.html',
@@ -15,7 +15,9 @@ export class DatospersonalesPage implements OnInit {
 
   avatarusuario =  '../../../assets/fotoadd.png'
 
+  temp:string=""
   usuario:UsuarioModel;
+ 
   address:Address;
 
  nombre:string="";
@@ -37,9 +39,15 @@ export class DatospersonalesPage implements OnInit {
                public datos:ObtSubSService,
                public alertController: AlertController,
                private _signupOdoo: SignUpOdooService,
-               public photoService: PhotoService) { }
+               public photoService: PhotoService,
+               public _authOdoo: AuthOdooService
+               ) { }
 
   ngOnInit() {
+    this.usuario = this._authOdoo.getUser();
+    /* this.temp = this.usuario.realname; */
+    
+    this.calle=this.usuario.address.street;
 
     this.obtener_campos();
     this.platform.backButton.subscribeWithPriority(10, () => {
