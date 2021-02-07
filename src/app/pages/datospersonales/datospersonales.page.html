@@ -95,7 +95,7 @@
       cancelText="Cancelar"
       doneText="Cambiar"
       [(ngModel)]="fecha"
-      placeholder="Fecha de nacimiento"
+      placeholder={{this.usuario.date}}
       #fech="ngModel"
       required
       style="margin-left: 0px;padding-left: 0px;padding-bottom: 3px;">
@@ -134,7 +134,7 @@
       <ion-item lines="none">
         <!-- <ion-label position="floating">Contraseña</ion-label> -->
         <ion-input type="text"
-      name="nombre"
+      name="correo"
       [(ngModel)]="correo"
       placeholder={{this.usuario.username}}
       #corr="ngModel"
@@ -264,14 +264,17 @@
         <ion-col>
           <ion-item lines="none">
             <!-- <ion-label position="floating">Contraseña</ion-label> -->
-            <ion-input type="text"
-          name="nombre"
-          [(ngModel)]="cpostal"
-          placeholder={{this.usuario.address.cp}}
-          #c_post="ngModel"
-          required
-                                        
-          ></ion-input>
+            <ion-input 
+                       type="text"
+                       name="nombre"
+                       [(ngModel)]="cpostal"
+                       placeholder={{this.usuario.address.cp}}
+                       #c_post="ngModel"
+                       required
+             >
+            
+            </ion-input>
+           
           
           </ion-item>
           <div id="item"></div>
@@ -284,26 +287,31 @@
   
         <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
         
+        
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item lines="none">
-            <!-- <ion-label position="floating">Contraseña</ion-label> -->
-            <ion-input type="text"
-          name="nombre"
-          [(ngModel)]="escalera"
-          placeholder={{this.usuario.address.stair}} 
-          #esc="ngModel"
-          required
-                                        
-          ></ion-input>
+       
+            <ion-item lines="none">
+              <!-- <ion-label position="floating">Contraseña</ion-label> -->
+                <ion-input type="text"
+                           name="escalera"
+                           [(ngModel)]="escalera"
+                           placeholder={{this.usuario.address.stair}} 
+                           #esc="ngModel"
+                           required >
+              
+                </ion-input>
+   
+            </ion-item>
+            <div id="item"></div>
+            <div id="link">
+              <small *ngIf= "esc.invalid && esc.touched"   
+              class="text-danger">Campo obligatorio</small>
+             </div>  
+         
           
-          </ion-item>
-          <div id="item"></div>
-          <div id="link">
-            <small *ngIf= "esc.invalid && esc.touched"   
-            class="text-danger">Campo obligatorio</small>
-           </div>
+        
       
         </ion-col>
   

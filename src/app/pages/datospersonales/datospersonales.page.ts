@@ -46,8 +46,16 @@ export class DatospersonalesPage implements OnInit {
   ngOnInit() {
     this.usuario = this._authOdoo.getUser();
     /* this.temp = this.usuario.realname; */
-    
+    this.nombre=this.usuario.realname;
+    this.fecha=this.usuario.date;
+    this.pass=this.usuario.password;
+    this.correo=this.usuario.username;
     this.calle=this.usuario.address.street;
+    this.puerta=this.usuario.address.door;
+    this.escalera=this.usuario.address.stair;
+    this.portal=this.usuario.address.portal;
+    this.cpostal=this.usuario.address.cp;
+    this.numero=this.usuario.address.number;
 
     this.obtener_campos();
     this.platform.backButton.subscribeWithPriority(10, () => {
@@ -60,6 +68,7 @@ export class DatospersonalesPage implements OnInit {
     this.usuario = new UsuarioModel;
     this.usuario.address=new Address('','','','','','','','','');
     this.usuario.realname=this.nombre;
+    this.usuario.date=this.fecha;
     this.usuario.password=this.pass;
     
     this.usuario.username =this.correo;

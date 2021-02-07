@@ -42,6 +42,8 @@ export class RegistroPage implements OnInit {
  avatarusuario =  '../../../assets/fotoadd.png';
  avatarusuario64:string="";
  calen:boolean=false;
+ selectFoto:boolean=false;
+ coordenadas:boolean=false;
 
 
  
@@ -91,8 +93,9 @@ export class RegistroPage implements OnInit {
               this.avatarusuario= photo.webviewPath;
               console.log(this.avatarusuario);
               this.avatarusuario64= this.photoService.devuelve64();
-             
-            
+              /* this.selectFoto=true; */
+              this.datos.setselectfoto(true);
+              console.log("foto",this.selectFoto);
              
             }
             
@@ -110,8 +113,9 @@ export class RegistroPage implements OnInit {
               this.avatarusuario= photos[0].webviewPath;
               console.log(this.avatarusuario);
               this.avatarusuario64= this.photoService.devuelve64(); 
-             
-            
+              this.selectFoto=true;
+              console.log("foto",this.selectFoto);
+              this.datos.setselectfoto(true);
              
             }
             
@@ -127,6 +131,9 @@ export class RegistroPage implements OnInit {
             this.avatarusuario = '../../../assets/fotoadd.png';
             this.avatarusuario64="";
             console.log('Confirm Cancel: blah');
+            this.selectFoto=false;
+            console.log("foto",this.selectFoto);
+            this.datos.setselectfoto(false);
           }
         }
       ]
@@ -211,7 +218,7 @@ this.usuario.type = 'client';
     /* console.log("registronombre",this.nombre); */
       this.datos.setcorreo(this.correo);
      this.datos.setcontraseña(this.pass);
-      
+    
      this.datos.settelefono(this.telefono);
      
      this.datos.setcalle(this.calle);
@@ -222,6 +229,8 @@ this.usuario.type = 'client';
      this.datos.setescalera(this.escalera);
      this.datos.setcod_postal(this.cod_postal); 
      this.datos.setfoto0(this.avatarusuario64);
+     this.datos.setfoto1(this.avatarusuario);
+     this.datos.setfecha(this.fecha);
   }
 
   obtener_campos(){
@@ -236,5 +245,9 @@ this.usuario.type = 'client';
     this.portal=this.datos.getportal();
     this.escalera=this.datos.getescalera();
     this.cod_postal=this.datos.getcod_postal();
+    this.coordenadas=this.datos.getcoordenada();
+    this.avatarusuario=this.datos.getfoto1();
+    this.fecha=this.datos.getfecha();
+    this.selectFoto=this.datos.getselectfoto();
   }
 }

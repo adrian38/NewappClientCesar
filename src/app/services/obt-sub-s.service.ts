@@ -46,6 +46,7 @@ export class ObtSubSService {
     latitud:number;
     coordenadas:boolean=false;
     ruta:string="";
+    selecfoto:boolean=false;
 
 
    //-----------------------------------------------------------
@@ -56,7 +57,7 @@ export class ObtSubSService {
     private subServicioActual:string;
 
     foto0:string = '../../../assets/fotoadd.png';
-    foto1:string="";
+    foto1:string='../../../assets/fotoadd.png';
     foto2:string="";
   constructor() { 
     
@@ -311,6 +312,14 @@ setruta(r){
 
 getruta(){
  return this.ruta; 
+}
+
+setselectfoto(f:boolean){
+  this.selecfoto=f;
+}
+
+getselectfoto(){
+  return this.selecfoto;
 }
   //-------------------------------------------------------------------------
 

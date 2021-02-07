@@ -102,5 +102,6 @@ this.limpiar_campos();
      this.datos.setcod_postal("");
      this.datos.setescalera("");
      this.datos.setfoto0("");
+     this.datos.setfoto1("");
   }
 }

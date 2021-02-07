@@ -42,7 +42,7 @@ agregarMarcador( evento ) {
 
   this.marcadores.push( nuevoMarcador ); 
   this.presentToast();
-  this.coordenadas=true;
+  /* this.coordenadas=true; */
   this.Serv.setcoordenada(true);
 
 }
