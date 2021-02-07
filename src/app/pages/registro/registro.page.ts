@@ -30,6 +30,7 @@ export class RegistroPage implements OnInit {
  fecha:string="";
  correo:string="";
  pass:string="";
+ ppass:string="";
  telefono:number;
  calle:string="";
  piso:string="";
@@ -44,6 +45,7 @@ export class RegistroPage implements OnInit {
  calen:boolean=false;
  selectFoto:boolean=false;
  coordenadas:boolean=false;
+ ccontra:boolean=false;
 
 
  
@@ -160,15 +162,24 @@ export class RegistroPage implements OnInit {
     this.usuario.address=new Address('','','','','','','','','');
 
              */
- if(fechavalida > 17){ 
-  this.calen=false;
-  this.datos.setfecha(fechalarga);
-  this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ; 
+ if(fechavalida > 17){
+   console.log("1",this.pass)
+   console.log("2",this.ppass)
+   if(this.pass==this.ppass){
+    this.calen=false;
+    this.ccontra=false;
+    this.datos.setfecha(fechalarga);
+     this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
+   }
+   else
+   console.log("no  entro por contraseña");
+   this.calen=false;
+   this.ccontra=true;
  }
  else{
-  console.log("no  entro");
+  console.log("no  entro por fecha");
   this.calen=true;
-
+   this.ccontra=false;
  }
 
 
@@ -218,7 +229,7 @@ this.usuario.type = 'client';
     /* console.log("registronombre",this.nombre); */
       this.datos.setcorreo(this.correo);
      this.datos.setcontraseña(this.pass);
-    
+     this.datos.setcontraseñaConfirmafa(this.ppass);
      this.datos.settelefono(this.telefono);
      
      this.datos.setcalle(this.calle);
@@ -237,6 +248,7 @@ this.usuario.type = 'client';
     this.nombre=this.datos.getnombre();
     this.correo=this.datos.getcorreo();
     this.pass=this.datos.getcontraseña();
+    this.ppass=this.datos.getcontraseñaConfirmafa();
     this.telefono=this.datos.gettelefono();
     this.calle=this.datos.getcalle();
     this.numero=this.datos.getnumero();

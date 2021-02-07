@@ -40,6 +40,7 @@ export class ObtSubSService {
     Fech_nacimiento:string="";
     correo:string="";
     contraseña:string="";
+    contraseñaConfirmada:string="";
 
 
     longitud:number;
@@ -132,6 +133,14 @@ getNotificationSetTab3$(): Observable<boolean> {
     getcontraseña(){
       return this.contraseña;
     }
+
+    setcontraseñaConfirmafa( c:string){
+      this.contraseñaConfirmada=c;
+      }
+    
+      getcontraseñaConfirmafa(){
+        return this.contraseñaConfirmada;
+      }
 
     setfecha(f){
 this.Fech_nacimiento=f;
