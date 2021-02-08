@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,NgZone, OnInit } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { Address, UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-aceptarregistro',
@@ -16,18 +17,58 @@ export class AceptarregistroPage implements OnInit {
    usuario:UsuarioModel;
    address:Address;
 
+   notificationOK$: Observable<boolean>;
+   notificationError$: Observable<boolean>;
+
+   subscriptionError: Subscription;
+   subscriptionOk: Subscription;
+
   constructor(public datos:ObtSubSService,
               private _signupOdoo: SignUpOdooService,
               private platform: Platform,
-              public navCtrl:NavController) { }
+              public navCtrl:NavController,
+              private ngZone: NgZone) { }
 
   ngOnInit() {
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;
+      this.notificationError$ = this._signupOdoo.getNotificationError$();
+      this.subscriptionError = this.notificationError$.subscribe(notificationError =>{
+      this.ngZone.run(()=>{
+
+        if(notificationError){
+          console.log("Error creando Usuario");
+          //error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
+        }
+      });
+      });
+      this.notificationOK$ = this._signupOdoo.getNotificationOK$();
+      this.subscriptionOk = this.notificationOK$.subscribe(notificationOK => {
+        this.ngZone.run(() => {
+
+          if (notificationOK) {
+
+            //quitar cargado e ir a la pagina de logguearse
+            
+            console.log("Usuario Creado");
+          }
+
+        });
+
+      });
         
       });
+
   }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscriptionOk.unsubscribe();
+    this.subscriptionError.unsubscribe();
+    
+  }
+  
   condiciones(){
     if(this.aceptar==true)
 this.aceptar=false;

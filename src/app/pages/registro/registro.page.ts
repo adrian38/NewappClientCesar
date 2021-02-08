@@ -70,8 +70,8 @@ export class RegistroPage implements OnInit {
    
 
     this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
-        
+     this.alert_atras()
+     
       });
 
   }
@@ -241,4 +241,54 @@ export class RegistroPage implements OnInit {
     this.fecha=this.datos.getfecha();
     this.selectFoto=this.datos.getselectfoto();
   }
+  vaciar_campos(){
+    this.datos.setnombre("");
+    /* console.log("registronombre",this.nombre); */
+      this.datos.setcorreo("");
+     this.datos.setcontraseña("");
+     this.datos.setcontraseñaConfirmafa("");
+     this.datos.settelefono("");
+     
+     this.datos.setcalle("");
+     this.datos.setpiso("");
+     this.datos.setnumero("");
+     this.datos.setpuerta("");
+     this.datos.setportal("");
+     this.datos.setescalera("");
+     this.datos.setcod_postal(""); 
+     this.datos.setfoto0("");
+     this.datos.setfoto1("");
+     this.datos.setfecha("");
+  }
+
+  async alert_atras() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Perdera toda los datos',
+     
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: (datos) => {
+  
+  
+  
+            this.vaciar_campos();
+      this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+        
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  } 
 }
