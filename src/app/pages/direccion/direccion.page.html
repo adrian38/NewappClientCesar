@@ -38,7 +38,8 @@
                   type="text"
                   placeholder="Calle"
                   [(ngModel)]="calle"
-                  required></ion-input>
+                  required
+                  [disabled]="Autofill"></ion-input>
                 </ion-col>
             
                 <ion-col size="5" 
@@ -47,7 +48,8 @@
                               type="number"
                               placeholder="Piso"
                               [(ngModel)]="piso"
-                              required></ion-input>
+                              required
+                              [disabled]="Autofill"></ion-input>
                             </ion-col>
               
                             <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
@@ -62,7 +64,8 @@
                   type="number"
                   placeholder="Numero"
                   [(ngModel)]="numero"
-                  required></ion-input>
+                  required
+                  [disabled]="Autofill"></ion-input>
                 </ion-col>
             
                 <ion-col size="5"   style="margin-left: 15px;">
@@ -70,7 +73,8 @@
                               type="number"
                               placeholder="Puerta"
                               [(ngModel)]="puerta"
-                              required></ion-input>
+                              required
+                              [disabled]="Autofill"></ion-input>
                             </ion-col>
               
                             <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
@@ -85,7 +89,7 @@
                   type="number"
                   placeholder="Portal"
                   [(ngModel)]="portal"
-                 ></ion-input>
+                  [disabled]="Autofill"></ion-input>
                 </ion-col>
             
                 <ion-col size="5"   style="margin-left: 15px;">
@@ -93,7 +97,8 @@
                               type="number"
                               placeholder="Cod.Postal"
                               [(ngModel)]="cod_postal"
-                              required></ion-input>
+                              required
+                              [disabled]="Autofill"></ion-input>
                             </ion-col>
               
                             <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>
@@ -108,7 +113,7 @@
                   type="text"
                   placeholder="Escalera"
                   [(ngModel)]="escalera"
-                  ></ion-input>
+                  [disabled]="Autofill"></ion-input>
                 </ion-col>
             
                 <ion-col size="1" style="background: rgb(251, 252, 252);"></ion-col>

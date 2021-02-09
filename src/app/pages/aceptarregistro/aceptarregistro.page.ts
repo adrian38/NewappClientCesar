@@ -1,5 +1,5 @@
 import { Component,NgZone, OnInit } from '@angular/core';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController,LoadingController, Platform } from '@ionic/angular';
 import { Address, UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
@@ -16,6 +16,9 @@ export class AceptarregistroPage implements OnInit {
 
    usuario:UsuarioModel;
    address:Address;
+   islog:boolean
+
+   loading:HTMLIonLoadingElement = null;
 
    notificationOK$: Observable<boolean>;
    notificationError$: Observable<boolean>;
@@ -23,22 +26,26 @@ export class AceptarregistroPage implements OnInit {
    subscriptionError: Subscription;
    subscriptionOk: Subscription;
 
+
   constructor(public datos:ObtSubSService,
               private _signupOdoo: SignUpOdooService,
               private platform: Platform,
               public navCtrl:NavController,
+              public loadingController: LoadingController,
               private ngZone: NgZone) { }
 
   ngOnInit() {
-
+    console.log("inicio1")
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;
+      
       this.notificationError$ = this._signupOdoo.getNotificationError$();
       this.subscriptionError = this.notificationError$.subscribe(notificationError =>{
       this.ngZone.run(()=>{
 
         if(notificationError){
           console.log("Error creando Usuario");
+          console.log("inicio2")
           //error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
         }
       });
@@ -52,6 +59,9 @@ export class AceptarregistroPage implements OnInit {
             //quitar cargado e ir a la pagina de logguearse
             
             console.log("Usuario Creado");
+            this.loading.dismiss();
+            this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+      
           }
 
         });
@@ -77,6 +87,7 @@ this.aceptar=true;
   }
 
   aceptarregistro(){
+     this.presentLoading();
     this.usuario = new UsuarioModel;
     this.usuario.address=new Address('','','','','','','','','');
     this.usuario.realname=this.datos.getnombre();
@@ -117,14 +128,14 @@ this.aceptar=true;
      
 
 
-  this._signupOdoo.newUser(this.usuario);  
+  this._signupOdoo.newUser(this.usuario); 
     
 this.limpiar_campos();
 
-  
+console.log("llegue al final")
 
-   this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
-        
+   /* this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+       */  
   }
 
   limpiar_campos(){
@@ -144,5 +155,15 @@ this.limpiar_campos();
      this.datos.setescalera("");
      this.datos.setfoto0("");
      this.datos.setfoto1("");
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Registrando...',
+      //duration: 2000
+    });
+    console.log("Loading Ok");
+    return  this.loading.present();
   }
 }

@@ -70,16 +70,20 @@ export class ResumenPage implements OnInit {
 
    ngOnInit() {
 
-    this.foto0=this.datos.getfoto0();
-    this.foto1=this.datos.getfoto1();
-    this.foto2=this.datos.getfoto2();
-
-    console.log("tengo la foto",this.foto0)
-
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;
         
       });
+
+    this.foto0=this.datos.getfoto0();
+    this.foto1=this.datos.getfoto1();
+    this.foto2=this.datos.getfoto2();
+
+    console.log("tengoresumen la foto0",this.foto0)
+    console.log("tengoresumen la foto1",this.foto1)
+    console.log("tengoresumen la foto2",this.foto2)
+
+    
 
     this.servicio=this.datos.getServ();
 
@@ -87,6 +91,7 @@ export class ResumenPage implements OnInit {
     this.check=this.datos.getUtiles();
     this.fecha=this.datos.getCalendarioD();
     this.hora=this.datos.getCalendarioT();
+    
   
   
     this.comentario=this.datos.getcomentario();
@@ -109,7 +114,7 @@ export class ResumenPage implements OnInit {
     
     if (notificationError) {
     console.log("Error creando la tarea");
-    this.messageService.add({ severity: 'success', summary: 'Imcompleto', detail: 'No se creo la tarea.'});
+    this.messageService.add({ severity: 'success', summary: 'Imcompleto', detail: 'No se creo la tarea'});
   
     }
     
