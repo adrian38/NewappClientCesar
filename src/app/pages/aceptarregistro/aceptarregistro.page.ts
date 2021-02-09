@@ -37,13 +37,14 @@ export class AceptarregistroPage implements OnInit {
   ngOnInit() {
     console.log("inicio1")
     this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;
+      this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;});
       
       this.notificationError$ = this._signupOdoo.getNotificationError$();
       this.subscriptionError = this.notificationError$.subscribe(notificationError =>{
       this.ngZone.run(()=>{
 
         if(notificationError){
+          this.loading.dismiss();
           console.log("Error creando Usuario");
           console.log("inicio2")
           //error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
@@ -68,7 +69,7 @@ export class AceptarregistroPage implements OnInit {
 
       });
         
-      });
+      
 
   }
   ngOnDestroy(): void {
