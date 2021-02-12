@@ -72,7 +72,7 @@
     
     <div *ngIf="ofertaDisponible"
           class="container center-h center-v">
-      <h4 >No hay solicitud</h4>
+      <h4 >No hay ofertas</h4>
       
     </div>
 
@@ -144,18 +144,7 @@
     <ion-card style="background-color: rgb(241, 241, 241);
                       border-radius: 0px 0px 0px 0px;">
   
-      <ion-row (click)="seleccionado()"
-                style="margin-top: 10px;">
-        
-          <ion-checkbox mode="ios"
-                        color="primary"
-                        value="select"
-                        style="width: 20px; height: 20px;margin-left: 8px;"
-                        
-                        ></ion-checkbox>
-    <ion-label style="margin-left: 20px;">Pagar con tarjeta </ion-label>
-       
-      </ion-row>
+   
       <ion-row>
         <ion-col size=7>
           <ion-input name="password"
@@ -163,7 +152,8 @@
                      required
                      [(ngModel)]="pass"
                      minlength=5
-                     placeholder="Numero de la tarjeta">
+                     placeholder="Numero de la tarjeta"
+                     [disabled]="efectivo">
           </ion-input>
         </ion-col>
         <ion-col size=5>
@@ -172,20 +162,36 @@
                      required
                      [(ngModel)]="pass"
                      minlength=5
-                     placeholder="Expiracion">
+                     placeholder=" dd / mm / cvc"
+                     [disabled]="efectivo">
           </ion-input>
         </ion-col>
       </ion-row>
+
+      <ion-row 
+      style="margin-top: 10px;">
+
+<ion-checkbox mode="ios"
+              color="primary"
+              value="select"
+              style="width: 20px; height: 20px;margin-left: 8px;"
+              (click)="seleccionado()"
+              ></ion-checkbox>
+<ion-label style="margin-left: 20px;">Pagar en efectivo </ion-label>
+
+</ion-row>
   
-      <ion-row>
+      <ion-row  style="margin-top: 5px;">
         <ion-col size=7>
-          <ion-button id="botonguardar" >
+          <ion-button id="botonguardar"
+                      [disabled]="efectivo" >
              Tarjeta guardada
                </ion-button>
         </ion-col>
   
         <ion-col size=5>
-          <ion-button id="botonpagar" >
+          <ion-button id="botonpagar"
+                     [disabled]="efectivo" >
             Pagar
                </ion-button>
         </ion-col>
@@ -310,7 +316,10 @@
                 <ion-label *ngIf="task.address.door" >Piso: {{task.address.floor}}, </ion-label>
                 <ion-label *ngIf="task.address.stair" >Escalera: {{task.address.stair}}, </ion-label>
                 <ion-label *ngIf="task.address.portal" >Portal: {{task.address.portal}},  </ion-label>
-                <ion-label *ngIf="task.address.cp">  C_postal: {{task.address.cp}} </ion-label>
+                
+              </ion-row>
+              <ion-row>
+                <ion-label *ngIf="task.address.cp">  Codigo postal: {{task.address.cp}} </ion-label>
               </ion-row>
             </ion-col >
             <ion-col size=2 >

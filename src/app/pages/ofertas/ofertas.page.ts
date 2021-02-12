@@ -60,6 +60,9 @@ export class OfertasPage implements OnInit {
 
   imagenes:string[]=[];
 
+  efectivo:boolean=false;
+  desplegar:boolean=false;
+
   constructor(
     public navCtrl:NavController,
     private _taskOdoo:TaskOdooService,
@@ -254,16 +257,24 @@ cancelSOclient() {
   this.displayAceptar=-1;
   this._taskOdoo.cancelSOclient(this.task.id);
   //this.isLoading3 = true;
+  
 }
 showDialogAceptar(id){
   console.log("aki",id)
-
+if(this.desplegar==false){
+  this.displayAceptar=id;
+  this.desplegar=true;
+}
+else{
+  this.displayAceptar=-1;
+  this.desplegar=false;
+}
  /*  this.subServ.setposicion(id);
 
   this.task = this.offersList[id];
   this._taskOdoo.setTaskCesar(this.task);
   console.log(this.task); */
-  this.displayAceptar=id;
+  
  
 }
 async presentLoading() {
@@ -292,8 +303,18 @@ this.modalCtrl.create({
   }
 }).then(modal => modal.present() )
 }
+
 editnombre(name){
   let nombre=name.split(' ');
 return nombre[0] + ' ' + nombre[1].slice(0,1) + '.';
+}
+
+seleccionado(){
+if(this.efectivo==true){
+  this.efectivo=false;
+}
+else
+this.efectivo=true;
+
 }
 }
