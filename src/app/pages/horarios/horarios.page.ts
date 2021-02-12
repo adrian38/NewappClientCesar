@@ -50,7 +50,7 @@ export class HorariosPage implements OnInit {
     public alertCtrl: AlertController) { 
 
       this.fecha =new Date();
-this.reloj=new Date();
+      this.reloj=new Date();
 
 
     
@@ -86,9 +86,9 @@ ngOnInit() {
     goto(){
 
       this.dat = this.date.transform(this.fecha, 'yyyy-MM-dd');
-      this.tim = this.date.transform(this.reloj, 'HH:mm:ss');  
+     /*  this.tim = this.date.transform(this.reloj, 'HH:mm:ss');   */
       this.datos.setCalendarioD(this.dat);
-      this.datos.setCalendarioT(this.tim);
+      this.datos.setCalendarioT(this.reloj);
         
       
       this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'forward' }) ;

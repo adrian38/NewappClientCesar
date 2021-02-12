@@ -75,9 +75,9 @@ export class ResumenPage implements OnInit {
         
       });
 
-    this.foto0=this.datos.getfoto0();
-    this.foto1=this.datos.getfoto1();
-    this.foto2=this.datos.getfoto2();
+    this.foto0=this.datos.getfoto00();
+    this.foto1=this.datos.getfoto11();
+    this.foto2=this.datos.getfoto22();
 
     console.log("tengoresumen la foto0",this.foto0)
     console.log("tengoresumen la foto1",this.foto1)
@@ -90,7 +90,7 @@ export class ResumenPage implements OnInit {
     this.titulo=this.datos.gettitulo();
     this.check=this.datos.getUtiles();
     this.fecha=this.datos.getCalendarioD();
-    this.hora=this.datos.getCalendarioT();
+    this.hora1=this.datos.getCalendarioT();
     
   
   

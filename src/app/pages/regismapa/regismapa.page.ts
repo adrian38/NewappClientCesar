@@ -28,6 +28,18 @@ this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'bac
 
 });
 
+navigator.geolocation.getCurrentPosition(posicion =>{
+  this.lat = posicion.coords.latitude;
+  this.lng = posicion.coords.longitude;
+  this.Serv.setLatitud(this.lat);
+  this.Serv.setLongitud(this.lng);
+  this.marcadores=[];
+  const nuevoMarcador = new Marcador( this.lat, this.lng );
+  this.marcadores.push( nuevoMarcador ); 
+  this.Serv.setcoordenada(true);
+})
+
+
 } 
 
 agregarMarcador( evento ) {

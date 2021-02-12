@@ -4,6 +4,7 @@ import { Address, UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
 import { Observable, Subscription } from 'rxjs';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-aceptarregistro',
@@ -32,7 +33,8 @@ export class AceptarregistroPage implements OnInit {
               private platform: Platform,
               public navCtrl:NavController,
               public loadingController: LoadingController,
-              private ngZone: NgZone) { }
+              private ngZone: NgZone,
+              private messageService: MessageService) { }
 
   ngOnInit() {
     console.log("inicio1")
@@ -45,6 +47,8 @@ export class AceptarregistroPage implements OnInit {
 
         if(notificationError){
           this.loading.dismiss();
+          this.messageService.add({ severity: 'error',  detail: 'Reistro incompletado'});
+  
           console.log("Error creando Usuario");
           console.log("inicio2")
           //error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
@@ -61,8 +65,20 @@ export class AceptarregistroPage implements OnInit {
             
             console.log("Usuario Creado");
             this.loading.dismiss();
-            this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+            this.messageService.add({ severity: 'success', detail: 'Reistro completado'});
+   
+             setTimeout(() => {
+     
+              this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
       
+                },
+              2000);
+    
+    
+   
+    
+    
+            
           }
 
         });

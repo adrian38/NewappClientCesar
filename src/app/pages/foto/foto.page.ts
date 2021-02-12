@@ -47,6 +47,11 @@ export class FotoPage implements OnInit {
   }
 
   ngOnInit() {
+
+    /* this.foto0=this.datos.getfoto00();
+    this.foto1=this.datos.getfoto11();
+    this.foto2=this.datos.getfoto22();  */
+    
     // this.servicio=this.datos.getServ();
  
     /* this.foto0="data:image/png;base64,"+this.datos.getfoto0(); */
@@ -106,10 +111,11 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto0 = photo.webviewPath;
-             
+              this.datos.setfoto00(this.foto0);
               /* console.log(this.servicio); */
               this.foto064=this.photoService.devuelve64();
               this.datos.setfoto0(this.foto064);
+
              /*  console.log("paso..../",this.photoService.devuelve64()); */
               console.log("mi foto",this.foto0);
              
@@ -120,6 +126,7 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto1 = photo.webviewPath;
+              this.datos.setfoto11(this.foto1);
               this.foto164=this.photoService.devuelve64();
               this.datos.setfoto1(this.foto164);
 
@@ -130,6 +137,7 @@ export class FotoPage implements OnInit {
             console.log( "Foto",photo.webviewPath);
             if(photo){
               this.foto2 = photo.webviewPath;
+              this.datos.setfoto22(this.foto2);
               this.foto264=this.photoService.devuelve64();
               this.datos.setfoto2(this.foto264);
             }

@@ -33,7 +33,8 @@ export class ObtSubSService {
 
     titulo:string="";
     dat:string;
-    tim:string;
+   /*  tim:string; */
+   tim:Date;
 
     nombre:string="";
     telefono:number;
@@ -60,6 +61,10 @@ export class ObtSubSService {
     foto0:string = '../../../assets/fotoadd.png';
     foto1:string='../../../assets/fotoadd.png';
     foto2:string="";
+    foto00:string = '../../../assets/noImage.png';
+    foto11:string = '../../../assets/noImage.png';
+    foto22:string = '../../../assets/noImage.png';
+   
   constructor() { 
     
     this.SolicitudesList = [];
@@ -244,7 +249,12 @@ this.titulo=t;
       this.dat=d;
       
     }
-    setCalendarioT(t:string){
+   /*  setCalendarioT(t:string){
+      
+      this.tim=t;
+    } */
+
+    setCalendarioT(t:Date){
       
       this.tim=t;
     }
@@ -293,26 +303,49 @@ this.titulo=t;
        this.foto0=f0;
       console.log("tengo f1",this.foto0);
     }
+
+    setfoto00(f0:string){
+      this.foto00=f0;
+     console.log("tengo f1",this.foto0);
+   }
     setfoto1(f1:string){
-    ;
+    
       this.foto1=f1;
       
    }
+   setfoto11(f0:string){
+    this.foto11=f0;
+   console.log("tengo f1",this.foto0);
+ }
    setfoto2(f2:string){
     
     this.foto2=f2;
  }
+ setfoto22(f0:string){
+  this.foto22=f0;
+
+}
    
    getfoto0(){
    return this.foto0;
  }
 
+ getfoto00(){
+  return this.foto00;
+}
+
  getfoto1(){
   return this.foto1;
+}
+getfoto11(){
+  return this.foto11;
 }
 
 getfoto2(){
   return this.foto2;
+}
+getfoto22(){
+  return this.foto22;
 }
 
 setruta(r){

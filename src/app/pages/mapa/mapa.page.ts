@@ -50,7 +50,7 @@ ruta:string="";
         }
           }); 
 
-   
+          this.getLocation();
 
   } 
 

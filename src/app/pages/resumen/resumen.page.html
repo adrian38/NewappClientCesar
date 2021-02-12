@@ -53,7 +53,7 @@
               </ion-row>
        
               <ion-row style="margin-bottom: 9px;">
-                <ion-label style="margin-top: 5px;">{{hora }}</ion-label>
+                <ion-label style="margin-top: 5px;">{{hora1 | date: 'h:mm a'  }}</ion-label>
               </ion-row>
               </div>
 
@@ -106,19 +106,19 @@
             
                     <ion-col size=4  style="margin-left: -3px;">
                       <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                        <img   src="data:image/png;base64,{{foto0}}" onError="this.src='assets/noImage.png'"
+                        <img   [src]="foto0 | safeUrlPipe"
                         >
                       </ion-card>
                       </ion-col>
                       <ion-col size=4  style="text-align: center;">
                         <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                          <img   src="data:image/png;base64,{{foto1}}"  onError="this.src='assets/noImage.png'">
+                          <img   [src]="foto1 | safeUrlPipe">
                         </ion-card>
                         </ion-col>
                     
                         <ion-col size=4  style="text-align: center;">
                           <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                            <img  src="data:image/png;base64,{{foto2}}"  onError="this.src='assets/noImage.png'">
+                            <img  [src]="foto2 | safeUrlPipe">
                           </ion-card>
                           </ion-col>
                   </ion-row>

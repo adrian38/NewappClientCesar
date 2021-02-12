@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AceptarregistroPageRoutingModule } from './aceptarregistro-routing.module';
-
+import {ToastModule} from 'primeng/toast';
 import { AceptarregistroPage } from './aceptarregistro.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { AceptarregistroPage } from './aceptarregistro.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AceptarregistroPageRoutingModule
+    AceptarregistroPageRoutingModule,
+    ToastModule
   ],
   declarations: [AceptarregistroPage]
 })
