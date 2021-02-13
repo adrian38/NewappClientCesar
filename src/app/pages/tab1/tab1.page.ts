@@ -1,11 +1,9 @@
 import { Component, NgZone ,OnInit} from '@angular/core';
 import { AlertController, NavController,Platform } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
-
-
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -26,15 +24,18 @@ export class Tab1Page implements OnInit {
   id_string: string;
   task: TaskModel;
   solicitudesList: TaskModel[];
-  
-  tasksList$: Observable<TaskModel[]>; // servicio comunicacion
   tab: String;
-  tab$: Observable<String>;
-
+  user:UsuarioModel;
+  loading:any ;
+  
   notificationTabs$: Observable<boolean>;
+  notificationSOCancelled$ :Observable<number>;
+
+  subscriptionNotificationSoCancel: Subscription;
+  subscriptionNotificationTab: Subscription;
 
   
-  user:UsuarioModel;
+ 
 
   constructor(private subServ: ObtSubSService,
     private _taskOdoo: TaskOdooService,
@@ -43,29 +44,43 @@ export class Tab1Page implements OnInit {
     private platform: Platform,
     public alertCtrl: AlertController) {
 
-  this.solicitudesList = this.subServ.getSolicitudeList();
+    this.solicitudesList = this.subServ.getSolicitudeList();
 
   }
 
   ngOnInit(): void {
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
+
+      this.platform.backButton.subscribeWithPriority(10, () => {
       this.presentAlert();
     });
 
-   this.notificationTabs$ = this.subServ.getNotificationSetTab$();
-   this.notificationTabs$.subscribe(notificationTab => {
- 
-   this.ngZone.run(()=>{
-
-    this.solicitudesList = this.subServ.getSolicitudeList();
-     console.log('tabs1',this.solicitudesList);
-
+    this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
+    this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe(notificationCancel=>{
+      this.ngZone.run(()=>{
+        //////////////////////////////////////eliminar cargando
+        this.loading.dismiss();
+      });
+    })
+   
+    this.notificationTabs$ = this.subServ.getNotificationSetTab$();
+    this.subscriptionNotificationTab = this.notificationTabs$.subscribe(notificationTab => {
+       this.ngZone.run(()=>{
+        this.solicitudesList = this.subServ.getSolicitudeList();
+        console.log('tabs1',this.solicitudesList);
    });
 
    });
   
 
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscriptionNotificationTab.unsubscribe();
+    this.subscriptionNotificationSoCancel.unsubscribe();
+    
   }
 
   
@@ -122,18 +137,19 @@ export class Tab1Page implements OnInit {
   } 
   cancelar(i:number){
     console.log("cancel",i)
-
-
-   
-
     this.task = this.solicitudesList[i];
-    this._taskOdoo.setTaskCesar(this.task);
-    console.log(this.task);
-    // console.log("f",this.solicitudesList[this.cant].id_string);
-     //let id = this.solicitudesList[this.cant].id;
-    
-
     this._taskOdoo.cancelSOclient(this.task.id); 
+    ////////////////////////Cargando
+    this.presentLoading();
+  }
+
+  async presentLoading() {
+    this.loading = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      message: 'Eliminando Solicitud...',
+      //duration: 2000
+    });
+    return  this.loading.present();
   }
 
 }
