@@ -91,6 +91,7 @@ export class ResumenPage implements OnInit {
     this.check=this.datos.getUtiles();
     this.fecha=this.datos.getCalendarioD();
     this.hora1=this.datos.getCalendarioT();
+    this.hora = this.date.transform(this.hora1, 'HH:mm:ss');
     
   
   
@@ -175,13 +176,18 @@ export class ResumenPage implements OnInit {
     this.task.type = ':Servicio de Fontaneria';
     
     this.task.date = this.fecha;
-    this.task.time = this.hora;
+    //this.task.time = '12:12:12';
+     this.task.time = this.hora;
     this.task.client_id = this.user.partner_id;
    
   // this.task.photoNewTaskArray[0]= this.photoService.devuelve64(); 
 this.task.photoNewTaskArray[0]= this.datos.getfoto0(); 
 this.task.photoNewTaskArray[1]= this.datos.getfoto1(); 
 this.task.photoNewTaskArray[2]= this.datos.getfoto2(); 
+console.log("f1",this.datos.getfoto0());
+console.log("f2",this.datos.getfoto1());
+console.log("f3",this.datos.getfoto2());
+
     //console.log("en resumen foto",this.task.photoNewTaskArray[0]);
     this._taskOdoo.newTask(this.task);
 

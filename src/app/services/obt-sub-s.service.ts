@@ -57,9 +57,12 @@ export class ObtSubSService {
     i:number=0;
     idString:String;
     private subServicioActual:string;
-
+/* 
     foto0:string = '../../../assets/fotoadd.png';
-    foto1:string='../../../assets/fotoadd.png';
+    foto1:string='../../../assets/fotoadd.png'; */
+    
+    foto0:string = '';
+    foto1:string='';
     foto2:string="";
     foto00:string = '../../../assets/noImage.png';
     foto11:string = '../../../assets/noImage.png';
