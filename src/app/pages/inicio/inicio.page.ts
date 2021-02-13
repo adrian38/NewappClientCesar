@@ -34,15 +34,16 @@ console.log(this.screenOrientation.type); // logs the current orientation, examp
 this.screenOrientation.lock('portrait');
 /* this.screenOrientation.ORIENTATIONS.PORTRAIT */
 
-/* this.screenOrientation.unlock();
+/*  this.screenOrientation.unlock();
 
 
 this.screenOrientation.onChange().subscribe(
    () => {
-       console.log("Orientation Changed");
+       console.log("Orientation Changed",this.screenOrientation.type);
+      
      
    }
-); */
+);  */
     }
 
   ngOnInit() {

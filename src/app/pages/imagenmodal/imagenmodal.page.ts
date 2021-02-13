@@ -31,30 +31,24 @@ export class ImagenmodalPage implements OnInit {
 
     //console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
     console.log("esto",this.slide);
-// set to landscape
-/* this.screenOrientation.lock('portrait'); */
-/* this.screenOrientation.ORIENTATIONS.PORTRAIT */
-/* 
- this.screenOrientation.unlock();
-
-
-this.screenOrientation.onChange().subscribe(
-   () => {
-       console.log("Orientation Changed");
-     
-   }
-);  */
+    this.screenOrientation.onChange().subscribe(
+      () => {
+          console.log("Orientation Changed",this.screenOrientation.type);
+         
+        
+      }
+   ); 
   }
 
   cerrar(){
     this.modalCtrl.dismiss();
   }
-  zoomin(){
+ /*  zoomin(){
     this.slide.nativeElement.swiper.zoom.in()
     console.log("+");
   }
   zoomout(){
     this.slide.nativeElement.swiper.zoom.out();
     console.log("-");
-  }
+  } */
 }
