@@ -79,18 +79,10 @@ export class OfertasPage implements OnInit {
 
 
       this.task=new TaskModel();
-      this.task=this._taskOdoo.getTaskCesar();
-     
-      
-this.veroferta=true;
-this.verdetalles=false;
+ 
+      this.veroferta=true;
+      this.verdetalles=false;
 
-
-
-
-this.user = this._authOdoo.getUser();
-this.offersList =[];
-this.userType = this.user.type
 
 
 }
@@ -104,9 +96,12 @@ ngOnDestroy(): void {
 }
 
 ngOnInit() {
-
+  this.user = this._authOdoo.getUser();
+  this.task=this._taskOdoo.getTaskCesar();
+  this.offersList =[];
+  this.userType = this.user.type
   
-
+  
   this.platform.backButton.subscribeWithPriority(10, () => {
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
       

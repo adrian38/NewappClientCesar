@@ -5,7 +5,7 @@ class="animated fadeIn"></app-header>
   
     
     
-      <ion-fab vertical="bottom" style="margin-right: 10px;"
+  <ion-fab vertical="bottom" style="margin-right: 10px;"
     horizontal="end" 
     slot="fixed"
     (click)="irSolicitud()" 
@@ -15,18 +15,16 @@ class="animated fadeIn"></app-header>
     </ion-fab-button>
   </ion-fab>
 
- 
+  
 
   <ion-row>
     <ion-col size=0.2 style="padding: 0px;">      
     </ion-col>
     <ion-col size=11.6 style="padding: 0px;">
-      
       <ion-list>  
-        <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
-        
 
-          
+    <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
+        
     <ion-item  lines="none" style="padding: 0px;">  
         <app-solicitud 
         (click)="in(i)"              
@@ -36,13 +34,7 @@ class="animated fadeIn"></app-header>
         </app-solicitud>
   
     </ion-item>
-         
-        
-     
-         
-          
- 
-          <ion-item-options side="end" style="padding: 0px;">
+              <ion-item-options side="end" style="padding: 0px;">
             <ion-item-option (click)="cancelar(i)"
                               color="tertiary" expandable>cancelar</ion-item-option>
           </ion-item-options> 

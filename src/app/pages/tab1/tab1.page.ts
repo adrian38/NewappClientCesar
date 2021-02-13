@@ -78,11 +78,14 @@ export class Tab1Page implements OnInit {
     this._taskOdoo.setTaskCesar(this.task);
     console.log(this.task);
     // console.log("f",this.solicitudesList[this.cant].id_string);
-    this.id_string = this.solicitudesList[this.cant].id_string;
-    this.subServ.setidString(this.id_string);
+    /* this.id_string = this.solicitudesList[this.cant].id_string;
+    
+    this.subServ.setidString(this.id_string); */
 
 
   }
+
+  
   irSolicitud(){
   
     this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'forward' }) ;

@@ -30,18 +30,22 @@ export class ImagenmodalPage implements OnInit {
   ngOnInit() {
 
     //console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
-    console.log("esto",this.slide);
+/*     console.log("esto",this.slide);
     this.screenOrientation.onChange().subscribe(
       () => {
           console.log("Orientation Changed",this.screenOrientation.type);
          
         
       }
-   ); 
+   );  */
+
+   //this.screenOrientation.unlock();
   }
 
   cerrar(){
+    //this.screenOrientation.lock('portrait');
     this.modalCtrl.dismiss();
+
   }
  /*  zoomin(){
     this.slide.nativeElement.swiper.zoom.in()
