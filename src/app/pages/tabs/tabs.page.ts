@@ -22,14 +22,17 @@ export class TabsPage {
   tab3_active: string = "";
 
   task: TaskModel;
-
   solicitudesList: TaskModel[];
   contratadosList: TaskModel[];
-
   historialList: TaskModel[];
-  tasksList$: Observable<TaskModel[]>; // servicio comunicacion
-
   notificationNewPoSuplier: number[];
+  inicio = true;
+  loading:any;
+
+
+
+  tasksList$: Observable<TaskModel[]>; // servicio comunicacion
+    
   notificationNewPoSuplier$: Observable<number[]>;
 
   notificationSoCancelled$: Observable<number>;
@@ -40,8 +43,7 @@ export class TabsPage {
   
   notificationOffertCancelled$: Observable<number[]>;
 
-  inicio = true;
-  loading:any;
+ 
 
   constructor(private _taskOdoo: TaskOdooService,
     private subServ:ObtSubSService,
