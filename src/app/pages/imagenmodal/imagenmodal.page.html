@@ -3,9 +3,9 @@
 <ion-content fullscreen id="contenido">
  
 <div id="contenido">
-<ion-row >
-    <ion-col size=6></ion-col>
-    <ion-col size=2 style="text-align: end;">
+
+<!--     <ion-col size=10></ion-col> -->
+   <!--  <ion-col size=2 style="text-align: end;">
       <ion-button  (click)="zoomout()" class="boton" fill="clear">
         <ion-icon name="open"></ion-icon>
       </ion-button>
@@ -14,28 +14,39 @@
       <ion-button  (click)="zoomin()" class="boton" fill="clear">
         <ion-icon name="search"></ion-icon>
       </ion-button>
-    </ion-col>
-    <ion-col size=2 style="text-align: end;">
+    </ion-col> -->
+   <!--  <ion-col size=2 style="text-align: end;">
       <ion-button  (click)="cerrar()" class="boton" fill="clear">
         <ion-icon name="close"></ion-icon>
       </ion-button>
-    </ion-col>
+    </ion-col> -->
     
-  </ion-row>
+  
 
   
     <ion-row id="contenido" style="align-items: center;" >
       <ion-col size=0.5></ion-col>
       <ion-col size=11 >
-        <!-- [options]="sliderOption" -->
-        <ion-slides pager="false" zoom="true" #slides>
-          <ion-slide>
-            <div class="swiper-zoom-container">
-              <img   src="{{imagen}}"  alt="" >
-            </div>
-          </ion-slide>
-        </ion-slides>
-       
+        <ion-row style="margin-top: -10px;">
+          <ion-col size=10></ion-col>
+          <ion-col size=2 style="text-align: end;">
+            <ion-button  (click)="cerrar()" class="boton" fill="clear" style="margin-top: 0px;">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-slides pager="false" zoom="true" #slides>
+            <ion-slide>
+              <div class="swiper-zoom-container">
+                <img   src="{{imagen}}"  alt="" >
+              </div>
+            </ion-slide>
+          </ion-slides>
+         
+        </ion-row>
+  
+        
       </ion-col>
       <ion-col size=0.5></ion-col>
     </ion-row>
