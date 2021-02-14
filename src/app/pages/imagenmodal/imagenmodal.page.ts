@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalController, NavParams,IonSlide } from '@ionic/angular';
+import { ModalController, NavParams,IonSlide, Platform, NavController } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
@@ -21,13 +21,20 @@ export class ImagenmodalPage implements OnInit {
   } */
   constructor(private modalCtrl:ModalController,
               private navparams:NavParams,
-              private screenOrientation: ScreenOrientation)  {
+              private screenOrientation: ScreenOrientation,
+              public navCtrl:NavController,
+              private platform: Platform)  {
 
              this.imagen=this.navparams.get('imagen');
              //console.log(this.imagen);
                }
 
   ngOnInit() {
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.screenOrientation.lock('portrait');
+      this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
     //console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
 /*     console.log("esto",this.slide);
@@ -39,11 +46,11 @@ export class ImagenmodalPage implements OnInit {
       }
    );  */
 
-   //this.screenOrientation.unlock();
+   this.screenOrientation.unlock();
   }
 
   cerrar(){
-    //this.screenOrientation.lock('portrait');
+    this.screenOrientation.lock('portrait');
     this.modalCtrl.dismiss();
 
   }

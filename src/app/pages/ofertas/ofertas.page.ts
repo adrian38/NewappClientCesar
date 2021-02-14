@@ -30,6 +30,9 @@ export class OfertasPage implements OnInit {
   foto0:string = '../../../assets/icon/noImage.svg';
    
   offersList:TaskModel[];
+  habilitar1:boolean=false;
+  habilitar2:boolean=false;
+  habilitar3:boolean=false;
 
   
   offersList$: Observable<TaskModel[]>;
@@ -101,6 +104,10 @@ ngOnInit() {
   this.offersList =[];
   this.userType = this.user.type
   
+  this.deshabilitar1();
+  this.deshabilitar2();
+  this.deshabilitar3();
+ 
   
   this.platform.backButton.subscribeWithPriority(10, () => {
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
@@ -312,4 +319,44 @@ else
 this.efectivo=true;
 
 }
+deshabilitar1(){
+  if(this.task.photoNewTaskArray[0]== undefined ){
+this.habilitar1=true;
+console.log("f1",this.task.photoNewTaskArray[0]);
+console.log("h1",this.habilitar1);
+
+  }
+  else{
+    this.habilitar1=false;
+    console.log("f1",this.task.photoNewTaskArray[0])
+    console.log("h1",this.habilitar1);
+  }
+
+}
+
+deshabilitar2(){
+  if(this.task.photoNewTaskArray[1]== undefined){
+this.habilitar2=true;
+console.log("f2",this.task.photoNewTaskArray[1])
+console.log("h2",this.habilitar2);
+
+  }
+  else{
+    this.habilitar2=false;
+    console.log("f2",this.task.photoNewTaskArray[1])
+    console.log("h2",this.habilitar2);
+  }
+ 
+}
+
+deshabilitar3(){
+  if(this.task.photoNewTaskArray[2]==undefined){
+this.habilitar3=true;
+console.log("f3",this.task.photoNewTaskArray[2])
+
+  }
+  else
+  this.habilitar3=false;
+  console.log("f3",this.task.photoNewTaskArray[2])
+} 
 }

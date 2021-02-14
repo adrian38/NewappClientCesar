@@ -350,21 +350,31 @@
           </ion-row>
           <ion-row >
             
-            <ion-col size=4  style="text-align: center;padding-top: 0px;" (click)="imageClick(task.photoNewTaskArray[0])">
-              <ion-card  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                <img id="selecf"  src="{{task.photoNewTaskArray[0]}}"  onError="this.src='assets/noImage.png'" 
+            <ion-col size=4  style="text-align: center;padding-top: 0px;" >
+              <ion-card [disabled]= "habilitar1" style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                <img id="selecf"  
+                     (click)="imageClick(task.photoNewTaskArray[0])"
+                     src="{{task.photoNewTaskArray[0]}}"  
+                     onError="this.src='assets/noImage.png'"
+                     
                >
               </ion-card>
               </ion-col>
-              <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(task.photoNewTaskArray[1])">
-                <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                  <img id="selecf"  src="{{task.photoNewTaskArray[1]}}"  onError="this.src='assets/noImage.png'">
+              <ion-col size=4  style="text-align: center;padding-top: 0px;">
+                <ion-card [disabled]="habilitar2"  style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                  <img id="selecf"  
+                  src="{{task.photoNewTaskArray[1]}}"  
+                  onError="this.src='assets/noImage.png' "
+                  (click)="imageClick(task.photoNewTaskArray[1])" >
                 </ion-card>
                 </ion-col>
             
-                <ion-col size=4  style="text-align: center;padding-top: 0px;"(click)="imageClick(task.photoNewTaskArray[2])">
-                  <ion-card style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                    <img id="selecf"  src="{{task.photoNewTaskArray[2]}}"  onError="this.src='assets/noImage.png'">
+                <ion-col size=4  style="text-align: center;padding-top: 0px;">
+                  <ion-card [disabled]="habilitar3" style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
+                    <img id="selecf"  
+                    src="{{task.photoNewTaskArray[2]}}" 
+                    onError="this.src='assets/noImage.png'"
+                    (click)="imageClick(task.photoNewTaskArray[2])">
                   </ion-card>
                   </ion-col>
 
