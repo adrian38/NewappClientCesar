@@ -5,9 +5,6 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AlertController, LoadingController, NavController,Platform } from '@ionic/angular';
-
-//import { NavController } from 'ionic-angular';
-
 import { Location } from '@angular/common';
 
 
@@ -74,11 +71,13 @@ checkUser(){
   if(this.usuario.connected){
     this._taskOdoo.setUser(this.usuario);
     this._chatOdoo.setUser(this.usuario);
-   console.log('conectado00000',this.usuario);
     
-            //this.route.navigate(["/tabs/tab1"]);   
-            
-          //this.route.navigateByUrl ('/tabs/tab1', {replaceUrl : true}) ;
+    if(!this._taskOdoo.getInit()){
+    this._taskOdoo.setInit();
+    this._taskOdoo.notificationPull();
+    }
+    console.log('conectado00000',this.usuario);
+    
     this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;   
   }
   else{
