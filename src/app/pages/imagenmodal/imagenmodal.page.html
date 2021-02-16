@@ -15,17 +15,34 @@
             </ion-button>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-slides pager="false" zoom="true" #slides>
-            <ion-slide>
-              <div class="swiper-zoom-container" style="width: 100%;height:100% ;">
-                <img   src="{{imagen}}"  alt="" >
-              </div>
-            </ion-slide>
-          </ion-slides>
-         
-        </ion-row>
-  
+        
+
+        <div *ngIf="!vertical">
+          <ion-row>
+            <ion-slides pager="false" zoom="true" #slides>
+              <ion-slide>
+                <div class="swiper-zoom-container" style="width: 100%;height:100% ;">
+                  <img   src="{{imagen}}"  alt="" >
+                </div>
+              </ion-slide>
+            </ion-slides>
+           
+          </ion-row>
+        </div>
+
+  <div *ngIf="vertical">
+    <ion-col>
+      <ion-slides pager="false" zoom="true" #slides>
+        <ion-slide>
+          <div class="swiper-zoom-container" style="width: 100%;height:100% ;">
+            <img   src="{{imagen}}"  alt="" >
+          </div>
+        </ion-slide>
+      </ion-slides>
+     
+    </ion-col> 
+  </div>
+      
         
       </ion-col>
       <ion-col size=0.5></ion-col>
