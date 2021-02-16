@@ -8,7 +8,7 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import {MessageService} from 'primeng/api';
 import { Location } from '@angular/common';
 import { async } from '@angular/core/testing';
 
@@ -42,7 +42,8 @@ export class Tab1Page implements OnInit {
     private ngZone: NgZone,
     public navCtrl:NavController,
     private platform: Platform,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private messageService: MessageService) {
 
     this.solicitudesList = this.subServ.getSolicitudeList();
 
@@ -60,6 +61,8 @@ export class Tab1Page implements OnInit {
       this.ngZone.run(()=>{
         //////////////////////////////////////eliminar cargando
         this.loading.dismiss();
+        this.messageService.add({ severity: 'error', detail: 'Solicitud eliminada'});
+  
       });
     })
    

@@ -51,13 +51,14 @@ export class DireccionPage implements OnInit {
     
 
   ngOnInit() {
-
-    console.log("autofillcomo",this.Autofill);
-
-      this.platform.backButton.subscribeWithPriority(10, () => {
+    this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
         
       });
+      
+    console.log("autofillcomo",this.Autofill);
+
+     
   
     this.servicio=this.datos.getServ();
     this.user = this._authOdoo.getUser();

@@ -99,6 +99,12 @@ ngOnDestroy(): void {
 }
 
 ngOnInit() {
+
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
+      
+    });
+    
   this.user = this._authOdoo.getUser();
   this.task=this._taskOdoo.getTaskCesar();
   this.offersList =[];
@@ -109,10 +115,7 @@ ngOnInit() {
   this.deshabilitar3();
  
   
-  this.platform.backButton.subscribeWithPriority(10, () => {
-    this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
-      
-    });
+ 
  
   setTimeout(()=>{
     console.log("ejecutando marcar 'contratados'");

@@ -31,15 +31,16 @@ export class ImagenmodalPage implements OnInit {
                }
 
   ngOnInit() {
+
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.screenOrientation.lock('portrait');
-      this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
-        
-      });
+     /* this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+      */    
+      }); 
 
     //console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
     console.log("esto",this.slide);
-    this.screenOrientation.onChange().subscribe(
+    /* this.screenOrientation.onChange().subscribe(
       () => {
           console.log("Orientation Changed",this.screenOrientation.type);
          if(this.screenOrientation.type == "landscape-primary"){
@@ -49,7 +50,7 @@ export class ImagenmodalPage implements OnInit {
          this.vertical=true;
         
       }
-   );  
+   );   */
 
    this.screenOrientation.unlock();
   }
