@@ -1,13 +1,13 @@
-import { Injectable, Testability } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model'
 import { Address, TaskModel } from '../models/task.model'
-import { empty, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
-import { HttpClient } from '@angular/common/http';
-import { StringDecoder } from 'string_decoder';
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
 let jaysonServer;
+
+let init:boolean = false;
 
 let taskCesar: TaskModel;
 
@@ -51,8 +51,6 @@ let knownTypes = {
   'i': 'data:image/png;base64,',
 
 }
-/* let urlImagePng = 'data:type/example;base64,';
-let urlImage = 'data:image/jpeg;base64,' */
 
 let user: UsuarioModel;
 
@@ -66,8 +64,15 @@ export class TaskOdooService {
 
   constructor(private _authOdoo: AuthOdooService) {
     task = new TaskModel();
-
     jaysonServer = this._authOdoo.OdooInfoJayson;
+  }
+
+  setInit(){
+    init = true;
+  }
+
+  getInit(){
+    return init;
   }
 
   setUser(usuario: UsuarioModel) {
@@ -963,6 +968,8 @@ export class TaskOdooService {
 
   requestTaskListClient() {
 
+    console.log("realizando peticion");
+
     let tasksList = [];
     let SO_id = [];
 
@@ -1047,9 +1054,9 @@ export class TaskOdooService {
 
     }
 
-    let get_so_list = function (partnerId) {
+    let get_so_list = function () {
       let inParams = [];
-      inParams.push([['partner_id', '=', partnerId]])
+      inParams.push([['partner_id', '=', user.partner_id]])
       inParams.push(['partner_id', 'date_order', 'name', 'note', 'invoice_status', 'client_order_ref', 'title', 'require_materials',
         'commitment_date', 'address_street', 'address_floor', 'address_portal',
         'address_number', 'address_door', 'address_stairs', 'address_zip_code',
@@ -1074,16 +1081,17 @@ export class TaskOdooService {
         if (err) {
           console.log(err || !value, "get_so_list");
         } else {
-
+        
           SO_id = [];
 
           for (let order of value) {
             let temp = new TaskModel();
+            if(order['invoice_status'] != "no"){///////////////////////////////////Momentaneo
+           
             SO_id.push(order['id']);
             temp.description = order['note'];
             temp.type = order['client_order_ref'];
             temp.client_id = order['partner_id'][0];
-
             temp.client_name = order['partner_id'][1];
             temp.id_string = order['name'];
             temp.id = order['id'];
@@ -1102,7 +1110,7 @@ export class TaskOdooService {
               order['address_zip_code'],
               order['address_latitude'],
               order['address_longitude'])
-            tasksList.push(temp);
+            tasksList.push(temp);}
           }
           if (SO_id.length) {
 
@@ -1122,8 +1130,8 @@ export class TaskOdooService {
         console.log(err, "requestTaskListClient");
 
       } else {
-
-        get_so_list(user.partner_id);
+      
+        get_so_list();
       }
     });
   }

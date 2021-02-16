@@ -26,7 +26,6 @@ export class TabsPage {
   contratadosList: TaskModel[];
   historialList: TaskModel[];
   notificationNewPoSuplier: number[];
-  inicio = true;
   loading:any;
 
 
@@ -132,10 +131,6 @@ export class TabsPage {
         console.log(this.solicitudesList,"peticiones a Servidor");
         this.loading.dismiss();
       });
-      if (this.inicio){
-        this.inicio = false;
-        this._taskOdoo.notificationPull();
-      }
     });
   }
   async presentLoading() {
