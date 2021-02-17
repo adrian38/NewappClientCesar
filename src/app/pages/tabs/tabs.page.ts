@@ -31,18 +31,20 @@ export class TabsPage {
 
 
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
-    
-  notificationNewPoSuplier$: Observable<number[]>;
-
   notificationSoCancelled$: Observable<number>;
-
-  notificationPoCancelled$: Observable<number[]>
-
   notificationError$: Observable<boolean>;
-  
+
+  notificationNewPoSuplier$: Observable<number[]>;
+  notificationPoCancelled$: Observable<number[]>
   notificationOffertCancelled$: Observable<number[]>;
 
  
+  subscriptionNotificationSoCancelled: Subscription;
+  subscriptionNotificationError: Subscription;
+  subscriptiontasksList: Subscription;
+
+  
+
 
   constructor(private _taskOdoo: TaskOdooService,
     private subServ:ObtSubSService,
@@ -66,12 +68,15 @@ export class TabsPage {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
+   this.subscriptionNotificationSoCancelled.unsubscribe();
+   this.subscriptionNotificationError.unsubscribe();
+   this.subscriptiontasksList.unsubscribe();
   }
 
   observablesSubscriptions() {
     ////////////////////////////////Para el Cliente
       this.notificationSoCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
-      this.notificationSoCancelled$.subscribe(notificationSoCancelled => {
+      this.subscriptionNotificationSoCancelled = this.notificationSoCancelled$.subscribe(notificationSoCancelled => {
         this.ngZone.run(() => {
 
           let temp = (this.solicitudesList.findIndex(element => element.id === notificationSoCancelled));
@@ -84,7 +89,7 @@ export class TabsPage {
       });
     //////////////////Para Todos
     this.notificationError$ = this._taskOdoo.getNotificationError$();
-    this.notificationError$.subscribe(notificationError =>{
+    this.subscriptionNotificationError = this.notificationError$.subscribe(notificationError =>{
       this.ngZone.run(()=>{
         if(notificationError){
         console.log("Error!!!!!!!!!!!");
@@ -93,7 +98,7 @@ export class TabsPage {
     });
 
     this.tasksList$ = this._taskOdoo.getRequestedTaskList$();
-    this.tasksList$.subscribe((tasksList: TaskModel[]) => {
+    this.subscriptiontasksList=this.tasksList$.subscribe((tasksList: TaskModel[]) => {
       this.ngZone.run(() => {
 
         console.log("me llego algo");

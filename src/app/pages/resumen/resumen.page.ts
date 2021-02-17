@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { PhotoService } from '../../services/photo.service';
-import { Observable } from 'rxjs';
+import { Observable ,Subscription} from 'rxjs';
 import {MessageService} from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
 import { style } from '@angular/animations';
@@ -44,9 +44,14 @@ export class ResumenPage implements OnInit {
   escalera:string="";
   latitud:string="";
   longitud:string="";
+  loading:any ;
   
   notificationNewSoClient$: Observable<boolean>;
   notificationError$: Observable<boolean>;
+
+
+  subscriptionNotificationNewSoClient: Subscription;
+  subscriptionNotificationError: Subscription;
 
   foto0:string="";
   foto1:string = "";
@@ -110,12 +115,13 @@ export class ResumenPage implements OnInit {
     this.user=this._taskOdoo.getUser();
 
     this.notificationError$ = this._taskOdoo.getNotificationError$();
-    this.notificationError$.subscribe(notificationError => {
+    this.subscriptionNotificationError=this.notificationError$.subscribe(notificationError => {
     this.ngZone.run(() => {
     
     if (notificationError) {
     console.log("Error creando la tarea");
-    this.messageService.add({ severity: 'success', summary: 'Imcompleto', detail: 'No se creo la tarea'});
+    this.loading.dismiss();
+    this.messageService.add({ severity: 'error', detail: 'No se creo la tarea'});
   
     }
     
@@ -124,10 +130,11 @@ export class ResumenPage implements OnInit {
     });
     
     this.notificationNewSoClient$ = this._taskOdoo.getNotificationNewSoClient$();
-    this.notificationNewSoClient$.subscribe(notificationNewSoClient => {
+    this.subscriptionNotificationNewSoClient=this.notificationNewSoClient$.subscribe(notificationNewSoClient => {
     this.ngZone.run(() => {
     
     if (notificationNewSoClient) {
+      this.loading.dismiss();
     console.log("Se creo correctamente la tarea");
     this.messageService.add({ severity: 'success', detail: 'Tarea creada correctamente'});
     /* this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Tarea creada correctamente'});
@@ -147,6 +154,14 @@ export class ResumenPage implements OnInit {
    
     }
 
+    ngOnDestroy(): void {
+      //Called once, before the instance is destroyed.
+      //Add 'implements OnDestroy' to the class.
+      this.subscriptionNotificationError.unsubscribe();
+      this.subscriptionNotificationNewSoClient.unsubscribe();
+      
+    }
+
   cerrarsolicitud(){
     
     this.presentAlert();
@@ -154,6 +169,7 @@ export class ResumenPage implements OnInit {
   
   }
   crearSolicitud(){
+    this.presentLoading();
      this.task=new TaskModel(); 
     this.task.address=new Address('','','','','','','','','');
         
@@ -258,4 +274,14 @@ this.borrar_campos();
   
     await alert.present();
   }  
+
+
+  async presentLoading() {
+    this.loading = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      message: 'Creando Solicitud...',
+      //duration: 2000
+    });
+    return  this.loading.present();
+  }
 }

@@ -1,5 +1,5 @@
 import { Component,ElementRef,NgZone, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,Subscription } from 'rxjs';
 import { Address, TaskModel } from 'src/app/models/task.model';
 
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
@@ -33,6 +33,8 @@ export class Tab2Page {
 
   notificationTabs2$: Observable<boolean>;
 
+  subscriptionNotificationTabs2: Subscription;
+
   constructor(private subServ: ObtSubSService,
               private _taskOdoo: TaskOdooService,
               private ngZone: NgZone,
@@ -49,6 +51,15 @@ export class Tab2Page {
       this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
       });
   }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscriptionNotificationTabs2.unsubscribe();
+   
+    
+  }
+
   ngOnInit(): void {
     setTimeout(()=>{
       console.log("ejecutando marcar 'contratados'");
@@ -56,7 +67,7 @@ export class Tab2Page {
     }, 100);
     
     this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();
-    this.notificationTabs2$.subscribe(notificationTab => {
+    this.subscriptionNotificationTabs2=this.notificationTabs2$.subscribe(notificationTab => {
       this.ngZone.run(()=>{
         this.contratadosList = this.subServ.getContratadosList();
         console.log('tabs2',this.contratadosList);
