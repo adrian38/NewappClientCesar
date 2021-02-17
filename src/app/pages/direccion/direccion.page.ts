@@ -51,10 +51,7 @@ export class DireccionPage implements OnInit {
     
 
   ngOnInit() {
-    this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
-        
-      });
+  
       
     console.log("autofillcomo",this.Autofill);
 
@@ -65,6 +62,11 @@ export class DireccionPage implements OnInit {
     console.log(this.user); 
 
 this.mantener_campos(1);
+
+this.platform.backButton.subscribeWithPriority(10, () => {
+  this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
+    
+  });
     
 /*     this.dplat=String(this.datos.getlatitud());
     this.dplng=String(this.datos.getlongitud()); */

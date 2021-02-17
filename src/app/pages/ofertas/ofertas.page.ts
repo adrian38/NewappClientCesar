@@ -13,6 +13,7 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 import {ImagenmodalPage} from '../imagenmodal/imagenmodal.page';
 import { Modals } from '@capacitor/core';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-ofertas',
@@ -74,9 +75,8 @@ export class OfertasPage implements OnInit {
     private _chatOdoo: ChatOdooService,
     private platform: Platform,
     private messageService: MessageService,
-    private router:Router,
     public loadingController: LoadingController,
-    private _lightbox: LightboxModule,
+    private screenOrientation: ScreenOrientation,
     private subServ: ObtSubSService,
     private modalCtrl:ModalController) {
 
@@ -100,11 +100,15 @@ ngOnDestroy(): void {
 
 ngOnInit() {
 
+  this.screenOrientation.lock('portrait');
+
   this.platform.backButton.subscribeWithPriority(10, () => {
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
       
     });
-    
+
+ 
+
   this.user = this._authOdoo.getUser();
   this.task=this._taskOdoo.getTaskCesar();
   this.offersList =[];

@@ -1,5 +1,5 @@
 import { Component, NgZone ,OnInit} from '@angular/core';
-import { AlertController, NavController,Platform } from '@ionic/angular';
+import { AlertController, NavController,LoadingController,Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import {  TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -43,7 +43,8 @@ export class Tab1Page implements OnInit {
     public navCtrl:NavController,
     private platform: Platform,
     public alertCtrl: AlertController,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    public loadingController: LoadingController) {
 
     this.solicitudesList = this.subServ.getSolicitudeList();
 
@@ -146,12 +147,15 @@ export class Tab1Page implements OnInit {
     this.presentLoading();
   }
 
+
+
   async presentLoading() {
-    this.loading = await this.alertCtrl.create({
+    this.loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      message: 'Eliminando Solicitud...',
+      message:'Eliminando Solicitud...',
       //duration: 2000
     });
+    console.log("Loading Ok");
     return  this.loading.present();
   }
 

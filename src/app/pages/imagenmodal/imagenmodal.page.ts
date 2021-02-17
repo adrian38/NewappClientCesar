@@ -32,15 +32,15 @@ export class ImagenmodalPage implements OnInit {
 
   ngOnInit() {
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
-      this.screenOrientation.lock('portrait');
-      this.modalCtrl.dismiss();
-     /* this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
-      */    
-      }); 
+    this.screenOrientation.unlock();
+
+ /*    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.cerrar();
+        
+      }); */  
   
 
-   this.screenOrientation.unlock();
+  
   }
 
   cerrar(){

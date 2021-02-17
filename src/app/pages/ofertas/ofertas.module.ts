@@ -13,7 +13,7 @@ import {RatingModule} from 'primeng/rating';
 
 import {GalleriaModule} from 'primeng/galleria';
 import {LightboxModule} from 'primeng/lightbox';
-
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
   imports: [
@@ -29,7 +29,10 @@ import {LightboxModule} from 'primeng/lightbox';
   
   
   ],
-  declarations: [OfertasPage]
+  declarations: [OfertasPage],
+  providers: [
+    ScreenOrientation
+ ]
   
 })
 export class OfertasPageModule {}

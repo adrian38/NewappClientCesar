@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { NavController, Platform} from '@ionic/angular';
+import { NavController, LoadingController ,Platform} from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Address, TaskModel } from '../../models/task.model';
@@ -67,7 +67,8 @@ export class ResumenPage implements OnInit {
     private platform: Platform,
     private messageService: MessageService,
     public sanitizer: DomSanitizer,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public loadingController: LoadingController
    ) { 
 
       
@@ -279,12 +280,17 @@ this.borrar_campos();
   }  
 
 
+
+
   async presentLoading() {
-    this.loading = await this.alertCtrl.create({
+    this.loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      message: 'Creando Solicitud...',
+      message:'Creando Solicitud...',
       //duration: 2000
     });
+    console.log("Loading Ok");
     return  this.loading.present();
   }
+
+
 }
