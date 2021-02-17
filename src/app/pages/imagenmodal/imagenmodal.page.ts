@@ -34,23 +34,11 @@ export class ImagenmodalPage implements OnInit {
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.screenOrientation.lock('portrait');
+      this.modalCtrl.dismiss();
      /* this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
       */    
       }); 
-
-    //console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
-    console.log("esto",this.slide);
-    /* this.screenOrientation.onChange().subscribe(
-      () => {
-          console.log("Orientation Changed",this.screenOrientation.type);
-         if(this.screenOrientation.type == "landscape-primary"){
-           this.vertical=false;
-         }
-         else
-         this.vertical=true;
-        
-      }
-   );   */
+  
 
    this.screenOrientation.unlock();
   }
