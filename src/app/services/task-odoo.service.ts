@@ -1086,8 +1086,7 @@ export class TaskOdooService {
 
           for (let order of value) {
             let temp = new TaskModel();
-            if(order['invoice_status'] != "no"){///////////////////////////////////Momentaneo
-           
+                       
             SO_id.push(order['id']);
             temp.description = order['note'];
             temp.type = order['client_order_ref'];
@@ -1110,7 +1109,7 @@ export class TaskOdooService {
               order['address_zip_code'],
               order['address_latitude'],
               order['address_longitude'])
-            tasksList.push(temp);}
+            tasksList.push(temp);
           }
           if (SO_id.length) {
 
