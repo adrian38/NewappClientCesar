@@ -32,19 +32,28 @@ export class ImagenmodalPage implements OnInit {
 
   ngOnInit() {
 
-    this.screenOrientation.unlock();
-
- /*    this.platform.backButton.subscribeWithPriority(10, () => {
+     this.screenOrientation.unlock();
+    
+/* 
+   this.platform.backButton.subscribeWithPriority(10, () => {
       this.cerrar();
         
-      }); */  
+      });  */ 
   
 
   
   }
 
+  ngOnDestroy(): void {
+   this.screenOrientation.lock('portrait'); 
+  console.log("cerrado imagen")
+  }
+
+  
+
   cerrar(){
     this.screenOrientation.lock('portrait');
+    console.log("cerrarimagen")
     this.modalCtrl.dismiss();
 
   }

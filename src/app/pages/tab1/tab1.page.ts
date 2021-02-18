@@ -44,7 +44,10 @@ export class Tab1Page implements OnInit {
     private platform: Platform,
     public alertCtrl: AlertController,
     private messageService: MessageService,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    private statusBar: StatusBar,
+    private _location: Location,
+    private splashScreen: SplashScreen) {
 
     this.solicitudesList = this.subServ.getSolicitudeList();
 
@@ -52,10 +55,11 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
 
-
-      this.platform.backButton.subscribeWithPriority(10, () => {
+    this.initializeApp();
+    
+  /*     this.platform.backButton.subscribeWithPriority(10, () => {
       this.presentAlert();
-    });
+    }); */
 
     this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
     this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe(notificationCancel=>{
@@ -157,6 +161,35 @@ export class Tab1Page implements OnInit {
     });
     console.log("Loading Ok");
     return  this.loading.present();
+  }
+
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  
+  
+    this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      console.log('Back press handler!');
+      if (this._location.isCurrentPathEqualTo('/tabs/tab1')) {
+  
+        // Show Exit Alert!
+        console.log('Show Exit Alert!');
+        this.presentAlert();
+        processNextHandler();
+      } else {
+  
+        // Navigate to back page
+        console.log('Navigate to back page');
+        this._location.back();
+  
+      }
+  
+    });
+  
+  
   }
 
 }

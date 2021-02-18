@@ -1,4 +1,4 @@
-import { Component, OnInit ,NgZone, ViewChild} from '@angular/core';
+import { Component, OnInit ,NgZone, ViewChild,OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, Platform, IonSegment, LoadingController,ModalController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
   templateUrl: './ofertas.page.html',
   styleUrls: ['./ofertas.page.scss'],
 })
-export class OfertasPage implements OnInit {
+export class OfertasPage implements OnInit ,OnDestroy {
 
   @ViewChild (IonSegment) segment: IonSegment;
 
@@ -90,22 +90,18 @@ export class OfertasPage implements OnInit {
 
 }
 
-ngOnDestroy(): void {
 
-  this.subscriptioNewPoSuplier.unsubscribe();
-  this.subscriptionOffersList.unsubscribe();
-  this.subscriptionOffertCancelled.unsubscribe();
-
-}
 
 ngOnInit() {
-
   this.screenOrientation.lock('portrait');
+  console.log("oferta1")
+  
 
   this.platform.backButton.subscribeWithPriority(10, () => {
+    console.log("oferta2")
     this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
       
-    });
+    }); 
 
  
 
@@ -194,6 +190,19 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
 });
 
 }
+
+
+ngOnDestroy(): void {
+
+  this.subscriptioNewPoSuplier.unsubscribe();
+  this.subscriptionOffersList.unsubscribe();
+  this.subscriptionOffertCancelled.unsubscribe();
+  console.log("cerrado oferta")
+}
+
+
+
+
 
 
 
@@ -329,14 +338,14 @@ this.efectivo=true;
 deshabilitar1(){
   if(this.task.photoNewTaskArray[0]== undefined ){
 this.habilitar1=true;
-console.log("f1",this.task.photoNewTaskArray[0]);
-console.log("h1",this.habilitar1);
+/* console.log("f1",this.task.photoNewTaskArray[0]);
+console.log("h1",this.habilitar1); */
 
   }
   else{
     this.habilitar1=false;
-    console.log("f1",this.task.photoNewTaskArray[0])
-    console.log("h1",this.habilitar1);
+  /*   console.log("f1",this.task.photoNewTaskArray[0])
+    console.log("h1",this.habilitar1); */
   }
 
 }
@@ -344,14 +353,14 @@ console.log("h1",this.habilitar1);
 deshabilitar2(){
   if(this.task.photoNewTaskArray[1]== undefined){
 this.habilitar2=true;
-console.log("f2",this.task.photoNewTaskArray[1])
-console.log("h2",this.habilitar2);
+/* console.log("f2",this.task.photoNewTaskArray[1])
+console.log("h2",this.habilitar2); */
 
   }
   else{
     this.habilitar2=false;
-    console.log("f2",this.task.photoNewTaskArray[1])
-    console.log("h2",this.habilitar2);
+   /*  console.log("f2",this.task.photoNewTaskArray[1])
+    console.log("h2",this.habilitar2); */
   }
  
 }

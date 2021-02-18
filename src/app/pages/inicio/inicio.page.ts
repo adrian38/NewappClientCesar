@@ -19,8 +19,9 @@ export class InicioPage implements OnInit {
     public alertController: AlertController, 
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private navCon:NavController,
     private _location: Location,
+    private navCon:NavController,
+    
     private screenOrientation: ScreenOrientation) { 
 
 
