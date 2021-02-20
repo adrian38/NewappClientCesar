@@ -40,7 +40,7 @@ export class RegistroPage implements OnInit {
  cod_postal:string="";
  escalera:string="";
  fechactual:string="";
- avatarusuario =  '../../../assets/fotoadd.png';
+ avatarusuario =  '../../../assets/registro.png';
  avatarusuario64:string="";
  calen:boolean=false;
  selectFoto:boolean=false;
@@ -237,7 +237,7 @@ export class RegistroPage implements OnInit {
     this.escalera=this.datos.getescalera();
     this.cod_postal=this.datos.getcod_postal();
     this.coordenadas=this.datos.getcoordenada();
-    this.avatarusuario=this.datos.getfoto1();
+    this.avatarusuario=this.datos.getfotoRegis();
     this.fecha=this.datos.getfecha();
     this.selectFoto=this.datos.getselectfoto();
   }

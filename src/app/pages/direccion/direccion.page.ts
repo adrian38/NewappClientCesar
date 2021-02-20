@@ -5,6 +5,9 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-direccion',
   templateUrl: './direccion.page.html',
@@ -42,9 +45,16 @@ export class DireccionPage implements OnInit {
     public navCtrl:NavController,
     private platform: Platform,
     private _authOdoo: AuthOdooService,
-    public alertCtrl: AlertController) { 
+    public alertCtrl: AlertController,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private _location: Location,) { 
 
       this.coordenadas=this.datos.getcoordenada();
+    /*   this.platform.backButton.subscribeWithPriority(10, () => {
+        this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
+          
+        }); */
 
     }
 
@@ -63,10 +73,12 @@ export class DireccionPage implements OnInit {
 
 this.mantener_campos(1);
 
-this.platform.backButton.subscribeWithPriority(10, () => {
-  this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
+//this.initializeApp();
+
+ this.platform.backButton.subscribeWithPriority(10, () => {
+  this.navCtrl.navigateRoot('/horarios', {animated: true, animationDirection: 'back' }) ;
     
-  });
+  }); 
     
 /*     this.dplat=String(this.datos.getlatitud());
     this.dplng=String(this.datos.getlongitud()); */
@@ -199,6 +211,36 @@ borrar_campos(){
 
   this.datos.setcomentario("");
 }
+
+initializeApp() {
+  this.platform.ready().then(() => {
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
+  });
+
+
+  this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+    console.log('Back press handler!');
+    if (this._location.isCurrentPathEqualTo('/direccion')) {
+      this.navCtrl.navigateRoot('/horario', {animated: true, animationDirection: 'back' }) ;
+    
+      // Show Exit Alert!
+      console.log('Show Exit Alert!');
+    
+      processNextHandler();
+    } else {
+
+      // Navigate to back page
+      console.log('Navigate to back page');
+      this._location.back();
+
+    }
+
+  });
+
+ 
+}
+
  }
 
 

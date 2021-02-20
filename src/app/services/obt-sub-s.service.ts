@@ -58,11 +58,11 @@ export class ObtSubSService {
     idString:String;
     private subServicioActual:string;
 /* 
-    foto0:string = '../../../assets/fotoadd.png';
-    foto1:string='../../../assets/fotoadd.png'; */
+    foto0:string = '../../../assets/fotoadd.png'; */
+     fotoRegistro:string='../../../assets/fotoadd.png';  
     
     foto0:string = '';
-    foto1:string='';
+     foto1:string=''; 
     foto2:string="";
     foto00:string = '../../../assets/noImage.png';
     foto11:string = '../../../assets/noImage.png';
@@ -315,6 +315,12 @@ this.titulo=t;
     
       this.foto1=f1;
       
+   }
+   setfotoRegis(fr:string){
+    this.fotoRegistro=fr;
+  }
+   getfotoRegis(){
+return this.fotoRegistro;
    }
    setfoto11(f0:string){
     this.foto11=f0;

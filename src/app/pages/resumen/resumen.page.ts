@@ -244,6 +244,9 @@ this.borrar_campos();
     this.datos.setportal("");
   
     this.datos.setcomentario("");
+    this.datos.setfoto00("");
+    this.datos.setfoto11("");
+    this.datos.setfoto22("");
   }
 
   verubicacion(){

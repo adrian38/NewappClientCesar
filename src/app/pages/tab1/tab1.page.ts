@@ -100,6 +100,8 @@ export class Tab1Page implements OnInit {
     this.task = this.solicitudesList[this.cant];
     this._taskOdoo.setTaskCesar(this.task);
     console.log(this.task);
+    this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'forward' }) ;
+       
     // console.log("f",this.solicitudesList[this.cant].id_string);
     /* this.id_string = this.solicitudesList[this.cant].id_string;
     

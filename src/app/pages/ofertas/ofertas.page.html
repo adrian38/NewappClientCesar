@@ -147,21 +147,21 @@
    
       <ion-row>
         <ion-col size=7>
-          <ion-input name="password"
-                     type="password"
+          <ion-input name="numero"
+                     type="text"
                      required
-                     [(ngModel)]="pass"
-                     minlength=5
+                     [(ngModel)]="numero_tarjeta"
+                     maxlength=16
                      placeholder="Numero de la tarjeta"
                      [disabled]="efectivo">
           </ion-input>
         </ion-col>
         <ion-col size=5>
-          <ion-input name="password"
-                     type="password"
+          <ion-input name="datos"
+                     type="text"
                      required
-                     [(ngModel)]="pass"
-                     minlength=5
+                     [(ngModel)]="datos"
+                     
                      placeholder=" dd / mm / cvc"
                      [disabled]="efectivo">
           </ion-input>
@@ -191,6 +191,7 @@
   
         <ion-col size=5>
           <ion-button id="botonpagar"
+                      (click)="pagar()" 
                       >
             Pagar
                </ion-button>

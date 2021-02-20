@@ -51,6 +51,9 @@ export class OfertasPage implements OnInit ,OnDestroy {
   valorSegment:string="";
   showSubCard = false;
   ofertaDisponible=false;
+  numero_tarjeta:string="";
+  datos:string="";
+
   
 
   display: boolean = false;
@@ -338,14 +341,14 @@ this.efectivo=true;
 deshabilitar1(){
   if(this.task.photoNewTaskArray[0]== undefined ){
 this.habilitar1=true;
-/* console.log("f1",this.task.photoNewTaskArray[0]);
-console.log("h1",this.habilitar1); */
+ console.log("f1",this.task.photoNewTaskArray[0]);
+console.log("h1",this.habilitar1); 
 
   }
   else{
     this.habilitar1=false;
-  /*   console.log("f1",this.task.photoNewTaskArray[0])
-    console.log("h1",this.habilitar1); */
+    console.log("f1",this.task.photoNewTaskArray[0])
+    console.log("h1",this.habilitar1); 
   }
 
 }
@@ -353,14 +356,14 @@ console.log("h1",this.habilitar1); */
 deshabilitar2(){
   if(this.task.photoNewTaskArray[1]== undefined){
 this.habilitar2=true;
-/* console.log("f2",this.task.photoNewTaskArray[1])
-console.log("h2",this.habilitar2); */
+ console.log("f2",this.task.photoNewTaskArray[1])
+console.log("h2",this.habilitar2); 
 
   }
   else{
     this.habilitar2=false;
-   /*  console.log("f2",this.task.photoNewTaskArray[1])
-    console.log("h2",this.habilitar2); */
+    console.log("f2",this.task.photoNewTaskArray[1])
+    console.log("h2",this.habilitar2); 
   }
  
 }
@@ -374,5 +377,70 @@ console.log("f3",this.task.photoNewTaskArray[2])
   else
   this.habilitar3=false;
   console.log("f3",this.task.photoNewTaskArray[2])
+  console.log("h3",this.habilitar3);
 } 
+
+pagar(){
+  console.log(this.numero_tarjeta);
+ 
+  console.log( this.numero_tarjeta.charAt(0));
+  /* let d1=this.numero_tarjeta.charAt(0); */
+  if(this.numero_tarjeta.charAt(0)=="4"){
+    console.log( "visa")
+    this.tarjeta();
+  }
+
+  if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1"|| this.numero_tarjeta.charAt(1)=="5") ){
+    console.log( "Master Card")
+    this.tarjeta();
+  }
+  else
+  console.log("nadadddadadadada")
+  
+
+}
+
+tarjeta(){
+  let numPimpares = [];
+  let numPpares = [];
+  let suma_impar=0;
+  let suma_par=0;
+for(let i=0; i<this.numero_tarjeta.length;i+=2){
+  numPimpares[i]= parseInt(this.numero_tarjeta.charAt(i))*2;
+  console.log("int",numPimpares[i]);
+  numPimpares[i]= this.numero_simple(numPimpares[i])
+  console.log("paso2",numPimpares[i]); 
+suma_impar+=numPimpares[i];
+console.log("sumaimpar",suma_impar);
+}
+for(let p=1; p<this.numero_tarjeta.length; p+=2){
+  numPpares[p]= parseInt(this.numero_tarjeta.charAt(p));
+  console.log("pares",numPpares[p]);
+  suma_par+=numPpares[p];
+  console.log("sumapar",suma_par);
+}
+
+ var dif= (suma_par+suma_impar)%10;
+ console.log(dif);
+
+
+if(dif==0){
+  console.log("valido");
+
+}
+else{
+  console.log(" no valido");
+}
+}
+
+ numero_simple(digit){
+  if(digit > 9){
+    var tmp = digit.toString();
+    var d1 = parseInt(tmp.charAt(0));
+    var d2 = parseInt(tmp.charAt(1));
+    return (d1 + d2); 
+} else {
+    return digit;
+}
+}  
 }
