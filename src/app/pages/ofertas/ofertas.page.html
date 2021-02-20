@@ -152,6 +152,7 @@
                      required
                      [(ngModel)]="numero_tarjeta"
                      maxlength=16
+                     minlength=13
                      placeholder="Numero de la tarjeta"
                      [disabled]="efectivo">
           </ion-input>
@@ -161,8 +162,9 @@
                      type="text"
                      required
                      [(ngModel)]="datos"
-                     
-                     placeholder=" dd / mm / cvc"
+                     maxlength=10
+                     minlength=9
+                     placeholder=" mm / aa / cvc"
                      [disabled]="efectivo">
           </ion-input>
         </ion-col>

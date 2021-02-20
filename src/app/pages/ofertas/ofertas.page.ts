@@ -388,14 +388,16 @@ pagar(){
   if(this.numero_tarjeta.charAt(0)=="4"){
     console.log( "visa")
     this.tarjeta();
+    this.dato();
   }
 
-  if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1"|| this.numero_tarjeta.charAt(1)=="5") ){
+  if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1" || this.numero_tarjeta.charAt(1)=="2" || this.numero_tarjeta.charAt(1)=="3" || this.numero_tarjeta.charAt(1)=="4" || this.numero_tarjeta.charAt(1)=="5") ){
     console.log( "Master Card")
     this.tarjeta();
+    this.dato();
   }
-  else
-  console.log("nadadddadadadada")
+  
+ 
   
 
 }
@@ -443,4 +445,16 @@ else{
     return digit;
 }
 }  
+dato(){
+  console.log(this.datos)
+  let mes=this.datos.slice(0,2);
+  console.log("mes",mes)
+  let año=this.datos.slice(3,5);
+  console.log("año",año)
+  let cvc=this.datos.slice(6,9);
+  console.log("cvc",cvc)
+  if(cvc.length < 3 || cvc.charAt(0) =="0"){
+    console.log("cvc incorrecto")
+  }
+}
 }
