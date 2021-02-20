@@ -5,7 +5,7 @@
    <form #formulario="ngForm" class="animated fadeIn">
          <ion-row style="margin-top: 25px;">
            <ion-col style="text-align: center;">
-             <img src="../../assets/logi.png">
+             <img src="../../assets/logoHome.png">
            </ion-col>
          </ion-row>
        
@@ -17,7 +17,7 @@
                  <ion-row>
                    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                    <ion-col size="11">
-                     <ion-label>CORREO</ion-label>
+                     <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';font-size: larger; color: rgb(246, 183, 118);">Bienvenido</ion-label>
                    </ion-col>
                  </ion-row>
                </div>
@@ -29,7 +29,7 @@
                                    type="email"
                                    required
                                    [(ngModel)]="user"
-                                                          
+                                   placeholder="USUARIO"                     
                                    #nombre="ngModel"
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                    
@@ -47,14 +47,14 @@
                   
                            
 
-                   <div id="datos">
+                  <!--  <div id="datos">
                      <ion-row>
                        <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                        <ion-col size="11">
                          <ion-label>CONTRASEÑA</ion-label>
                        </ion-col>
                      </ion-row>
-                   </div>
+                   </div> -->
    
                        <ion-row >
                          <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -65,7 +65,7 @@
                                        [(ngModel)]="pass"
                                         minlength=5
                                         #pa="ngModel"
-                                       
+                                        placeholder="CONTRASEÑA"
    
                                        ></ion-input>
                                        <div id="link">
@@ -80,17 +80,33 @@
            </ion-col>
          </ion-row>
 
+         <ion-row>
+          <ion-col size=1></ion-col>
+   
+            <ion-col  size=10 >
+            <ion-button id="boton" 
+                       type="submit"
+                       (click)="iniciar()"                       
+                       [disabled]="formulario.invalid"
+                       expand="full"
+                      >
+          Iniciar Sesion
+            </ion-button>
+          </ion-col>
+          <ion-col size=1></ion-col>
+        </ion-row>
+
          <ion-row  style="margin-top: 30px;">
-           <ion-col size="3" style="background: rgb(255, 255, 255);"></ion-col>
-           <ion-col size="6" style="text-align: center;">
+           <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+           <ion-col size="10" >
              <a href="#"id="link" 
-             >Cambiar contraseña</a>
+             >¿Has olvidado tu contraseña?</a>
            </ion-col>
         
-           <ion-col size="3" style="background: rgb(255, 255, 255);"></ion-col>
+           <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
          </ion-row>
 
-         <ion-row>
+        <!--  <ion-row>
            <ion-col size=3></ion-col>
     
     <ion-col  size=6 style="text-align: center;">
@@ -102,7 +118,7 @@
              </ion-button>
            </ion-col>
            <ion-col size=3></ion-col>
-         </ion-row>
+         </ion-row> -->
  
      </form> 
     

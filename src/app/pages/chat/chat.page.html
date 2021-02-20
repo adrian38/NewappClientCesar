@@ -148,7 +148,7 @@
         </ion-button>
       </ion-col>
       <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="tertiary" [disabled]="message.message === ' '" class="msg-btn"
+        <ion-button expand="block" fill="clear" color="tertiary"   [disabled]="message.message === ' '" class="msg-btn"
           (click)="enviarSMS()">
           <ion-icon name="send" slot="icon-only"></ion-icon>
         </ion-button>
@@ -171,33 +171,44 @@
 
            
             <ion-row>
-              <ion-col style="text-align: center ;" (click)="documento()">
+             
+              <ion-col size=4 style="text-align: start ;padding: 0px;" (click)="documento()">
                 <ion-row>  
-                   <img style="width:39px;height: 44px;margin-left: 20px; " src="../../../assets/documento.png">
+                   <img style="width:44px;height: 40px;
+                               max-width:  100%;
+                               width: 100%;
+                              flex: 100%;"   src="../../../assets/doc.svg">
                 </ion-row>
                 <ion-row> 
-                  <ion-label style="font-size: small;margin-left: 8px;"
+                  <ion-label style="font-size: small;flex: 100%;text-align: center;"
                   >Documento</ion-label>
                 </ion-row>
               
               </ion-col>
-              <ion-col (click)="camara()">
+              <ion-col  size=4 style="align-items: center ;padding: 0px;"  (click)="camara()">
                 <ion-row>
-                  <img style="width:44px;height: 40px;margin-left: 8px;" src="../../../assets/cam.png">
+                  <img style="width:44px;height: 40px; max-width:  100%;
+                              width: 100%;
+                              flex: 100%;"  src="../../../assets/cama.svg">
                 </ion-row>
                 <ion-row>
-                  <ion-label style="font-size: small;margin-left: 8px;" >Camara</ion-label>
+                  <ion-label style="font-size: small;flex: 100%;text-align: center;" >Camara</ion-label>
                 </ion-row>
                  </ion-col>
-              <ion-col (click)="galeria()">
-                       <ion-row>
-                        <img style="width:44px;height: 40px;margin-left: 14px;" src="../../../assets/galeria.png">
+              <ion-col size=4 style="align-items: end ;padding: 0px;"  (click)="galeria()">
+                       <ion-row >
+                        <img style="width:44px;height: 40px; 
+                                    max-width:  100%;
+                                    width: 100%;
+                                    flex: 100%;" 
+                                    src="../../../assets/galer.svg">
                        </ion-row>
-                       <ion-row>
-                        <ion-label style="font-size: small;margin-left: 14px;">Galeria</ion-label>
+                       <ion-row >
+                        <ion-label style="font-size: small;flex: 100%;text-align: center;">Galeria</ion-label>
                       </ion-row>
               
               </ion-col>
+              
             </ion-row>
                   
  
