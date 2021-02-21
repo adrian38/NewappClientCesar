@@ -60,6 +60,7 @@ export class OfertasPage implements OnInit ,OnDestroy {
   displayAceptar: number;
   fotoZoom: boolean = false;
   loading:HTMLIonLoadingElement = null;
+  loading1:any;
   
  /*  displayBasic2;
   images:any[];
@@ -392,23 +393,34 @@ pagar(){
     this.dato();
     
      
+    this.temporal("espere");
+
+    setTimeout(()=>{
+      this.loading1.dismiss();
+      this.presentAlertConfirm();
+    }, 2000);
     
-      this.loading.present();
+    
      
-      /* this.loading.dismiss(); */
-     this.presentAlertConfirm(); 
+
+   
   }
 
   if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1" || this.numero_tarjeta.charAt(1)=="2" || this.numero_tarjeta.charAt(1)=="3" || this.numero_tarjeta.charAt(1)=="4" || this.numero_tarjeta.charAt(1)=="5") ){
     console.log( "Master Card")
     this.tarjeta();
     this.dato();
-    this.temporal();
+    this.temporal("espere");
+
+    setTimeout(()=>{
+      this.loading1.dismiss();
+      this.presentAlertConfirm(); 
+    }, 2000);
     
-    this.loading.present();
+    
      
 
-   this.presentAlertConfirm(); 
+   
   }
   
  
@@ -472,15 +484,15 @@ dato(){
   }
 }
 
-async temporal() {
-  this.loading = await this.loadingController.create({
+async temporal(message:string) {
+  this.loading1 = await this.loadingController.create({
     cssClass: 'my-custom-class',
-    message: 'Realizando transaccion',
-    duration: 2000
+    message /* 'Realizando transaccion', */
+    /* duration: 2000 */
     
   });
   console.log("Loading Ok");
-  return  this.loading.present();
+  return  this.loading1.present();
 }
 
 async presentAlertConfirm() {
@@ -492,11 +504,12 @@ async presentAlertConfirm() {
       
      
       {
-        text: 'Cancelar',
+        text: 'ok',
         role: 'cancel',
         cssClass: 'secondary',
-        handler: (blah) => {
-        
+        handler: () => {
+          this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
+    
           console.log('Confirm Cancel: blah');
         }
       }
