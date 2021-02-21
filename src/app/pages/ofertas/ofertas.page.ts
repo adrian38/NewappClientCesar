@@ -1,6 +1,6 @@
 import { Component, OnInit ,NgZone, ViewChild,OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, Platform, IonSegment, LoadingController,ModalController} from '@ionic/angular';
+import { NavController, Platform, IonSegment, LoadingController,ModalController, AlertController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -72,6 +72,7 @@ export class OfertasPage implements OnInit ,OnDestroy {
 
   constructor(
     public navCtrl:NavController,
+    public alertController: AlertController,
     private _taskOdoo:TaskOdooService,
     private _authOdoo:AuthOdooService,
     private ngZone: NgZone,
@@ -389,12 +390,25 @@ pagar(){
     console.log( "visa")
     this.tarjeta();
     this.dato();
+    
+     
+    
+      this.loading.present();
+     
+      /* this.loading.dismiss(); */
+     this.presentAlertConfirm(); 
   }
 
   if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1" || this.numero_tarjeta.charAt(1)=="2" || this.numero_tarjeta.charAt(1)=="3" || this.numero_tarjeta.charAt(1)=="4" || this.numero_tarjeta.charAt(1)=="5") ){
     console.log( "Master Card")
     this.tarjeta();
     this.dato();
+    this.temporal();
+    
+    this.loading.present();
+     
+
+   this.presentAlertConfirm(); 
   }
   
  
@@ -456,5 +470,39 @@ dato(){
   if(cvc.length < 3 || cvc.charAt(0) =="0"){
     console.log("cvc incorrecto")
   }
+}
+
+async temporal() {
+  this.loading = await this.loadingController.create({
+    cssClass: 'my-custom-class',
+    message: 'Realizando transaccion',
+    duration: 2000
+    
+  });
+  console.log("Loading Ok");
+  return  this.loading.present();
+}
+
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Ha transferido correctamente',
+    message: 'Monto: 20 €',
+    buttons: [
+      
+     
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+        
+          console.log('Confirm Cancel: blah');
+        }
+      }
+    ]
+  });
+
+  await alert.present();
 }
 }

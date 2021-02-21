@@ -28,8 +28,8 @@
         </ion-col>    
         <ion-col size=11>      
           <ion-list>        
-            <div *ngFor="let contrato of contratadosList;        
-            let i = index"  (click)="in(i)">        
+            <div *ngFor="let contrato of contratadosList;let i = index"  
+                  (click)="in(i)">        
               <app-contrato [contrato]="this.contrato"></app-contrato>       
             </div>        
           </ion-list>       
@@ -41,6 +41,63 @@
   </div> 
 
   <div *ngIf="verhistorial">
-    <ion-label>historial</ion-label>
+    <ion-grid  >    
+      <ion-row>      
+        <ion-col size=0.5>      
+        </ion-col>    
+        <ion-col size=11>      
+          <ion-list>        
+            <div *ngFor="let contrato of contratadosList;let h = index"  
+                  (click)="inhistorial(h)">        
+                  <ion-row id="item" class="animated fadeIn">        
+                    <ion-col size=4 *ngIf="contrato.type == 'Servicio de Fontanería'">
+                      <img id="imagen" src="../../../assets/f.jpg" style="margin-top: 18px;">
+                    </ion-col>       
+                    <ion-col size=8>        
+                      <ion-row >  
+                        <ion-col size=1.5></ion-col>  
+                         <ion-col size=10.5 style="text-align: start;padding-bottom: 0px;">
+                          <h6> {{contrato.title | uppercase}}</h6> </ion-col>  
+                         <!--  <ion-col size=2><ion-icon id="icocheck" name="checkmark" color="tertiary"></ion-icon></ion-col>
+ -->
+                             
+                      </ion-row >        
+                      <ion-row style="margin-top: -4px;">          
+                        <ion-col size=3 style="text-align: end;">
+                          <img style="width: 18px;height: 18px;" src="../../../assets/calendario.png">          
+                        </ion-col>          
+                        <ion-col size=9 style="text-align: start;">            
+                          <ion-label class="text-helvetica">
+                            {{ contrato.date_planned |date:'EEE d MMM y' | lowercase}}
+                          </ion-label>
+                        </ion-col>        
+                      </ion-row>        
+                      <ion-row style="margin-top: -3px;">        
+                        <ion-col size=3  style="text-align: end;">        
+                          <img style="width: 18px;height: 18px;" src="../../../assets/hora.png">        
+                        </ion-col>        
+                        <ion-col size=5  style="text-align: start;">        
+                          <ion-label class="text-helvetica" style="margin-left: 0px;">
+                            {{contrato.time |date: 'h:mm a' }} </ion-label>
+                        </ion-col>        
+                        <ion-col size=4  style="text-align: start;">        
+                         <!--  <ion-label class="text-helvetica"
+                          style="margin-left: 0px; margin-top: -10px;
+                          color: rgb(246, 183, 118);">
+                            {{ contrato.budget }} € 
+                          </ion-label> -->  
+                         <ion-icon id="icocheck" name="checkmark" color="tertiary"></ion-icon>
+      
+                        </ion-col>        
+                      </ion-row>        
+                    </ion-col>        
+                  </ion-row>       
+            </div>        
+          </ion-list>       
+        </ion-col>    
+        <ion-col size=0.5> 
+        </ion-col> 
+      </ion-row>    
+    </ion-grid>
   </div>
 </ion-content>

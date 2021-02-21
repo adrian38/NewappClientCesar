@@ -94,6 +94,14 @@ const routes: Routes = [
     path: 'imagenmodal',
     loadChildren: () => import('./pages/imagenmodal/imagenmodal.module').then( m => m.ImagenmodalPageModule)
   },
+  {
+    path: 'histdetalle',
+    loadChildren: () => import('./pages/histdetalle/histdetalle.module').then( m => m.HistdetallePageModule)
+  },
+  {
+    path: 'contrase',
+    loadChildren: () => import('./pages/contrase/contrase.module').then( m => m.ContrasePageModule)
+  },
 
  
 

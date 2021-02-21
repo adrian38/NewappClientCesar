@@ -1,3 +1,43 @@
 #ServHist{
     background-color: rgb(246, 183, 118);
 }
+
+
+@font-face {
+    font-family: 'Aero';
+    src: url("../../../assets/fonts/Aero.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Helvetica';
+    src: url("../../../assets/fonts/HelveticaNeueLTStd-Roman.otf") format("opentype");
+}
+$font-aero: 'Aero', sans-serif;
+$font-helvetica: 'Helvetica', sans-serif;
+
+h6{
+    font-family: $font-aero;
+    font-size: 32;
+}
+
+.text-helvetica{
+    font-family: $font-helvetica !important;
+    font-size: 18 !important;
+}
+
+#imagen{
+    margin-top: 30px;
+    width: 110px;            
+    height: 80px;            
+    border-radius: 20px 3px 3px 3px;            
+    object-fit: cover; 
+    opacity: 0.9;           
+}
+
+#item{        
+    border-bottom: 2px solid  rgba(246, 183, 118, 0.7);
+}
+
+#icocheck{
+    width: 100%;
+    height: 90%;
+}

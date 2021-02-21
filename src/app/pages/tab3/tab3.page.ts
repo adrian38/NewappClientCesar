@@ -17,7 +17,12 @@ export class Tab3Page {
   }
 
   datospersonales(){
-    this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'back' }) ;      
+    this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'forward' }) ;      
+     
+  }
+
+  cambiarcontrasea(){
+    this.navCtrl.navigateRoot('/contrase', {animated: true, animationDirection: 'forward' }) ;      
      
   }
 

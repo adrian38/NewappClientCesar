@@ -134,6 +134,7 @@ export class TabsPage {
         this.subServ.setHistorialList(this.historialList);
 
         console.log(this.solicitudesList,"peticiones a Servidor");
+        console.log(this.contratadosList,"peticiones a Servidor contra");
         this.loading.dismiss();
       });
     });

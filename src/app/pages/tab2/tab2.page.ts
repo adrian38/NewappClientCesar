@@ -88,6 +88,22 @@ export class Tab2Page {
  
    }
 
+   inhistorial(j: number) {
+     //Aqui hay cosas que arreglar*******
+  
+    this.subServ.setposicion(j);
+
+    this.task = this.contratadosList[j];
+    this._taskOdoo.setTaskCesar(this.task);
+    console.log(this.task);
+    // console.log("f",this.solicitudesList[this.cant].id_string);
+  /*   this.id_string = this.contratadosList[this.cant].id_string;
+    this.subServ.setidString(this.id_string); */
+
+    this.navCtrl.navigateRoot('/histdetalle', {animated: true, animationDirection: 'back' }) ;      
+  
+  }
+
 
    segChange(event){
     this.valorSegment = event.detail.value;
