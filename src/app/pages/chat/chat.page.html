@@ -142,17 +142,19 @@
         <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
       </ion-col>
       <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="tertiary" class="msg-btn"
-          (click)="adjuntar()">
-          <ion-icon name="attach" slot="icon-only"></ion-icon>
+        <ion-button  fill="clear" color="tertiary" 
+          (click)="adjuntar()"
+          style="width: 55px; height: 35px; padding-left: 1px;padding-right: 1px;"
+        >
+          <ion-icon name="attach" slot="icon-only" style="width: 35px; height: 35px;"></ion-icon>
         </ion-button>
       </ion-col>
-      <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="tertiary"   [disabled]="message.message === ' '" class="msg-btn"
-          (click)="enviarSMS()">
-          <ion-icon name="send" slot="icon-only"></ion-icon>
+       <ion-col size="2">
+        <ion-button  fill="clear" color="tertiary"   [disabled]="message.message === ' '"
+          (click)="enviarSMS()" style="width: 55px; height: 35px;">
+          <ion-icon name="send" slot="icon-only" style="width: 35px; height: 35px; padding-left: 1px;padding-right: 1px;"></ion-icon>
         </ion-button>
-      </ion-col>
+      </ion-col> 
     </ion-row>
   </ion-toolbar>
 </ion-footer> 

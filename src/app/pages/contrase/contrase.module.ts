@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ContrasePageRoutingModule } from './contrase-routing.module';
-
+import {ToastModule} from 'primeng/toast';
 import { ContrasePage } from './contrase.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { ContrasePage } from './contrase.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ContrasePageRoutingModule
+    ContrasePageRoutingModule,
+    ToastModule
   ],
   declarations: [ContrasePage]
 })

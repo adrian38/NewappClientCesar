@@ -61,146 +61,15 @@ textarea:focus-within{
 
 
 ion-button{
-  /*  
-   background-color: rgb(246, 183, 118); */
+ 
   color: rgb(49 ,49 ,57);
-  width: 145px;
-  height: 35px;
   border-radius: 5px 5px 5px 5px ;
   font-family: 'HelveticaNeueLTStd-Bd';
 }
 
 
-/* body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Arial";
-  height: 100vh;
-}
-.contenedo_msj {
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  width: 300px;
-}
-
-.contenedo_msj .mensaje-izq,
-.contenedo_msj .mensaje-der {
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-bottom: 0.75rem;
-}
-.contenedo_msj .mensaje-der {
-  -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  -o-flex-direction: row-reverse;
-  flex-direction: row-reverse;
-}
-
-.contenedo_msj .mensaje-izq .avatar,
-.contenedo_msj .mensaje-der .avatar {
-  display: block;
-  background-color: #e8ecf1;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #fff;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
-}
-.mensaje-izq .cuerpo_msj,
-.mensaje-der .cuerpo_msj {
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  margin-left: 20px;
-  width: calc(100% - 50px - 20px);
-  position: relative;
-}
-.contenedo_msj .mensaje-izq .cuerpo_msj {
-  -ms-align-items: flex-start;
-  align-items: flex-start;
-}
-.contenedo_msj .mensaje-der .cuerpo_msj {
-  -ms-align-items: flex-end;
-  align-items: flex-end;
-}
-.mensaje-der .cuerpo_msj {
-  margin-right: 5px;
-  margin-left: 20;
-}
-.mensaje-izq .cuerpo_msj .msj-texto,
-.mensaje-der .cuerpo_msj .msj-texto {
-  padding: 10px;
-  font-size: 0.8em;
-  background-color: #e8ecf1;
-  border-radius: 0.5rem;
-  margin-bottom: 0.25rem;
-}
-.mensaje-der .cuerpo_msj .msj-texto {
-  background-color: #dcebff;
-}
-
-.mensaje-izq .cuerpo_msj .tiempo,
-.mensaje-der .cuerpo_msj .tiempo {
-  font-size: 0.75em;
-  color: #929292;
-  display: inline-block;
-  padding: 0 5px;
-}
-
-.mensaje-izq .cuerpo_msj .tiempo i,
-.mensaje-der .cuerpo_msj .tiempo i {
-  margin-right: 0.5rem;
-}
-
-.mensaje-izq .cuerpo_msj:before,
-.mensaje-der .cuerpo_msj:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 13px 13px 13px 13px;
-  top: 5px;
-}
-.mensaje-izq .cuerpo_msj:before {
-  border-right-color: #e8ecf1;
-  left: -25px;
-}
-.mensaje-der .cuerpo_msj:before {
-  border-left-color: #dcebff;
-  right: -25px;
-} */
-
-//-------------------------------------
 
 
-/* .triangulo-equilatero-bottom-left {
-  width: 0;
-  height: 0;
-  border-right: 50px solid transparent;
-  border-top: 50px solid transparent;
-  border-left: 50px solid rgb(246, 183, 118);
-  border-bottom: 50px solid rgb(246, 183, 118);
-} */
 
 .message {
   padding: 10px;
@@ -236,10 +105,10 @@ ion-button{
   background: #fff;
 }
 
- .msg-btn {
+/*  .msg-btn {
   --padding-start: 0.5em;
   --padding-end: 0.5em;
-} 
+}  */
 
 :host ::ng-deep .p-dialog {
   border-radius: 15px !important;
