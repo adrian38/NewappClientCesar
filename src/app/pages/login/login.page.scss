@@ -27,13 +27,17 @@ ion-input:focus-within{
 
 
 
-ion-button{
+#boton{
     
-    background-color: rgb(246, 183, 118);
-    color: rgb(49 ,49 ,57);
-    border-radius: 15px 15px 15px 15px ;
+    border: 0.1px solid  transparent;
+    color: rgb(49, 57, 52);
+    border-radius: 7px 7px 7px 7px ; 
     font-family: 'HelveticaNeueLTStd-Bd';
-    margin-top: 5px;
+    margin: 0px;
+    background: rgb(246, 183, 118);
+    
+  
+    
 }
 
 
