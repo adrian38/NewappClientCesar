@@ -12,7 +12,7 @@
       
        
          <ion-col size=6>
-          <h2 style="text-align: center;color: rgb(246, 183, 118);">Servicios</h2>
+          <h2 style="text-align: center;color: rgb(246, 183, 118);">Configurar</h2>
        
         
          </ion-col>
@@ -67,7 +67,7 @@
         <ion-input type="text"
       name="nombre"
       [(ngModel)]="nombre"  
-      placeholder={{this.usuario.realname}}
+      placeholder={{this.placeholderNombre}}
       required  
       #nom_apell="ngModel"                        
       ></ion-input> 
@@ -95,7 +95,7 @@
       cancelText="Cancelar"
       doneText="Cambiar"
       [(ngModel)]="fecha"
-      placeholder={{this.usuario.date}}
+      placeholder={{this.placeholderFecha}}
       #fech="ngModel"
       required
       style="margin-left: 0px;padding-left: 0px;padding-bottom: 3px;">
@@ -111,8 +111,8 @@
       <!-- Contraseña -->
   
       
-      <ion-item lines="none">
-        <!-- <ion-label position="floating">Contraseña</ion-label> -->
+     <!--  <ion-item lines="none">
+        
         <ion-input type="text"
       name="nombre"
       [(ngModel)]="pass"
@@ -123,12 +123,12 @@
                          
       ></ion-input>
       
-      </ion-item>
-      <div id="item"></div>
+      </ion-item> -->
+      <!-- <div id="item"></div>
       <div id="link">
         <small *ngIf= "contra.invalid && contra.touched"   
         class="text-danger">Debe escribir su nombre completo</small>
-       </div>
+       </div> -->
       <!-- Correo -->
   
       <ion-item lines="none">
@@ -136,7 +136,7 @@
         <ion-input type="text"
       name="correo"
       [(ngModel)]="correo"
-      placeholder={{this.usuario.username}}
+      placeholder={{this.placeholderUser}}
       #corr="ngModel"
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
       required
@@ -163,7 +163,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="calle"
-          placeholder={{this.usuario.address.street}}
+          placeholder={{this.placeholderCalle}}
           #call="ngModel"
           required
                                         
@@ -183,7 +183,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="piso"
-          placeholder={{this.usuario.address.floor}}
+          placeholder={{this.placeholderPiso}}
           #pis="ngModel"
           required
           
@@ -207,7 +207,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="numero"
-          placeholder={{this.usuario.address.number}}
+          placeholder={{this.placeholderNumero}}
           #num="ngModel"
           required
                                         
@@ -227,7 +227,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="puerta"
-          placeholder={{this.usuario.address.door}}
+          placeholder={{this.placeholderPuerta}}
           #pue="ngModel"
           required
                              
@@ -248,7 +248,7 @@
             <ion-input type="text"
           name="nombre"
           [(ngModel)]="portal"
-          placeholder={{this.usuario.address.portal}}
+          placeholder={{this.placeholderPortal}}
           #port="ngModel"
           required
                                         
@@ -268,7 +268,7 @@
                        type="text"
                        name="nombre"
                        [(ngModel)]="cpostal"
-                       placeholder={{this.usuario.address.cp}}
+                       placeholder={{this.placeholderCp}}
                        #c_post="ngModel"
                        required
              >
@@ -297,7 +297,7 @@
                 <ion-input type="text"
                            name="escalera"
                            [(ngModel)]="escalera"
-                           placeholder={{this.usuario.address.stair}} 
+                           placeholder={{this.placeholderEscalera}} 
                            #esc="ngModel"
                            required >
               
@@ -331,7 +331,7 @@
     <ion-row >
       <ion-col ></ion-col>
       <ion-col>
-         <ion-button  [disabled]="esc.invalid || c_post.invalid || port.invalid || pue.invalid || num.invalid || pis.invalid || call.invalid || corr.invalid || contra.invalid || fech.invalid || nom_apell.invalid || !this.datos.getcoordenada()"
+         <ion-button  [disabled]="esc.invalid || c_post.invalid || port.invalid || pue.invalid || num.invalid || pis.invalid || call.invalid || corr.invalid || fech.invalid || nom_apell.invalid || !this.datos.getcoordenada()"
                       type="submit"
                       (click)="editar()">
          Aceptar

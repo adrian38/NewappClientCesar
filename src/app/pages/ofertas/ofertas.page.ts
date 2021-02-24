@@ -481,6 +481,7 @@ dato(){
   console.log("cvc",cvc)
   if(cvc.length < 3 || cvc.charAt(0) =="0"){
     console.log("cvc incorrecto")
+    
   }
 }
 

@@ -1,6 +1,6 @@
  import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MenuController, NavController, Platform } from '@ionic/angular';
+import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { Photo } from 'src/app/interfaces/photo';
 import { MessageModel } from 'src/app/models/message.model';
@@ -39,6 +39,8 @@ export class ChatPage implements OnInit {
   usuario$: Observable<UsuarioModel>
   notificationNewMessg$: Observable<number[]>;
 
+  loading:HTMLIonLoadingElement = null;
+
   constructor(private _authOdoo: AuthOdooService,
     private _taskOdoo: TaskOdooService,
     private _chatOdoo: ChatOdooService,
@@ -47,7 +49,8 @@ export class ChatPage implements OnInit {
     private menu: MenuController,
     private ngZone: NgZone,
     private platform: Platform,
-    public photoService: PhotoService) {
+    public photoService: PhotoService,
+    public loadingController: LoadingController) {
 
 
     this.task = new TaskModel();
@@ -70,6 +73,8 @@ export class ChatPage implements OnInit {
   }
 
   ngOnInit(): void {
+
+     this.presentLoading();
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
@@ -105,6 +110,7 @@ export class ChatPage implements OnInit {
   this.subscriptionMessList=this.messagesList$.subscribe(messagesList => {
     this.ngZone.run(() => {
       console.log ("recibi todo los mensajes");
+      this.loading.dismiss();
       let temp = (messagesList.find(element => element.offer_id));
       if (temp) {
 
@@ -207,6 +213,16 @@ export class ChatPage implements OnInit {
       
   }
   this.displayAdjunto=false;
+}
+
+async presentLoading() {
+  this.loading = await this.loadingController.create({
+    cssClass: 'my-custom-class',
+    message: 'Espere...',
+    //duration: 2000
+  });
+  console.log("Loading Ok");
+  return  this.loading.present();
 }
 }
  

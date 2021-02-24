@@ -13,7 +13,7 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 })
 export class DatospersonalesPage implements OnInit {
 
-  avatarusuario =  '../../../assets/fotoadd.png'
+ avatarusuario:string ="";  
 
   temp:string=""
   usuario:UsuarioModel;
@@ -31,6 +31,16 @@ export class DatospersonalesPage implements OnInit {
  portal:string="";
  cpostal:string="";
  escalera:string="";
+ placeholderNombre:string="";
+ placeholderFecha:string="";
+ placeholderUser:string="";
+ placeholderCalle:string="";
+ placeholderPiso:string="";
+ placeholderNumero:string="";
+ placeholderPuerta:string="";
+ placeholderPortal:string="";
+ placeholderCp:string="";
+ placeholderEscalera:string="";
 
  avatarusuario64:string="";
 
@@ -45,7 +55,7 @@ export class DatospersonalesPage implements OnInit {
 
   ngOnInit() {
     this.usuario = this._authOdoo.getUser();
-    /* this.temp = this.usuario.realname; */
+    this.avatarusuario = this.usuario.avatar; 
     this.nombre=this.usuario.realname;
     this.fecha=this.usuario.date;
     this.pass=this.usuario.password;
@@ -56,6 +66,8 @@ export class DatospersonalesPage implements OnInit {
     this.portal=this.usuario.address.portal;
     this.cpostal=this.usuario.address.cp;
     this.numero=this.usuario.address.number;
+
+    this.placeholder();
 
     this.obtener_campos();
     this.platform.backButton.subscribeWithPriority(10, () => {
@@ -150,7 +162,12 @@ export class DatospersonalesPage implements OnInit {
           handler: (blah) => {
           /*   this.verFoto=false;
             this.verFotoInicial=true; */
-            this.avatarusuario = '../../../assets/fotoadd.png';
+            if(this.usuario.avatar.length == 0){
+              this.avatarusuario =  '../../../assets/fotoadd.png'
+            }
+            else{
+              this.avatarusuario = this.usuario.avatar;
+            }
             this.avatarusuario64="";
             console.log('Confirm Cancel: blah');
           }
@@ -197,5 +214,90 @@ export class DatospersonalesPage implements OnInit {
     this.portal=this.datos.getportal();
     this.escalera=this.datos.getescalera();
     this.cpostal=this.datos.getcod_postal();
+  }
+
+  placeholder(){
+    console.log("nuevo",this.usuario.address.stair.length);
+    console.log("nuevo",this.usuario.address.cp);
+    
+
+       
+    if(this.usuario.avatar.length == 0){
+      this.avatarusuario =  '../../../assets/fotoadd.png'
+    }
+    else{
+      this.avatarusuario = this.usuario.avatar;
+    }
+    
+    if(this.usuario.realname.length == 0){
+      this.placeholderNombre="Nombre"
+    }
+    else{
+      this.placeholderNombre=this.usuario.realname;
+    }
+
+    if(this.usuario.date.length == 0){
+      this.placeholderFecha="Fecha de nacimiento"
+    }
+    else{
+      this.placeholderFecha=this.usuario.date;
+    }
+  
+    if(this.usuario.username.length == 0){
+      this.placeholderUser="Usuario"
+    }
+    else{
+      this.placeholderUser=this.usuario.username;
+    }
+
+    if(this.usuario.address.street.length == 0){
+      this.placeholderCalle="Calle"
+    }
+    else{
+      this.placeholderCalle=this.usuario.address.street;
+    }
+
+    if(this.usuario.address.floor.length == 0){
+      this.placeholderCalle="Piso"
+    }
+    else{
+      this.placeholderPiso=this.usuario.address.floor;
+    }
+
+    if(this.usuario.address.number.length == 0){
+      this.placeholderNumero="Numero"
+    }
+    else{
+      this.placeholderNumero=this.usuario.address.number;
+    }
+
+    if(this.usuario.address.door.length == 0){
+      this.placeholderNumero="Puerta"
+    }
+    else{
+      this.placeholderPuerta=this.usuario.address.door;
+    }
+
+    if(this.usuario.address.portal.length == 0){
+      this.placeholderPortal="Portal"
+    }
+    else{
+      this.placeholderPortal=this.usuario.address.portal;
+    }
+
+    if(this.usuario.address.cp.length == 0){
+      this.placeholderCp="C_Postal"
+    }
+    else{
+      this.placeholderCp=this.usuario.address.cp;
+    }
+
+    if(this.usuario.address.stair.length == 0){
+      this.placeholderEscalera="Escalera"
+    }
+    else{
+      this.placeholderEscalera=this.usuario.address.stair;
+    }
+
   }
 }

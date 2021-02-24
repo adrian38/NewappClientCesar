@@ -83,8 +83,10 @@
                     <ion-label>{{task.address.street}}, Numero: {{task.address.number}}, </ion-label>
                     <ion-label *ngIf="task.address.door" >Piso: {{task.address.floor}}, </ion-label>
                     <ion-label *ngIf="task.address.stair" >Escalera: {{task.address.stair}}, </ion-label>
-                    <ion-label *ngIf="task.address.portal" >Portal: {{task.address.portal}},  </ion-label>
-                    <ion-label *ngIf="task.address.cp">  C_postal: {{task.address.cp}} </ion-label>
+                    <ion-label *ngIf="task.address.portal" >Portal: {{task.address.portal}}  </ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label *ngIf="task.address.cp"> Codigo_postal: {{task.address.cp}} </ion-label>
                   </ion-row>
                  
                   </ion-col >

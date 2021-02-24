@@ -75,7 +75,8 @@ ion-button{
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 4px;
-  white-space: pre-wrap;
+  white-space: normal;
+
 
 
 
@@ -85,6 +86,7 @@ ion-button{
   background: rgb(246, 183, 118);
   //background: var(--ion-color-tertiary);
   color: #fff;
+ 
 }
 
 .other-message {
