@@ -57,26 +57,33 @@
   <!--     <p>You joined the chat as  </p> -->
     </ion-text>
 
-    
-    <ion-row *ngFor="let message of messagesList">
+
+ 
+    <div *ngFor="let message of messagesList">
      
-      <ion-col size="9" *ngIf="user.type != 'client'" class="message other-message">
-        <!-- <b>{{message.author}}</b><br> -->
-        <span>{{ message.message }}</span>
-       <!--  <div class="time" text-right><br>15 min</div> -->
-      </ion-col>
+      <div  *ngIf="user.type != 'client'" class="received-chats ">
+     
+        <div class="received-msg-inbox">
+          <p >{{ message.message }}</p>
+        </div>
+     
+      </div> 
      
      
-        <ion-col offset="3" size="9" *ngIf="user.type == 'client'" class="message my-message">
-         <!--  <b style="font-size: xx-small;">{{message.author}}</b> -->
-          <span>{{ message.message }}</span>
-         <!--  <div class="time" text-right><br>12 min</div> -->
-        </ion-col>
+         <div class="outgoing-chats" *ngIf="user.type == 'client'" >
+       
+         <div class="outgoing-chats-msg">
+          <p >{{ message.message }}</p>
+          
+      </div>
+      
+        </div> 
   
   
       
      
-    </ion-row>
+    </div> 
+<!--     //------------------------------------------------------------------------------------------ -->
   </ion-grid>
 
   <ion-menu side="start" menuId="first" contentId="main">

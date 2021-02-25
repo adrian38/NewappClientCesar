@@ -112,6 +112,7 @@ ngOnInit() {
 
   this.user = this._authOdoo.getUser();
   this.task=this._taskOdoo.getTaskCesar();
+  console.log("tarea actual",this.task);
   this.offersList =[];
   this.userType = this.user.type
   
@@ -390,20 +391,16 @@ pagar(){
   if(this.numero_tarjeta.charAt(0)=="4"){
     console.log( "visa")
     this.tarjeta();
-    this.dato();
-    
-     
+    this.dato(); 
     this.temporal("espere");
-
+    this._taskOdoo.acceptProvider(978, 0); 
+   console.log("this.task.id",this.task.id);
+   console.log("this.task.origin_id",this.task.origin_id);
     setTimeout(()=>{
       this.loading1.dismiss();
       this.presentAlertConfirm();
     }, 2000);
     
-    
-     
-
-   
   }
 
   if(this.numero_tarjeta.charAt(0)=="5" && (this.numero_tarjeta.charAt(1)=="1" || this.numero_tarjeta.charAt(1)=="2" || this.numero_tarjeta.charAt(1)=="3" || this.numero_tarjeta.charAt(1)=="4" || this.numero_tarjeta.charAt(1)=="5") ){
@@ -411,6 +408,10 @@ pagar(){
     this.tarjeta();
     this.dato();
     this.temporal("espere");
+    /* this._taskOdoo.acceptProvider(this.task.id , this.task.origin_id);  */
+    this._taskOdoo.acceptProvider(978, 0); 
+    console.log("this.task.id",this.task.id);
+    console.log("this.task.origin_id",this.task.origin_id);
 
     setTimeout(()=>{
       this.loading1.dismiss();
@@ -498,8 +499,8 @@ async temporal(message:string) {
 
 async presentAlertConfirm() {
   const alert = await this.alertController.create({
-    cssClass: 'my-custom-class',
-    header: 'Ha transferido correctamente',
+    cssClass: 'my-custom',
+    header: 'Transaccion exitosa',
     message: 'Monto: 20 €',
     buttons: [
       

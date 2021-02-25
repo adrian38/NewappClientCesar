@@ -76,17 +76,14 @@ ion-button{
   border-radius: 10px;
   margin-bottom: 4px;
   white-space: normal;
-
-
-
-
+  
 }
 
 .my-message {
   background: rgb(246, 183, 118);
   //background: var(--ion-color-tertiary);
   color: #fff;
- 
+
 }
 
 .other-message {
@@ -123,4 +120,63 @@ ion-button{
   border-radius: 15px 15px 0px 0px;
   padding: 0.5rem;
   }
+}
+
+////-------------------
+
+.chat-page {
+  padding: 0 0 50px 0;
+  margin-top: -8px;
+}
+
+.msg-inbox {
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding-bottom: 2px;
+  background: white;
+}
+
+.chats {
+  padding: 30px 15px 0 25px;
+  height: 516px;
+  overflow-y: auto;
+}
+
+.received-msg-inbox p {
+  background: #ccc none repeat scroll 0 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 5px;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+
+.received-msg-inbox {
+  display: inline-block;
+  padding: 0 0 10px 10px;
+  vertical-align: top;
+  min-width: 20%;
+  max-width: 57%;
+}
+
+.outgoing-chats {
+  overflow: hidden;
+  margin: 26px 20px;
+}
+
+.outgoing-chats-msg {
+  float: left;
+  max-width: 57%;
+  float: right;
+}
+
+.outgoing-chats-msg p {
+  background: #f6b776 none repeat scroll 0 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
 }
