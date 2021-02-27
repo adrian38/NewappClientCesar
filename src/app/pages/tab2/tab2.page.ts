@@ -47,9 +47,9 @@ export class Tab2Page {
     this.verservicios=true;
     this.verhistorial=false;
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
+ /*    this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
-      });
+      }); */
   }
 
   ngOnDestroy(): void {
@@ -61,6 +61,8 @@ export class Tab2Page {
   }
 
   ngOnInit(): void {
+
+    console.log("boton atras t2")
     setTimeout(()=>{
       console.log("ejecutando marcar 'contratados'");
       this.segment.value = 'servicio';

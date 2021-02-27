@@ -33,8 +33,8 @@ export class Tab1Page implements OnInit {
 
   subscriptionNotificationSoCancel: Subscription;
   subscriptionNotificationTab: Subscription;
-
-  
+/* 
+  @ViewChild('tabs') tabs: IonTabs; */
  
 
   constructor(private subServ: ObtSubSService,
@@ -56,7 +56,7 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
 
     /* this.initializeApp(); */
-    
+    console.log("boton atras t1")
       this.platform.backButton.subscribeWithPriority(10, () => {
       this.presentAlert();
     }); 

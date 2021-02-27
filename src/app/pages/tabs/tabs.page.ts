@@ -50,6 +50,9 @@ export class TabsPage {
     private subServ:ObtSubSService,
     private ngZone: NgZone,
     public loadingController: LoadingController,
+    public navCtrl:NavController,
+    private platform: Platform,
+    public alertCtrl: AlertController,
    )
     
     {
@@ -156,18 +159,54 @@ export class TabsPage {
       this.tab1_active = "_active";
       this.tab2_active = "";
       this.tab3_active = "";
+      this.platform.backButton.subscribeWithPriority(10, () => {
+        this.presentAlert();
+      });
     }
     else if(selectedTab === 'tab2'){
       this.tab1_active = "";
       this.tab2_active = "_active";
       this.tab3_active = "";
+      this.platform.backButton.subscribeWithPriority(10, () => {
+        this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
+        });
     }
     else if(selectedTab === 'tab3'){
       this.tab1_active = "";
       this.tab2_active = "";
       this.tab3_active = "_active";
+      this.platform.backButton.subscribeWithPriority(10, () => {
+        this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
+        });
     }
   }
 
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Desea registrarse con otro usuario',
+     
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Aceptar',
+          handler: (datos) => {
+            this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;      
+    
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  } 
  
 }

@@ -11,10 +11,15 @@ export class Tab3Page {
   constructor(   public navCtrl:NavController,
                  private platform: Platform) {
     
-    this.platform.backButton.subscribeWithPriority(10, () => {
+    /* this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;      
-      });
+      }); */
   }
+
+  ngOnInit(): void {
+    console.log("boton atras t3")
+  }
+
 
   datospersonales(){
     this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'forward' }) ;      
