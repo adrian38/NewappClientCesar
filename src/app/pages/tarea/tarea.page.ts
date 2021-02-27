@@ -24,14 +24,14 @@ export class TareaPage implements OnInit {
               public alertController: AlertController,
               private _location: Location) { 
 
-               this.platform.backButton.subscribeWithPriority(10, () => {
-                this.presentAlert();
-                }); 
+              
               }
 
   ngOnInit() {
   
-  
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.presentAlert();
+      }); 
     
 
   }
@@ -61,7 +61,7 @@ export class TareaPage implements OnInit {
           text: 'Aceptar',
           handler: (datos) => {
             this.borrar_campos();
-            this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+            this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'back' }) ;
       
           }
         }

@@ -53,3 +53,4 @@ export class UsuarioModel {
     this.avatar = "";
   }
 }
+

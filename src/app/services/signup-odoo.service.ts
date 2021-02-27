@@ -102,8 +102,6 @@ export class SignUpOdooService {
       })
     }
 
-
-
     let get_user = function (id: number) {
       let inParams = []
       inParams.push([['id', '=', id]])
@@ -163,11 +161,5 @@ export class SignUpOdooService {
         get_user(value);
       }
     });
-
-
-
   }
-
-
-
 }

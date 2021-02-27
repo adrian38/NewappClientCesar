@@ -55,11 +55,11 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
 
-    this.initializeApp();
+    /* this.initializeApp(); */
     
-  /*     this.platform.backButton.subscribeWithPriority(10, () => {
+      this.platform.backButton.subscribeWithPriority(10, () => {
       this.presentAlert();
-    }); */
+    }); 
 
     this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
     this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe(notificationCancel=>{
@@ -187,7 +187,7 @@ export class Tab1Page implements OnInit {
         console.log('Navigate to back page');
         this._location.back();
   
-      }
+      } 
   
     });
   

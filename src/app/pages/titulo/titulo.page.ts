@@ -22,16 +22,18 @@ export class TituloPage implements OnInit {
     private platform: Platform,
     public alertCtrl: AlertController) {
 
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'back' }) ;
-          
-        });
+    
      }
 
   ngOnInit() {
     this.servicio=this.datos.getServ();
     console.log(this.servicio);
     this.titulo=this.datos.gettitulo();
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
   }
 

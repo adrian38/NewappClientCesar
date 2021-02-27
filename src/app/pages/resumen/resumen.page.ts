@@ -52,6 +52,7 @@ export class ResumenPage implements OnInit {
 
   subscriptionNotificationNewSoClient: Subscription;
   subscriptionNotificationError: Subscription;
+  subscriptionCerrar: Subscription;
 
   foto0:string="";
   foto1:string = "";
@@ -76,7 +77,7 @@ export class ResumenPage implements OnInit {
 
    ngOnInit() {
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
+   this.subscriptionCerrar= this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/foto', {animated: true, animationDirection: 'back' }) ;
         
       });
@@ -160,6 +161,8 @@ export class ResumenPage implements OnInit {
       //Add 'implements OnDestroy' to the class.
       this.subscriptionNotificationError.unsubscribe();
       this.subscriptionNotificationNewSoClient.unsubscribe();
+      this.subscriptionCerrar.unsubscribe();
+      this.presentAlert();
       
     }
 

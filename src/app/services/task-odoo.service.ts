@@ -3,6 +3,7 @@ import { UsuarioModel } from '../models/usuario.model'
 import { Address, TaskModel } from '../models/task.model'
 import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
+
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
 let jaysonServer;

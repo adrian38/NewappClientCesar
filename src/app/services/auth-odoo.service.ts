@@ -131,7 +131,6 @@ export class AuthOdooService {
 						usuario.type = 'provider';
 						console.log('proveedor');
 					}
-				
 					search_partner_fields(usuario.id);
 				}
 			});
