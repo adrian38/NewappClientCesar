@@ -393,9 +393,10 @@ pagar(){
     this.tarjeta();
     this.dato(); 
     this.temporal("espere");
-    this._taskOdoo.acceptProvider(978, 0); 
+     this._taskOdoo.acceptProvider(993, 0);  
    console.log("this.task.id",this.task.id);
    console.log("this.task.origin_id",this.task.origin_id);
+   console.log("this.task.client",this.task.client_id);
     setTimeout(()=>{
       this.loading1.dismiss();
       this.presentAlertConfirm();
@@ -408,10 +409,12 @@ pagar(){
     this.tarjeta();
     this.dato();
     this.temporal("espere");
+    this._taskOdoo.acceptProvider(993, 0); 
     /* this._taskOdoo.acceptProvider(this.task.id , this.task.origin_id);  */
     this._taskOdoo.acceptProvider(978, 0); 
     console.log("this.task.id",this.task.id);
     console.log("this.task.origin_id",this.task.origin_id);
+    console.log("this.task.client",this.task.client_id);
 
     setTimeout(()=>{
       this.loading1.dismiss();
