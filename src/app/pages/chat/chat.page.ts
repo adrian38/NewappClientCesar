@@ -1,6 +1,7 @@
  import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
+import { Buffer } from 'buffer';
 import { Observable, Subscription } from 'rxjs';
 import { Photo } from 'src/app/interfaces/photo';
 import { MessageModel } from 'src/app/models/message.model';
@@ -149,8 +150,8 @@ export class ChatPage implements OnInit {
 
   enviarSMS() {
 
-/* 
-this._chatOdoo.sendMessageClient(this.fotoTemporal); */
+ 
+    console.log("foto",Buffer.from(this.fotoTemporal));
     if(this.message.message.length){
     this.message.offer_id = this.purchaseOrderID;
     console.log(this.message);
@@ -158,11 +159,7 @@ this._chatOdoo.sendMessageClient(this.fotoTemporal); */
     this.message = new MessageModel();
     }  
 
-    /* this.message.message=this.fotoTemporal;
-      this.message.offer_id = this.purchaseOrderID;
-      console.log(this.message);
-      this._chatOdoo.sendMessageClient(this.message);
-      this.message = new MessageModel(); */
+    
       
   }
 
@@ -248,6 +245,8 @@ base64ToArrayBuffer(base64) {
   return bytes.buffer;
   
 }
+
+
 
 }
  

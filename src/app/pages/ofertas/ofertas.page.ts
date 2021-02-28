@@ -182,6 +182,7 @@ this.subscriptionOffersList = this.offersList$.subscribe(offersList => {
       
         this.showSubCard = true;
         this.ofertaDisponible=false;
+        console.log("12", this.offersList)
       }
       else {
        // this.showSubCard = false;
@@ -383,7 +384,7 @@ console.log("f3",this.task.photoNewTaskArray[2])
   console.log("h3",this.habilitar3);
 } 
 
-pagar(){
+pagar(id,oring_id){
   console.log(this.numero_tarjeta);
  
   console.log( this.numero_tarjeta.charAt(0));
@@ -393,9 +394,10 @@ pagar(){
     this.tarjeta();
     this.dato(); 
     this.temporal("espere");
-     this._taskOdoo.acceptProvider(993, 0);  
-   console.log("this.task.id",this.task.id);
-   console.log("this.task.origin_id",this.task.origin_id);
+     /* this._taskOdoo.acceptProvider(993, 0); */  
+     this._taskOdoo.acceptProvider(id , oring_id); 
+   console.log("this.task.id",id);
+   console.log("this.task.origin_id",oring_id);
    console.log("this.task.client",this.task.client_id);
     setTimeout(()=>{
       this.loading1.dismiss();
@@ -409,11 +411,11 @@ pagar(){
     this.tarjeta();
     this.dato();
     this.temporal("espere");
-    this._taskOdoo.acceptProvider(993, 0); 
-    /* this._taskOdoo.acceptProvider(this.task.id , this.task.origin_id);  */
-    this._taskOdoo.acceptProvider(978, 0); 
-    console.log("this.task.id",this.task.id);
-    console.log("this.task.origin_id",this.task.origin_id);
+    /* this._taskOdoo.acceptProvider(993, 0);  */
+    this._taskOdoo.acceptProvider(id ,oring_id);   
+   /*  this._taskOdoo.acceptProvider(978, 0);  */
+    console.log("this.task.id",id);
+    console.log("this.task.origin_id",oring_id);
     console.log("this.task.client",this.task.client_id);
 
     setTimeout(()=>{
