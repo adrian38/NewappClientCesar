@@ -6,18 +6,23 @@ img {
 
 
 ion-input{
-    border: 1px solid  rgb(246, 183, 118);
-    
+    width: 100%;
+   /*  border: 1px solid  rgb(246, 183, 118); */
+   border: 1px   transparent;
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
     background-color: rgb(245, 245, 245);
+    fill: round($number: 7);
    
 }
 ion-input:focus-within{
-    border: 3px solid  rgb(246, 183, 118);
+    width: 100%;
+    border: 1px   transparent;
+    /* border: 3px solid  rgb(246, 183, 118); */
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
     background-color: rgb(255, 255, 255);
+    fill: round($number: 7);
 }
 
 /* #datos{
@@ -27,18 +32,28 @@ ion-input:focus-within{
 
 
 
-#boton{
-    
-    border: 0.1px solid  transparent;
+   #boton{
+    width: 100%;
+    border: 1px   transparent;
     color: rgb(49, 57, 52);
-    border-radius: 7px 7px 7px 7px ; 
+    border-radius: 5px 5px 5px 5px ;
     font-family: 'HelveticaNeueLTStd-Bd';
-    margin: 0px;
-    background: rgb(246, 183, 118);
-    
+
+    fill: round($number: 7);
   
+}   
+/* 
+ion-button{
+    //width: 50%;
+    border: 1px   rgb(246, 183, 118);
+    width: 155px;
+    height: 39px;
+    border-radius: 15px 5px 5px 5px ;
+    font-family: 'HelveticaNeueLTStd-Bd';
+    background-color: rgb(246, 183, 118);
     
-}
+    color: rgb(49 ,49 ,57);
+}  */
 
 
 #link{

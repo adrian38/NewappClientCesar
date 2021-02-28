@@ -151,18 +151,18 @@ export class ChatPage implements OnInit {
 
 /* 
 this._chatOdoo.sendMessageClient(this.fotoTemporal); */
-/*    if(this.message.message.length){
+    if(this.message.message.length){
     this.message.offer_id = this.purchaseOrderID;
     console.log(this.message);
     this._chatOdoo.sendMessageClient(this.message);
     this.message = new MessageModel();
-    }  */
+    }  
 
-    this.message.message=this.fotoTemporal;
+    /* this.message.message=this.fotoTemporal;
       this.message.offer_id = this.purchaseOrderID;
       console.log(this.message);
       this._chatOdoo.sendMessageClient(this.message);
-      this.message = new MessageModel();
+      this.message = new MessageModel(); */
       
   }
 

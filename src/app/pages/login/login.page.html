@@ -5,7 +5,7 @@
    <form #formulario="ngForm" class="animated fadeIn">
          <ion-row style="margin-top: 35px;">
            <ion-col style="text-align: center;">
-             <img src="../../assets/logoHome.png">
+             <img src="../../assets/logoHome.svg">
            </ion-col>
          </ion-row>
        
@@ -74,14 +74,17 @@
             <ion-button id="boton"
                        (click)="iniciar()"                       
                        [disabled]="formulario.invalid"
-                       expand="full"
-                       color="clear"
+                       
+                       
                       >
           Iniciar Sesion
             </ion-button>
           </ion-col>
           <ion-col size=1></ion-col>
         </ion-row>
+
+
+
 
          <ion-row  style="margin-top: 40px;">
            <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
@@ -96,6 +99,9 @@
       
      </form> 
     
-
+    
    </ion-grid>
+
+
+
 </ion-content>
