@@ -202,7 +202,7 @@ export class ResumenPage implements OnInit {
    
   // this.task.photoNewTaskArray[0]= this.photoService.devuelve64(); 
 if(this.datos.getfoto0())
-this.task.photoNewTaskArray[0]= this.datos.getfoto0();
+this.task.photoNewTaskArray[0]=  this.datos.getfoto0();
 if(this.datos.getfoto1()) 
 this.task.photoNewTaskArray[1]= this.datos.getfoto1(); 
 if(this.datos.getfoto2()) 
@@ -212,7 +212,9 @@ console.log("f2",this.datos.getfoto1());
 console.log("f3",this.datos.getfoto2());
 
     //console.log("task",this.task);
-    this._taskOdoo.newTask(this.task);
+
+
+     this._taskOdoo.newTask(this.task); 
 
 this.borrar_campos();
    /*  53338707 */
@@ -298,5 +300,21 @@ this.borrar_campos();
     return  this.loading.present();
   }
 
+
+/*   resizedataURL(datas, wantedWidth, wantedHeight, index) {
+		var img = document.createElement('img');
+		img.src = datas;
+		img.onload = () => {
+			let canvas = document.createElement('canvas');
+			let ctx = canvas.getContext('2d');
+			canvas.width = wantedWidth;
+			canvas.height = wantedHeight;
+			ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+			let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
+			this.task.photoNewTaskArray[index] = temp.substring(temp.indexOf(',') + 1);
+		};
+	} */
+
+  
 
 }

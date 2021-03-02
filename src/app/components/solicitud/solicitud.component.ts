@@ -9,8 +9,17 @@ import { TaskModel } from 'src/app/models/task.model';
 export class SolicitudComponent implements OnInit {
 
   @Input() Solicitud: TaskModel = null; 
+
+  titulo:string="";
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+   if( this.Solicitud.title.length < 11){
+    this.titulo=this.Solicitud.title;
+   }
+   else{
+    this.titulo=this.Solicitud.title.slice(0,11) + " " + " . . .";
+   }
+  }
 
 }
