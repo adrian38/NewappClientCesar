@@ -99,9 +99,23 @@ ion-button{
 
 .message-input {
   margin-top: 0px;
-  border: 1px solid var(--ion-color-medium);
+  border: 1px solid var(--ion-color-medium); 
   border-radius: 10px;
   background: #fff;
+  padding-left: 5px;
+ /*  border-top: 1px solid var(--ion-color-medium);
+  border-left: 1px solid var(--ion-color-medium);
+  border-bottom: 1px solid var(--ion-color-medium); */
+}
+.message-input1 {
+  margin-top: 0px;
+  /* border: 1px solid var(--ion-color-medium); */
+  border-radius: 10px,0px,0px,10px;
+  background: #fff;
+  padding-right: 5px;
+  border-top: 1px solid var(--ion-color-medium);
+  border-right: 1px solid var(--ion-color-medium);
+  border-bottom: 1px solid var(--ion-color-medium);
 }
 
 /*  .msg-btn {

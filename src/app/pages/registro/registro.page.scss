@@ -7,18 +7,22 @@
 }
 
 ion-input{
-    border: 1px solid  rgb(246, 183, 118);
+    border: 1px   transparent;
     background-color: rgb(245, 245, 245);
+    fill: round($number: 7);
+   
     border-radius: 5px 5px 5px 5px ;
-    margin-top: 3px;
+    margin-top: 5px;
   
    
 }
 ion-input:focus-within{
-    border: 2px solid  rgb(246, 183, 118);
-    background-color: rgb(255, 255, 255);
+    border: 1px   transparent;
+   background-color: rgb(245, 245, 245);
+   fill: round($number: 7);
     border-radius: 5px 5px 5px 5px ;
-    margin-top: 3px;
+    margin-top: 5px;
+ 
 }
 
 #datos{
