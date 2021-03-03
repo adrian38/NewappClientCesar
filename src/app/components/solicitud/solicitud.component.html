@@ -2,7 +2,7 @@
   
    <!-- <ion-col size=4 *ngIf="Solicitud.type == 'Servicio de Fontaneria'"> --> <!-- Servidor Local -->
   <ion-col size=4 *ngIf="Solicitud.type == 'Servicio de Fontanería'">
-    <img id="imagen" src="../../../assets/f.jpg" style="margin-top: 18px;">
+    <img id="imagen" src="../../../assets/fontaneria.png" style="margin-top: 18px;">
   </ion-col>
        
   <ion-col size=8>        
@@ -13,7 +13,7 @@
     </ion-row >
     <ion-row style="margin-top: -4px;">
       <ion-col size=2.5  style="text-align: end;padding-left: 0px;">
-        <img style="width: 15px;height: 15px;" src="../../../assets/calendario.png">            
+        <img style="width: 15px;height: 15px;" src="../../../assets/calendario.svg">            
       </ion-col>
       <ion-col size=9.5 style="text-align: start;">
         <ion-label class="text-helvetica">{{ this.Solicitud.date_planned 
@@ -22,7 +22,7 @@
     </ion-row>
     <ion-row style="margin-top: -3px;">
       <ion-col size=2.5 style="text-align: end;">
-        <img style="width: 15px;height: 15px;" src="../../../assets/hora.png">
+        <img style="width: 15px;height: 15px;" src="../../../assets/hora.svg">
       </ion-col>
       <ion-col size=9.5 style="text-align: start;">
         <ion-label class="text-helvetica"> {{Solicitud.time | date: 'h:mm a' }}</ion-label>            

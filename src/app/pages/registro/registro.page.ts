@@ -40,7 +40,7 @@ export class RegistroPage implements OnInit {
  cod_postal:string="";
  escalera:string="";
  fechactual:string="";
- avatarusuario =  '../../../assets/registro.png';
+ avatarusuario =  '../../../assets/registro.svg';
  avatarusuario64:string="";
  calen:boolean=false;
  selectFoto:boolean=false;

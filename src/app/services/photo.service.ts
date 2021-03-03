@@ -96,7 +96,8 @@ export class PhotoService {
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
     const base64Data = await this.readAsBase64(cameraPhoto);
-    this.foto= base64Data.slice(22,); 
+    /* this.foto= base64Data.slice(22,); */ 
+    this.foto= base64Data;
 
     console.log("Paso 11112",base64Data);
     console.log("Paso 111",this.foto);
@@ -141,6 +142,7 @@ export class PhotoService {
       // Fetch the photo, read as a blob, then convert to base64 format
       const response = await fetch(cameraPhoto.webPath!);
       const blob = await response.blob();
+      
       return await this.convertBlobToBase64(blob) as string;  
     }
   }
@@ -174,7 +176,7 @@ export class PhotoService {
   });
   
 devuelve64(){
-//  console.log("2",this.foto);
+ console.log("2",this.foto);
   return this.foto
 }
 }

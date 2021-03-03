@@ -8,7 +8,7 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import {DialogModule} from 'primeng/dialog';
-
+import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +16,7 @@ import {DialogModule} from 'primeng/dialog';
     IonicModule,
     ChatPageRoutingModule,
     DialogModule,
+    ComponentsModule
     
   
   ],

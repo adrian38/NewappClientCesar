@@ -64,9 +64,9 @@ export class ObtSubSService {
     foto0:string = '';
      foto1:string=''; 
     foto2:string="";
-    foto00:string = '../../../assets/noImage.png';
-    foto11:string = '../../../assets/noImage.png';
-    foto22:string = '../../../assets/noImage.png';
+    foto00:string = '../../../assets/noImage.svg';
+    foto11:string = '../../../assets/noImage.svg';
+    foto22:string = '../../../assets/noImage.svg';
    
   constructor() { 
     
