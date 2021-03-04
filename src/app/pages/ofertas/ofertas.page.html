@@ -77,71 +77,78 @@
     </div>
 
  <div *ngIf="showSubCard">
-
+ 
    <ion-row   *ngFor="let offer of offersList ;let i = index">
     
        <ion-col size=0.5></ion-col>
        <ion-col size=11>
+         
+
         <ion-row id="item">
 
-       <ion-col size=3>
-          <img id="fotopersonal"
-                style="margin-top: 15px;"  
-               src="{{offer.photoProvider}}"  onError="this.src='assets/noImage.svg'"
-               (click)="showDialog(i)" >
-        </ion-col>
-        
-  
-         <ion-col size=4>
-         <!--  <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
-           -->
-           <ion-row><h4>{{editnombre(offer.client_name)}}</h4></ion-row>
-         
-          <ion-row ><ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
-          </ion-row>
-          
-         </ion-col>
-  
-         <ion-col size=0.5></ion-col>
+          <ion-item-sliding>
 
-         <ion-col size=1.5>
-           <ion-row>
-            <img 
-            style="width: 22px; height: 25px;margin-top: 24px;" 
-            src="../../assets/chat.png"
-            (click)="openChat(offer.id)">
-           </ion-row>
-           <ion-row>
-            <ion-label style="font-size: xx-small;">CHAT</ion-label>
-           </ion-row>
-          
-               
+            <ion-item  lines="none" style="padding: 0px;">
+              <ion-col size=3>
+                <img id="fotopersonal"
+                      style="margin-top: 15px;"  
+                     src="{{offer.photoProvider}}"  onError="this.src='assets/noImage.svg'"
+                     (click)="showDialog(i)" >
+                </ion-col>
               
-         </ion-col>
-  
-         <ion-col size=1.5 >
-          <img id="icono" 
-          style="width: 24px; height: 24px;margin-top: 24px;" 
-          src="../../assets/acep.svg"
-          (click)="showDialogAceptar(offer.id)">
-          
-         </ion-col>
+        
+                 <ion-col size=4>
+               <!--  <ion-row><h4>{{offer.client_name | slice:0:8}}</h4></ion-row>
+                 -->
+                 <ion-row><h4>{{editnombre(offer.client_name)}}</h4></ion-row>
+               
+                <ion-row ><ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
+                </ion-row>
+                
+               </ion-col>
+        
+               <ion-col size=1.5></ion-col>
+      
+               <ion-col size=1.5>
+                 <ion-row>
+                  <img 
+                  style="width: 22px; height: 25px;margin-top: 24px;" 
+                  src="../../assets/chat.png"
+                  (click)="openChat(offer.id)">
+                 </ion-row>
+                 <ion-row>
+                  <ion-label style="font-size: xx-small;">CHAT</ion-label>
+                 </ion-row>
+                
+                     
+                    
+               </ion-col>
+        
+               <ion-col size=1.5 >
+                <img id="icono" 
+                style="width: 26px; height: 26px;margin-top: 19px;" 
+                src="../../assets/acep.svg"
+                (click)="showDialogAceptar(offer.id)">
+                
+                 </ion-col>
+            </ion-item> 
+            <ion-item-options side="end" style="padding: 0px;">
+              <ion-item-option (click)="cancelSOclient()"
+                                color="tertiary" expandable>cancelar</ion-item-option>
+            </ion-item-options> 
+          </ion-item-sliding>
+
+        
      
         
-         <ion-col size=1.5>
-          <img id="icono" 
-          style="width: 24px; height: 24px;margin-top: 24px;" 
-          src="../../assets/nega.svg"
-          (click)="cancelSOclient()">
-      
-         </ion-col>
+        
   
-        <!-- -----------------------Nueva card desplegable------------------- -->
-   <ion-row *ngIf="displayAceptar==offer.id">
+           <!-- -----------------------Nueva card desplegable------------------- -->
+           <ion-row *ngIf="displayAceptar==offer.id">
   
 
     
-    <ion-card style="background-color: rgb(241, 241, 241);
+                 <ion-card style="background-color: rgb(241, 241, 241);
                       border-radius: 0px 0px 0px 0px;">
   
    
