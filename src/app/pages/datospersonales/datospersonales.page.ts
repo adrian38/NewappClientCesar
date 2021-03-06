@@ -163,7 +163,7 @@ export class DatospersonalesPage implements OnInit {
           /*   this.verFoto=false;
             this.verFotoInicial=true; */
             if(this.usuario.avatar.length == 0){
-              this.avatarusuario =  '../../../assets/fotoadd.png'
+              this.avatarusuario =  '../../../assets/registro.svg'
             }
             else{
               this.avatarusuario = this.usuario.avatar;
@@ -223,7 +223,7 @@ export class DatospersonalesPage implements OnInit {
 
        
     if(this.usuario.avatar.length == 0){
-      this.avatarusuario =  '../../../assets/fotoadd.png'
+      this.avatarusuario =  '../../../assets/registro.svg'
     }
     else{
       this.avatarusuario = this.usuario.avatar;

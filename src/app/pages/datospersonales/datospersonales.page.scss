@@ -55,8 +55,9 @@ ion-card{
     }
 
     #selecf{
-        width: auto;
-        height: auto;  
+        width: 109px;
+        height: 109px; 
+        object-fit: cover; 
     }
     #link{
         color: rgb(101,173,172);
