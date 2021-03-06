@@ -7,14 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ContrasePageRoutingModule } from './contrase-routing.module';
 import {ToastModule} from 'primeng/toast';
 import { ContrasePage } from './contrase.page';
-
+import { ComponentsModule } from 'src/app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ContrasePageRoutingModule,
-    ToastModule
+    ToastModule,
+    ComponentsModule
   ],
   declarations: [ContrasePage]
 })

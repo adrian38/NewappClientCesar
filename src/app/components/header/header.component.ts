@@ -10,8 +10,11 @@ import { NavController } from '@ionic/angular';
 export class HeaderComponent implements OnInit {
   @Output() clickedClose = new EventEmitter();
   @Input() expandText: string = "Text";
+  @Input() titulo: boolean = false;
   @Input() expandHeader: boolean = false;
   @Input() fillBackground: boolean = false;
+  @Input() cerrar: boolean = false;
+  @Input() atras: boolean = false;
   @Input() headerText: string = "Header";
 
   constructor(private _location: Location,

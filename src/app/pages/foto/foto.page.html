@@ -2,9 +2,8 @@
 [expandHeader]="true" [expandText]="servicio"
 (clickedClose)="cerrarsolicitud($event)"></app-header> -->
 <app-header headerText="Solicitudes" [fillBackground]="true"
-[expandHeader]="true" expandText="{{servicio}}"
+[expandHeader]="true" expandText="{{servicio}}" [cerrar]="true" [atras]="true" [titulo]="true"
 (clickedClose)="cerrarsolicitud($event)"></app-header>
-
 
 <div id="barra" slot="fixed">
   <ion-label >Fotos del proyecto</ion-label>

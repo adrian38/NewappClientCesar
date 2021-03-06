@@ -9,6 +9,7 @@ import {MessageService} from 'primeng/api';
 export class ContrasePage implements OnInit {
   passnueva:string="";
   passconfirmada:string="";
+  t:string="Contraseña"
 
   constructor(public navCtrl:NavController,
     private platform: Platform,
