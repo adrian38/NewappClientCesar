@@ -59,20 +59,24 @@ export class ObtSubSService {
     private subServicioActual:string;
 /* 
     foto0:string = '../../../assets/fotoadd.png'; */
-     fotoRegistro:string='../../../assets/fotoadd.png';  
+     fotoRegistro:string='../../../assets/registro.svg';  
     
     foto0:string = '';
      foto1:string=''; 
-    foto2:string="";
-    foto00:string = '../../../assets/noImage.svg';
-    foto11:string = '../../../assets/noImage.svg';
-    foto22:string = '../../../assets/noImage.svg';
+    foto2:string='';
+    foto00:string = '';
+    foto11:string = '';
+    foto22:string = '';
    
   constructor() { 
     
     this.SolicitudesList = [];
     this.ContaratadosList = [];
     this.HistorialList = [];
+
+    this.foto00 = '../../../assets/noImage.svg';
+    this.foto11 = '../../../assets/noImage.svg';
+    this.foto22 = '../../../assets/noImage.svg';
   }
 
   getNotificationSetTab$(): Observable<boolean> {
@@ -372,6 +376,14 @@ setselectfoto(f:boolean){
 getselectfoto(){
   return this.selecfoto;
 }
+
+/* setfotovacia(f){
+  this.fotovacia=f
+}
+
+getfotovacia(){
+  return this.fotovacia;
+} */
   //-------------------------------------------------------------------------
 
 

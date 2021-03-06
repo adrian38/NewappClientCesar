@@ -50,8 +50,9 @@ ion-card{
     }
     
     #selecf{
-        width: auto;
-        height: auto;  
+        width : 110px;
+        height: 110px; 
+        object-fit: cover; 
     }
 
     #link{

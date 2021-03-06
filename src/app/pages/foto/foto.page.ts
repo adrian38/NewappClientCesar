@@ -3,15 +3,14 @@ import { NavController, Platform } from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 //-----------------------------------------------
+
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { PhotoService } from '../../services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { Photo } from 'src/app/interfaces/photo';
 import { TaskModel } from 'src/app/models/task.model';
-import { CameraPhoto } from '@capacitor/core';
-import { HexBase64Latin1Encoding } from 'crypto';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
+
 
 
 @Component({
@@ -21,10 +20,10 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 })
 export class FotoPage implements OnInit {
 
- /*  foto0:string = '../../../assets/icon/noImage.svg';
+ /*foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
   foto2:string = '../../../assets/icon/noImage.svg'; */
-  /* foto0:string = '../../../assets/fotoadd.png'; */
+  /*foto0:string = '../../../assets/fotoadd.png'; */
   foto0:string = '../../../assets/fotoadd.png';
   foto1:string = '../../../assets/fotoadd.png';
   foto2:string = '../../../assets/fotoadd.png';
@@ -47,6 +46,8 @@ export class FotoPage implements OnInit {
   }
 
   ngOnInit() {
+
+    
 
     this.foto0=this.datos.getfoto00();
     this.foto1=this.datos.getfoto11();
@@ -238,5 +239,8 @@ borrar_campos(){
   this.datos.setportal("");
 
   this.datos.setcomentario("");
+  this.datos.setfoto00('../../../assets/fotoadd.png');
+  this.datos.setfoto11('../../../assets/fotoadd.png');
+  this.datos.setfoto22('../../../assets/fotoadd.png');
 }
 }

@@ -58,6 +58,7 @@ export class Tab1Page implements OnInit {
     /* this.initializeApp(); */
     console.log("boton atras t1")
       this.platform.backButton.subscribeWithPriority(10, () => {
+        this.loading.dismiss();
       this.presentAlert();
     }); 
 
