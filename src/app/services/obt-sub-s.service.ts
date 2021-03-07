@@ -62,7 +62,7 @@ export class ObtSubSService {
      fotoRegistro:string='../../../assets/registro.svg';  
     
     foto0:string = '';
-     foto1:string=''; 
+    foto1:string=''; 
     foto2:string='';
     foto00:string = '';
     foto11:string = '';
@@ -70,13 +70,14 @@ export class ObtSubSService {
    
   constructor() { 
     
+    console.log("aki estoy de nuevo")
     this.SolicitudesList = [];
     this.ContaratadosList = [];
     this.HistorialList = [];
 
-    this.foto00 = '../../../assets/noImage.svg';
-    this.foto11 = '../../../assets/noImage.svg';
-    this.foto22 = '../../../assets/noImage.svg';
+    this.foto00 = '../../../assets/fotoadd.png';
+    this.foto11 = '../../../assets/fotoadd.png';
+    this.foto22 = '../../../assets/fotoadd.png';
   }
 
   getNotificationSetTab$(): Observable<boolean> {

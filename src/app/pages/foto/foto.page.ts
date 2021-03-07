@@ -24,9 +24,9 @@ export class FotoPage implements OnInit {
   foto1:string = '../../../assets/icon/noImage.svg';
   foto2:string = '../../../assets/icon/noImage.svg'; */
   /*foto0:string = '../../../assets/fotoadd.png'; */
-  foto0:string = '../../../assets/fotoadd.png';
-  foto1:string = '../../../assets/fotoadd.png';
-  foto2:string = '../../../assets/fotoadd.png';
+  foto0:string = '';
+  foto1:string = '';
+  foto2:string = '';
   foto064:string = '';
   foto164:string = '';
   foto264:string = '';
@@ -42,6 +42,10 @@ export class FotoPage implements OnInit {
               public alertController: AlertController,
               private platform: Platform,
               private _taskOdoo: TaskOdooService) {
+/* 
+    this.datos.setfoto00('../../../assets/fotoadd.png');
+		this.datos.setfoto11('../../../assets/fotoadd.png');
+		this.datos.setfoto22('../../../assets/fotoadd.png'); */
      
   }
 

@@ -9,6 +9,7 @@ export class SafeUrlPipePipe implements PipeTransform {
   constructor(private readonly sanitizer: DomSanitizer) {}
 
   public transform(url: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
+     return this.sanitizer.bypassSecurityTrustResourceUrl(url); 
+    /* return this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icon/noImage.svg');
+  */ }
 }

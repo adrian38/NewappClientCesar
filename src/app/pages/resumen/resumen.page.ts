@@ -75,13 +75,40 @@ export class ResumenPage implements OnInit {
 			this.navCtrl.navigateRoot('/foto', { animated: true, animationDirection: 'back' });
 		});
 
-		this.foto0 = this.datos.getfoto00();
-		this.foto1 = this.datos.getfoto11();
-		this.foto2 = this.datos.getfoto22();
+		/* this.foto0 = this.datos.getfoto00(); */
+	/* 	this.foto1 = this.datos.getfoto11();
+		this.foto2 = this.datos.getfoto22(); */
 
-		console.log('tengoresumen la foto0', this.foto0);
+		if(this.datos.getfoto0()==""){
+			console.log('en if foto0', this.datos.getfoto0());
+			this.foto0 ='../../../assets/icon/noImage.svg'
+		}
+		else{
+			this.foto0 = this.datos.getfoto00();
+			console.log('no if foto0', this.datos.getfoto0());
+		}
+
+		if(this.datos.getfoto1()==""){
+			console.log('en if foto0', this.datos.getfoto1());
+			this.foto1 ='../../../assets/icon/noImage.svg'
+		}
+		else{
+			this.foto1 = this.datos.getfoto11();
+			console.log('no if foto0', this.datos.getfoto1());
+		}
+
+		if(this.datos.getfoto2()==""){
+			console.log('en if foto0', this.datos.getfoto2());
+			this.foto2 ='../../../assets/icon/noImage.svg'
+		}
+		else{
+			this.foto2 = this.datos.getfoto22();
+			console.log('no if foto0', this.datos.getfoto2());
+		}
+/* 
+		console.log('tengoresumen la foto0', this.datos.getfoto0());
 		console.log('tengoresumen la foto1', this.foto1);
-		console.log('tengoresumen la foto2', this.foto2);
+		console.log('tengoresumen la foto2', this.foto2); */
 
 		this.servicio = this.datos.getServ();
 
@@ -254,9 +281,13 @@ export class ResumenPage implements OnInit {
 		this.datos.setportal('');
 
 		this.datos.setcomentario('');
-		this.datos.setfoto00('');
-		this.datos.setfoto11('');
-		this.datos.setfoto22('');
+ 		 this.datos.setfoto00('../../../assets/fotoadd.png');
+		this.datos.setfoto11('../../../assets/fotoadd.png');
+		this.datos.setfoto22('../../../assets/fotoadd.png');  
+
+		this.datos.setfoto0('');
+		this.datos.setfoto1('');
+		this.datos.setfoto2(''); 
 	}
 
 	verubicacion() {
