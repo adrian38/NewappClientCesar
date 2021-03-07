@@ -137,6 +137,10 @@ borrar_campos(){
   this.datos.setcomentario("");
   this.datos.setfoto00('../../../assets/fotoadd.png');
   this.datos.setfoto11('../../../assets/fotoadd.png');
-  this.datos.setfoto22('../../../assets/fotoadd.png');
+  this.datos.setfoto22('../../../assets/fotoadd.png');  
+
+  this.datos.setfoto0('');
+  this.datos.setfoto1('');
+  this.datos.setfoto2(''); 
 }
 }

@@ -160,19 +160,23 @@ export class FotoPage implements OnInit {
           if(photos.length == 1){
             if(posc==0){ 
               this.foto0 = photos[0].webviewPath;
+              this.datos.setfoto00(this.foto0);
               this.foto064=this.photoService.devuelve64();
               this.datos.setfoto0(this.foto064);
+
               console.log("paso..../",this.photoService.devuelve64());
               console.log("mi foto",this.foto0);
               
             }
             if(posc==1){ 
               this.foto1 = photos[0].webviewPath;
+              this.datos.setfoto11(this.foto1);
               this.foto164=this.photoService.devuelve64();
               this.datos.setfoto1(this.foto164);
             }   
             if(posc==2){ 
               this.foto2 = photos[0].webviewPath;
+              this.datos.setfoto22(this.foto2);
               this.foto264=this.photoService.devuelve64();
               this.datos.setfoto2(this.foto264);
 
@@ -245,6 +249,10 @@ borrar_campos(){
   this.datos.setcomentario("");
   this.datos.setfoto00('../../../assets/fotoadd.png');
   this.datos.setfoto11('../../../assets/fotoadd.png');
-  this.datos.setfoto22('../../../assets/fotoadd.png');
+  this.datos.setfoto22('../../../assets/fotoadd.png');  
+
+  this.datos.setfoto0('');
+  this.datos.setfoto1('');
+  this.datos.setfoto2(''); 
 }
 }
