@@ -24,13 +24,33 @@ h6{
     font-size: 18 !important;
 }
 
-#imagen{
+/* #imagen{
     margin-top: 30px;
     width: 90px;            
     height: 89px;            
     border-radius: 20px 3px 3px 3px;            
     object-fit: cover; 
     opacity: 0.9;           
+} */
+
+.image-left {
+    
+    &::before {
+        content: '';
+        position: absolute;
+        margin-top: 18px;
+        width: 90px;            
+        height: 89px;
+        background-color: rgb(246, 183, 118);
+        opacity: 30%;
+        border-radius: 20px 3px 3px 5px;
+    }
+    img {
+        object-fit: cover;
+        width: 90px;            
+        height: 89px;
+    border-radius: 20px 3px 3px 5px;
+    }
 }
 
 #item{        

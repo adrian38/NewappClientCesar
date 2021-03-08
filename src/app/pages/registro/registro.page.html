@@ -7,7 +7,7 @@
     <ion-row>
       <ion-col size=1></ion-col>
       <ion-col size=10 style="text-align:center;">
-       <h1 style="color:  rgb(246, 183, 118); margin-top: 50px;">CREAR CUENTA</h1>
+       <h1 style="color:  rgb(246, 183, 118); margin-top: 35px;">CREAR CUENTA</h1>
    
       </ion-col>
       <ion-col size=1></ion-col>
@@ -46,7 +46,7 @@
         
   <form #formulario="ngForm">
 
-         <ion-row >
+         <ion-row id="datos">
            <ion-col >
              
                <ion-list>
@@ -401,7 +401,7 @@
                          [disabled]="formulario.invalid || !coordenadas || !selectFoto"
                         (click)="iniciar()"
                         >
-           REGISTRARSE
+           CREAR
              </ion-button>
            </ion-col>
          </ion-row>

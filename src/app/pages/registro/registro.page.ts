@@ -135,7 +135,7 @@ export class RegistroPage implements OnInit {
           handler: (blah) => {
           /*   this.verFoto=false;
             this.verFotoInicial=true; */
-            this.avatarusuario = '../../../assets/fotoadd.png';
+            this.avatarusuario = '../../../assets/registro.svg';
             this.avatarusuario64="";
             console.log('Confirm Cancel: blah');
             this.selectFoto=false;

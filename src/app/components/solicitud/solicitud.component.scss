@@ -18,14 +18,42 @@ h6{
     font-family: $font-helvetica !important;
     font-size: 18 !important;
 }
-#imagen{
-    margin-top: 30px;
+
+.image-left {
+    
+    &::before {
+        content: '';
+        position: absolute;
+        margin-top: 18px;
+        width: 90px;            
+        height: 89px;
+        background-color: rgb(246, 183, 118);
+        opacity: 30%;
+        border-radius: 20px 3px 3px 5px;
+    }
+    img {
+        object-fit: cover;
+        width: 90px;            
+        height: 89px;
+    border-radius: 20px 3px 3px 5px;
+    }
+}
+
+/* #imagen{
+   margin-top: 30px;
     width: 90px;            
     height: 89px;            
-    border-radius: 20px 3px 3px 3px;            
+    border-radius: 20px 3px 3px 5px;            
     object-fit: cover; 
-    opacity: 0.9;           
-}
+    opacity: 0.9;
+    background-color: rgb(246, 183, 118); 
+     
+ 
+
+    
+} */
+
+
 
 #item{        
     border-bottom: 2px solid  rgba(246, 183, 118, 0.7);

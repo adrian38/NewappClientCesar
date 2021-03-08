@@ -95,17 +95,17 @@ initializeApp() {
 
 showExitConfirm() {
   this.alertController.create({
-    header: 'App termination',
-    message: 'Do you want to close the app?',
+    header: 'Alerta',
+    message: 'Desea salir de la aplicacion?',
     backdropDismiss: false,
     buttons: [{
-      text: 'Stay',
+      text: 'Cancelar',
       role: 'cancel',
       handler: () => {
         console.log('Application exit prevented!');
       }
     }, {
-      text: 'Exit',
+      text: 'Salir',
       handler: () => {
         navigator['app'].exitApp();
       }

@@ -195,9 +195,18 @@ export class FotoPage implements OnInit {
         cssClass: 'secondary',
         handler: (blah) => {
           console.log('Confirm Cancel: blah');
-          this.foto0 = '../../../assets/icon/noImage.svg';
-          this.foto1 = '../../../assets/icon/noImage.svg';
-          this.foto2 = '../../../assets/icon/noImage.svg';
+          if(posc==0){
+            this.foto0 = '../../../assets/fotoadd.png';
+          }
+          if(posc==1){
+            this.foto1 = '../../../assets/fotoadd.png';
+          }
+          if(posc==2){
+            this.foto2 = '../../../assets/fotoadd.png';
+          }
+          
+         
+          
           
         }
       }]
