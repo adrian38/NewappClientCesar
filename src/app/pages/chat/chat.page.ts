@@ -66,8 +66,7 @@ export class ChatPage implements OnInit {
     
     this.purchaseOrderID = this._chatOdoo.getIdPo()
     console.log(this.purchaseOrderID) ;
-     
-  
+    console.log(this.task) ;
 
     this._taskOdoo.requestTask(this.purchaseOrderID);
     this._chatOdoo.requestAllMessages(this.purchaseOrderID);

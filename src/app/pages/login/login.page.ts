@@ -133,4 +133,9 @@ async presentAlertConfirm() {
   await alert.present();
 }
 
+cambiarpass(){
+  this.navController.navigateRoot('/contrase', {animated: true, animationDirection: 'forward' }) ;   
+ 
+}
+
 }
