@@ -182,6 +182,8 @@ mantener_campos(i:number){
     this.datos.setcod_postal(this.cod_postal);
     this.datos.setnumero(this.numero);
     this.datos.setportal(this.portal);
+    this.datos.setradiobuton(true)
+    
   }
 else{
 
@@ -192,6 +194,8 @@ else{
   this.cod_postal=this.datos.getcod_postal();
   this.numero=this.datos.getnumero();
   this.portal=this.datos.getportal();
+  this.Autofill=this.datos.getradiobuton();
+  
 }
 
 
@@ -208,6 +212,7 @@ borrar_campos(){
   this.datos.setcod_postal("");
   this.datos.setnumero("");
   this.datos.setportal("");
+  this.datos.setradiobuton(false);
 
   this.datos.setcomentario("");
   this.datos.setfoto00('../../../assets/fotoadd.png');

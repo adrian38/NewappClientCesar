@@ -49,6 +49,7 @@ export class ObtSubSService {
     coordenadas:boolean=false;
     ruta:string="";
     selecfoto:boolean=false;
+    radiobuton:boolean=false;
 
 
    //-----------------------------------------------------------
@@ -376,6 +377,14 @@ setselectfoto(f:boolean){
 
 getselectfoto(){
   return this.selecfoto;
+}
+
+setradiobuton(r:boolean){
+this.radiobuton=r;
+}
+
+getradiobuton(){
+  return this.radiobuton;
 }
 
 /* setfotovacia(f){

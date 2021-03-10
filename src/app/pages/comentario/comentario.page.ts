@@ -81,6 +81,7 @@ this.datos.setcomentario(this.comentario);
     this.datos.setcod_postal("");
     this.datos.setnumero("");
     this.datos.setportal("");
+    this.datos.setradiobuton(false);
   
     this.datos.setcomentario("");
     this.datos.setfoto00('../../../assets/fotoadd.png');

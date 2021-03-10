@@ -249,10 +249,11 @@ export class ResumenPage implements OnInit {
 		//console.log("f3",this.datos.getfoto2());
 
 		//console.log('task', this.task);
-
+		this.datos.setradiobuton(false);
 		this._taskOdoo.newTask(this.task);
 
 		this.borrar_campos();
+		
 
 		/*  53338707 */
 
@@ -279,6 +280,7 @@ export class ResumenPage implements OnInit {
 		this.datos.setcod_postal('');
 		this.datos.setnumero('');
 		this.datos.setportal('');
+		this.datos.setradiobuton(false);
 
 		this.datos.setcomentario('');
  		 this.datos.setfoto00('../../../assets/fotoadd.png');
