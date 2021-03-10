@@ -6,6 +6,8 @@ import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AlertController, LoadingController, NavController,Platform } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { NetworkStatus, Plugins } from '@capacitor/core';
+const { Network } = Plugins;
 
 
 @Component({
@@ -25,6 +27,9 @@ export class LoginPage implements OnInit {
   islog:boolean
 
   loading:HTMLIonLoadingElement = null;
+
+  status: NetworkStatus;
+  listener: any;
 
   constructor(private ngZone: NgZone,
     private _authOdoo:AuthOdooService,
@@ -49,6 +54,48 @@ this.platform.backButton.subscribeWithPriority(10, () => {
 
 }
 
+ionViewDidEnter() {
+  this.getStatus(); this.startListenNetwork();
+  console.log("iniciando testing internet");
+}
+ionViewWillLeave() {
+
+  this.stopListenNetwork();
+}
+
+
+async getStatus() {
+  try {
+    this.status = await Network.getStatus();
+  } catch (e) { console.log("Error", e) }
+}
+
+
+startListenNetwork() {
+  this.listener = Network.addListener('networkStatusChange', (status) => {
+    console.log("respuesta error");
+    if (!status.connected) {
+      this.loading.dismiss();
+    this.presentAlertConfirm(); 
+      
+    }else{
+      console.log("respuesta ok");
+      this._authOdoo.loginClientApk(this.usuario);
+      this.ionViewWillLeave();
+    //this._authOdoo.loginClientApk(this.usuario);
+    }
+  });
+}
+
+
+stopListenNetwork() {
+  if (this.listener) this.listener.remove();
+}
+
+
+
+
+
 ngOnInit() {
 
   this.usuario$ = this._authOdoo.getUser$();
@@ -66,6 +113,8 @@ ngOnInit() {
     });
   });
 }
+
+
 
 checkUser(){
   if(this.usuario.connected){
@@ -89,15 +138,10 @@ checkUser(){
 
   async iniciar(){
     await this.presentLoading();
-    console.log("si");
-    console.log("si");
-    console.log("user",this.user);
-    console.log("pass",this.pass);
-
     this.usuario.username = this.user;
     this.usuario.password = this.pass;
-    this._authOdoo.login(this.usuario);
-    //this._authOdoo.loginClientApk(this.usuario);
+    this.ionViewDidEnter();
+    
   }
 
 async presentLoading() {
@@ -106,7 +150,7 @@ async presentLoading() {
     message: 'Espere...',
     //duration: 2000
   });
-  console.log("Loading Ok");
+  
   return  this.loading.present();
 }
 
