@@ -56,7 +56,7 @@
 
 
 
-<ion-content>
+<ion-content #content>
   <div id="barra" slot="fixed">
     <ion-row>
       <ion-col size=1></ion-col>
@@ -94,20 +94,21 @@
      
       </div> 
      
-     
-         <div class="outgoing-chats" *ngIf="user.type == 'client'" >
+     <div *ngIf="user.type == 'client'" >
+      <div class="outgoing-chats" >
+        <div class="outgoing-chats-msg">
+           <p >{{ message.message }}</p>
+        </div>
+      </div> 
+      <img  [src]="message.foto">
+     </div>
+         
+  
+        
        
-         <div class="outgoing-chats-msg">
-          <p >{{ message.message }}</p>
-          
-      </div>
-      
-        </div> 
-  
-  
-      
      
     </div> 
+    
 <!--     //------------------------------------------------------------------------------------------ -->
   </ion-grid>
 
@@ -162,6 +163,8 @@
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
+
+  <div id="content_end"></div>
 </ion-content>
 
 
