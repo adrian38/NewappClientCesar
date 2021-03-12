@@ -14,6 +14,7 @@ import {RatingModule} from 'primeng/rating';
 import {GalleriaModule} from 'primeng/galleria';
 import {LightboxModule} from 'primeng/lightbox';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     DialogModule,
     RatingModule,
     LightboxModule,
-    GalleriaModule
+    GalleriaModule,
+    ComponentsModule
   
   
   ],

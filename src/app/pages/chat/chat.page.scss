@@ -41,11 +41,12 @@
   height: 50px;
   
   font-family: 'HelveticaNeueLTStd-Bd';
-  display: flex;
+/*    display: flex;  */
   justify-content: center;
   align-content: center;
-  flex-direction: column;
+ /*  flex-direction: column; */
   text-align: center; 
+  position: fixed;
  
 }
 

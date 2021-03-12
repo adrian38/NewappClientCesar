@@ -8,7 +8,7 @@ import { TaskModel } from 'src/app/models/task.model';
 })
 export class OfertaComponent implements OnInit {
 
-  @Input() Solicitud: TaskModel = null;
+  @Input() ofertas: TaskModel = null;
   
   constructor() { }
 
