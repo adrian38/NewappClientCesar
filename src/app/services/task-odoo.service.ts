@@ -1013,7 +1013,7 @@ export class TaskOdooService {
 		let partner_id = [];
 
 		let search_avatar_provider = function() {
-			console.log(partner_id, 'partner_id provider');
+			
 			let inParams = [];
 
 			inParams.push([ [ 'partner_id', 'in', partner_id ] ]);
@@ -1081,8 +1081,7 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error requestOffersForTask');
 				} else {
-					console.log(value, 'po contratada');
-
+					
 					for (let task of tasksList) {
 						let temp = value.find((element) => element.origin === task.id_string);
 						if (temp) {
@@ -1100,8 +1099,7 @@ export class TaskOdooService {
 		};
 
 		let get_photo_so = function() {
-			console.log('entrando a buscar fotos');
-
+			
 			let inParams = [];
 			inParams.push([ [ 'res_id', 'in', SO_id ] ]);
 			inParams.push([ 'name', 'res_id', 'res_model', 'url', 'datas', 'mimetype', 'file_size' ]);
@@ -1127,7 +1125,7 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error get_photo_so');
 				} else {
-					console.log(value, 'obteniendo fotos');
+					
 
 					for (let resId of value) {
 						for (let task of tasksList) {
@@ -1171,12 +1169,12 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error get_so_list');
 				} else {
-					console.log(value, 'posible amount');
+					
 					for (let task of tasksList) {
 						let temp = value.find((element) => element.order_id[0] === task.id);
 						task.type = temp.product_id[1];
 					}
-					console.log(value, 'idSo');
+					
 					get_photo_so();
 				}
 			});
@@ -1228,9 +1226,9 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err || !value, 'get_so_list');
 				} else {
-					console.log(value, 'task-odoo');
+					
 					for (let order of value) {
-						console.log(order, 'todas las solicitudes');
+						
 						let temp = new TaskModel();
 
 						if (order['invoice_status'] === 'invoiced') {
