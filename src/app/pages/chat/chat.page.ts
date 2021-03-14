@@ -20,7 +20,8 @@ import { TaskOdooService } from 'src/app/services/task-odoo.service';
 })
 export class ChatPage implements OnInit {
   
-  /* @ViewChild("content") content:any; */
+  /* @ViewChild("content") content:any; */ 
+
   purchaseOrderID: number;
   fecha:Date ;
   reloj:Date;
@@ -117,6 +118,7 @@ export class ChatPage implements OnInit {
     this.ngZone.run(() => {
       console.log ("recibi todo los mensajes");
       this.loading.dismiss();
+      /* this.scrollToend(); */
       let temp = (messagesList.find(element => element.offer_id));
       if (temp) {
 
@@ -124,7 +126,9 @@ export class ChatPage implements OnInit {
           if (typeof this.messagesList !== 'undefined' && this.messagesList.length > 0) {
             Array.prototype.push.apply(this.messagesList, messagesList);
             console.log("hhhh",this.messagesList)
-        /*     this.scrollToend(); */
+        
+            
+
           } else { this.messagesList = messagesList; 
             console.log(this.messagesList);
            }
@@ -156,7 +160,7 @@ export class ChatPage implements OnInit {
 
   enviarSMS() {
 
-
+   /*  this.scrollToend(); */
     
  /*    if(this.message.message.length){
     this.message.offer_id = this.purchaseOrderID;
@@ -263,12 +267,12 @@ base64ToArrayBuffer(base64) {
   return bytes.buffer;
   
 }
-/* 
-scrollToend(){
-  let contentEnd=document.getElementById("content_end").offsetTop;
+ 
+/* scrollToend(){
+  let contentEnd=document.getElementById("contentend").offsetTop;
   this.content.scrollTo(0,contentEnd,300);
   console.log(contentEnd)
-} */
+} */ 
 
 }
  

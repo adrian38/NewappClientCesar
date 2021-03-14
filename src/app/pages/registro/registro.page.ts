@@ -195,8 +195,10 @@ export class RegistroPage implements OnInit {
   ubicacion(){
     console.log("entre a maparegistro")
     this.entrar_campos();
-    
-      this.navCtrl.navigateRoot('/regismapa', {animated: true, animationDirection: 'forward' }) ;
+
+    this.datos.setruta("registro");
+
+    this.navCtrl.navigateRoot('/regismapa', {animated: true, animationDirection: 'forward' }) ;
       
      
   }
