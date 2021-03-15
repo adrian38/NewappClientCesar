@@ -122,15 +122,14 @@
      </div>
          
   
-       
-       
+   
      
     </div> 
     
 <!--     //------------------------------------------------------------------------------------------ -->
   </ion-grid>
 
-  <ion-menu side="start" menuId="first" contentId="main">
+   <ion-menu side="start" menuId="first" contentId="main" style="position: absolute;">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu de cambios</ion-title>
@@ -180,7 +179,7 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-router-outlet id="main"></ion-router-outlet> 
 
  <!--  <div id="contentend"></div> -->
 
@@ -192,22 +191,28 @@
  <ion-footer>
    <ion-toolbar color="light">
     <ion-row align-items-center>
-      <ion-col size="8">
-        <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message.message"></ion-textarea>
+      <ion-col size="10">
+        <ion-textarea auto-grow class="message-input" rows="1" 
+                      [(ngModel)]="message.message"
+                      placeholder="Escribe un mensaje"></ion-textarea>
       </ion-col>
-      <ion-col size="2">
+   <!--    <ion-col size="2">
         <ion-button  fill="clear" color="tertiary" 
           (click)="adjuntar()"
           style="width: 55px; height: 35px; padding-left: 1px;padding-right: 1px;"
         >
           <ion-icon name="attach" slot="icon-only" style="width: 35px; height: 35px;"></ion-icon>
         </ion-button>
-      </ion-col>
+      </ion-col> -->
        <ion-col size="2">
-        <ion-button  fill="clear" color="tertiary"   [disabled]="message.message === ' '"
-          (click)="enviarSMS()" style="width: 55px; height: 35px;">
-          <ion-icon name="send" slot="icon-only" style="width: 35px; height: 35px; padding-left: 1px;padding-right: 1px;"></ion-icon>
-        </ion-button>
+        <ion-fab-button   color="tertiary" 
+                       
+                      [disabled]="message.message === ' '"
+                      (click)="enviarSMS()" 
+                      style="width: 45px; height: 45px; ">
+                      <ion-icon name="send"></ion-icon>
+         <!--  <ion-icon name="send" slot="icon-only" style="width: 35px; height: 35px; padding-left: 1px;padding-right: 1px;"></ion-icon> -->
+        </ion-fab-button>
       </ion-col> 
     </ion-row>
   </ion-toolbar> 
@@ -215,7 +220,7 @@
 
 
 
-<p-dialog header=""
+<!-- <p-dialog header=""
           [(visible)]="displayAdjunto" 
           [modal]="true"  
           [style]="{ width: '85vw' }" 
@@ -268,6 +273,6 @@
             </ion-row>
                   
  
-  </p-dialog>
+  </p-dialog> -->
 
  

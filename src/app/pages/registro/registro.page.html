@@ -296,7 +296,7 @@
                                                   placeholder="Puerta"
                                                   [(ngModel)]="puerta"
                                                   #pue="ngModel"
-                                                  required
+                                                  
                                                   ></ion-input>
                                                   <div id="link">
                                                     <small *ngIf= "pue.invalid && pue.touched"   
@@ -398,14 +398,14 @@
          <ion-row>
            <ion-col style="text-align: center;margin-top: 65px;">
              <ion-button type="submit"
-                         [disabled]="formulario.invalid || !coordenadas || !selectFoto"
+                         [disabled]="formulario.invalid "
                         (click)="iniciar()"
                         >
            CREAR
              </ion-button>
            </ion-col>
          </ion-row>
-
+        <!--  [disabled]="formulario.invalid || !coordenadas || !selectFoto" -->
 
      
      </form> 
