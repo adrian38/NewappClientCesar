@@ -26,4 +26,12 @@ export class HistdetallePage implements OnInit {
     this.task=this._taskOdoo.getTaskCesar();
   }
 
+  verubicacion(){
+
+  }
+
+  verFactura(){
+    
+  }
+
 }

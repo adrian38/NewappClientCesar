@@ -20,6 +20,7 @@ export class ContratadosPage implements OnInit {
   foto0:string = '../../../assets/icon/noImage.svg';
   foto1:string = '../../../assets/icon/noImage.svg';
   foto2:string = '../../../assets/icon/noImage.svg';
+  comentario:string='';
 
   constructor( private _taskOdoo:TaskOdooService,
                 public photoService: PhotoService,
