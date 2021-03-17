@@ -10,7 +10,7 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 export class ComentarioPage implements OnInit {
 
   servicio:string="";
-
+  espacio:string=" ";
   comentario:string="";
   constructor(private datos:ObtSubSService,
     private platform: Platform,

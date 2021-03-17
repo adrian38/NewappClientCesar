@@ -96,90 +96,90 @@
  
      <ion-grid style="margin-top: 30px;">
 
-     <ion-text color="medium" text-center>
-  <!--     <p>You joined the chat as  </p> -->
-    </ion-text>
+     <!-- <ion-text color="medium" text-center>
+ 
+    </ion-text> -->
 
 
  
-    <div *ngFor="let message of messagesList" >
+    <div *ngFor="let message of messagesList"  >
      
-      <div  *ngIf="user.type != 'client'" class="received-chats ">
-     
-        <div class="received-msg-inbox">
-          <p >{{ message.message }}</p>
+       <div  *ngIf="user.partner_id !=  message.author_id " >
+        <div class="received-chats ">
+          <div class="received-chats-msg">
+            <p >{{ message.message }}</p>
+          </div>
         </div>
-     
-      </div> 
-     
-     <div *ngIf="user.type == 'client'" >
+      </div>  
+      
+    
+     <div *ngIf="user.partner_id ==  message.author_id " >
       <div class="outgoing-chats" >
         <div class="outgoing-chats-msg">
            <p >{{ message.message }}</p>
         </div>
       </div> 
-      <img  [src]="message.foto">
      </div>
+
+     <ion-menu side="start" menuId="first" contentId="main" >
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Menu de cambios</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          
+        <br>
+        <br>
          
-  
-   
+    
+    
+           <ion-label style="margin-left: 10px;">Fecha</ion-label>
+           <ion-datetime displayFormat=" DD MMMM,YYYY" 
+          placeholder="Cambiar fecha"
+          cancelText="Cancelar"
+          doneText="Cambiar"
+          [(ngModel)]="fecha"
+          style="margin-left: 100px;"></ion-datetime>
+    
+    
+    
+    <br>
+    
+    
+    <ion-label style="margin-left: 10px;">Hora</ion-label>
+    <ion-datetime displayFormat="h:mm a"
+                  placeholder="Cambiar horario"
+                  [(ngModel)]="reloj"
+                  cancelText="cancelar"
+                  doneText="Cambiar"
+                  style="margin-left: 100px;"></ion-datetime>
      
+          <br>
+          <br>
+          <br>
+    <ion-row>
+    <ion-col size=3></ion-col>
+    <ion-col size=4> 
+      <ion-button (click)="actualizar()">Actualizar</ion-button>
+    </ion-col>
+    
+    <ion-col size=5></ion-col>
+    </ion-row>
+         
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main"></ion-router-outlet> 
+          
     </div> 
     
 <!--     //------------------------------------------------------------------------------------------ -->
-  </ion-grid>
 
-   <ion-menu side="start" menuId="first" contentId="main" style="position: absolute;">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Menu de cambios</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        
-      <br>
-      <br>
-       
+</ion-grid>
 
  
-         <ion-label style="margin-left: 10px;">Fecha</ion-label>
-         <ion-datetime displayFormat=" DD MMMM,YYYY" 
-        placeholder="Cambiar fecha"
-        cancelText="Cancelar"
-        doneText="Cambiar"
-        [(ngModel)]="fecha"
-        style="margin-left: 100px;"></ion-datetime>
-
-
-
-<br>
-
-
-  <ion-label style="margin-left: 10px;">Hora</ion-label>
-  <ion-datetime displayFormat="h:mm a"
-                placeholder="Cambiar horario"
-                [(ngModel)]="reloj"
-                cancelText="cancelar"
-                doneText="Cambiar"
-                style="margin-left: 100px;"></ion-datetime>
-   
-        <br>
-        <br>
-        <br>
-<ion-row>
-  <ion-col size=3></ion-col>
-  <ion-col size=4> 
-    <ion-button (click)="actualizar()">Actualizar</ion-button>
-  </ion-col>
- 
-  <ion-col size=5></ion-col>
-</ion-row>
-       
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet id="main"></ion-router-outlet> 
 
  <!--  <div id="contentend"></div> -->
 

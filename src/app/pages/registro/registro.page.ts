@@ -53,7 +53,6 @@ export class RegistroPage implements OnInit {
               public datos:ObtSubSService,
               public navCtrl:NavController, 
               public alertController: AlertController,
-              private _signupOdoo: SignUpOdooService,
               private platform: Platform)
                {
     this.coordenadas=this.datos.getcoordenada();             
@@ -218,7 +217,7 @@ export class RegistroPage implements OnInit {
      this.datos.setescalera(this.escalera);
      this.datos.setcod_postal(this.cod_postal); 
      this.datos.setfoto0(this.avatarusuario64);
-     this.datos.setfoto1(this.avatarusuario);
+     this.datos.setfotoRegis(this.avatarusuario);
      this.datos.setfecha(this.fecha);
   }
 
