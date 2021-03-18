@@ -191,10 +191,28 @@
  <ion-footer>
    <ion-toolbar color="light">
     <ion-row align-items-center>
-      <ion-col size="10">
-        <ion-textarea auto-grow class="message-input" rows="1" 
+      <ion-col size="12" >
+         <ion-textarea auto-grow class="message-input" rows="1" 
                       [(ngModel)]="message.message"
-                      placeholder="Escribe un mensaje"></ion-textarea>
+                      placeholder="Escribe un mensaje"
+                      style="padding-right: 60px;">
+                      
+                  
+                      <ion-icon name="send" 
+                      (click)="enviarSMS()" 
+                      style="margin-left: 300px;
+                      
+                      margin-bottom: 0px;
+                      width: 30px;
+                      height: 30px;
+                      color:rgb(101,173,172);" ></ion-icon>
+                    </ion-textarea> 
+                   
+                       
+                     
+                     
+                 
+                     
       </ion-col>
    <!--    <ion-col size="2">
         <ion-button  fill="clear" color="tertiary" 
@@ -204,16 +222,16 @@
           <ion-icon name="attach" slot="icon-only" style="width: 35px; height: 35px;"></ion-icon>
         </ion-button>
       </ion-col> -->
-       <ion-col size="2">
-        <ion-fab-button   color="tertiary" 
+       <!-- <ion-col size="2" style="padding-left: 0px;"> -->
+    <!--     <ion-fab-button   color="tertiary" 
                        
                       [disabled]="message.message === ' '"
                       (click)="enviarSMS()" 
                       style="width: 45px; height: 45px; ">
                       <ion-icon name="send"></ion-icon>
-         <!--  <ion-icon name="send" slot="icon-only" style="width: 35px; height: 35px; padding-left: 1px;padding-right: 1px;"></ion-icon> -->
-        </ion-fab-button>
-      </ion-col> 
+         </ion-fab-button> -->
+       
+      <!-- </ion-col> --> 
     </ion-row>
   </ion-toolbar> 
 
