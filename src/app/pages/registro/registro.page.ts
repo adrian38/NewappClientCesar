@@ -266,7 +266,7 @@ export class RegistroPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
-      message: 'Perdera toda los datos',
+      message: 'Perderá todos los datos',
      
       buttons: [
         {
