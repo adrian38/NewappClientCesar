@@ -8,25 +8,25 @@
   </ion-col>
        
   <ion-col size=8>        
-    <ion-row style=" margin-top: 0px;">
-      <ion-col size=1></ion-col>  
-      <ion-col size=11 style="text-align: start;padding-bottom: 0px;"> <h6> {{this.titulo | uppercase}}</h6></ion-col>  
+    <ion-row style=" margin-top: -1px;">
+      <ion-col size=0.6></ion-col>  
+      <ion-col size=11.4 style="text-align: start;padding-bottom: 0px;"> <h6> {{this.titulo | uppercase}}</h6></ion-col>  
      
     </ion-row >
     <ion-row style="margin-top: -4px;">
-      <ion-col size=2.5  style="text-align: end;padding-left: 0px;">
-        <img style="width: 15px;height: 15px;" src="../../../assets/calendario.svg">            
+      <ion-col size=2  style="text-align: end;padding-left: 0px;">
+        <img style="width: 17px;height: 17px;" src="../../../assets/calendario.svg">            
       </ion-col>
-      <ion-col size=9.5 style="text-align: start;">
+      <ion-col size=10 style="text-align: start;">
         <ion-label class="text-helvetica">{{ this.Solicitud.date_planned 
           | date:'EEE d MMM y' | lowercase}} </ion-label>
       </ion-col>
     </ion-row>
     <ion-row style="margin-top: -3px;">
-      <ion-col size=2.5 style="text-align: end;">
-        <img style="width: 15px;height: 15px;" src="../../../assets/hora.svg">
+      <ion-col size=2 style="text-align: end;">
+        <img style="width: 17px;height: 17px;" src="../../../assets/hora.svg">
       </ion-col>
-      <ion-col size=9.5 style="text-align: start;">
+      <ion-col size=10 style="text-align: start;">
         <ion-label class="text-helvetica"> {{Solicitud.time | date: 'h:mm a' }}</ion-label>            
       </ion-col>            
     </ion-row>        

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import {AvatarModule} from 'primeng/avatar';
 import { AlertController, NavController, Platform } from '@ionic/angular';
@@ -6,8 +6,12 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { Address } from '../../models/task.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Photo } from 'src/app/interfaces/photo';
+import { ToastController } from '@ionic/angular';
+/* import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { FormsModule } from '@angular/forms';
+ */
 
 
 @Component({
@@ -16,6 +20,7 @@ import { Photo } from 'src/app/interfaces/photo';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
+
 
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
@@ -53,13 +58,24 @@ export class RegistroPage implements OnInit {
               public datos:ObtSubSService,
               public navCtrl:NavController, 
               public alertController: AlertController,
-              private platform: Platform)
+              private platform: Platform,
+              public toastController: ToastController,
+           )
                {
     this.coordenadas=this.datos.getcoordenada();             
     console.log("co",this.coordenadas);
     this.selectFoto=this.datos.getselectfoto();
     console.log("fo",this.selectFoto);
-                 
+
+
+/*     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION).then(
+      result => console.log('Has permission?',result.hasPermission),
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
+    );
+    
+    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+   
+            */      
                 }
 
   ngOnInit() {
@@ -99,7 +115,7 @@ export class RegistroPage implements OnInit {
               this.avatarusuario= photo.webviewPath;
               console.log(this.avatarusuario);
               this.avatarusuario64= this.photoService.devuelve64();
-              /* this.selectFoto=true; */
+               this.selectFoto=true; 
               this.datos.setselectfoto(true);
               //console.log("foto",this.selectFoto);
              
@@ -166,26 +182,67 @@ export class RegistroPage implements OnInit {
     this.usuario.address=new Address('','','','','','','','','');
 
              */
- if(fechavalida > 17){
-   console.log("1",this.pass)
-   console.log("2",this.ppass)
-   if(this.pass==this.ppass){
-    this.calen=false;
-    this.ccontra=false;
-    this.datos.setfecha(fechalarga);
-     this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
-   }
-   else
-   console.log("no  entro por contraseña");
-   this.calen=false;
-   this.ccontra=true;
- }
- else{
-  console.log("no  entro por fecha");
-  this.calen=true;
-   this.ccontra=false;
- }
+if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != "" && this.ppass != "" && String(this.telefono) != "" && this.calle != "" && this.numero != "" && this.portal != "" && this.cod_postal != ""){
+  console.log("si los campos");
+  if(this.selectFoto){
+    console.log("si la foto");
+    if(fechavalida > 17){
+      console.log("1",this.pass)
+      console.log("2",this.ppass)
+   
+    
+       if(this.pass==this.ppass){
+       this.calen=false;
+       this.ccontra=false;
+       this.datos.setfecha(fechalarga);
+       /*  this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
+      */
 
+        if(this.coordenadas == true){
+          console.log("si los coordenadas");
+          this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
+     
+        }
+        else{
+          console.log("no los coordenadas0000000000000000");
+          this.ToastCoordenadas();
+        }
+      }
+
+     
+    
+
+   
+      
+     
+      else{
+       console.log("no  entro por contraseña");
+       this.calen=false;
+       this.ccontra=true;
+      } 
+    
+    }
+    else{
+     console.log("no  entro por fecha");
+     this.calen=true;
+      this.ccontra=false;
+    }
+   
+  }
+  else{
+    console.log("no  entro por la foto");
+     this.ToastFoto(); 
+  }
+
+}
+else{
+  console.log("no campos");
+  this.ToastCampos();
+}
+
+
+    
+ 
 
 
 
@@ -292,4 +349,28 @@ export class RegistroPage implements OnInit {
   
     await alert.present();
   } 
+
+  async ToastFoto() {
+    const toast = await this.toastController.create({
+      message: 'Ingrese una foto',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async ToastCampos() {
+    const toast = await this.toastController.create({
+      message: 'Introduzca todos los campos',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async ToastCoordenadas() {
+    const toast = await this.toastController.create({
+      message: 'Indique su geolocalización',
+      duration: 2000
+    });
+    toast.present();
+  }
 }
