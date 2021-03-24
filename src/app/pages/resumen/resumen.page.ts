@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { NavController, LoadingController, Platform } from '@ionic/angular';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { Address, TaskModel } from '../../models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { DatePipe } from '@angular/common';
@@ -13,7 +14,7 @@ import { PhotoService } from '../../services/photo.service';
 import { Observable, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
-import { style } from '@angular/animations';
+
 
 @Component({
 	selector: 'app-resumen',
@@ -67,7 +68,8 @@ export class ResumenPage implements OnInit {
 		private messageService: MessageService,
 		public sanitizer: DomSanitizer,
 		public alertCtrl: AlertController,
-		public loadingController: LoadingController
+		public loadingController: LoadingController,
+		private _authOdoo:AuthOdooService,
 	) {}
 
 	ngOnInit() {
@@ -130,7 +132,7 @@ export class ResumenPage implements OnInit {
 		/*  this.longitud=this.datos.getlongitud().toString();
     this.latitud=this.datos.getlatitud().toString(); */
 
-		this.user = this._taskOdoo.getUser();
+		this.user = this._authOdoo.getUser();
 
 		this.notificationError$ = this._taskOdoo.getNotificationError$();
 		this.subscriptionNotificationError = this.notificationError$.subscribe((notificationError) => {

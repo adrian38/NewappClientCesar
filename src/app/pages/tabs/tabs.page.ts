@@ -56,10 +56,30 @@ export class TabsPage {
    )
     
     {
-    
-    this._taskOdoo.requestTaskListClient();
-    this.presentLoading();
-    
+    if(!this._taskOdoo.getInitTab()){
+      this._taskOdoo.setInitTab();
+      this._taskOdoo.requestTaskListClient();
+      this.presentLoading();
+    }else if(!this._taskOdoo.getPilaEmpthy()){
+
+      let temp = this._taskOdoo.getPilaSolicitud();
+     for (let element of temp ) {
+      this.solicitudesList = this.subServ.getSolicitudeList();
+
+      switch (element.notificationType){
+        case 1:
+        
+          this.solicitudesList.unshift(element);
+          this.subServ.setSolicitudeList(this.solicitudesList);
+          break;
+
+      }
+      
+      } 
+      
+     
+
+    }
   }
 
   ngOnInit(): void {
@@ -76,12 +96,16 @@ export class TabsPage {
    this.subscriptiontasksList.unsubscribe();
   }
 
+
+
+
   observablesSubscriptions() {
     ////////////////////////////////Para el Cliente
-      this.notificationSoCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
+       this.notificationSoCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
       this.subscriptionNotificationSoCancelled = this.notificationSoCancelled$.subscribe(notificationSoCancelled => {
         this.ngZone.run(() => {
 
+          console.log(notificationSoCancelled,"para borrar");
           let temp = (this.solicitudesList.findIndex(element => element.id === notificationSoCancelled));
           if(temp !== -1){
           this.solicitudesList.splice(temp, 1);
@@ -89,7 +113,7 @@ export class TabsPage {
           }
         });
 
-      });
+      }); 
     //////////////////Para Todos
     this.notificationError$ = this._taskOdoo.getNotificationError$();
     this.subscriptionNotificationError = this.notificationError$.subscribe(notificationError =>{
