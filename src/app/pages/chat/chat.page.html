@@ -188,8 +188,8 @@
 
 
 
- <ion-footer>
-   <ion-toolbar color="light">
+ <ion-footer style="position: unset;" >
+   <ion-toolbar style="background-color: rgb(255, 255, 255);">
     <ion-row align-items-center>
       <ion-col size="10" >
          <ion-textarea auto-grow class="message-input" rows="1" 
@@ -213,16 +213,26 @@
           <ion-icon name="attach" slot="icon-only" style="width: 35px; height: 35px;"></ion-icon>
         </ion-button>
       </ion-col> -->
-        <ion-col size="2" style="padding-left: 0px;"> 
+     
+        <ion-col size="2" style="display: flex;
+        align-items: center;
+        justify-content: center;"> 
+          
        <ion-fab-button   color="tertiary" 
                        
                       [disabled]="message.message === ' '"
                       (click)="enviarSMS()" 
-                      style="width: 45px; height: 44px; ">
+                      style="width: 38px; 
+                             height: 38px; 
+                             display: flex;
+    align-items: center;
+    justify-content: center;
+                             ">
                       <ion-icon name="send"></ion-icon>
          </ion-fab-button> 
        
        </ion-col>  
+     
     </ion-row>
   </ion-toolbar> 
 

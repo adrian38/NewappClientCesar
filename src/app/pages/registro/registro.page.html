@@ -326,17 +326,26 @@
                                     </ion-col>
                                 
                                     <ion-col size="5"   style="margin-right: 5px;">
-                                      <ion-input name="cod_postal"
-                                                  type="number"
-                                                  placeholder="Cod_pstal"
-                                                  [(ngModel)]="cod_postal"
-                                                  #c_post="ngModel"
-                                                  required
-                                                  ></ion-input>
-                                                  <div id="link">
-                                                    <small *ngIf= "c_post.invalid && c_post.touched"   
-                                                    class="text-danger">Campo obligatorio</small>
-                                                   </div>
+
+                                  
+                                      <ion-input
+                                      name="cod_postal"
+                                      type="number"
+                                      placeholder="Cod_pstal"
+                                      [(ngModel)]="cod_postal"
+                                      #c_post="ngModel"
+                                      required
+                                     ></ion-input>
+
+                                    
+                                
+                                              
+                                                 <div id="link">
+                                                     <small *ngIf= "c_post.invalid && c_post.touched" 
+                                                     class="text-danger">Campo obligatorio</small>
+                                                    </div>
+                                   
+                                     
                                                 </ion-col>
                                   
                                                 <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
