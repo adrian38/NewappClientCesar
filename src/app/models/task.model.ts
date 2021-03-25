@@ -1,5 +1,3 @@
-import { HexBase64BinaryEncoding } from 'crypto';
-
 export class Address {
 	street: string;
 	number: string;
@@ -55,7 +53,7 @@ export class TaskModel {
 	offer_send: String;
 	product_id: number;
 	photoNewTaskArray: Array<any>;
-	photoNewTaskArrayThumb: Array<any>;
+	notificationType:number;
 	origin_id: number;
 	photoProvider: any;
 	comment: string;
@@ -86,9 +84,10 @@ export class TaskModel {
 		comment = '',
 		ranking = 0,
 		id_Po = 0,
-		id_string_Po = ''
+		id_string_Po = '',
+		notificationType = 0,
 	) {
-		this.photoNewTaskArrayThumb = [];
+		this.notificationType = notificationType;
 		this.comment = comment;
 		this.ranking = ranking;
 		this.photoProvider = photoProvider;
