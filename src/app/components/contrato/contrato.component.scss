@@ -11,12 +11,14 @@ $font-helvetica: 'Helvetica', sans-serif;
 
 h6{
     font-family: $font-aero;
-    font-size: 32;
+   /*  font-size: 32; */
+   font-size: 5vw;
 }
 
 .text-helvetica{
     font-family: $font-helvetica !important;
-    font-size: 18 !important;
+   /*  font-size: 18 !important; */
+   font-size: 5vw !important;
 }
 
 /* #imagen{
@@ -34,16 +36,20 @@ h6{
         content: '';
         position: absolute;
         margin-top: 18px;
-        width: 90px;            
-        height: 89px;
+      /*   width: 90px;            
+        height: 89px; */
+        width: 85%;
+        height: 15vh;
         background-color: rgb(246, 183, 118);
         opacity: 30%;
         border-radius: 20px 3px 3px 5px;
     }
     img {
         object-fit: cover;
-        width: 90px;            
-        height: 89px;
+     /*    width: 90px;            
+        height: 89px; */
+        width: 92%;
+        height: 15vh;
     border-radius: 20px 3px 3px 5px;
     }
 }
