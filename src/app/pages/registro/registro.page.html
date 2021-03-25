@@ -82,7 +82,7 @@
                   
                   <ion-row style="margin-top:7px ;">
                     <ion-col size="1.2" style="background: rgb(255, 255, 255);"></ion-col>
-                    <ion-col size="9.6" 
+                    <ion-col size="9.6" *ngIf= "calen == false "
                                                 style="border-radius: 5px 5px 5px 5px;
                                                 height: 41px;  
                                                 background-color: rgb(245, 245, 245);">
@@ -100,7 +100,31 @@
                       style="margin-left: 0px;padding-left: 0px;padding-bottom: 5px;">
                     </ion-datetime>
                     <div id="link">
-                      <small *ngIf= "calen || (cal.invalid && cal.touched)"   
+                      <small *ngIf= "calen "   
+                      class="text-danger">Debe ser mayor de 18 años</small>
+                     </div>
+                    </ion-col>
+
+                    <ion-col size="9.6" *ngIf= "calen "
+                                                style="border-radius: 5px 5px 5px 5px;
+                                                height: 41px;  
+                                                background-color: rgb(245, 245, 245);
+                                                border: 2px solid rgb(101,173,172) !important;">
+                     
+                      <ion-datetime displayFormat="DD MMMM,YYYY" 
+                      name="calendario"
+                     
+                      cancelText="Cancelar"
+                      doneText="Cambiar"
+                      [(ngModel)]="fecha"
+                      placeholder="Fecha de nacimiento"
+                      #cal="ngModel"
+                      
+                      required
+                      style="margin-left: 0px;padding-left: 0px;padding-bottom: 5px;">
+                    </ion-datetime>
+                    <div id="link">
+                      <small *ngIf= "calen "   
                       class="text-danger">Debe ser mayor de 18 años</small>
                      </div>
                     </ion-col>

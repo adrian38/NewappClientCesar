@@ -182,7 +182,7 @@ mantener_campos(i:number){
     this.datos.setcod_postal(this.cod_postal);
     this.datos.setnumero(this.numero);
     this.datos.setportal(this.portal);
-    this.datos.setradiobuton(true)
+    this.datos.setradiobuton(false)
     
   }
 else{
