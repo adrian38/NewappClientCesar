@@ -88,7 +88,7 @@
 
           <ion-item-sliding >
 
-            <ion-item  lines="none" class="p=0"  id="item" *ngIf="desplegar==false">
+            <ion-item  lines="none"  id="item" *ngIf="desplegar==false" class="ion-no-padding">
 
        
          
@@ -115,7 +115,7 @@
                <ion-col size=1.5>
                  <ion-row>
                   <img 
-                  style="width: 22px; height: 26px;margin-top: 24px;" 
+                  style="width: 24px; height: 30px;margin-top: 24px;" 
                   src="../../assets/chat.svg"
                   (click)="openChat(offer.id)">
                  </ion-row>
@@ -126,6 +126,8 @@
                      
                     
                </ion-col>
+
+               <ion-col size=0.5></ion-col>
         
                <ion-col size=1.5 >
          <!--    
@@ -137,7 +139,7 @@
               
               <ion-row>
                 <img 
-                style="width: 22px; height: 25px;margin-top: 24px;" 
+                style="width: 24px; height: 26px;margin-top: 24px;" 
                 src="../../assets/acep.svg"
                 (click)="showDialogAceptar(offer.id)">
                </ion-row>

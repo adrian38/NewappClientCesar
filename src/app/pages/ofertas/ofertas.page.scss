@@ -175,6 +175,12 @@ ion-input:focus-within{
       margin-right: 9em;
   }
 
-item-native{
+/* item-native{
     padding-left: 0px;
+} */
+
+ion-item{
+    --inner-padding-end: 0px;
+    --padding-start:0px
 }
+
