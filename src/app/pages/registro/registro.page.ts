@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistroPage implements OnInit {
 
-
+/* oblidatorio:boolean=false; */
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
 
@@ -183,6 +183,7 @@ export class RegistroPage implements OnInit {
 
              */
 if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != "" && this.ppass != "" && String(this.telefono) != "" && this.calle != "" && this.numero != "" && this.portal != "" && this.cod_postal != ""){
+  /* this.oblidatorio=false; */
   console.log("si los campos");
   if(this.selectFoto){
     console.log("si la foto");
@@ -238,6 +239,7 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
 else{
   console.log("no campos");
   this.ToastCampos();
+  /* this.oblidatorio=true; */
 }
 
 
@@ -364,6 +366,7 @@ else{
       duration: 2000
     });
     toast.present();
+    
   }
 
   async ToastCoordenadas() {

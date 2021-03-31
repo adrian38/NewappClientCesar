@@ -17,6 +17,7 @@ export class TabsPage {
 
   @ViewChild('tabs') tabs: IonTabs;
 
+  cargando:boolean=false;
   tab1_active: string = "";
   tab2_active: string = "";
   tab3_active: string = "";
@@ -53,6 +54,7 @@ export class TabsPage {
     public navCtrl:NavController,
     private platform: Platform,
     public alertCtrl: AlertController,
+    
    )
     
     {
@@ -163,6 +165,7 @@ export class TabsPage {
         console.log(this.solicitudesList,"peticiones a Servidor");
         console.log(this.contratadosList,"peticiones a Servidor contra");
         this.loading.dismiss();
+        /* this.subServ.setcargando(false); */
       });
     });
   }
@@ -172,7 +175,9 @@ export class TabsPage {
       message: 'Cargando Solicitudes...',
       //duration: 2000
     });
+    /* this.subServ.setcargando(true); */
     return  this.loading.present();
+
   }
 
   setCurrentTab(event) {

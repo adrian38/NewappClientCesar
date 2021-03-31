@@ -52,3 +52,19 @@ ion-button{
         }
     }
 }
+
+ion-input{
+    border: 1px   transparent;
+    background-color: rgb(245, 245, 245);
+    fill: round($number: 7);
+   
+    border-radius: 5px 5px 5px 5px ;
+    margin-top: 5px;
+
+  
+   
+}
+
+ion-input.ng-invalid.ng-touched {
+    border: 2px solid rgb(101,173,172) !important;
+}

@@ -27,6 +27,7 @@ export class Tab1Page implements OnInit {
   tab: String;
   user:UsuarioModel;
   loading:any ;
+  cargado:boolean=false;
   
   notificationTabs$: Observable<boolean>;
   notificationSOCancelled$ :Observable<number>;
@@ -56,11 +57,14 @@ export class Tab1Page implements OnInit {
   ngOnInit(): void {
 
     /* this.initializeApp(); */
-    console.log("boton atras t1")
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.loading.dismiss();
-      this.presentAlert();
-    }); 
+ /*    this.cargado = this.subServ.getcargando(); */
+ 
+  this.platform.backButton.subscribeWithPriority(10, () => {
+
+    this.presentAlert();
+  });
+ 
+     
 
     this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
     this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe(notificationCancel=>{

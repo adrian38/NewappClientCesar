@@ -1,0 +1,97 @@
+<ion-header>
+  <div id="barraSuperior">
+   
+    <div id="barraInferior">
+      <ion-row>
+      
+        <ion-col size=3 >
+          <img  id="logo"  src="../../assets/logoNavbar.svg">
+      
+        </ion-col>
+        
+      
+       
+         <ion-col size=6>
+          <h2 style="text-align: center;color: rgb(246, 183, 118);">Seguridad</h2>
+       
+        
+         </ion-col>
+        
+       </ion-row>
+
+       <ion-row>
+         <ion-col size=2></ion-col>
+         <ion-col size=8 style="text-align: center;">
+          <ion-label style="color:  rgb(49 ,49 ,57);
+                            font-family: 'HelveticaNeueLTStd-Bd';
+                            font-size: 19px;
+                            display: flex;
+                             justify-content: center;
+                             align-content: center;
+                             flex-direction: column;
+                             text-align: center;
+                             margin-top:12px;">Recuperar</ion-label> 
+        </ion-col>
+        
+       </ion-row>
+       
+        
+    </div>
+   
+   
+  </div>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-row style="margin-top: 30px;">
+    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+    <ion-col size="10"> <h5 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Recuperación de contraseña</h5></ion-col>
+    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+  </ion-row>
+  
+  
+  
+  <ion-row style="margin-top: 5px; padding: 0px;">
+    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+    <ion-col size="10" style="padding-bottom: 0px;"> <ion-label style="font-size: small;" >Introduzca el correo asociado</ion-label></ion-col>
+    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+  </ion-row>
+    
+    <ion-row >
+      <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+      <ion-col size="10">
+        <ion-input name="contraseña_actual"
+                    type="gmail"
+                    required
+                    [(ngModel)]="actual"
+                    #nom_apell="ngModel"
+                    ></ion-input>
+                    <div id="link">
+                     <small *ngIf= "nom_apell.invalid && nom_apell.touched"   
+                     class="text-danger">Debe escribir su correo correctamente</small>
+                    </div>
+                  </ion-col >
+                  <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+    </ion-row>
+  
+  
+  
+  
+  
+  
+  
+    
+  
+    <ion-row>
+      <ion-col style="text-align: center;margin-top: 65px;">
+        <ion-button type="submit"
+                    
+                   (click)="enviar()"
+                   >
+      ENVIAR
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</ion-content>
