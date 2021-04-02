@@ -235,6 +235,7 @@ export class OfertasPage implements OnInit, OnDestroy {
 	cancelSOclient() {
 		
 		this.displayAceptar = -1;
+		console.log('CancelarPo',this.task.id);
 		this._taskOdoo.cancelPOsuplier(this.task.id);
 		//this.isLoading3 = true;
 	}

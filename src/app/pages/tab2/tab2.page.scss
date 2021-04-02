@@ -41,10 +41,10 @@ h6{
     &::before {
         content: '';
         position: absolute;
-        margin-top: 18px;
-       /*  width: 90px;            
+        margin-top: 9px;
+      /*   width: 90px;            
         height: 89px; */
-        width: 85%;
+        width: 91%;
         height: 15vh;
         background-color: rgb(246, 183, 118);
         opacity: 30%;
@@ -52,9 +52,9 @@ h6{
     }
     img {
         object-fit: cover;
-      /*   width: 90px;            
+     /*    width: 90px;            
         height: 89px; */
-        width: 95%;
+        width: 100%;
         height: 15vh;
     border-radius: 20px 3px 3px 5px;
     }

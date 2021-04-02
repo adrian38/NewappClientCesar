@@ -50,10 +50,10 @@
             <div *ngFor="let contrato of contratadosList;let h = index"  
                   (click)="inhistorial(h)">        
                   <ion-row id="item" class="animated fadeIn">
-                    <!-- <ion-col size=4 *ngIf="contrato.type == 'Servicio de Fontaneria'"> -->   <!-- Server Local -->    
+     
                      <ion-col size=4 *ngIf="contrato.type == 'Servicio de Fontanería'"> 
                       <div class="image-left">
-                        <img  src="../../../assets/fontaneria.png" style="margin-top: 18px;">
+                        <img  src="../../../assets/fontaneria.png" style="margin-top: 9px;">
                         </div>
                     </ion-col>       
                     <ion-col size=8>        
@@ -61,13 +61,12 @@
                         <ion-col size=0.4></ion-col>  
                          <ion-col size=11.6 style="text-align: start;padding-bottom: 0px;">
                           <h6> {{contrato.title | uppercase}}</h6> </ion-col>  
-                         <!--  <ion-col size=2><ion-icon id="icocheck" name="checkmark" color="tertiary"></ion-icon></ion-col>
- -->
+                      
                              
                       </ion-row >        
                       <ion-row style="margin-top: -4px;">          
                         <ion-col size=2 style="text-align: end;padding-left: 0px;margin-top: 3px;padding-bottom: 0px;">
-                          <img style="width: 72%;height: 72%;" src="../../../assets/calendario.svg">          
+                          <img style="width: 71%;height: 71%;" src="../../../assets/calendario.svg">          
                         </ion-col>          
                         <ion-col size=10 style="text-align: start;">            
                           <ion-label class="text-helvetica">
@@ -77,19 +76,15 @@
                       </ion-row>        
                       <ion-row style="margin-top: -3px;">        
                         <ion-col size=2  style="text-align: end;padding-left: 0px;margin-top: 3px;padding-bottom: 0px;">        
-                          <img style="width: 72%;height: 72%;" src="../../../assets/hora.svg">        
+                          <img style="width: 71%;height: 71%;" src="../../../assets/hora.svg">        
                         </ion-col>        
                         <ion-col size=6.5  style="text-align: start;">        
                           <ion-label class="text-helvetica" style="margin-left: 0px;">
                             {{contrato.time |date: 'h:mm a' }} </ion-label>
                         </ion-col>        
                         <ion-col size=3.5  style="text-align: end;padding-left: 0px;margin-top: 3px;padding-bottom: 0px;">        
-                         <!--  <ion-label class="text-helvetica"
-                          style="margin-left: 0px; margin-top: -10px;
-                          color: rgb(246, 183, 118);">
-                            {{ contrato.budget }} € 
-                          </ion-label> -->  
-                         <ion-icon id="icocheck" name="checkmark" color="tertiary" style="width: 72%;height: 72%;"></ion-icon>
+                      
+                         <ion-icon id="icocheck" name="checkmark" color="tertiary" style="width: 71%;height: 71%;"></ion-icon>
       
                         </ion-col>        
                       </ion-row>        

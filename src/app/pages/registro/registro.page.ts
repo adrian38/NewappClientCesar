@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import {AvatarModule} from 'primeng/avatar';
 import { AlertController, NavController, Platform } from '@ionic/angular';
@@ -21,7 +21,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistroPage implements OnInit {
 
-/* oblidatorio:boolean=false; */
+  
+ oblidatorio:boolean=false;
+ oblidatoriocorreo:boolean=false;
+ oblidatoriopass:boolean=false;
+ oblidatorioppass:boolean=false;
+ oblidatoriotelefono:boolean=false;
+ oblidatoriocalle:boolean=false;
+ oblidatorionumero:boolean=false;
+
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
 
@@ -178,12 +186,11 @@ export class RegistroPage implements OnInit {
     console.log("fechacorta", fechacorta);
     let fechavalida=Number(this.fechactual) - Number(fechacorta);
     console.log("fechavalida", fechavalida);
-   /* this.usuario = new UsuarioModel;
-    this.usuario.address=new Address('','','','','','','','','');
 
-             */
-if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != "" && this.ppass != "" && String(this.telefono) != "" && this.calle != "" && this.numero != "" && this.portal != "" && this.cod_postal != ""){
-  /* this.oblidatorio=false; */
+    this.obligatorio();
+
+if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != "" && this.ppass != "" && String(this.telefono) != "" && this.calle != "" && this.numero != ""){
+ 
   console.log("si los campos");
   if(this.selectFoto){
     console.log("si la foto");
@@ -196,8 +203,6 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
        this.calen=false;
        this.ccontra=false;
        this.datos.setfecha(fechalarga);
-       /*  this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
-      */
 
         if(this.coordenadas == true){
           console.log("si los coordenadas");
@@ -209,13 +214,6 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
           this.ToastCoordenadas();
         }
       }
-
-     
-    
-
-   
-      
-     
       else{
        console.log("no  entro por contraseña");
        this.calen=false;
@@ -238,8 +236,9 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
 }
 else{
   console.log("no campos");
+  
   this.ToastCampos();
-  /* this.oblidatorio=true; */
+  
 }
 
 
@@ -375,5 +374,61 @@ else{
       duration: 2000
     });
     toast.present();
+  }
+
+  obligatorio(){
+    console.log("entre de nuevo")
+    if(this.nombre != ""){
+      this.oblidatorio=false
+      console.log(this.oblidatorio)
+    }
+    else{
+      this.oblidatorio=true
+      console.log(this.oblidatorio)
+    }
+
+    /*  if(this.fecha != ""){
+      this.oblidatorio=false
+    }
+    else{
+      this.oblidatorio=true
+    } */
+    if(this.correo != ""){
+      this.oblidatoriocorreo=false
+    }
+    else{
+      this.oblidatoriocorreo=true
+    }
+   if(this.pass != ""){
+      this.oblidatoriopass=false
+    }
+    else{
+      this.oblidatoriopass=true
+    }
+    if(this.ppass != ""){
+      this.oblidatorioppass=false
+    }
+    else{
+      this.oblidatorioppass=true
+    }
+    if(String(this.telefono) != ""){
+      this.oblidatoriotelefono=false
+    }
+    else{
+      this.oblidatoriotelefono=true
+    }
+     if(this.calle != ""){
+      this.oblidatoriocalle=false
+    }
+
+    else{
+      this.oblidatoriocalle=true
+    }
+    if(this.numero != ""){
+      this.oblidatorionumero=false
+    }
+    else{
+      this.oblidatorionumero=true
+    } 
   }
 }

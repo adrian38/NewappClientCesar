@@ -35,3 +35,11 @@ ion-input{
 ion-input.ng-invalid.ng-touched {
     border: 2px solid rgb(101,173,172) !important;
 }
+ion-button{
+    background-color: rgb(246, 183, 118);
+    color: rgb(49 ,49 ,57);
+   
+    border-radius: 5px 5px 5px 5px ;
+    font-family: 'HelveticaNeueLTStd-Bd';
+    margin-top: 100px;
+}
