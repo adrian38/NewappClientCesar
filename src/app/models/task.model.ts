@@ -60,6 +60,9 @@ export class TaskModel {
 	ranking: number;
 	id_Po: number;
 	id_string_Po: string;
+	notificationOffert:boolean;
+	notificationChat:boolean;
+	notificationNewSo:boolean;
 
 	constructor(
 		product_id: number = 0,
@@ -86,6 +89,9 @@ export class TaskModel {
 		id_Po = 0,
 		id_string_Po = '',
 		notificationType = 0,
+		notificationOffert=false,
+		notificationChat=false,
+		notificationNewSo=false,
 	) {
 		this.notificationType = notificationType;
 		this.comment = comment;
@@ -112,5 +118,8 @@ export class TaskModel {
 		this.require_materials = require_materials;
 		this.id_Po = id_Po;
 		this.id_string_Po = id_string_Po;
+		this.notificationNewSo = notificationNewSo;
+		this.notificationOffert = notificationOffert;
+		this.notificationChat = notificationChat;
 	}
 }

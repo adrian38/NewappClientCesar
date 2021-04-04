@@ -58,8 +58,7 @@ ngOnInit() {
       this.usuario = user;
    /*    sessionStorage.setItem('user', JSON.stringify(user));
       this.usuario = JSON.parse(sessionStorage.getItem('user')); */
-      console.log("Dismiss Loading");
-      if(this.loading){
+       if(this.loading){
         this.loading.dismiss();
       }
       this.checkUser();
@@ -76,12 +75,11 @@ checkUser(){
     this._taskOdoo.setInit();
     this._taskOdoo.notificationPull();
     }
-    console.log('conectado00000',this.usuario);
-    
+        
     this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;   
   }
   else{
-    console.log('no se pudo conectar');
+    
     this.loading.dismiss();
     this.presentAlertConfirm(); 
   }
@@ -89,15 +87,11 @@ checkUser(){
 
   async iniciar(){
     await this.presentLoading();
-    console.log("si");
-    console.log("si");
-    console.log("user",this.user);
-    console.log("pass",this.pass);
-
+    
     this.usuario.username = this.user;
     this.usuario.password = this.pass;
-    this._authOdoo.login(this.usuario);
-    //this._authOdoo.loginClientApk(this.usuario);
+    this._authOdoo.loginClientApk(this.usuario);
+   
   }
 
 async presentLoading() {
@@ -106,7 +100,7 @@ async presentLoading() {
     message: 'Espere...',
     //duration: 2000
   });
-  console.log("Loading Ok");
+  
   return  this.loading.present();
 }
 
@@ -124,7 +118,7 @@ async presentAlertConfirm() {
         cssClass: 'secondary',
         handler: (blah) => {
         
-          console.log('Confirm Cancel: blah');
+        
         }
       }
     ]

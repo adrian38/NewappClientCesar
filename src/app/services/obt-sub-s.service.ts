@@ -71,7 +71,7 @@ export class ObtSubSService {
    
   constructor() { 
     
-    console.log("aki estoy de nuevo")
+    
     this.SolicitudesList = [];
     this.ContaratadosList = [];
     this.HistorialList = [];

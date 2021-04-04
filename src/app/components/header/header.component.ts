@@ -19,11 +19,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _location: Location,
               private navCon:NavController) {
-    console.log("constructor fillBackground", this.fillBackground);
+    
   }
 
   ngOnInit() {
-    console.log("ngOnInit fillBackground", this.fillBackground);
+  
   }
 
   closeEvent(){

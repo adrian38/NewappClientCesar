@@ -20,8 +20,8 @@ let knownTypes = {
 };
 
 let user$ = new Subject<UsuarioModel>();
-let connected: boolean = false;
-let userLogin: UsuarioModel = new UsuarioModel();
+let userInfo = new UsuarioModel();
+
 
 @Injectable({
 	providedIn: 'root'
@@ -34,7 +34,10 @@ export class AuthOdooService {
 	constructor() {}
 
 	///////////////login desde la web
-	login(usuario: UsuarioModel): void {
+	
+	//Login desde la apk de cliente
+
+	loginClientApk(usuario: UsuarioModel): void {
 		jaysonServer.username = usuario.username;
 		jaysonServer.password = usuario.password;
 
@@ -86,7 +89,8 @@ export class AuthOdooService {
 						value[0].address_longitude
 					);
 
-					user$.next(userLogin);
+						userInfo=usuario;
+						user$.next(usuario);
 				}
 			});
 		};
@@ -116,101 +120,26 @@ export class AuthOdooService {
 			) {
 				if (err || !value) {
 					console.log(err, 'Error get_user');
-				} else {
-					console.log(value);
-					if (knownTypes[value[0].image_1920[0]]) {
-						usuario.avatar = knownTypes[value[0].image_1920[0]] + value[0].image_1920;
-					}
-					usuario.partner_id = value[0].partner_id[0];
-					usuario.realname = value[0].name;
 
-					if (value[0].classification === 'custumer') {
-						usuario.type = 'client';
-						console.log('cliente');
-					} else if (value[0].classification === 'vendor') {
-						usuario.type = 'provider';
-						console.log('proveedor');
-					}
-					search_partner_fields(usuario.id);
-				}
-			});
-		};
-		let client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
-		client.request(
-			'call',
-			{
-				service: 'common',
-				method: 'login',
-				args: [ jaysonServer.db, jaysonServer.username, jaysonServer.password ]
-			},
-			function(err, error, value) {
-				if (err || !value) {
-					console.log(err, 'Login Failed');
-					usuario.connected = false;
-					userLogin = usuario;
-					user$.next(userLogin);
-				} else {
-					usuario.connected = true;
-					usuario.id = value;
-					connected = usuario.connected;
-					userLogin = usuario;
-					get_user(usuario.id);
-				}
-			}
-		);
-	}
-
-	/////////////////////////////////////////////////
-
-	//Login desde la apk de cliente
-
-	loginClientApk(usuario: UsuarioModel): void {
-		jaysonServer.username = usuario.username;
-		jaysonServer.password = usuario.password;
-
-		let get_user = function(id: number) {
-			let inParams = [];
-			inParams.push([ [ 'id', '=', id ] ]);
-			inParams.push([ 'name', 'login', 'email', 'partner_id', 'image_1920', 'classification' ]);
-			let params = [];
-			params.push(inParams);
-
-			let fparams = [];
-			fparams.push(jaysonServer.db);
-			fparams.push(id);
-			fparams.push(jaysonServer.password);
-			fparams.push('res.users'); //model
-			fparams.push('search_read'); //method
-
-			for (let i = 0; i < params.length; i++) {
-				fparams.push(params[i]);
-			}
-
-			client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function(
-				err,
-				error,
-				value
-			) {
-				if (err || !value) {
-					console.log(err, 'Error get_user');
 				} else {
 					if (value[0].classification === 'custumer') {
 						if (knownTypes[value[0].image_1920[0]]) {
 							usuario.avatar = knownTypes[value[0].image_1920[0]] + value[0].image_1920;
 						}
 						usuario.type = 'client';
-						console.log('cliente');
 						usuario.connected = true;
 						usuario.id = id;
-						connected = usuario.connected;
 						usuario.partner_id = value[0].partner_id[0];
 						usuario.realname = value[0].name;
-						userLogin = usuario;
+
+						search_partner_fields(usuario.id);
+						
 					} else {
 						usuario.connected = false;
-						connected = usuario.connected;
+						user$.next(usuario);
+						
 					}
-					user$.next(userLogin);
+						
 				}
 			});
 		};
@@ -224,14 +153,11 @@ export class AuthOdooService {
 			},
 			function(err, error, value) {
 				if (err || !value) {
-					console.log('Login Failed');
-					console.log(err);
+					console.log(err,'Login Failed');
 					usuario.connected = false;
-					userLogin = usuario;
-					user$.next(userLogin);
+					user$.next(usuario);
 				} else {
-					console.log('Connected');
-
+					
 					get_user(value);
 				}
 			}
@@ -244,7 +170,9 @@ export class AuthOdooService {
 		return user$.asObservable();
 	}
 
-	getUser(): UsuarioModel {
-		return userLogin;
+	getUser(){
+		return userInfo;
 	}
+
+	
 }

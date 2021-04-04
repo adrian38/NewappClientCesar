@@ -6,6 +6,7 @@ import { Address, TaskModel } from '../models/task.model';
 import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
+import { Router, RouterState } from '@angular/router';
 
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
@@ -52,6 +53,9 @@ let notificationOK$ = new Subject<boolean>();
 
 let notificationPoAcepted$ = new Subject<any[]>();
 
+let rutaActual:boolean = true ;
+
+
 //-------------------------------------------------cesar
 
 let pilaSolicitudes: PilaSolicitudes<TaskModel>;
@@ -71,9 +75,10 @@ export class TaskOdooService {
 	selectedTab: String;
 	selectedTab$ = new Subject<String>();
 
-	constructor(private _authOdoo: AuthOdooService) {
+	constructor(private _authOdoo: AuthOdooService, private router: Router,) {
 		jaysonServer = this._authOdoo.OdooInfoJayson;
 		pilaSolicitudes = new PilaSolicitudes<TaskModel>();
+		
 	}
 
 	setTaskPayment(task: TaskModel) {
@@ -121,6 +126,14 @@ export class TaskOdooService {
 		user = usuario;
 	}
 
+	setTab1Out(){
+		rutaActual = false;
+	}
+
+	setTab1In(){
+		rutaActual = true;
+	}
+
 	getNotificationError$(): Observable<boolean> {
 		return notificationError$.asObservable();
 	}
@@ -139,10 +152,10 @@ export class TaskOdooService {
 		let id_messg = [];
 		let new_offert = [];
 		let id_offert_acepted = [];
-
+		
 		let poll = function(uid, partner_id, last) {
 			let path = '/longpolling/poll';
-
+						
 			client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + path });
 
 			client.request(
@@ -153,12 +166,15 @@ export class TaskOdooService {
 					if (err) {
 						console.log(err, 'Error poll');
 					} else {
-						//console.log(value, 'Notificaciones');
-						id_po = [];
-						id_messg = [];
-						new_offert = [];
-
+				
 						if (typeof value !== 'undefined' && value.length > 0) {
+
+							id_po = [];
+							id_po_offert = [];
+							id_messg = [];
+							new_offert = [];
+							id_offert_acepted = [];
+
 							console.log(value, 'esta fue la notificacion q llego');
 
 							for (let task of value) {
@@ -194,7 +210,7 @@ export class TaskOdooService {
 									task['message']['type'] === 'purchase_order_notification' &&
 									task['message']['action'] === 'accepted'
 								) {
-									console.log('se ha creado una nueva oferta una oferta');
+									console.log('se ha creado una nueva oferta');
 									new_offert.push({
 										order_id: task['message']['order_id'],
 										origin: task['message']['origin']
@@ -211,7 +227,7 @@ export class TaskOdooService {
 							}
 
 							if (typeof id_messg !== 'undefined' && id_messg.length > 0) {
-								// console.log(id_messg,"nuevo mensaje id")
+								 console.log(id_messg,"nuevo mensaje id")
 								notificationNewMessg$.next(id_messg);
 							}
 
@@ -231,7 +247,20 @@ export class TaskOdooService {
 							}
 
 							if (typeof new_offert !== 'undefined' && new_offert.length > 0) {
-								notificationNewOffertSuplier$.next(new_offert);
+								if(rutaActual){
+									
+								notificationNewOffertSuplier$.next(new_offert);}
+								else{
+							
+									/////////pila
+									let task:TaskModel = new TaskModel();
+									task.notificationType = 2;
+									for (let i = 0; i < new_offert.length; i++) {
+										task.id_string = new_offert[i]['origin'];
+										pilaSolicitudes.insertar(task);
+									}
+								
+								}
 							}
 
 							poll(user.id, user.partner_id, value[value.length - 1].id);
@@ -384,6 +413,7 @@ export class TaskOdooService {
 
 	newTask(task: TaskModel) {
 		let count: number;
+		console.log(this.router.url, 'mi ruta'); //  /tu-ruta
 
 		let cancelSOclientSelected = function(SO_id: number) {
 			let inParams = [];
@@ -442,9 +472,10 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error get_So_by_id');
 				} else {
-				
 					task.id_string = value[0]['name'];
+					task.notificationNewSo = true;
 					pilaSolicitudes.insertar(task);
+
 					notificationNewSoClient$.next(true);
 				}
 			});
