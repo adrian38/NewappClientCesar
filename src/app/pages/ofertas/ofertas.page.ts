@@ -1,13 +1,6 @@
 import { Component, OnInit, NgZone, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-	NavController,
-	Platform,
-	IonSegment,
-	LoadingController,
-	ModalController,
-	AlertController
-} from '@ionic/angular';
+import {NavController,Platform,IonSegment,LoadingController,ModalController,AlertController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -235,7 +228,8 @@ export class OfertasPage implements OnInit, OnDestroy {
 	cancelSOclient() {
 		
 		this.displayAceptar = -1;
-		this._taskOdoo.cancelSOclient(this.task.id);
+		console.log('CancelarPo',this.task.id);
+		this._taskOdoo.cancelPOsuplier(this.task.id);
 		//this.isLoading3 = true;
 	}
 	showDialogAceptar(id) {

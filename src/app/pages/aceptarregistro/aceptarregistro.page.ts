@@ -125,7 +125,20 @@ this.aceptar=true;
 
     this.usuario.address.latitude=String(this.datos.getlatitud());
     this.usuario.address.longitude=String(this.datos.getlongitud());
-    this.usuario.avatar = this.datos.getfoto0();
+
+    if (
+      Buffer.from(this.datos.getfoto0().substring(this.datos.getfoto0().indexOf(',') + 1)).length / 1e6 >
+      0.322216
+    ) {
+      this.resizedataURL(this.datos.getfoto0(), 1280, 960);
+    } else {
+      this.usuario.avatar = this.datos
+        .getfoto0()
+        .substring(this.datos.getfoto0().indexOf(',') + 1);
+    }
+
+
+    /* this.usuario.avatar = this.datos.getfoto0(); */
 
     /*  console.log(this.usuario,"nuevo usuario"); */
 
@@ -183,4 +196,18 @@ console.log("llegue al final")
     console.log("Loading Ok");
     return  this.loading.present();
   }
+
+  resizedataURL(datas, wantedWidth, wantedHeight) {
+		var img = document.createElement('img');
+		img.src = datas;
+		img.onload = () => {
+			let canvas = document.createElement('canvas');
+			let ctx = canvas.getContext('2d');
+			canvas.width = wantedWidth;
+			canvas.height = wantedHeight;
+			ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+			let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
+			this.usuario.avatar = temp.substring(temp.indexOf(',') + 1);
+		};
+	}
 }

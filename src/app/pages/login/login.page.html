@@ -1,107 +1,116 @@
 
-<ion-content>
-  <ion-grid>
+ <ion-content>
+ <ion-grid >
+  
 
-   <form #formulario="ngForm" class="animated fadeIn">
-         <ion-row style="margin-top: 40px;">
-           <ion-col style="text-align: center;">
-             <img src="../../assets/logoHome1.svg">
-           </ion-col>
-         </ion-row>
-       
-         <ion-row >
-           <ion-col >
-             
-               <ion-list>
-                 <div id="datos">
-                 <ion-row style="margin-top: 50px;">
-                   <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                   <ion-col size="11">
-                     <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';font-size: x-large; color: rgb(246, 183, 118);">Bienvenido</ion-label>
-                   </ion-col>
-                 </ion-row>
-               </div>
-
-                   <ion-row style="margin-top: 12px;">
-                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                     <ion-col size="10">
-                       <ion-input name="email"
-                                   type="email"
-                                   required
-                                   [(ngModel)]="user"
-                                   placeholder="Usuario"                     
-                                   #nombre="ngModel"
-                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                                   ></ion-input>
-                                   <div id="link">
-                                    <small *ngIf= "nombre.invalid && nombre.touched"   
-                                    class="text-danger">Su usuario debe insertado correctamente</small>
-                                   </div>
-                                   
-                                 </ion-col >
-                                 <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                   </ion-row>
-   
-                       <ion-row >
-                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                         <ion-col size="10">
-                           <ion-input name="password"
-                                       type="password"
-                                       required
-                                       [(ngModel)]="pass"
-                                        minlength=5
-                                        #pa="ngModel"
-                                        placeholder="Contraseña"
-   
-                                       ></ion-input>
-                                       <div id="link">
-                                        <small *ngIf= "pa.invalid && pa.touched"   
-                                        class="text-danger">Su contraseña debe contener mas de 5 caracteres</small>
-                                       </div>
-                                     </ion-col >
-                                     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-                       </ion-row>
-                           
-               </ion-list>
-           </ion-col>
-         </ion-row>
-
-         <ion-row style="margin-top: 15px;">
-          <ion-col size=1></ion-col>
-   
-            <ion-col  size=10 >
-
-            <ion-button id="boton"
-                       (click)="iniciar()"                       
-                       [disabled]="formulario.invalid"
-                       
-                       
-                      >
-          Iniciar Sesion
-            </ion-button>
-          </ion-col>
-          <ion-col size=1></ion-col>
-        </ion-row>
-
-
-
-
-         <ion-row  style="margin-top: 40px;">
-           <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-           <ion-col size="10" (click)="cambiarpass()">
-             <a id="link" 
-             >¿Has olvidado tu contraseña?</a>
-           </ion-col>
-        
-           <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-         </ion-row>
-
-      
-     </form> 
+    <form #formulario="ngForm" class="animated fadeIn">
     
+       <ion-row style="margin-top: 40px;">
+           <ion-col  style="text-align: center;">
+               <img src="../../assets/logoHome1.svg">
+            </ion-col>
+        </ion-row>
+     
+       <ion-row >
+         <ion-col >
+             <ion-list>
+                  <div >
+                        <ion-row style="margin-top: 50px;">
+                           <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+                           <ion-col size="11">
+                              <ion-label style="font-family: 'HelveticaNeueLTStd-Bd';font-size: x-large; color: rgb(246, 183, 118);">Bienvenido</ion-label>
+                          </ion-col>
+                         </ion-row>
+                   </div>
+ 
+                         <ion-row style="margin-top: 12px;">
+                            <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+                            <ion-col size="10">
+                               <ion-input name="email"
+                                 type="email"
+                                 required
+                                 [(ngModel)]="user"
+                                 placeholder="Usuario"                     
+                                 #nombre="ngModel"
+                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                 ></ion-input>
+                                
+                                 <div id="link">
+                                  <small *ngIf= "nombre.invalid && nombre.touched"   
+                                  class="text-danger">Su usuario debe insertado correctamente</small>
+                                 </div>
+                                 
+                            </ion-col >
+                            <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+                         </ion-row>
+ 
+                     <ion-row >
+                       <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+                       <ion-col size="10">
+                         <ion-input name="password"
+                                     type="password"
+                                     required
+                                     [(ngModel)]="pass"
+                                      minlength=5
+                                      #pa="ngModel"
+                                      placeholder="Contraseña"
+ 
+                                     ></ion-input>
+                                     <div id="link">
+                                      <small *ngIf= "pa.invalid && pa.touched"   
+                                      class="text-danger">Su contraseña debe contener mas de 5 caracteres</small>
+                                     </div>
+                                   </ion-col >
+                                   <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+                     </ion-row>
+                         
+             </ion-list>
+         </ion-col>
+       </ion-row>
+ 
+       <ion-row style="margin-top: 15px;">
+        <ion-col size=1></ion-col>
+ 
+          <ion-col  size=10 >
+ 
+          <ion-button id="boton"
+                     (click)="iniciar()"                       
+                     [disabled]="formulario.invalid"
+                     
+                     
+                    >
+        Iniciar Sesion
+          </ion-button>
+        </ion-col>
+        <ion-col size=1></ion-col>
+      </ion-row>
+ 
+ 
+ 
+ 
+       <ion-row  style="margin-top: 40px;">
+         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+         <ion-col size="10" (click)="cambiarpass()">
+           <a id="link" 
+           >¿Has olvidado tu contraseña?</a>
+         </ion-col>
+      
+         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+       </ion-row>
+ 
+         
+       
+      </form> 
+     
+  
+   
     
    </ion-grid>
+  
 
-
-
+  
 </ion-content>
+
+
+
+

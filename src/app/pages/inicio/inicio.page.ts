@@ -54,6 +54,10 @@ navegar(){
      this.navCon.navigateRoot('/login', {animated: true, animationDirection: 'forward' }) ;
     
 }
+registro(){
+  this.navCon.navigateRoot('/registro', {animated: true, animationDirection: 'forward' }) ;
+    
+}
 
 initializeApp() {
   this.platform.ready().then(() => {

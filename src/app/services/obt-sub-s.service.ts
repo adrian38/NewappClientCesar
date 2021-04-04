@@ -12,6 +12,7 @@ export class ObtSubSService {
 
  
    private estado:boolean;
+   cargando:boolean=false;
    private comentario:string="";
   
 
@@ -385,6 +386,14 @@ this.radiobuton=r;
 
 getradiobuton(){
   return this.radiobuton;
+}
+
+setcargando(c){
+this.cargando=c;
+}
+
+getcargando(){
+  return this.cargando;
 }
 
 /* setfotovacia(f){

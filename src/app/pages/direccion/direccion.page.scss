@@ -84,3 +84,11 @@
     font-family: 'HelveticaNeueLTStd-Bd';
     margin-top: 65px;
 }
+
+#link{
+    color: rgb(101,173,172);
+}
+
+ion-input.ng-invalid.ng-touched {
+    border: 2px solid rgb(101,173,172) !important;
+}

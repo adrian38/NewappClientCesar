@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
 import { Photo } from 'src/app/interfaces/photo';
 import { TaskModel } from 'src/app/models/task.model';
+import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
@@ -27,7 +28,8 @@ export class ContratadosPage implements OnInit {
                 public alertController: AlertController,
                 public navCtrl:NavController,
                 private platform: Platform,
-                private subServ: ObtSubSService) { }
+                private subServ: ObtSubSService,
+                private _chatOdoo: ChatOdooService) { }
 
   ngOnInit() {
 
@@ -160,6 +162,14 @@ verubicacion(){
   this.subServ.setruta("/contratados");
   this.navCtrl.navigateRoot('/detallemapa', {animated: true, animationDirection: 'back' }) ;
          
+}
+
+openChat(){
+  console.log(this.task.id);
+		
+		this._chatOdoo.setIdPo(this.task.id);
+		this.navCtrl.navigateRoot([ '/chat' ], { animated: true, animationDirection: 'back' });
+		
 }
 
 }

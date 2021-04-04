@@ -72,7 +72,7 @@
     
     <div *ngIf="ofertaDisponible"
           class="container center-h center-v">
-      <h4 >No hay ofertas</h4>
+      <h4 style="color:lightgray;" >No hay ofertas</h4>
       
     </div>
 
@@ -88,7 +88,7 @@
 
           <ion-item-sliding >
 
-            <ion-item  lines="none" style="padding: 0px;"  id="item" *ngIf="desplegar==false">
+            <ion-item  lines="none"  id="item" *ngIf="desplegar==false" class="ion-no-padding">
 
        
          
@@ -115,24 +115,35 @@
                <ion-col size=1.5>
                  <ion-row>
                   <img 
-                  style="width: 22px; height: 25px;margin-top: 24px;" 
-                  src="../../assets/chat.png"
+                  style="width: 24px; height: 35px;margin-top: 24px;" 
+                  src="../../assets/chat.svg"
                   (click)="openChat(offer.id)">
                  </ion-row>
-                 <ion-row>
+                <!--  <ion-row>
                   <ion-label style="font-size: xx-small;">CHAT</ion-label>
-                 </ion-row>
+                 </ion-row> -->
                 
                      
                     
                </ion-col>
+
+               <ion-col size=0.5></ion-col>
         
                <ion-col size=1.5 >
-             
-                <ion-icon  name="checkbox-outline" 
-                           color="tertiary" 
-                           style="width: 31px;height: 31px;margin-top: 18px;margin-left: 7px;"
-                           (click)="showDialogAceptar(offer.id)"></ion-icon>
+         <!--    
+              <ion-icon  name="checkbox-outline" 
+              color="tertiary" 
+              style="width: 22px;height: 25px;margin-top: 18px;margin-left: 7px;"
+              (click)="showDialogAceptar(offer.id)"></ion-icon> 
+              -->
+              
+              <ion-row>
+                <img 
+                style="width: 24px; height: 26px;margin-top: 24px;" 
+                src="../../assets/acep.svg"
+                (click)="showDialogAceptar(offer.id)">
+               </ion-row>
+                         
       
                 
                  </ion-col> 
