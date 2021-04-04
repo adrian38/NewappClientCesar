@@ -1,13 +1,6 @@
 import { Component, OnInit, NgZone, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-	NavController,
-	Platform,
-	IonSegment,
-	LoadingController,
-	ModalController,
-	AlertController
-} from '@ionic/angular';
+import {NavController,Platform,IonSegment,LoadingController,ModalController,AlertController} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';

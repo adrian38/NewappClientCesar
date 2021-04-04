@@ -21,10 +21,21 @@
         <ion-col size=3.5></ion-col>
 
         <ion-col size=5 style="text-align:center;">
-           <ion-card *ngIf="avatarusuario" >
-                    <img id="selecf" [src]="avatarusuario | safeUrlPipe "
-                    (click)="presentAlertConfirm()" >
-                  </ion-card>
+           
+
+                  <div *ngIf="!obligatoriofoto">
+                    <ion-card *ngIf="avatarusuario" >
+                      <img id="selecf" [src]="avatarusuario | safeUrlPipe "
+                      (click)="presentAlertConfirm()" >
+                    </ion-card>
+                  </div>
+
+                  <div *ngIf="obligatoriofoto">
+                    <ion-card *ngIf="avatarusuario" style=" border: 2px solid rgb(101,173,172) !important;">
+                      <img id="selecf" [src]="avatarusuario | safeUrlPipe "
+                      (click)="presentAlertConfirm()" >
+                    </ion-card>
+                  </div>
                   
         </ion-col>
 
@@ -231,33 +242,33 @@
                       <ion-row >
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                         <ion-col size="10">
+
                           <div *ngIf="!this.oblidatorioppass">
-                            <ion-input name="ppassword"
-                            type="password"
-                            required
-                            minlength=5
-                            placeholder="Confirmar contraseña"
-                            [(ngModel)]="ppass"
-                            #ccontra="ngModel"
-                           ></ion-input>
-                            <div id="link">
-                              <small *ngIf= "ccontra && ccontra.invalid && ccontra.touched"   
-                              class="text-danger">No coincide con su contraseña</small>
-                             </div>
-                          </div>
+                               <ion-input name="ppassword"
+                                     type="password"
+                                     required
+                                     minlength=5
+                                     placeholder="Confirmar contraseña"
+                                     [(ngModel)]="ppass"
+                                     #ccontra="ngModel"
+                                ></ion-input>
+                               <div id="link">
+                                   <small *ngIf= "ccontra && ccontra.invalid && ccontra.touched"   
+                                     class="text-danger">No coincide con su contraseña</small>
+                                </div>
+                         </div>
 
                           <div *ngIf="this.oblidatorioppass">
-                            <ion-input  style=" border: 2px solid rgb(101,173,172) !important;"
-                             name="ppassword"
-                            type="password"
-                         
-                            placeholder="Confirmar contraseña"
-                          
-                           ></ion-input>
-                            <div id="link">
-                              <small    
-                              class="text-danger">No coincide con su contraseña</small>
-                             </div>
+                                <ion-input  style=" border: 2px solid rgb(101,173,172) !important;"
+                                     name="ppassword"
+                                     type="password"
+                                     [(ngModel)]="ppass"
+                                     placeholder="Confirmar contraseña"
+                                 ></ion-input>
+                                <div id="link">
+                                    <small    
+                                       class="text-danger">No coincide con su contraseña</small>
+                                </div>
                           </div>
                           
                                     </ion-col >
@@ -478,10 +489,17 @@
                         <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                     
                         <ion-col size="3" style="text-align: start; margin-top: 5px;" >
-                          <div (click)="ubicacion()">
+                          <div *ngIf=" !obligatorioGPS"
+                               (click)="ubicacion()">
                             <img   id="imgGPS"  src="../../assets/ubicacion.svg"
                             > 
                           </div>
+
+                          <div *ngIf=" obligatorioGPS"
+                          (click)="ubicacion()">
+                       <img   id="imgGPS"  src="../../assets/gpsObligatorio.svg"
+                       > 
+                     </div>
                         </ion-col>
       
                        

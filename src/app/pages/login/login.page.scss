@@ -1,6 +1,9 @@
 img {
      width: 120px; 
+     height: 95%;
   /*  width: 35%; */
+ 
+ 
    
 }
 
@@ -29,10 +32,9 @@ ion-input:focus-within{
     fill: round($number: 7);
 }
 
-/* #datos{
-    margin-top: 25px;
-    //margin-left: 60px;
-} */
+ #datos{
+    display: flex;
+} 
 
 
 
@@ -65,5 +67,6 @@ ion-button{
     color: rgb(101,173,172);
     width: 100%;
     height: 100%;
+    
 
 }

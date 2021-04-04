@@ -29,6 +29,8 @@ export class RegistroPage implements OnInit {
  oblidatoriotelefono:boolean=false;
  oblidatoriocalle:boolean=false;
  oblidatorionumero:boolean=false;
+ obligatoriofoto:boolean=false;
+ obligatorioGPS:boolean=false;
 
  imgResultBeforeCompress:string;
  imgResultAfterCompress:string;
@@ -44,7 +46,7 @@ export class RegistroPage implements OnInit {
  correo:string="";
  pass:string="";
  ppass:string="";
- telefono:number;
+ telefono:number=0;
  calle:string="";
  piso:string="";
  numero:string="";
@@ -176,7 +178,7 @@ export class RegistroPage implements OnInit {
   iniciar(){
 
   this.entrar_campos();
-
+  this.obligatorio(); 
 
     this.fechactual = new Date().getFullYear().toString();
     console.log("completa", this.fecha);
@@ -187,12 +189,13 @@ export class RegistroPage implements OnInit {
     let fechavalida=Number(this.fechactual) - Number(fechacorta);
     console.log("fechavalida", fechavalida);
 
-    this.obligatorio();
+    
 
 if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != "" && this.ppass != "" && String(this.telefono) != "" && this.calle != "" && this.numero != ""){
  
   console.log("si los campos");
   if(this.selectFoto){
+    this.obligatoriofoto=false;
     console.log("si la foto");
     if(fechavalida > 17){
       console.log("1",this.pass)
@@ -202,15 +205,18 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
        if(this.pass==this.ppass){
        this.calen=false;
        this.ccontra=false;
+       console.log("aa",this.ccontra)
        this.datos.setfecha(fechalarga);
 
         if(this.coordenadas == true){
           console.log("si los coordenadas");
+          this.obligatorioGPS=true;
           this.navCtrl.navigateRoot('/aceptarregistro', {animated: true, animationDirection: 'forward' }) ;
      
         }
         else{
           console.log("no los coordenadas0000000000000000");
+          this.obligatorioGPS=true
           this.ToastCoordenadas();
         }
       }
@@ -227,11 +233,13 @@ if(this.nombre != "" && this.fecha != "" && this.correo != "" && this.pass != ""
       this.ccontra=false;
     }
    
-  }
+   }
   else{
     console.log("no  entro por la foto");
+    this.obligatoriofoto=true;
      this.ToastFoto(); 
   }
+
 
 }
 else{
@@ -387,12 +395,13 @@ else{
       console.log(this.oblidatorio)
     }
 
-    /*  if(this.fecha != ""){
-      this.oblidatorio=false
+      if(this.fecha != ""){
+      this.calen=false
     }
     else{
-      this.oblidatorio=true
-    } */
+      this.calen=true
+    } 
+
     if(this.correo != ""){
       this.oblidatoriocorreo=false
     }
@@ -411,13 +420,7 @@ else{
     else{
       this.oblidatorioppass=true
     }
-    if(String(this.telefono) != ""){
-      this.oblidatoriotelefono=false
-    }
-    else{
-      this.oblidatoriotelefono=true
-    }
-     if(this.calle != ""){
+    if(this.calle != ""){
       this.oblidatoriocalle=false
     }
 
@@ -430,5 +433,17 @@ else{
     else{
       this.oblidatorionumero=true
     } 
+
+    if( this.telefono  > 1){
+      this.oblidatoriotelefono=false
+      console.log("if",this.telefono)
+    }
+    else{
+      this.oblidatoriotelefono=true
+      console.log("else",this.telefono)
+    }
+    
+
+
   }
 }
