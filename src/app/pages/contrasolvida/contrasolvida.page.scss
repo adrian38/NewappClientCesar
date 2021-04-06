@@ -1,4 +1,4 @@
-#barraSuperior{
+/* #barraSuperior{
     width: 100%;
     height: 115px;
     
@@ -18,7 +18,7 @@
     margin-top: 13px;
     margin-left: 6px;
     
-}
+} */
 
 ion-input{
     border: 1px   transparent;
@@ -41,5 +41,11 @@ ion-button{
    
     border-radius: 5px 5px 5px 5px ;
     font-family: 'HelveticaNeueLTStd-Bd';
-    margin-top: 100px;
+    margin-top: 50px;
+}
+
+h3{
+    font-family: 'HelveticaNeueLTStd-Bd';
+    color:  rgb(246, 183, 118); 
+    text-align: center;
 }

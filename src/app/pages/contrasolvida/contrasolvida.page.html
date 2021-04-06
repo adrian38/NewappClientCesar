@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <div id="barraSuperior">
    
     <div id="barraInferior">
@@ -41,25 +41,25 @@
    
   </div>
 
-</ion-header>
+</ion-header> -->
 
 <ion-content>
 
-  <ion-row style="margin-top: 30px;">
-    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-    <ion-col size="10"> <h5 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Recuperación de contraseña</h5></ion-col>
-    <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
+  <ion-row style="margin-top: 40px;">
+    <ion-col size="2" style="background: rgb(255, 255, 255);"></ion-col>
+    <ion-col size="8"> <h3 >Recupera  tu cuenta</h3></ion-col>
+    <ion-col size="2" style="background: rgb(255, 255, 255);"></ion-col>
   </ion-row>
   
   
   
-  <ion-row style="margin-top: 5px; padding: 0px;">
+  <ion-row style="margin-top: 45px; padding: 0px;">
     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
-    <ion-col size="10" style="padding-bottom: 0px;"> <ion-label style="font-size: small;" >Introduzca el correo asociado</ion-label></ion-col>
+    <ion-col size="10" style="padding-bottom: 0px;"> <ion-label style="font-size: small;" >Ingrese tu correo electronico</ion-label></ion-col>
     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
   </ion-row>
     
-    <ion-row >
+    <ion-row ion-row style="margin-top: 10px;">
       <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
       <ion-col size="10">
        
@@ -67,7 +67,7 @@
                                  type="email"
                                  required
                                  [(ngModel)]="actual"
-                                 placeholder="Usuario"                     
+                                 placeholder="CORREO"                     
                                  #nombre="ngModel"
                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                                  ></ion-input>
@@ -88,13 +88,13 @@
   
     
   
-    <ion-row>
+    <ion-row >
       <ion-col style="text-align: center;">
         <ion-button type="submit"
                     
                    (click)="enviar()"
                    >
-      ENVIAR
+      ACEPTAR
         </ion-button>
       </ion-col>
     </ion-row>
