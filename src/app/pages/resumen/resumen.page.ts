@@ -15,7 +15,6 @@ import { Observable, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
 @Component({
 	selector: 'app-resumen',
 	templateUrl: './resumen.page.html',
@@ -31,9 +30,7 @@ export class ResumenPage implements OnInit {
 	fecha: string;
 	hora: string;
 	hora1: Date;
-
 	comentario: string;
-
 	calle: string = '';
 	piso: string = '';
 	numero: string = '';
@@ -44,17 +41,16 @@ export class ResumenPage implements OnInit {
 	latitud: string = '';
 	longitud: string = '';
 	loading: any;
+	foto0: string = '';
+	foto1: string = '';
+	foto2: string = '';
 
 	notificationNewSoClient$: Observable<boolean>;
 	notificationError$: Observable<boolean>;
 
 	subscriptionNotificationNewSoClient: Subscription;
 	subscriptionNotificationError: Subscription;
-	subscriptionCerrar: Subscription;
-
-	foto0: string = '';
-	foto1: string = '';
-	foto2: string = '';
+	
 
 	constructor(
 		private datos: ObtSubSService,
@@ -69,7 +65,7 @@ export class ResumenPage implements OnInit {
 		public sanitizer: DomSanitizer,
 		public alertCtrl: AlertController,
 		public loadingController: LoadingController,
-		private _authOdoo:AuthOdooService,
+		private _authOdoo: AuthOdooService
 	) {}
 
 	ngOnInit() {
@@ -77,51 +73,31 @@ export class ResumenPage implements OnInit {
 			this.navCtrl.navigateRoot('/foto', { animated: true, animationDirection: 'back' });
 		});
 
-		/* this.foto0 = this.datos.getfoto00(); */
-	/* 	this.foto1 = this.datos.getfoto11();
-		this.foto2 = this.datos.getfoto22(); */
-
-		if(this.datos.getfoto0()==""){
-			console.log('en if foto0', this.datos.getfoto0());
-			this.foto0 ='../../../assets/icon/noImage.svg'
-		}
-		else{
+		if (this.datos.getfoto0() == '') {
+			this.foto0 = '../../../assets/icon/noImage.svg';
+		} else {
 			this.foto0 = this.datos.getfoto00();
-			console.log('no if foto0', this.datos.getfoto0());
 		}
 
-		if(this.datos.getfoto1()==""){
-			console.log('en if foto0', this.datos.getfoto1());
-			this.foto1 ='../../../assets/icon/noImage.svg'
-		}
-		else{
+		if (this.datos.getfoto1() == '') {
+			this.foto1 = '../../../assets/icon/noImage.svg';
+		} else {
 			this.foto1 = this.datos.getfoto11();
-			console.log('no if foto0', this.datos.getfoto1());
 		}
 
-		if(this.datos.getfoto2()==""){
-			console.log('en if foto0', this.datos.getfoto2());
-			this.foto2 ='../../../assets/icon/noImage.svg'
-		}
-		else{
+		if (this.datos.getfoto2() == '') {
+			this.foto2 = '../../../assets/icon/noImage.svg';
+		} else {
 			this.foto2 = this.datos.getfoto22();
-			console.log('no if foto0', this.datos.getfoto2());
 		}
-/* 
-		console.log('tengoresumen la foto0', this.datos.getfoto0());
-		console.log('tengoresumen la foto1', this.foto1);
-		console.log('tengoresumen la foto2', this.foto2); */
 
 		this.servicio = this.datos.getServ();
-
 		this.titulo = this.datos.gettitulo();
 		this.check = this.datos.getUtiles();
 		this.fecha = this.datos.getCalendarioD();
 		this.hora1 = this.datos.getCalendarioT();
 		this.hora = this.date.transform(this.hora1, 'HH:mm:ss');
-
 		this.comentario = this.datos.getcomentario();
-
 		this.calle = this.datos.getcalle();
 		this.portal = this.datos.getportal();
 		this.puerta = this.datos.getpuerta();
@@ -129,16 +105,14 @@ export class ResumenPage implements OnInit {
 		this.escalera = this.datos.getescalera();
 		this.piso = this.datos.getpiso();
 		this.numero = this.datos.getnumero();
-		/*  this.longitud=this.datos.getlongitud().toString();
-    this.latitud=this.datos.getlatitud().toString(); */
-
 		this.user = this._authOdoo.getUser();
+
+
 
 		this.notificationError$ = this._taskOdoo.getNotificationError$();
 		this.subscriptionNotificationError = this.notificationError$.subscribe((notificationError) => {
 			this.ngZone.run(() => {
 				if (notificationError) {
-					console.log('Error creando la tarea');
 					this.loading.dismiss();
 					this.messageService.add({ severity: 'error', detail: 'No se creo la tarea' });
 				}
@@ -151,11 +125,8 @@ export class ResumenPage implements OnInit {
 				this.ngZone.run(() => {
 					if (notificationNewSoClient) {
 						this.loading.dismiss();
-						console.log('Se creo correctamente la tarea');
 						this.messageService.add({ severity: 'success', detail: 'Tarea creada correctamente' });
-						/* this.messageService.add({ severity: 'success', summary: 'Completado', detail: 'Tarea creada correctamente'});
-   */
-
+						this.borrar_campos();
 						setTimeout(() => {
 							this.navCtrl.navigateRoot('/tabs/tab1', { animated: true, animationDirection: 'forward' });
 						}, 2000);
@@ -163,7 +134,7 @@ export class ResumenPage implements OnInit {
 				});
 			}
 		);
-		//-----------------------
+		
 	}
 
 	ngOnDestroy(): void {
@@ -171,8 +142,6 @@ export class ResumenPage implements OnInit {
 		//Add 'implements OnDestroy' to the class.
 		this.subscriptionNotificationError.unsubscribe();
 		this.subscriptionNotificationNewSoClient.unsubscribe();
-		/*  this.subscriptionCerrar.unsubscribe();
-      this.presentAlert(); */
 	}
 
 	cerrarsolicitud() {
@@ -180,12 +149,12 @@ export class ResumenPage implements OnInit {
 	}
 	crearSolicitud() {
 		this.presentLoading();
+
 		this.task = new TaskModel();
 		this.task.address = new Address('', '', '', '', '', '', '', '', '');
 
 		this.task.require_materials = this.datos.getUtiles();
 		this.task.description = this.datos.getcomentario();
-
 		this.task.address.street = this.datos.getcalle();
 		this.task.address.door = this.datos.getpuerta();
 		this.task.address.stair = this.datos.getescalera();
@@ -193,19 +162,14 @@ export class ResumenPage implements OnInit {
 		this.task.address.cp = this.datos.getcod_postal();
 		this.task.address.number = this.datos.getnumero();
 		this.task.address.floor = this.datos.getpiso();
-
 		this.task.address.latitude = String(this.datos.getlatitud());
 		this.task.address.longitude = String(this.datos.getlongitud());
-
 		this.task.title = this.datos.gettitulo();
 		this.task.product_id = 39;
 		this.task.type = ':Servicio de Fontaneria';
-
 		this.task.date = this.fecha;
 		this.task.time = this.hora;
 		this.task.client_id = this.user.partner_id;
-
-		// this.task.photoNewTaskArray[0]= this.photoService.devuelve64();
 
 		if (this.datos.getfoto0()) {
 			if (
@@ -245,31 +209,10 @@ export class ResumenPage implements OnInit {
 			}
 		}
 
-		// console.log("f1",this.datos.getfoto0());
-
-		//console.log("f2",this.datos.getfoto1());
-		//console.log("f3",this.datos.getfoto2());
-
-		//console.log('task', this.task);
+	
 		this.datos.setradiobuton(false);
 		this._taskOdoo.newTask(this.task);
-
-		this.borrar_campos();
 		
-
-		/*  53338707 */
-
-		//time =  this.reloj.getHours().toString()+ ":"+ this.reloj.getMinutes().toString() + ":" + this.reloj.getSeconds().toString()
-		//this.task.time = '12:12:12';
-		// this.task.date = '2020-02-20'
-		// this.task.date = this.date.transform(this.fecha, 'yyyy-MM-dd');
-		// this.task.time = this.date.transform(this.reloj, 'HH:mm:ss');
-		//this.task.date = this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString()
-		//console.log("Vet",this.fecha.getDay+"-"+this.fecha.getFullYear().toString() + "-" + (this.fecha.getMonth() +1).toString() + "-" +this.fecha.getDate().toString());
-		/* 
-    this.task.address.latitude="4.44";
-    this.task.address.longitude="4.43"; */
-		// this.task.title= 'Arreglo'
 	}
 
 	borrar_campos() {
@@ -283,15 +226,13 @@ export class ResumenPage implements OnInit {
 		this.datos.setnumero('');
 		this.datos.setportal('');
 		this.datos.setradiobuton(false);
-
 		this.datos.setcomentario('');
- 		 this.datos.setfoto00('../../../assets/fotoadd.png');
+		this.datos.setfoto00('../../../assets/fotoadd.png');
 		this.datos.setfoto11('../../../assets/fotoadd.png');
-		this.datos.setfoto22('../../../assets/fotoadd.png');  
-
+		this.datos.setfoto22('../../../assets/fotoadd.png');
 		this.datos.setfoto0('');
 		this.datos.setfoto1('');
-		this.datos.setfoto2(''); 
+		this.datos.setfoto2('');
 	}
 
 	verubicacion() {
@@ -330,9 +271,8 @@ export class ResumenPage implements OnInit {
 		this.loading = await this.loadingController.create({
 			cssClass: 'my-custom-class',
 			message: 'Creando Solicitud...'
-			//duration: 2000
 		});
-		console.log('Loading Ok');
+
 		return this.loading.present();
 	}
 
