@@ -280,6 +280,8 @@ export class ResumenPage implements OnInit {
 		var img = document.createElement('img');
 		img.src = datas;
 		img.onload = () => {
+			let ratio = img.width / img.height;
+			wantedWidth = wantedHeight * ratio;
 			let canvas = document.createElement('canvas');
 			let ctx = canvas.getContext('2d');
 			canvas.width = wantedWidth;
@@ -287,6 +289,9 @@ export class ResumenPage implements OnInit {
 			ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
 			let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
 			this.task.photoNewTaskArray[index] = temp.substring(temp.indexOf(',') + 1);
+			
 		};
 	}
 }
+
+
