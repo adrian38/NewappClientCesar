@@ -109,6 +109,10 @@ const routes: Routes = [
     path: 'contrasolvida',
     loadChildren: () => import('./pages/contrasolvida/contrasolvida.module').then( m => m.ContrasolvidaPageModule)
   },
+  {
+    path: 'option',
+    loadChildren: () => import('./pages/option/option.module').then( m => m.OptionPageModule)
+  },
 
 
  

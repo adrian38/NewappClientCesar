@@ -14,6 +14,7 @@ export class TituloPage implements OnInit {
   titulo:string="";
   checkSi:boolean=false;
   checkNo:boolean=true; 
+  validado:boolean=true;
   servicio:string="";
   task:TaskModel;
 
@@ -28,10 +29,22 @@ export class TituloPage implements OnInit {
   ngOnInit() {
     this.servicio=this.datos.getServ();
     console.log(this.servicio);
-    this.titulo=this.datos.gettitulo();
+    /* this.titulo=this.datos.gettitulo(); */
+
+    this.titulo=this.datos.get_sub_servicio_activo();
+    if(this.titulo==""){
+      this.validado=true;
+
+
+    }
+    else{
+      this.validado=false;
+      
+    }
+    
 
     this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/tarea', {animated: true, animationDirection: 'back' }) ;
+      this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
         
       });
 

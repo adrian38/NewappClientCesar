@@ -52,6 +52,8 @@ export class ObtSubSService {
     selecfoto:boolean=false;
     radiobuton:boolean=false;
 
+    sub_servicio_activo:string="";
+
 
    //-----------------------------------------------------------
 
@@ -396,6 +398,13 @@ getcargando(){
   return this.cargando;
 }
 
+set_sub_servicio_activo(sub){
+this.sub_servicio_activo=sub;
+}
+
+get_sub_servicio_activo(){
+return  this.sub_servicio_activo;
+  }
 /* setfotovacia(f){
   this.fotovacia=f
 }

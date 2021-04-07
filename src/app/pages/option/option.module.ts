@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TareaPageRoutingModule } from './tarea-routing.module';
+import { OptionPageRoutingModule } from './option-routing.module';
 
-import { TareaPage } from './tarea.page';
+import { OptionPage } from './option.page';
+
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -14,9 +15,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    TareaPageRoutingModule,
+    OptionPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [TareaPage]
+  declarations: [OptionPage]
 })
-export class TareaPageModule {}
+export class OptionPageModule {}
