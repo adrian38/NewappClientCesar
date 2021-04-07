@@ -93,7 +93,7 @@ export class ChatOdooService {
             let inParams = []
             inParams.push([idNewMessage])
             inParams.push([['id', 'in', idNewMessage]])
-            inParams.push(['message_type', 'model', 'res_id', 'body', 'author_id', 'author_avatar', 'display_name', 'subtype_id'])
+            inParams.push(['res_id', 'body', 'author_id', 'subtype_id'])
             let params = []
             params.push(inParams)
 
@@ -113,7 +113,7 @@ export class ChatOdooService {
                 if (err || !value) {
                     console.log(err, "Error NewMessage");
                 } else {
-                    //console.log(value);
+                    console.log(value);
                     value = value.filter(messages => {
                         return messages.subtype_id === false;
                     });
@@ -155,7 +155,7 @@ export class ChatOdooService {
             let inParams = []
             inParams.push([id_po])
             inParams.push([['res_id', '=', id_po]])
-            inParams.push(['message_type', 'model', 'res_id', 'body', 'author_id', 'author_avatar', 'display_name', 'subtype_id'])
+            inParams.push(['res_id', 'body', 'author_id', 'subtype_id'])
             let params = []
             params.push(inParams)
 
@@ -175,7 +175,7 @@ export class ChatOdooService {
                 if (err || !value) {
                     console.log(err, "Error list_msg_ids");
                 } else {
-                    //console.log(value);
+                    console.log(value);
                     value = value.filter(messages => {
                         return messages.subtype_id === false;
                     });
