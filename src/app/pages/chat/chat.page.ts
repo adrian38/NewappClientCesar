@@ -1,7 +1,5 @@
- import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
-import { Buffer } from 'buffer';
 import { Observable, Subscription } from 'rxjs';
 import { Photo } from 'src/app/interfaces/photo';
 import { MessageModel } from 'src/app/models/message.model';

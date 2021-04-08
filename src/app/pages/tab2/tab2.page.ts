@@ -43,7 +43,7 @@ export class Tab2Page {
                {
 
     this.contratadosList = this.subServ.getContratadosList();
-    console.log(this.contratadosList,'tabs2 entro');
+    
     this.verservicios=true;
     this.verhistorial=false;
 
@@ -62,9 +62,9 @@ export class Tab2Page {
 
   ngOnInit(): void {
 
-    console.log("boton atras t2")
+    
     setTimeout(()=>{
-      console.log("ejecutando marcar 'contratados'");
+     
       this.segment.value = 'servicio';
     }, 100);
     
@@ -72,7 +72,7 @@ export class Tab2Page {
     this.subscriptionNotificationTabs2=this.notificationTabs2$.subscribe(notificationTab => {
       this.ngZone.run(()=>{
         this.contratadosList = this.subServ.getContratadosList();
-        console.log('tabs2',this.contratadosList);
+        
       });
     });
   }
@@ -82,8 +82,8 @@ export class Tab2Page {
  
      this.task = this.contratadosList[this.cant];
      this._taskOdoo.setTaskCesar(this.task);
-     console.log(this.task);
-     // console.log("f",this.solicitudesList[this.cant].id_string);
+     
+     
      this.id_string = this.contratadosList[this.cant].id_string;
      this.subServ.setidString(this.id_string);
  
@@ -97,10 +97,7 @@ export class Tab2Page {
 
     this.task = this.contratadosList[j];
     this._taskOdoo.setTaskCesar(this.task);
-    console.log(this.task);
-    // console.log("f",this.solicitudesList[this.cant].id_string);
-  /*   this.id_string = this.contratadosList[this.cant].id_string;
-    this.subServ.setidString(this.id_string); */
+   
 
     this.navCtrl.navigateRoot('/histdetalle', {animated: true, animationDirection: 'back' }) ;      
   
@@ -109,20 +106,20 @@ export class Tab2Page {
 
    segChange(event){
     this.valorSegment = event.detail.value;
-    console.log(this.valorSegment);
+   
 
     if(this.valorSegment==="servicio"){
      
       this.verservicios=true;
       this.verhistorial=false;
-      console.log(this.verservicios);
+     
      
     }
     
     if(this.valorSegment==="historial"){
       this.verservicios=false;
       this.verhistorial=true;
-      console.log(this.verhistorial);
+     
     }
 
    
