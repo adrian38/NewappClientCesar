@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Marcador } from 'src/app/models/marcador.class';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-import { Geolocation} from '@capacitor/core';
 import { NavController, Platform } from '@ionic/angular';
+//import { MapsAPILoader } from '@agm/core';
+
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.page.html',
@@ -15,27 +16,31 @@ export class MapaPage implements OnInit {
 
 
   marcadores: Marcador[] = [];
-
-  title = 'My first AGM project';
+ 
   
-  lat :number;
-  lng :number; 
-coordenadas:boolean=false;
-ruta:string="";
+  lat = 19.29095;
+	lng = -99.653015; 
+  coordenadas:boolean=false;
+  calle;
+  numero;
+    ruta:string="";
 
   constructor(private Serv: ObtSubSService,
               public toastController: ToastController,
               private platform: Platform,
               public navCtrl:NavController,
-              private datos:ObtSubSService
+              private datos:ObtSubSService,
+             // private mapsAPILoader: MapsAPILoader
              ) {
+
+             /*  this.calle= this.datos.getcalle().trim(),"calle";
+              this.numero=this.datos.getnumero(); */
               }
 
     ngOnInit() {
 
-      this.ruta=this.datos.getruta();
-      console.log("ruta",this.ruta);
-  
+        this.ruta=this.datos.getruta();
+      
       
         this.platform.backButton.subscribeWithPriority(10, () => {
           if(this.ruta=="datospersonales")
@@ -50,21 +55,34 @@ ruta:string="";
         }
           }); 
 
-          this.getLocation();
-
-  } 
-
-  
+          /* this.mapsAPILoader.load().then(() => { 
+    
+            const geocoder = new google.maps.Geocoder();
+            const address = "España"+" "+ this.calle+ " "+this.numero;
+            geocoder.geocode({ address: address }, (results, status) => {
+              if (status === "OK") {
+                
+                this.lat = results[0].geometry.location.lat();
+                this.lng = results[0].geometry.location.lng();
+                
+                
+              } else {
+        
+                console.log("error");
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+            });
+            
+          }); */
+ 
+  }
+    
   agregarMarcador( evento ) {
     this.marcadores=[];
-    console.log(evento);
     this.Serv.setLatitud(evento.coords.lat);
     this.Serv.setLongitud(evento.coords.lng);
-    
     const coords: { lat: number, lng: number } = evento.coords;
-
     const nuevoMarcador = new Marcador( coords.lat, coords.lng );
-
     this.marcadores.push( nuevoMarcador ); 
     this.presentToast();
     this.coordenadas=true;
@@ -74,7 +92,6 @@ ruta:string="";
 
 
   borrarMarcador( i: number ) {
-    console.log(i);
     this.marcadores.splice(i, 1);
     this.presentToastBorrar();
   }
@@ -95,22 +112,19 @@ ruta:string="";
     toast.present();
   }
 
-  async getLocation() {
-    const position = await Geolocation.getCurrentPosition();
-    this.lat = position.coords.latitude;
-    this.lng = position.coords.longitude;
-    console.log(this.lat);
-    console.log(this.lng);
-    this.Serv.setLatitud(this.lat);
-    this.Serv.setLongitud(this.lng);
-    this.marcadores=[];
-    const nuevoMarcador = new Marcador( this.lat, this.lng );
-    this.marcadores.push( nuevoMarcador ); 
-    this.Serv.setcoordenada(true);
-  }
+  
 
   irubicacion(){
-    this.getLocation();
+    navigator.geolocation.getCurrentPosition(posicion =>{
+      this.lat = posicion.coords.latitude;
+      this.lng = posicion.coords.longitude;
+      this.Serv.setLatitud(this.lat);
+      this.Serv.setLongitud(this.lng);
+      this.marcadores=[];
+      const nuevoMarcador = new Marcador( this.lat, this.lng );
+      this.marcadores.push( nuevoMarcador ); 
+      this.Serv.setcoordenada(true);
+    })
   }
 
 

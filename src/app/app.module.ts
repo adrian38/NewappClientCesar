@@ -9,6 +9,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {TaskOdooService} from './services/task-odoo.service';
 import {ObtSubSService} from './services/obt-sub-s.service';
 import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
+import { LocationService } from 'src/app/services/location.service';
 
 
 import {ButtonModule} from 'primeng/button';
@@ -68,6 +69,7 @@ import { ImagenmodalPageModule } from './pages/imagenmodal/imagenmodal.module';
     TaskOdooService,
     ObtSubSService,
     SignUpOdooService,
+    LocationService,
     {
       provide: 
       LOCALE_ID, 

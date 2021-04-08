@@ -122,6 +122,8 @@ export class AuthOdooService {
 					console.log(err, 'Error get_user');
 
 				} else {
+
+					
 					if (value[0].classification === 'custumer') {
 						if (knownTypes[value[0].image_1920[0]]) {
 							usuario.avatar = knownTypes[value[0].image_1920[0]] + value[0].image_1920;
