@@ -472,7 +472,7 @@ export class TaskOdooService {
 				} else {
 					task.id_string = value[0]['name'];
 					task.notificationNewSo = true;
-					task.title = "Servicio de Fontanería"
+					task.type = "Servicio de Fontanería";
 					pilaSolicitudes.insertar(task);
 
 					notificationNewSoClient$.next(true);

@@ -22,6 +22,7 @@ export class RegismapaPage implements OnInit {
 	numero: string = '';
 	calle: string = '';
 	localizar: boolean = false;
+	zoom = 2;
 
 	constructor(
 		private Serv: ObtSubSService,
@@ -47,8 +48,7 @@ export class RegismapaPage implements OnInit {
 
     setTimeout(() => {
 			document.getElementById('map-parent').style.width = '100%';
-      console.log("resizing");
-		}, 50);
+      		}, 50);
 		
     this.ruta = this.datos.getruta();
 
@@ -74,6 +74,7 @@ this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'bac
 				if (status === 'OK') {
 					this.lat = results[0].geometry.location.lat();
 					this.lng = results[0].geometry.location.lng();
+					this.zoom = 18;
 				} else {
 					console.log('error');
 					alert('Geocode was not successful for the following reason: ' + status);
@@ -151,6 +152,7 @@ this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'bac
 					}
 					this.lat = position.coords.latitude;
 					this.lng = position.coords.longitude;
+					this.zoom = 18;
 
 					if (this.localizar) {
 						this.marcadores = [];

@@ -21,6 +21,10 @@ export class MaparesumenPage implements OnInit {
 
   ngOnInit() {
 
+    setTimeout(() => {
+			document.getElementById('map-parent').style.width = '100%';
+      		}, 50);
+
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/resumen', {animated: true, animationDirection: 'back' }) ;
         

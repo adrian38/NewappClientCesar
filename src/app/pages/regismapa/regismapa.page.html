@@ -1,11 +1,9 @@
 <ion-content>
-  <agm-map id = "map-parent" (mapClick)="agregarMarcador($event)" [latitude]="lat" [longitude]="lng" [zoom]=18 mapTypeId='hybrid'
-    [disableDefaultUI]=true>
+  <agm-map id="map-parent" (mapClick)="agregarMarcador($event)" [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+    mapTypeId='hybrid' [disableDefaultUI]=true>
     <agm-marker *ngFor="let marcador of marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng">
-
     </agm-marker>
   </agm-map>
-
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="getMyLocation(true)">
     <ion-fab-button>
       <ion-icon name="location"></ion-icon>

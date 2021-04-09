@@ -49,7 +49,7 @@ export class ObtSubSService {
 	//-----------------------------------------------------------
 
     sub_servicio_activo:string="";
-
+	detalles:boolean=false;
 
    //-----------------------------------------------------------
 
@@ -398,4 +398,15 @@ return  this.sub_servicio_activo;
 /* setfotovacia(f){
   this.fotovacia=f
 }*/
+
+set_Detalles(temp:boolean){
+	console.log("detalles true");
+this.detalles=temp;
+}
+
+get_Detalles(){
+	
+	return this.detalles;
+}
+
 }

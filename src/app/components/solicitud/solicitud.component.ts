@@ -8,7 +8,7 @@ import { TaskModel } from 'src/app/models/task.model';
 })
 export class SolicitudComponent implements OnInit {
 
-  @Input() Solicitud: TaskModel = null; 
+  @Input() Solicitud: TaskModel ; 
 
   titulo:string="";
   constructor() { }

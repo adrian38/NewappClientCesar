@@ -94,3 +94,4 @@ export class TituloPage implements OnInit {
   this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
    
 }
+}

@@ -51,7 +51,7 @@ export class Tab1Page implements OnInit {
 	}
 
 	ngOnInit(): void {
-		
+		this.subServ.set_Detalles(false);
 		this._taskOdoo.setTab1In();
 
 		this.platform.backButton.subscribeWithPriority(10, () => {

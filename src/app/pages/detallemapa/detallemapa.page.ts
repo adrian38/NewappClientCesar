@@ -29,14 +29,29 @@ export class DetallemapaPage implements OnInit {
   }
 
   ngOnInit() {
+
+    
+
+    setTimeout(() => {
+			document.getElementById('map-parent').style.width = '100%';
+      		}, 50);
  
     this.ruta=this.datos.getruta();
-    console.log("ruta",this.ruta);
+
+    if(this.ruta=="/ofertas")
+
+        {
+          this.datos.set_Detalles(true);
+        }
+    
 
     
       this.platform.backButton.subscribeWithPriority(10, () => {
+        
         if(this.ruta=="/ofertas")
+
         {
+          
         this.navCtrl.navigateRoot('ofertas', {animated: true, animationDirection: 'back' }) ;
       }
       else{
@@ -48,17 +63,18 @@ export class DetallemapaPage implements OnInit {
         }); 
     
     
- 
-
-
-
-
-
     this.lat=Number(this.task.address.latitude);
     this.lng=Number(this.task.address.longitude);
     const nuevoMarcador = new Marcador( this.lat, this.lng );
 
     this.marcadores.push( nuevoMarcador ); 
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    
+    
   }
 
 }

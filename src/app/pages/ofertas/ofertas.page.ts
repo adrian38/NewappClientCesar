@@ -1,6 +1,13 @@
 import { Component, OnInit, NgZone, ViewChild, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import {NavController,Platform,IonSegment,LoadingController,ModalController,AlertController} from '@ionic/angular';
+
+import {
+	NavController,
+	Platform,
+	IonSegment,
+	LoadingController,
+	ModalController,
+	AlertController
+} from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -8,11 +15,11 @@ import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { MessageService } from 'primeng/api';
-import { LightboxModule } from 'primeng/lightbox';
+
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 import { ImagenmodalPage } from '../imagenmodal/imagenmodal.page';
-import { Modals } from '@capacitor/core';
+
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
@@ -49,16 +56,11 @@ export class OfertasPage implements OnInit, OnDestroy {
 	ofertaDisponible = false;
 	numero_tarjeta: string = '';
 	datos: string = '';
-
 	display: boolean = false;
 	displayAceptar: number;
 	fotoZoom: boolean = false;
 	loading: HTMLIonLoadingElement = null;
 	loading1: any;
-
-	/*  displayBasic2;
-  images:any[];
-  activeIndex ;  */
 
 	imagenes: string[] = [];
 
@@ -87,16 +89,14 @@ export class OfertasPage implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.screenOrientation.lock('portrait');
-		console.log('oferta1');
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
-			console.log('oferta2');
 			this.navCtrl.navigateRoot('/tabs/tab1', { animated: true, animationDirection: 'back' });
 		});
 
 		this.user = this._authOdoo.getUser();
 		this.task = this._taskOdoo.getTaskCesar();
-		console.log('tarea actual', this.task);
+
 		this.offersList = [];
 		this.userType = this.user.type;
 
@@ -104,10 +104,17 @@ export class OfertasPage implements OnInit, OnDestroy {
 		this.deshabilitar2();
 		this.deshabilitar3();
 
-		setTimeout(() => {
-			console.log("ejecutando marcar 'contratados'");
-			this.segment.value = 'ofertas';
-		}, 100);
+		if (!this.subServ.get_Detalles()) {
+			
+			setTimeout(() => {
+				this.segment.value = 'ofertas';
+			}, 100);
+		} else {
+			
+			setTimeout(() => {
+				this.segment.value = 'detalle';
+			}, 100);
+		}
 
 		this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
 		this.subscriptionOffertCancelled = this.notificationOffertCancelled$.subscribe(
@@ -150,10 +157,9 @@ export class OfertasPage implements OnInit, OnDestroy {
 
 						this.showSubCard = true;
 						this.ofertaDisponible = false;
-						console.log('12', this.offersList);
 					} else {
 						// this.showSubCard = false;
-						console.log('No tienes Ofertas');
+
 						this.messageService.add({
 							key: 'c',
 							severity: 'error',
@@ -169,20 +175,19 @@ export class OfertasPage implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
+		
 		this.subscriptioNewPoSuplier.unsubscribe();
 		this.subscriptionOffersList.unsubscribe();
 		this.subscriptionOffertCancelled.unsubscribe();
-		console.log('cerrado oferta');
 	}
 
 	segChange(event) {
 		this.valorSegment = event.detail.value;
-		
 
 		if (this.valorSegment === 'ofertas') {
 			this.veroferta = true;
 			this.verdetalles = false;
-	
+
 			///// Sacar cargando
 			this.presentLoading();
 			this._taskOdoo.requestOffersForTask(this.task.id_string);
@@ -192,46 +197,39 @@ export class OfertasPage implements OnInit, OnDestroy {
 			this.veroferta = false;
 			this.verdetalles = true;
 			this.displayAceptar = -1;
-		
 		}
 	}
 
 	openChat(id) {
-		console.log(id);
 		this.displayAceptar = -1;
 		this._chatOdoo.setIdPo(id);
 		this.navCtrl.navigateRoot([ '/chat' ], { animated: true, animationDirection: 'back' });
-		
 	}
 
 	verubicacion() {
-		console.log('lati', this.task.address.latitude);
-		console.log('long', this.task.address.longitude);
 		this.subServ.setruta('/ofertas');
 		this.navCtrl.navigateRoot('/detallemapa', { animated: true, animationDirection: 'back' });
 	}
 
 	showDialog(i) {
-		console.log(i);
 		this.displayAceptar = -1;
 		this.subServ.setposicion(i);
 
 		this.task = this.offersList[i];
 		this._taskOdoo.setTaskCesar(this.task);
-		console.log(this.task);
 
 		this.display = true;
 	}
 
-
-  //////////////////////////////Arreglar Cancelacion
+	//////////////////////////////Arreglar Cancelacion
 	cancelSOclient() {
-		
 		this.displayAceptar = -1;
-		console.log('CancelarPo',this.task.id);
+		console.log('CancelarPo', this.task.id);
 		this._taskOdoo.cancelPOsuplier(this.task.id);
 		//this.isLoading3 = true;
 	}
+
+	////////////////////////////////////////
 	showDialogAceptar(id) {
 		console.log('aki', id);
 		if (this.desplegar == false) {
@@ -248,7 +246,7 @@ export class OfertasPage implements OnInit, OnDestroy {
 			message: 'Espere...'
 			//duration: 2000
 		});
-		console.log('Loading Ok');
+
 		return this.loading.present();
 	}
 
@@ -276,40 +274,26 @@ export class OfertasPage implements OnInit, OnDestroy {
 	deshabilitar1() {
 		if (this.task.photoNewTaskArray[0] == undefined) {
 			this.habilitar1 = true;
-			console.log('f1', this.task.photoNewTaskArray[0]);
-			console.log('h1', this.habilitar1);
 		} else {
 			this.habilitar1 = false;
-			console.log('f1', this.task.photoNewTaskArray[0]);
-			console.log('h1', this.habilitar1);
 		}
 	}
 
 	deshabilitar2() {
 		if (this.task.photoNewTaskArray[1] == undefined) {
 			this.habilitar2 = true;
-			console.log('f2', this.task.photoNewTaskArray[1]);
-			console.log('h2', this.habilitar2);
 		} else {
 			this.habilitar2 = false;
-			console.log('f2', this.task.photoNewTaskArray[1]);
-			console.log('h2', this.habilitar2);
 		}
 	}
 
 	deshabilitar3() {
 		if (this.task.photoNewTaskArray[2] == undefined) {
 			this.habilitar3 = true;
-			console.log('f3', this.task.photoNewTaskArray[2]);
 		} else this.habilitar3 = false;
-		console.log('f3', this.task.photoNewTaskArray[2]);
-		console.log('h3', this.habilitar3);
 	}
 
 	pagar(id, oring_id) {
-		console.log(this.numero_tarjeta);
-
-		console.log(this.numero_tarjeta.charAt(0));
 		/* let d1=this.numero_tarjeta.charAt(0); */
 		if (this.numero_tarjeta.charAt(0) == '4') {
 			console.log('visa');
@@ -319,9 +303,7 @@ export class OfertasPage implements OnInit, OnDestroy {
 			/* this._taskOdoo.acceptProvider(993, 0); */
 
 			this._taskOdoo.acceptProvider(id, oring_id);
-			console.log('this.task.id', id);
-			console.log('this.task.origin_id', oring_id);
-			console.log('this.task.client', this.task.client_id);
+
 			setTimeout(() => {
 				this.loading1.dismiss();
 				this.presentAlertConfirm();
@@ -357,17 +339,15 @@ export class OfertasPage implements OnInit, OnDestroy {
 		let suma_par = 0;
 		for (let i = 0; i < this.numero_tarjeta.length; i += 2) {
 			numPimpares[i] = parseInt(this.numero_tarjeta.charAt(i)) * 2;
-			console.log('int', numPimpares[i]);
+
 			numPimpares[i] = this.numero_simple(numPimpares[i]);
-			console.log('paso2', numPimpares[i]);
+
 			suma_impar += numPimpares[i];
-			console.log('sumaimpar', suma_impar);
 		}
 		for (let p = 1; p < this.numero_tarjeta.length; p += 2) {
 			numPpares[p] = parseInt(this.numero_tarjeta.charAt(p));
-			console.log('pares', numPpares[p]);
+
 			suma_par += numPpares[p];
-			console.log('sumapar', suma_par);
 		}
 
 		var dif = (suma_par + suma_impar) % 10;
@@ -409,7 +389,7 @@ export class OfertasPage implements OnInit, OnDestroy {
 			message /* 'Realizando transaccion', */
 			/* duration: 2000 */
 		});
-		console.log('Loading Ok');
+
 		return this.loading1.present();
 	}
 
@@ -425,8 +405,6 @@ export class OfertasPage implements OnInit, OnDestroy {
 					cssClass: 'secondary',
 					handler: () => {
 						this.navCtrl.navigateRoot('/tabs/tab1', { animated: true, animationDirection: 'back' });
-
-						console.log('Confirm Cancel: blah');
 					}
 				}
 			]
