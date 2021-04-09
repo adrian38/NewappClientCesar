@@ -75,7 +75,7 @@ goto(){
 
       
 
-  this.navCtrl.navigateRoot('/horarios', {animated: true, animationDirection: 'forward' }) ;
+  this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
    
 }
 

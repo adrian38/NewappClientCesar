@@ -1,0 +1,45 @@
+<app-header headerText="Solicitudes" [fillBackground]="true"
+[expandHeader]="true" expandText="{{servicio}}" [cerrar]="true" [atras]="true" [titulo]="true"
+(clickedClose)="cerrarsolicitud()"></app-header>
+
+
+
+<ion-content>
+
+  <div id="barra" style="margin-top: 40px;">
+    <ion-label >¿Dispone de los materiales?</ion-label>
+    </div>
+    
+    
+    
+    
+    <ion-list style="margin-top: 20px;">
+    <ion-radio-group value="no">
+     
+    
+      <ion-item (click)="checkSiF()">
+        <ion-label>Si</ion-label>
+        <ion-radio slot="start" value="si"></ion-radio>
+      </ion-item>
+    
+      <ion-item (click)="checkNoF()">
+        <ion-label>No</ion-label>
+        <ion-radio slot="start" value="no"></ion-radio>
+      </ion-item>
+    
+      
+    </ion-radio-group>
+    </ion-list>
+
+    <ion-row >
+      <ion-col ></ion-col>
+      <ion-col> 
+        <ion-button id="boton" (click)="goto()"
+        >
+        Siguiente
+      </ion-button> </ion-col>
+      
+      <ion-col></ion-col>
+    </ion-row>
+
+</ion-content>
