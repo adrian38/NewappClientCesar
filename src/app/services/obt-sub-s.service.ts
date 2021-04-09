@@ -397,4 +397,5 @@ return  this.sub_servicio_activo;
   }
 /* setfotovacia(f){
   this.fotovacia=f
+}*/
 }

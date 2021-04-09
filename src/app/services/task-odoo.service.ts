@@ -328,7 +328,7 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error cancelPOsuplierSelected');
 				} else {
-					console.log(value);
+					
 					notificationPoCancelled$.next([ id ]);
 				}
 			});
@@ -472,6 +472,7 @@ export class TaskOdooService {
 				} else {
 					task.id_string = value[0]['name'];
 					task.notificationNewSo = true;
+					task.title = "Servicio de Fontanería"
 					pilaSolicitudes.insertar(task);
 
 					notificationNewSoClient$.next(true);

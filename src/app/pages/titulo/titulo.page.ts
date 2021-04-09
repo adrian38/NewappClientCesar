@@ -9,36 +9,31 @@ import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 	styleUrls: [ './titulo.page.scss' ]
 })
 export class TituloPage implements OnInit {
-	titulo: string = '';
-	checkSi: boolean = false;
-	checkNo: boolean = true;
-	servicio: string = '';
-	task: TaskModel;
+	titulo:string="";
+	checkSi:boolean=false;
+	checkNo:boolean=true; 
+	validado:boolean=true;
+	servicio:string="";
+	task:TaskModel;
 
 	constructor(
 		private datos: ObtSubSService,
 		public navCtrl: NavController,
 		private platform: Platform,
 		public alertCtrl: AlertController
-	) {}
+	) { }
 
-  titulo:string="";
-  checkSi:boolean=false;
-  checkNo:boolean=true; 
-  validado:boolean=true;
-  servicio:string="";
-  task:TaskModel;
 
-		this.titulo = this.datos.gettitulo();
 
-		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.navCtrl.navigateRoot('/tarea', { animated: true, animationDirection: 'back' });
-		});
-	}
+		
+	
 
   ngOnInit() {
-    this.servicio=this.datos.getServ();
-    console.log(this.servicio);
+
+	
+
+    /* this.servicio=this.datos.getServ();
+    console.log(this.servicio); */
     /* this.titulo=this.datos.gettitulo(); */
 
     this.titulo=this.datos.get_sub_servicio_activo();
@@ -52,13 +47,20 @@ export class TituloPage implements OnInit {
       
     }
     
+	this.titulo = this.datos.gettitulo();
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
+		this.platform.backButton.subscribeWithPriority(10, () => {
+			this.navCtrl.navigateRoot('/tarea', { animated: true, animationDirection: 'back' });
+		});
+
+    /* this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
         
-      });
+      }); */
 
 		this.navCtrl.navigateRoot('/horarios', { animated: true, animationDirection: 'forward' });
+
+	
 	}
 
 	async presentAlert() {
@@ -96,7 +98,6 @@ export class TituloPage implements OnInit {
 		this.datos.setcod_postal('');
 		this.datos.setnumero('');
 		this.datos.setportal('');
-
 		this.datos.setcomentario('');
 	}
 }
