@@ -113,6 +113,10 @@ const routes: Routes = [
     path: 'option',
     loadChildren: () => import('./pages/option/option.module').then( m => m.OptionPageModule)
   },
+  {
+    path: 'materiales',
+    loadChildren: () => import('./pages/materiales/materiales.module').then( m => m.MaterialesPageModule)
+  },
 
 
  

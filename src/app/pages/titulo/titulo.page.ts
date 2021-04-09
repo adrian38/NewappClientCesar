@@ -91,13 +91,6 @@ export class TituloPage implements OnInit {
 	borrar_campos() {
 		this.datos.setTitulo('');
 
-		this.datos.setcalle('');
-		this.datos.setpuerta('');
-		this.datos.setpiso('');
-		this.datos.setescalera('');
-		this.datos.setcod_postal('');
-		this.datos.setnumero('');
-		this.datos.setportal('');
-		this.datos.setcomentario('');
-	}
+  this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
+   
 }
