@@ -70,3 +70,70 @@ ion-button{
     
 
 }
+
+//------------
+
+.logo_principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 50%;
+    padding-bottom: 50px;
+}
+
+.welcome {
+/*   color: var(--ion-color-orange);
+  font: normal 22px 'Helvetica-Md', sans-serif; */
+  text-align: left;
+}
+
+.container {
+  height: 100%;
+  width: 100% !important;
+  padding: 0 55px 0 55px !important;
+}
+
+.btn_init_section {
+  --border-radius: 5px;
+  width: 100% !important;
+  min-width: 160px !important;
+  height: 26px;
+  font: normal 12px 'Helvetica-Md', sans-serif;
+}
+
+.div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 52px;;
+  width: 100%;
+  min-width: 160px;
+}
+
+.forgotten_pass {
+  color: rgb(42, 176, 185);
+  text-decoration: none;
+  text-align: left;
+  font: normal 12px sans-serif, verdana;
+  min-width: 160px !important;
+}
+
+.forgotten_pass_div {
+  width: 100% !important;
+  height: 40px !important;
+}
+
+.custom_input {
+  border: none;
+  border-radius: 5px !important;
+
+  width: 100% !important;
+  --padding-top: 7px;
+  --padding-start: 15px;
+  --padding-bottom: 7px;
+  --padding-end: 15px;
+  text-align: left;
+  font-family: 'Helvetica-Md', sans-serif;
+  font-size: 11px !important;
+  outline: none !important;
+}

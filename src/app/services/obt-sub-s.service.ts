@@ -48,10 +48,16 @@ export class ObtSubSService {
 
 	//-----------------------------------------------------------
 
-	i: number = 0;
-	idString: String;
-	private subServicioActual: string;
-	/* 
+    sub_servicio_activo:string="";
+
+
+   //-----------------------------------------------------------
+
+    
+    i:number=0;
+    idString:String;
+    private subServicioActual:string;
+/* 
     foto0:string = '../../../assets/fotoadd.png'; */
 	fotoRegistro: string = '../../../assets/registro.svg';
 
@@ -382,7 +388,13 @@ export class ObtSubSService {
 		this.nombre = v1;
 	}
 
-	getDatoN() {
-		return this.nombre;
-	}
+set_sub_servicio_activo(sub){
+this.sub_servicio_activo=sub;
+}
+
+get_sub_servicio_activo(){
+return  this.sub_servicio_activo;
+  }
+/* setfotovacia(f){
+  this.fotovacia=f
 }

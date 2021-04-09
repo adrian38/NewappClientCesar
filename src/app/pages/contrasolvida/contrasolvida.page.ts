@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-contrasolvida',
@@ -8,9 +8,14 @@ import { NavController } from '@ionic/angular';
 })
 export class ContrasolvidaPage implements OnInit {
 
-  constructor(public navCtrl:NavController) { }
+  constructor(public navCtrl:NavController,
+              private platform: Platform) { }
 
   ngOnInit() {
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/login', {animated: true, animationDirection: 'back' }) ;
+    });
   }
 
   enviar(){

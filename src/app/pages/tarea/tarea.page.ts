@@ -38,9 +38,11 @@ export class TareaPage implements OnInit {
 
   seleccionado(i){
     this.Serv.setServ(this.servicios_activos[i]); 
-   
-    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
+    
+    this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'forward' }) ;
 
+    /* this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'forward' }) ;
+ */
   }
 
   async presentAlert() {

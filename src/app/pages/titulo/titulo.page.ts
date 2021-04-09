@@ -22,8 +22,12 @@ export class TituloPage implements OnInit {
 		public alertCtrl: AlertController
 	) {}
 
-	ngOnInit() {
-		this.servicio = this.datos.getServ();
+  titulo:string="";
+  checkSi:boolean=false;
+  checkNo:boolean=true; 
+  validado:boolean=true;
+  servicio:string="";
+  task:TaskModel;
 
 		this.titulo = this.datos.gettitulo();
 
@@ -32,21 +36,27 @@ export class TituloPage implements OnInit {
 		});
 	}
 
-	checkSiF() {
-		this.checkNo = false;
-		this.checkSi = true;
-	}
-	checkNoF() {
-		this.checkNo = true;
-		this.checkSi = false;
-	}
-	cerrarsolicitud() {
-		this.presentAlert();
-	}
+  ngOnInit() {
+    this.servicio=this.datos.getServ();
+    console.log(this.servicio);
+    /* this.titulo=this.datos.gettitulo(); */
 
-	goto() {
-		this.datos.setTitulo(this.titulo);
-		this.datos.setUtiles(this.checkSi);
+    this.titulo=this.datos.get_sub_servicio_activo();
+    if(this.titulo==""){
+      this.validado=true;
+
+
+    }
+    else{
+      this.validado=false;
+      
+    }
+    
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
+        
+      });
 
 		this.navCtrl.navigateRoot('/horarios', { animated: true, animationDirection: 'forward' });
 	}

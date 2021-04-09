@@ -12,8 +12,8 @@
     background-color: rgb(49 ,49 ,57);
 }
 #logo{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-top: 13px;
     margin-left: 6px;
     
@@ -182,5 +182,14 @@ ion-input:focus-within{
 ion-item{
     --inner-padding-end: 0px;
     --padding-start:0px
+}
+
+#notificacion{
+    width: 25px;
+    height: 25px;
+    margin-top: 20px;
+    margin-right: 20px;  
+    
+  
 }
 
