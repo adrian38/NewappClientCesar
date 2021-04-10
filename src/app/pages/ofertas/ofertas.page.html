@@ -69,12 +69,66 @@
 
 
   <div *ngIf="veroferta">
-    
-    <div *ngIf="ofertaDisponible"
-          class="container center-h center-v">
-      <h4 style="color:lightgray;" >No hay ofertas</h4>
+
+
+    <div *ngIf="ofertaDisponible">
+
+    <ion-row style="margin-top: 75px;">
+      <ion-col size=4></ion-col>
+      <ion-col size=4 style="text-align: center;">
+        <ion-row>
+          <div>
+            <img style="width: 85%;height: 85%;" src="../../../assets/vaio.svg">
+          </div>
+        </ion-row>
+      </ion-col>
+      <ion-col size=4></ion-col>
+    </ion-row>
+
+    <ion-row >
+      <ion-col size=3></ion-col>
+      <ion-col size=6 style="text-align: center;">
       
-    </div>
+          <h4 style="color:lightgray;margin-top: 0px;" >No hay ofertas</h4>
+       
+      </ion-col>
+      <ion-col size=3></ion-col>
+    </ion-row>
+
+
+
+    
+
+    
+
+
+</div>
+    
+<!--     <div *ngIf="ofertaDisponible"
+          class="container center-h center-v">
+
+          <ion-row >
+            <ion-col size=4></ion-col>
+            <ion-col size=4 style="text-align: center;">
+              <div>
+                <img style="width: 70%;height: 70%;" src="../../../assets/vaio.svg">
+              </div>
+            </ion-col>
+            <ion-col size=4></ion-col>
+          </ion-row>
+
+          <ion-row >
+            <ion-col size=4></ion-col>
+            <ion-col size=4 style="text-align: center;">
+              <h4 style="color:lightgray;" >No hay ofertas</h4>
+            </ion-col>
+            <ion-col size=4></ion-col>
+          </ion-row>
+
+          
+      
+      
+    </div> -->
 
  <div *ngIf="showSubCard">
  

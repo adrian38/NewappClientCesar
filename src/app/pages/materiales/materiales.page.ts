@@ -34,6 +34,8 @@ export class MaterialesPage implements OnInit {
       this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
         
       });
+
+
   }
 
   checkSiF(){

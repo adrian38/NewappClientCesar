@@ -36,6 +36,7 @@ export class OptionPage implements OnInit {
   seleccionado(i){
     console.log(i);
     this.datos.set_sub_servicio_activo(i);
+    this.datos.setTitulo(i);
     this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
  
   }

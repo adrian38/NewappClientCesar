@@ -71,7 +71,7 @@ export class TituloPage implements OnInit {
 
 goto(){
   this.datos.setTitulo(this.titulo);
-  this.datos.setUtiles(this.checkSi);
+/*   this.datos.setUtiles(this.checkSi); */
 
       
 

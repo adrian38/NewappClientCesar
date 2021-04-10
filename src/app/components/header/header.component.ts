@@ -30,13 +30,19 @@ export class HeaderComponent implements OnInit {
     this.clickedClose.emit();
   }
   backEvent(){
+
+    
+    if(this._location.isCurrentPathEqualTo('/materiales')){
+      this.navCon.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
+    
+    }
     if(this._location.isCurrentPathEqualTo('/titulo')){
-      this.navCon.navigateRoot('/tarea', {animated: true, animationDirection: 'back' }) ;
+      this.navCon.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
     
     }
 
     if(this._location.isCurrentPathEqualTo('/horarios')){
-      this.navCon.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+      this.navCon.navigateRoot('/materiales', {animated: true, animationDirection: 'back' }) ;
     
     }
 
