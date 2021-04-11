@@ -4,8 +4,8 @@ import { Observable, Subject } from 'rxjs';
 let jayson = require('../../../node_modules/jayson/lib/client/');
 let jaysonServer = {
 	//host: '192.168.0.102',
-	host: '192.168.0.106',
-	//host: 'todoenunapp.com',
+	//host: '192.168.0.106',
+	host: 'todoenunapp.com',
 
 	port: '8069',
 	db: 'demo',
@@ -166,6 +166,7 @@ export class AuthOdooService {
 		);
 	}
 
+
 	//////////////////////////////////////////////////
 
 	getUser$(): Observable<UsuarioModel> {
@@ -176,5 +177,5 @@ export class AuthOdooService {
 		return userInfo;
 	}
 
-	
+
 }

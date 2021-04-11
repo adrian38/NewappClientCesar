@@ -58,22 +58,43 @@ export class TituloPage implements OnInit {
         
       }); */
 
-		this.navCtrl.navigateRoot('/horarios', { animated: true, animationDirection: 'forward' });
-
+		
 	
 	}
 
 	async presentAlert() {
 		const alert = await this.alertCtrl.create({
-			cssClass: 'my-custom-class',
-			header: 'Alerta',
-			message: 'Desea cancelar la solicitud',
+		  cssClass: 'my-custom-class',
+		  header: 'Alerta',
+		  message: 'Desea cancelar la solicitud',
+		 
+		  buttons: [
+			{
+			  text: 'Cancelar',
+			  role: 'cancel',
+			  cssClass: 'secondary',
+			  handler: (blah) => {
+				console.log('Confirm Cancel: blah');
+			  }
+			}, {
+			  text: 'Aceptar',
+			  handler: (datos) => {
+				this.borrar_campos();
+				this.navCtrl.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;
+		  
+			  }
+			}
+		  ]
+		});
+	  
+		await alert.present();
+	  }  
 
 goto(){
   this.datos.setTitulo(this.titulo);
 /*   this.datos.setUtiles(this.checkSi); */
 
-		await alert.present();
+	
 	}
 	borrar_campos() {
 		this.datos.setTitulo('');
@@ -81,4 +102,7 @@ goto(){
   this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
    
 }
+
+		
+	
 }
