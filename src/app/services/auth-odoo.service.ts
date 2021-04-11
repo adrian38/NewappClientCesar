@@ -7,6 +7,7 @@ let jaysonServer = {
 	//host: '192.168.0.106',
 	host: 'todoenunapp.com',
 
+	
 	port: '8069',
 	db: 'demo',
 	username: '',
