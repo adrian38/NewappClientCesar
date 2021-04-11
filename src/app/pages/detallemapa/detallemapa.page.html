@@ -1,19 +1,15 @@
-
-
 <ion-content>
-  <agm-map  [latitude]="lat" [longitude]="lng" [zoom]=15 mapTypeId='hybrid' [disableDefaultUI]=true>
+  <agm-map id="map-parent" [latitude]="lat" [longitude]="lng" [zoom]=18 mapTypeId='hybrid' [disableDefaultUI]=true>
     <agm-marker *ngFor="let marcador of marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng">
 
       <agm-info-window>
-          <strong>Ubicacion</strong>
-          <p>
-              seleccionada
-          </p>
-
-          
+        <strong>Ubicacion</strong>
+        <p>
+          seleccionada
+        </p>
 
       </agm-info-window>
 
-  </agm-marker>
+    </agm-marker>
   </agm-map>
 </ion-content>

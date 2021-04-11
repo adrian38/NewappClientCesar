@@ -1,5 +1,5 @@
 import { Component, OnInit,NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
@@ -16,7 +16,7 @@ import { Location } from '@angular/common';
 })
 export class LoginPage implements OnInit {
 
-  connected$: Observable<boolean>;
+  
   usuario:UsuarioModel;
   usuario$:Observable<UsuarioModel>
 
@@ -25,6 +25,8 @@ export class LoginPage implements OnInit {
   islog:boolean
 
   loading:HTMLIonLoadingElement = null;
+
+  subscriptionUsuario: Subscription;
 
   constructor(private ngZone: NgZone,
     private _authOdoo:AuthOdooService,
@@ -53,17 +55,22 @@ ngOnInit() {
 
   this.usuario$ = this._authOdoo.getUser$();
   
-  this.usuario$.subscribe(user => {
+  this.subscriptionUsuario = this.usuario$.subscribe(user => {
     this.ngZone.run( () => {
       this.usuario = user;
-   /*    sessionStorage.setItem('user', JSON.stringify(user));
-      this.usuario = JSON.parse(sessionStorage.getItem('user')); */
-       if(this.loading){
+          if(this.loading){
         this.loading.dismiss();
       }
       this.checkUser();
     });
   });
+}
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  this.subscriptionUsuario.unsubscribe();
+  
 }
 
 checkUser(){

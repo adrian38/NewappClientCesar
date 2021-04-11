@@ -1,118 +1,183 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Marcador } from 'src/app/models/marcador.class';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-import { Geolocation} from '@capacitor/core';
 import { NavController, Platform } from '@ionic/angular';
+import { Capacitor, Plugins } from '@capacitor/core';
+import { LocationService } from 'src/app/services/location.service';
+import { MapsAPILoader } from '@agm/core';
+const { Geolocation, Toast } = Plugins;
+
 @Component({
-  selector: 'app-mapa',
-  templateUrl: './mapa.page.html',
-  styleUrls: ['./mapa.page.scss'],
+	selector: 'app-mapa',
+	templateUrl: './mapa.page.html',
+	styleUrls: [ './mapa.page.scss' ]
 })
 export class MapaPage implements OnInit {
+	marcadores: Marcador[] = [];
+	lat = 19.29095;
+	lng = -99.653015;
+	coordenadas: boolean = false;
+	ruta: string = '';
+	watchId: any;
+	numero: string = '';
+	calle: string = '';
+	localizar: boolean = false;
+	zoom = 2;
 
+	constructor(
+		private Serv: ObtSubSService,
+		public toastController: ToastController,
+		private platform: Platform,
+		public navCtrl: NavController,
+		private datos: ObtSubSService,
+		private mapsAPILoader: MapsAPILoader,
+		public ngZone: NgZone,
+		private locationService: LocationService
+	) {
+		this.calle = this.datos.getcalle().trim();
 
+		if (this.calle) {
+			this.numero = this.datos.getnumero();
+			this.getLocaleDirection();
+		} else {
+			this.getMyLocation(false);
+		}
 
+		/*  this.calle= this.datos.getcalle().trim(),"calle";
+              this.numero=this.datos.getnumero(); */
+	}
+	ngOnInit() {
+		setTimeout(() => {
+			document.getElementById('map-parent').style.width = '100%';
+		}, 50);
 
-  marcadores: Marcador[] = [];
+		this.ruta = this.datos.getruta();
 
-  title = 'My first AGM project';
-  
-  lat :number;
-  lng :number; 
-coordenadas:boolean=false;
-ruta:string="";
+		this.platform.backButton.subscribeWithPriority(10, () => {
+			if (this.ruta == 'datospersonales') {
+				this.navCtrl.navigateRoot('/datospersonales', { animated: true, animationDirection: 'back' });
+			} else {
+				this.navCtrl.navigateRoot('/registro', { animated: true, animationDirection: 'back' });
+			}
+		});
 
-  constructor(private Serv: ObtSubSService,
-              public toastController: ToastController,
-              private platform: Platform,
-              public navCtrl:NavController,
-              private datos:ObtSubSService
-             ) {
-              }
+		/* this.platform.backButton.subscribeWithPriority(10, () => {
+            this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;
+            
+            }); */
+	}
 
-    ngOnInit() {
+	getLocaleDirection() {
+		this.mapsAPILoader.load().then(() => {
+			const geocoder = new google.maps.Geocoder();
+			const address = 'España' + ' ' + this.calle + ' ' + this.numero;
+			geocoder.geocode({ address: address }, (results, status) => {
+				if (status === 'OK') {
+					this.lat = results[0].geometry.location.lat();
+					this.lng = results[0].geometry.location.lng();
+					this.zoom = 18;
+				} else {
+					console.log('error');
+					alert('Geocode was not successful for the following reason: ' + status);
+				}
+			});
+		});
+	}
 
-      this.ruta=this.datos.getruta();
-      console.log("ruta",this.ruta);
-  
-      
-        this.platform.backButton.subscribeWithPriority(10, () => {
-          if(this.ruta=="datospersonales")
-          {
-          this.navCtrl.navigateRoot('/datospersonales', {animated: true, animationDirection: 'back' }) ;
-        }
-        else{
-      
-          this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
-        
-  
-        }
-          }); 
+	agregarMarcador(evento) {
+		this.marcadores = [];
+		this.Serv.setLatitud(evento.coords.lat);
+		this.Serv.setLongitud(evento.coords.lng);
+		const coords: { lat: number; lng: number } = evento.coords;
+		const nuevoMarcador = new Marcador(coords.lat, coords.lng);
+		this.marcadores.push(nuevoMarcador);
+		this.presentToast();
+		this.Serv.setcoordenada(true);
+	}
 
-          this.getLocation();
+	async presentToast() {
+		const toast = await this.toastController.create({
+			message: 'Marcador agregado',
+			duration: 2000
+		});
+		toast.present();
+	}
 
-  } 
+	async getMyLocation(marker: Boolean) {
+		if (marker) {
+			this.localizar = true;
+		}
 
-  
-  agregarMarcador( evento ) {
-    this.marcadores=[];
-    console.log(evento);
-    this.Serv.setLatitud(evento.coords.lat);
-    this.Serv.setLongitud(evento.coords.lng);
-    
-    const coords: { lat: number, lng: number } = evento.coords;
+		const hasPermission = await this.locationService.checkGPSPermission();
+		if (hasPermission) {
+			if (Capacitor.isNative) {
+				const canUseGPS = await this.locationService.askToTurnOnGPS();
+				this.postGPSPermission(canUseGPS);
+			} else {
+				this.postGPSPermission(true);
+			}
+		} else {
+			const permission = await this.locationService.requestGPSPermission();
+			if (permission === 'CAN_REQUEST' || permission === 'GOT_PERMISSION') {
+				if (Capacitor.isNative) {
+					const canUseGPS = await this.locationService.askToTurnOnGPS();
+					this.postGPSPermission(canUseGPS);
+				} else {
+					this.postGPSPermission(true);
+				}
+			} else {
+				await Toast.show({
+					text: 'User denied location permission'
+				});
+			}
+		}
+	}
 
-    const nuevoMarcador = new Marcador( coords.lat, coords.lng );
+	async postGPSPermission(canUseGPS: boolean) {
+		if (canUseGPS) {
+			this.watchPosition();
+		} else {
+			await Toast.show({
+				text: 'Please turn on GPS to get location'
+			});
+		}
+	}
 
-    this.marcadores.push( nuevoMarcador ); 
-    this.presentToast();
-    this.coordenadas=true;
-    this.Serv.setcoordenada(true);
+	async watchPosition() {
+		try {
+			this.watchId = Geolocation.watchPosition({}, (position, err) => {
+				this.ngZone.run(() => {
+					if (err) {
+						console.log('err', err);
+						return;
+					}
+					this.lat = position.coords.latitude;
+					this.lng = position.coords.longitude;
+					this.zoom = 18;
 
-  }
+					if (this.localizar) {
+						this.marcadores = [];
+						this.Serv.setLatitud(this.lat);
+						this.Serv.setLongitud(this.lng);
 
+						const nuevoMarcador = new Marcador(this.lat, this.lng);
+						this.marcadores.push(nuevoMarcador);
+						this.presentToast();
+						this.Serv.setcoordenada(true);
+					}
 
-  borrarMarcador( i: number ) {
-    console.log(i);
-    this.marcadores.splice(i, 1);
-    this.presentToastBorrar();
-  }
+					this.clearWatch();
+				});
+			});
+		} catch (err) {
+			console.log('err', err);
+		}
+	}
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Marcador agregado',
-      duration: 2000
-    });
-    toast.present();
-  }
-
-  async presentToastBorrar() {
-    const toast = await this.toastController.create({
-      message: 'Marcador eliminado',
-      duration: 2000
-    });
-    toast.present();
-  }
-
-  async getLocation() {
-    const position = await Geolocation.getCurrentPosition();
-    this.lat = position.coords.latitude;
-    this.lng = position.coords.longitude;
-    console.log(this.lat);
-    console.log(this.lng);
-    this.Serv.setLatitud(this.lat);
-    this.Serv.setLongitud(this.lng);
-    this.marcadores=[];
-    const nuevoMarcador = new Marcador( this.lat, this.lng );
-    this.marcadores.push( nuevoMarcador ); 
-    this.Serv.setcoordenada(true);
-  }
-
-  irubicacion(){
-    this.getLocation();
-  }
-
-
- 
+	clearWatch() {
+		if (this.watchId != null) {
+			Geolocation.clearWatch({ id: this.watchId });
+		}
+	}
 }

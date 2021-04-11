@@ -6,7 +6,7 @@ import { Address, TaskModel } from '../models/task.model';
 import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
-import { Router, RouterState } from '@angular/router';
+import { Router } from '@angular/router';
 
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
@@ -328,7 +328,7 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error cancelPOsuplierSelected');
 				} else {
-					console.log(value);
+					
 					notificationPoCancelled$.next([ id ]);
 				}
 			});
@@ -382,8 +382,7 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error cancelSOclientSelected');
 				} else {
-					console.log('Exito eliminando SO');
-
+					
 					notificationSoCancelled$.next(SO_id);
 				}
 			});
@@ -440,8 +439,7 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error cancelSOclientSelected');
 				} else {
-					console.log('Exito eliminando SO');
-
+					
 					notificationError$.next(true);
 				}
 			});
@@ -474,6 +472,7 @@ export class TaskOdooService {
 				} else {
 					task.id_string = value[0]['name'];
 					task.notificationNewSo = true;
+					task.type = "Servicio de Fontanería";
 					pilaSolicitudes.insertar(task);
 
 					notificationNewSoClient$.next(true);
@@ -525,9 +524,8 @@ export class TaskOdooService {
 		};
 
 		let create_SO_attachment = function(SO_id: number) {
-			console.log(count);
-
-			let attachement = {
+		
+				let attachement = {
 				name: 'photoSolicitud_' + count + '.jpg',
 				datas: task.photoNewTaskArray[count],
 				type: 'binary',
@@ -565,7 +563,7 @@ export class TaskOdooService {
 					if (count >= 0) {
 						create_SO_attachment(SO_id);
 					} else {
-						console.log(count, 'confirmar so');
+						
 						confirmService(SO_id);
 					}
 				}
@@ -1100,6 +1098,7 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error search_avatar_provider');
 				} else {
+					
 					for (let resId of value) {
 						for (let task of tasksList) {
 							if (task.provider_id === resId.partner_id[0]) {
@@ -1183,6 +1182,8 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error get_photo_so');
 				} else {
+					
+					if (typeof value !== 'undefined' && value.length > 0) {
 					for (let resId of value) {
 						for (let task of tasksList) {
 							if (task.id === resId.res_id) {
@@ -1192,6 +1193,7 @@ export class TaskOdooService {
 							}
 						}
 					}
+				}
 					///
 					get_po_of_task();
 				}

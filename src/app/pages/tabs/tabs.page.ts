@@ -162,7 +162,7 @@ export class TabsPage {
 				}
 
 				this.subServ.setHistorialList(this.historialList);
-
+				console.log(this.solicitudesList);
 				this.loading.dismiss();
 			});
 		});
