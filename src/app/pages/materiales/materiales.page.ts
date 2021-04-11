@@ -30,7 +30,7 @@ export class MaterialesPage implements OnInit {
   ngOnInit() {
     this.servicio=this.datos.getServ();
 
-    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.platform.backButton.subscribeWithPriority(10, () => {
       this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
         
       });
