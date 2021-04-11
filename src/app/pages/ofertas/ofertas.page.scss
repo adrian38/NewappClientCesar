@@ -153,8 +153,9 @@ ion-input:focus-within{
 .container {
     background: rgb(255, 255, 255);
     color: rgb(49 ,49 ,57);;
-    margin: 0 0 1rem;
-    height: 10rem;
+    //margin: 0 0 1rem;
+ /*    height: 10rem; */
+ 
     display: flex;
     /* align-items por defecto tiene el valor `stretch` */
     align-items: start;

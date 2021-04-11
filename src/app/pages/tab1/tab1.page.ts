@@ -24,6 +24,7 @@ export class Tab1Page implements OnInit {
 	tab: String;
 	user: UsuarioModel;
 	loading: any;
+	solicitudVacia:boolean=true;
 
 	notificationTabs$: Observable<boolean>;
 	notificationSOCancelled$: Observable<number>;
@@ -48,6 +49,10 @@ export class Tab1Page implements OnInit {
 		private splashScreen: SplashScreen
 	) {
 		this.solicitudesList = this.subServ.getSolicitudeList();
+		console.log(this.solicitudesList.length)
+	 	
+		
+	
 	}
 
 	ngOnInit(): void {
@@ -58,6 +63,16 @@ export class Tab1Page implements OnInit {
 			this.loading.dismiss();
 			this.presentAlert();
 		});
+
+		if(this.solicitudesList.length == 0){
+			console.log(" NO hay solicitud",this.solicitudesList);
+			this.solicitudVacia=true;
+
+		}
+		else{
+			console.log("hay solicitud",this.solicitudesList);
+			this.solicitudVacia=false;
+		} 
 
 		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
 		this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe((notificationCancel) => {
@@ -72,8 +87,11 @@ export class Tab1Page implements OnInit {
 		this.subscriptionNotificationTab = this.notificationTabs$.subscribe((notificationTab) => {
 			this.ngZone.run(() => {
 				this.solicitudesList = this.subServ.getSolicitudeList();
+				/* console.log("hay solicitud**"); */
 			});
+			/* console.log(" no hay solicitud !!!!!"); */
 		});
+	
 	}
 
 	ngOnDestroy(): void {
