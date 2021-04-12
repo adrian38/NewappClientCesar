@@ -24,6 +24,8 @@ export class Tab2Page {
   
   verservicios:boolean = true;
   verhistorial:boolean=false;
+
+  contratadoVacia:boolean=true;
  
   valorSegment:string;
   
@@ -61,6 +63,16 @@ export class Tab2Page {
   }
 
   ngOnInit(): void {
+
+    if(this.contratadosList.length == 0){
+			console.log(" NO hay solicitud",this.contratadosList);
+			this.contratadoVacia=true;
+
+		}
+		else{
+			console.log("hay solicitud",this.contratadosList);
+			this.contratadoVacia=false;
+		} 
 
     
     setTimeout(()=>{

@@ -45,6 +45,7 @@ export class ObtSubSService {
 	ruta: string = '';
 	selecfoto: boolean = false;
 	radiobuton: boolean = false;
+	cantidad_solicitud:number;
 
 	//-----------------------------------------------------------
 
@@ -365,6 +366,15 @@ export class ObtSubSService {
 		return this.cargando;
 	}
 
+	set_cantidad_solicitud(s:number){
+		this.cantidad_solicitud=s;
+		console.log("entre al set",this.cantidad_solicitud)
+
+	}
+
+	get_cantidad_solicitud(){
+		return this.cantidad_solicitud;
+	}
 	
 	//-------------------------------------------------------------------------
 

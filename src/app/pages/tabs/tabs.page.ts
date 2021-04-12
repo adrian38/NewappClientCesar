@@ -139,6 +139,8 @@ export class TabsPage {
 				}
 
 				this.subServ.setSolicitudeList(this.solicitudesList);
+				console.log(this.solicitudesList.length);
+				this.subServ.set_cantidad_solicitud(this.solicitudesList.length);
 
 				temp = tasksList.filter((task) => {
 					return task.state === 'invoiced'; //Contratadas
