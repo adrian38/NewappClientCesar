@@ -21,9 +21,14 @@ let user: UsuarioModel;
 
 let task$ = new Subject<TaskModel[]>();
 
-let tasksList$ = new Subject<TaskModel[]>();
+let tasksList$ = new Subject<boolean>();
 
-let offersList: TaskModel[];
+let tasksList :TaskModel[];
+
+let solicitudesList:TaskModel[];
+let historialList:TaskModel[];
+let contratadosList:TaskModel[];
+
 
 let offersList$ = new Subject<TaskModel[]>();
 
@@ -904,8 +909,8 @@ export class TaskOdooService {
 
 						tasksList.push(temp);
 					}
-					//      console.log(tasksList, "reques por notifications");
-					tasksList$.next(tasksList);
+					/////////////////////filtrado
+					tasksList$.next(true);
 				}
 			});
 		};
@@ -1037,7 +1042,7 @@ export class TaskOdooService {
 						tasksList.push(temp);
 					}
 					search_avatar_provider();
-					//task$.next(tasksList);
+					
 				}
 			});
 		};
@@ -1066,10 +1071,50 @@ export class TaskOdooService {
 	}
 
 	requestTaskListClient() {
-		let tasksList: TaskModel[] = [];
+		tasksList = [];
 		let SO_id = [];
 		let contratados_id = [];
 		let partner_id = [];
+
+
+		let filter = function() {
+
+			let temp: TaskModel[];
+				temp = tasksList.filter((task) => {
+					return task.state === 'to invoice'; //Solicitadas
+				});
+				if (typeof solicitudesList !== 'undefined' && solicitudesList.length > 0) {
+					Array.prototype.push.apply(solicitudesList, temp);
+				} else {
+					solicitudesList = temp;
+				}
+
+			
+				temp = tasksList.filter((task) => {
+					return task.state === 'invoiced'; //Contratadas
+				});
+				if (typeof contratadosList !== 'undefined' && contratadosList.length > 0) {
+					Array.prototype.push.apply(contratadosList, temp);
+				} else {
+					contratadosList = temp;
+					historialList = temp;
+				}
+				
+				temp = tasksList.filter((task) => {
+					return task.state === ''; //Historial
+				});
+				if (typeof historialList !== 'undefined' && historialList.length > 0) {
+					Array.prototype.push.apply(historialList, temp);
+				} else {
+					historialList = temp;
+				}
+				
+				
+				tasksList$.next(true);
+			
+		}
+
+
 
 		let search_avatar_provider = function() {
 			let inParams = [];
@@ -1108,7 +1153,10 @@ export class TaskOdooService {
 							}
 						}
 					}
-					tasksList$.next(tasksList);
+
+					filter();
+					////////////////////////filtrado
+					
 				}
 			});
 		};
@@ -1319,7 +1367,10 @@ export class TaskOdooService {
 					if (SO_id.length) {
 						get_so_type();
 					} else {
-						tasksList$.next(tasksList);
+
+						///////////////////////////filtrado
+						filter();
+						
 					}
 				}
 			});
@@ -1343,14 +1394,29 @@ export class TaskOdooService {
 		);
 	}
 
-	getRequestedTaskList$(): Observable<TaskModel[]> {
+	getRequestedTaskList$(): Observable<boolean> {
 		return tasksList$.asObservable();
 	}
+
+
+	getSolicitudeList() {
+		return solicitudesList;
+	}
+
+	getContratadosList() {
+		return contratadosList;
+	}
+
+	getHistorialList() {
+		return historialList;
+	}
+	
 
 	requestOffersForTask(id) {
 		let partner_id = [];
 		let SO_origin = [];
 		let SO_id = [];
+		let offersList:TaskModel[];
 
 		let get_Res_Id = function() {
 			let inParams = [];
@@ -1390,7 +1456,6 @@ export class TaskOdooService {
 						}
 					}
 
-					console.log(offersList);
 					offersList$.next(offersList);
 				}
 			});

@@ -5,9 +5,13 @@ import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [ AuthGuardService ]
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
 
+  {
+    path: 'tab',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [ AuthGuardService ]
+  },
   
   {
     path: 'inicio',
@@ -105,7 +109,8 @@ const routes: Routes = [
   {
     path: 'contrase',
     loadChildren: () => import('./pages/contrase/contrase.module').then( m => m.ContrasePageModule), canActivate: [ AuthGuardService ]
-  },  {
+  },
+  {
     path: 'contrasolvida',
     loadChildren: () => import('./pages/contrasolvida/contrasolvida.module').then( m => m.ContrasolvidaPageModule)
   },

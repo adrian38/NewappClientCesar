@@ -24,13 +24,15 @@ export class Tab1Page implements OnInit {
 	tab: String;
 	user: UsuarioModel;
 	loading: any;
-	solicitudVacia:boolean=true;
+	solicitudVacia: boolean = true;
 
 	notificationTabs$: Observable<boolean>;
 	notificationSOCancelled$: Observable<number>;
+	tasksList$: Observable<boolean>; // servicio comunicacion
 
 	subscriptionNotificationSoCancel: Subscription;
 	subscriptionNotificationTab: Subscription;
+	subscriptiontasksList: Subscription;
 
 	/* 
   @ViewChild('tabs') tabs: IonTabs; */
@@ -47,32 +49,68 @@ export class Tab1Page implements OnInit {
 		private statusBar: StatusBar,
 		private _location: Location,
 		private splashScreen: SplashScreen
-	) {
-		this.solicitudesList = this.subServ.getSolicitudeList();
-		console.log(this.solicitudesList.length)
-	 	
-		
-	
-	}
+	) {}
 
 	ngOnInit(): void {
+		this.solicitudEmpty();
+		this.init();
+		this.subscriptions();
 		this.subServ.set_Detalles(false);
 		this._taskOdoo.setTab1In();
+
+		
+	}
+
+	ngOnDestroy(): void {
+		//Called once, before the instance is destroyed.
+		//Add 'implements OnDestroy' to the class.
+		this.subscriptionNotificationTab.unsubscribe();
+		this.subscriptionNotificationSoCancel.unsubscribe();
+		this.subscriptiontasksList.unsubscribe();
+		this._taskOdoo.setTab1Out();
+	}
+
+	init() {
+
+		if (!this._taskOdoo.getInitTab()) {
+			this._taskOdoo.setInitTab();
+			this._taskOdoo.requestTaskListClient();
+			this.presentLoadingCargado();
+		} else {
+			this.solicitudesList = this._taskOdoo.getSolicitudeList();
+
+			if (!this._taskOdoo.getPilaEmpthy()) {
+				let temp = this._taskOdoo.getPilaSolicitud();
+				for (let newElement of temp) {
+					this.solicitudesList = this.subServ.getSolicitudeList();
+
+					switch (newElement.notificationType) {
+						case 1:
+							this.solicitudesList.unshift(newElement);
+							//////////////////////////agregar nueva solicitud en task servicio
+							break;
+						case 2:
+							let temp = this.solicitudesList.findIndex(
+								(element) => element.id_string === newElement.id_string
+							);
+							if (temp != -1) {
+								this.solicitudesList[temp].notificationOffert = true;
+							}
+							break;
+					}
+				}
+			}
+		}
+	}
+
+	subscriptions(){
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
 			this.loading.dismiss();
 			this.presentAlert();
 		});
 
-		if(this.solicitudesList.length == 0){
-			console.log(" NO hay solicitud",this.solicitudesList);
-			this.solicitudVacia=true;
-
-		}
-		else{
-			console.log("hay solicitud",this.solicitudesList);
-			this.solicitudVacia=false;
-		} 
+	
 
 		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
 		this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe((notificationCancel) => {
@@ -86,21 +124,34 @@ export class Tab1Page implements OnInit {
 		this.notificationTabs$ = this.subServ.getNotificationSetTab$();
 		this.subscriptionNotificationTab = this.notificationTabs$.subscribe((notificationTab) => {
 			this.ngZone.run(() => {
-				this.solicitudesList = this.subServ.getSolicitudeList();
-				/* console.log("hay solicitud**"); */
+				this.solicitudesList = this._taskOdoo.getSolicitudeList();
+				
 			});
-			/* console.log(" no hay solicitud !!!!!"); */
+			this.solicitudEmpty();
 		});
-	
+
+		this.tasksList$ = this._taskOdoo.getRequestedTaskList$();
+		this.subscriptiontasksList = this.tasksList$.subscribe((tasksList: boolean) => {
+			this.ngZone.run(() => {
+				if (tasksList) {
+					this.solicitudesList = this._taskOdoo.getSolicitudeList();
+				}
+				this.solicitudEmpty();
+				this.loading.dismiss();
+			});
+		});
+
 	}
 
-	ngOnDestroy(): void {
-		//Called once, before the instance is destroyed.
-		//Add 'implements OnDestroy' to the class.
-		this.subscriptionNotificationTab.unsubscribe();
-		this.subscriptionNotificationSoCancel.unsubscribe();
-
-		this._taskOdoo.setTab1Out();
+	solicitudEmpty(){
+		if(typeof this.solicitudesList !== 'undefined' && this.solicitudesList.length > 0){
+			
+			this.solicitudVacia=false;
+		}
+		else{
+			this.solicitudVacia =true;
+		
+		}  
 	}
 
 	in(i) {
@@ -153,6 +204,15 @@ export class Tab1Page implements OnInit {
 			//duration: 2000
 		});
 
+		return this.loading.present();
+	}
+
+	async presentLoadingCargado() {
+		this.loading = await this.loadingController.create({
+			cssClass: 'my-custom-class',
+			message: 'Cargando Solicitudes...'
+			//duration: 2000
+		});
 		return this.loading.present();
 	}
 
