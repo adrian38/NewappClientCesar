@@ -115,7 +115,7 @@
       <div id="item"></div>
       <div id="link">
         <small *ngIf= "fech.invalid && fech.touched"   
-        class="text-danger">Debe escribir su nombre completo</small>
+        class="text-danger">Debe escribir su fecha de nacimiento</small>
        </div>
   
       <!-- Contraseña -->
@@ -164,41 +164,40 @@
   
   <!-- Direccion -->
   
-  
-  
-      <ion-row>
-        <ion-col>
+  <ion-row>
+      <ion-col>
           <ion-item lines="none">
-            <!-- <ion-label position="floating">Contraseña</ion-label> -->
-            <ion-input type="text"
-          name="nombre"
-          [(ngModel)]="calle"
-          placeholder={{this.placeholderCalle}}
-          #call="ngModel"
-          required
-                                        
-          ></ion-input>
           
+            <ion-input 
+                 type="text"
+                 name="calle"
+                 [(ngModel)]="calle"
+                 placeholder={{this.placeholderCalle}}
+                 #call="ngModel"
+                 required > 
+            </ion-input>
+        
           </ion-item>
+
           <div id="item"></div>
+
           <div id="link">
             <small *ngIf= "call.invalid && call.touched"   
             class="text-danger">Campo obligatorio</small>
-           </div>
+          </div>
       
-        </ion-col>
+     </ion-col>
+
         <ion-col>
           <ion-item lines="none">
-            <!-- <ion-label position="floating">Contraseña</ion-label> -->
+            
             <ion-input type="text"
-          name="nombre"
-          [(ngModel)]="piso"
-          placeholder={{this.placeholderPiso}}
-          #pis="ngModel"
-          required
-          
-                                        
-          ></ion-input>
+               name="piso"
+               [(ngModel)]="piso"
+               placeholder={{this.placeholderPiso}}
+               #pis="ngModel"
+               required  >
+           </ion-input>
           
           </ion-item>
           <div id="item"></div>

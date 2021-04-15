@@ -142,7 +142,7 @@ this.aceptar=true;
 
     /*  console.log(this.usuario,"nuevo usuario"); */
 
-     console.log("registrono",this.datos.getnombre());
+    /*  console.log("registrono",this.datos.getnombre());
      console.log("contr",this.datos.getcontraseña());
      console.log("tele",this.datos.gettelefono());
      console.log("corr",this.datos.getcorreo());
@@ -154,7 +154,7 @@ this.aceptar=true;
      console.log("port",this.datos.getportal());
      console.log("cposta",this.datos.getcod_postal());
      console.log("nume",this.datos.getnumero());
-     console.log("pis",this.datos.getpiso());
+     console.log("pis",this.datos.getpiso()); */
      
 
 
@@ -162,10 +162,7 @@ this.aceptar=true;
     
 this.limpiar_campos();
 
-console.log("llegue al final")
-
-   /* this.navCtrl.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
-       */  
+  
   }
 
   limpiar_campos(){

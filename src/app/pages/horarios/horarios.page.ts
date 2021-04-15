@@ -61,7 +61,7 @@ export class HorariosPage implements OnInit {
 ngOnInit() {
 
   this.platform.backButton.subscribeWithPriority(10, () => {
-    this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+    this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'back' }) ;
   });
 
   this.servicio=this.datos.getServ();

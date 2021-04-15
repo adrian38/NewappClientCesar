@@ -31,12 +31,16 @@ class="animated fadeIn"></app-header>
     <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index" style="padding: 0px;">
         
     <ion-item  lines="none" style="padding: 0px;">  
+      
+      <div  >
         <app-solicitud 
         (click)="in(i)"              
         [Solicitud]="this.Solicitud"
-        
         style="width: 100%;">
         </app-solicitud>
+      </div>
+     
+
     </ion-item>
 
    

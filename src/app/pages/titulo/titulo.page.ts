@@ -47,10 +47,10 @@ export class TituloPage implements OnInit {
       
     } */
     
-	/* this.titulo = this.datos.gettitulo(); */
+	 this.titulo = this.datos.gettitulo(); 
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.navCtrl.navigateRoot('/tarea', { animated: true, animationDirection: 'back' });
+			this.navCtrl.navigateRoot('/option', { animated: true, animationDirection: 'back' });
 		});
 
     /* this.platform.backButton.subscribeWithPriority(10, () => {
@@ -98,6 +98,7 @@ export class TituloPage implements OnInit {
 goto(){
   this.datos.setTitulo(this.titulo);
 /*   this.datos.setUtiles(this.checkSi); */
+this.datos.setruta("titulo");
 this.navCtrl.navigateRoot('/materiales', {animated: true, animationDirection: 'forward' }) ;
    
 

@@ -129,6 +129,10 @@ export class Tab1Page implements OnInit {
 	/* 	this.subServ.setposicion(this.cant);*/
 		this.task = this.solicitudesList[this.cant]; 
 		this._taskOdoo.setTaskCesar(this.task);
+		 this.subServ.setSolicitudeList(this.solicitudesList); 
+		/* this.solicitudesList = this.subServ.getSolicitudeList(); */
+		console.log("tarea actual",this.task)
+		console.log("todas las tareas",this.solicitudesList)
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
 	}
 
