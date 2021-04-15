@@ -55,7 +55,7 @@ export class DatospersonalesPage implements OnInit {
 
   ngOnInit() {
     this.usuario = this._authOdoo.getUser();
-    this.avatarusuario = this.usuario.avatar; 
+/*     this.avatarusuario = this.usuario.avatar; 
     this.nombre=this.usuario.realname;
     this.fecha=this.usuario.date;
     this.pass=this.usuario.password;
@@ -65,7 +65,10 @@ export class DatospersonalesPage implements OnInit {
     this.escalera=this.usuario.address.stair;
     this.portal=this.usuario.address.portal;
     this.cpostal=this.usuario.address.cp;
-    this.numero=this.usuario.address.number;
+    this.numero=this.usuario.address.number; */
+
+/*     console.log("e",this.calle)
+    console.log("ehh",this.numero) */
 
     this.placeholder();
 
@@ -217,8 +220,8 @@ export class DatospersonalesPage implements OnInit {
   }
 
   placeholder(){
-    console.log("nuevo",this.usuario.address.stair.length);
-    console.log("nuevo",this.usuario.address.cp);
+    /* console.log("nuevo",this.usuario.address.stair.length);
+    console.log("nuevo",this.usuario.address.cp); */
     
 
        
@@ -252,9 +255,12 @@ export class DatospersonalesPage implements OnInit {
 
     if(this.usuario.address.street.length == 0){
       this.placeholderCalle="Calle"
+      console.log("sin calle",this.calle)
+     
     }
     else{
       this.placeholderCalle=this.usuario.address.street;
+      console.log("calle",this.placeholderCalle)
     }
 
     if(this.usuario.address.floor.length == 0){
