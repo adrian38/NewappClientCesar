@@ -83,7 +83,7 @@ checkUser(){
     this._taskOdoo.notificationPull();
     }
         
-    this.navController.navigateRoot('/tab', {animated: true, animationDirection: 'forward' }) ;   
+    this.navController.navigateRoot('/tabs/tab1', {animated: true, animationDirection: 'forward' }) ;   
   }
   else{
     
