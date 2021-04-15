@@ -18,7 +18,7 @@ export class SolicitudComponent implements OnInit {
     this.titulo=this.Solicitud.title;
    }
    else{
-    this.titulo=this.Solicitud.title.slice(0,11) + " " + " . . .";
+    this.titulo=this.Solicitud.title.slice(0,10) + " " + " . . .";
    }
   }
 

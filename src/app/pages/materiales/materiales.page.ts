@@ -29,9 +29,18 @@ export class MaterialesPage implements OnInit {
 
   ngOnInit() {
     this.servicio=this.datos.getServ();
+    let ruta = this.datos.getruta();
+    console.log("ruta",ruta);
 
       this.platform.backButton.subscribeWithPriority(10, () => {
-      this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
+
+        if(ruta == "option"){
+          this.navCtrl.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
+        }
+        else{
+          this.navCtrl.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+        }
+      
         
       });
 

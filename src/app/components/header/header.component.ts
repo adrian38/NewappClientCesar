@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,17 @@ export class HeaderComponent implements OnInit {
   @Input() atras: boolean = false;
   @Input() headerText: string = "Header";
 
+  ruta:string="";
+
   constructor(private _location: Location,
-              private navCon:NavController) {
+              private navCon:NavController,
+              private datos:ObtSubSService) {
     
   }
 
   ngOnInit() {
+
+    this.ruta = this.datos.getruta();
   
   }
 
@@ -33,8 +39,14 @@ export class HeaderComponent implements OnInit {
 
     
     if(this._location.isCurrentPathEqualTo('/materiales')){
-      this.navCon.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
-    
+
+      if(this.ruta == "option"){
+        this.navCon.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;
+      }
+      else{
+        this.navCon.navigateRoot('/titulo', {animated: true, animationDirection: 'back' }) ;
+      }
+     
     }
     if(this._location.isCurrentPathEqualTo('/titulo')){
       this.navCon.navigateRoot('/option', {animated: true, animationDirection: 'back' }) ;

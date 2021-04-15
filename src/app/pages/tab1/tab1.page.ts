@@ -50,7 +50,7 @@ export class Tab1Page implements OnInit {
 		private splashScreen: SplashScreen
 	) {
 		this.solicitudesList = this.subServ.getSolicitudeList();
-		console.log(this.subServ.get_cantidad_solicitud())
+		console.log(this.subServ.get_cantidad_solicitud()) 
 	 	
 		
 	
@@ -59,6 +59,10 @@ export class Tab1Page implements OnInit {
 	ngOnInit(): void {
 		this.subServ.set_Detalles(false);
 		this._taskOdoo.setTab1In();
+		
+		    this.subServ.setSolicitudeList(this.solicitudesList);
+		    console.log("cambios1111",this.solicitudesList) 
+
 		this.ss=this.subServ.get_cantidad_solicitud()
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
@@ -66,7 +70,7 @@ export class Tab1Page implements OnInit {
 			this.presentAlert();
 		});
 
-		console.log("se repite!!",this.ss);
+	
 
 		if(this.subServ.get_cantidad_solicitud() == 0){
 			console.log(" NO hay solicitud",this.solicitudesList);
@@ -76,6 +80,8 @@ export class Tab1Page implements OnInit {
 		else{
 			console.log("hay solicitud",this.solicitudesList);
 			this.solicitudVacia=false;
+
+		
 			
 		} 
 
@@ -112,7 +118,12 @@ export class Tab1Page implements OnInit {
 		this.cant = i;
 		this.subServ.setposicion(this.cant);
 		this.task = this.solicitudesList[this.cant];
+		this.task.notificationNewSo=false;
 		this._taskOdoo.setTaskCesar(this.task);
+		 this.subServ.setSolicitudeList(this.solicitudesList); 
+		/* this.solicitudesList = this.subServ.getSolicitudeList(); */
+		console.log("tarea actual",this.task)
+		console.log("todas las tareas",this.solicitudesList)
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
 	}
 
