@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 
-
 @Component({
 	selector: 'app-tab1',
 	templateUrl: 'tab1.page.html',
@@ -26,12 +25,12 @@ export class Tab1Page implements OnInit {
 	loading: any;
 	solicitudVacia: boolean = true;
 
-	notificationTabs$: Observable<boolean>;
+	
 	notificationSOCancelled$: Observable<number>;
 	tasksList$: Observable<boolean>; // servicio comunicacion
 
 	subscriptionNotificationSoCancel: Subscription;
-	subscriptionNotificationTab: Subscription;
+	
 	subscriptiontasksList: Subscription;
 
 	/* 
@@ -52,84 +51,58 @@ export class Tab1Page implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.solicitudEmpty();
+		
 		this.init();
 		this.subscriptions();
 		this.subServ.set_Detalles(false);
-		this._taskOdoo.setTab1In();
-		this.ss=this.subServ.get_cantidad_solicitud()
-
+		this._taskOdoo.setTab1In(true);
 		
 	}
 
 	ngOnDestroy(): void {
 		//Called once, before the instance is destroyed.
 		//Add 'implements OnDestroy' to the class.
-		this.subscriptionNotificationTab.unsubscribe();
+	
 		this.subscriptionNotificationSoCancel.unsubscribe();
 		this.subscriptiontasksList.unsubscribe();
-		this._taskOdoo.setTab1Out();
+		this._taskOdoo.setTab1In(false);
+		
 	}
 
 	init() {
-
 		if (!this._taskOdoo.getInitTab()) {
 			this._taskOdoo.setInitTab();
 			this._taskOdoo.requestTaskListClient();
 			this.presentLoadingCargado();
 		} else {
+
 			this.solicitudesList = this._taskOdoo.getSolicitudeList();
-
-			if (!this._taskOdoo.getPilaEmpthy()) {
-				let temp = this._taskOdoo.getPilaSolicitud();
-				for (let newElement of temp) {
-					this.solicitudesList = this.subServ.getSolicitudeList();
-
-					switch (newElement.notificationType) {
-						case 1:
-							this.solicitudesList.unshift(newElement);
-							//////////////////////////agregar nueva solicitud en task servicio
-							break;
-						case 2:
-							let temp = this.solicitudesList.findIndex(
-								(element) => element.id_string === newElement.id_string
-							);
-							if (temp != -1) {
-								this.solicitudesList[temp].notificationOffert = true;
-							}
-							break;
-					}
-				}
-			}
+			this.solicitudEmpty();
 		}
 	}
 
-	subscriptions(){
-
+	subscriptions() {
 		this.platform.backButton.subscribeWithPriority(10, () => {
 			this.loading.dismiss();
 			this.presentAlert();
 		});
 
-	
-
 		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
 		this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe((notificationCancel) => {
 			this.ngZone.run(() => {
 				//////////////////////////////////////eliminar cargando
+
+				let temp = this.solicitudesList.findIndex((element) => element.id === notificationCancel);
+				if (temp !== -1) {
+					this.solicitudesList.splice(temp, 1);
+					
+				}
+
 				this.loading.dismiss();
 				this.messageService.add({ severity: 'error', detail: 'Solicitud eliminada' });
 			});
 		});
-
-		this.notificationTabs$ = this.subServ.getNotificationSetTab$();
-		this.subscriptionNotificationTab = this.notificationTabs$.subscribe((notificationTab) => {
-			this.ngZone.run(() => {
-				this.solicitudesList = this._taskOdoo.getSolicitudeList();
-				
-			});
-			this.solicitudEmpty();
-		});
+	
 
 		this.tasksList$ = this._taskOdoo.getRequestedTaskList$();
 		this.subscriptiontasksList = this.tasksList$.subscribe((tasksList: boolean) => {
@@ -141,24 +114,20 @@ export class Tab1Page implements OnInit {
 				this.loading.dismiss();
 			});
 		});
-
 	}
 
-	solicitudEmpty(){
-		if(typeof this.solicitudesList !== 'undefined' && this.solicitudesList.length > 0){
-			
-			this.solicitudVacia=false;
+	solicitudEmpty() {
+		if (typeof this.solicitudesList !== 'undefined' && this.solicitudesList.length > 0) {
+			this.solicitudVacia = false;
+		} else {
+			this.solicitudVacia = true;
 		}
-		else{
-			this.solicitudVacia =true;
-		
-		}  
 	}
 
 	in(i) {
 		this.cant = i;
-		this.subServ.setposicion(this.cant);
-		this.task = this.solicitudesList[this.cant];
+	/* 	this.subServ.setposicion(this.cant);*/
+		this.task = this.solicitudesList[this.cant]; 
 		this._taskOdoo.setTaskCesar(this.task);
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
 	}
