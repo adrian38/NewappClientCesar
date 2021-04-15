@@ -20,39 +20,46 @@ class="animated fadeIn"></app-header>
 
   
   
-    <ion-row>
-      <ion-col size=0.2 style="padding: 0px;">      
-      </ion-col>
-      <ion-col size=11.6 style="padding: 0px;">
-        <ion-list>  
+
+<div  *ngIf ="this.solicitudVacia==false">
+  <ion-row >
+    <ion-col size=0.2 style="padding: 0px;">      
+    </ion-col>
+    <ion-col size=11.6 style="padding: 0px;">
+      <ion-list>  
+
+    <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index" style="padding: 0px;">
+        
+    <ion-item  lines="none" style="padding: 0px;">  
+        <app-solicitud 
+        (click)="in(i)"              
+        [Solicitud]="this.Solicitud"
+        
+        style="width: 100%;">
+        </app-solicitud>
+    </ion-item>
+
+   
+
+              <ion-item-options side="end" style="padding: 0px;">
+            <ion-item-option (click)="cancelar(i)"
+                              color="tertiary" expandable>cancelar</ion-item-option>
+          </ion-item-options> 
+        </ion-item-sliding>
+
+      </ion-list>    
+    </ion-col>
+    <ion-col size=0.2 style="padding: 0px;">      
+    </ion-col>
+  </ion-row>
+</div>
   
-      <ion-item-sliding  *ngFor="let Solicitud of solicitudesList; let i = index">
-          
-      <ion-item  lines="none" style="padding: 0px;">  
-          <app-solicitud 
-          (click)="in(i)"              
-          [Solicitud]="this.Solicitud"
-          
-          style="width: 100%;">
-          </app-solicitud>
-    
-    
-      </ion-item>
-                <ion-item-options side="end" style="padding: 0px;">
-              <ion-item-option (click)="cancelar(i)"
-                                color="tertiary" expandable>cancelar</ion-item-option>
-            </ion-item-options> 
-          </ion-item-sliding>
-  
-        </ion-list>    
-      </ion-col>
-      <ion-col size=0.2 style="padding: 0px;">      
-      </ion-col>
-    </ion-row>
+      
+   
   
 
 
-  <div *ngIf ="this.solicitudVacia">
+   <div *ngIf ="this.solicitudVacia == true">
     <ion-row style="margin-top: 75px;">
       <ion-col size=4></ion-col>
       <ion-col size=4 style="text-align: center;">
@@ -69,7 +76,7 @@ class="animated fadeIn"></app-header>
       <ion-col size=3></ion-col>
       <ion-col size=6 style="text-align: center;">
       
-          <h4 style="color:lightgray;margin-top: 0px;" >No hay ofertas</h4>
+          <h4 style="color:lightgray;margin-top: 0px;" >No hay solicitud</h4>
        
       </ion-col>
       <ion-col size=3></ion-col>

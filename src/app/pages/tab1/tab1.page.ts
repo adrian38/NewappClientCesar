@@ -57,6 +57,7 @@ export class Tab1Page implements OnInit {
 		this.subscriptions();
 		this.subServ.set_Detalles(false);
 		this._taskOdoo.setTab1In();
+		this.ss=this.subServ.get_cantidad_solicitud()
 
 		
 	}
