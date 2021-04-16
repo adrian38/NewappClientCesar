@@ -29,6 +29,8 @@ let solicitudesList: TaskModel[];
 let historialList: TaskModel[];
 let contratadosList: TaskModel[];
 
+let temp;
+
 let offersList$ = new Subject<TaskModel[]>();
 
 let notificationPoCancelled$ = new Subject<number[]>(); ////Proveedor
@@ -249,7 +251,7 @@ export class TaskOdooService {
 								} else {
 																		
 									for (let i = 0; i < new_offert.length; i++) {
-										let temp = solicitudesList.findIndex((element) => element.id_string === new_offert[i]['origin']);
+										temp = solicitudesList.findIndex((element) => element.id_string === new_offert[i]['origin']);
 										if (temp != -1) {
 											solicitudesList[temp].notificationOffert=true;
 										
@@ -299,6 +301,9 @@ export class TaskOdooService {
 
 	cancelPOsuplier(id: number) {
 		let cancelPOsuplierSelected = function() {
+
+			
+
 			let inParams = [];
 			inParams.push([ id ]);
 			let params = [];
@@ -323,6 +328,7 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error cancelPOsuplierSelected');
 				} else {
+					
 					notificationPoCancelled$.next([ id ]);
 				}
 			});
@@ -1378,24 +1384,30 @@ export class TaskOdooService {
 		return solicitudesList;
 	}
 
-	solicitudeListEdit(id: number, type: number) {
+	solicitudeListEdit(id, type: number) {
+
+		console.log("limpiar notificaciones");
 		switch (type) {
+
+			
 			case 1:
 				//////////////////////////eliminar solicitud
-				let temp = solicitudesList.findIndex((element) => element.id === id);
+				 temp = solicitudesList.findIndex((element) => element.id === id);
 				if (temp !== -1) {
 					solicitudesList.splice(temp, 1);
 				}
 				break;
 			case 2:
-				temp = solicitudesList.findIndex((element) => element.id === id);
+				 temp = solicitudesList.findIndex((element) => element.id === id);
 				if (temp != -1) {
-					solicitudesList[temp].notificationOffert = false;
 					solicitudesList[temp].notificationNewSo = false;
+					solicitudesList[temp].notificationOffert = false;
 					solicitudesList[temp].notificationChat = false;
+					
 				}
 				break;
-		}
+
+						}
 	}
 
 	getContratadosList() {
@@ -1494,7 +1506,7 @@ export class TaskOdooService {
 		};
 
 		let search_avatar_provider = function() {
-			console.log(partner_id, 'partner_id provider');
+			
 			let inParams = [];
 			inParams.push([ [ 'partner_id', 'in', partner_id ] ]);
 			inParams.push([ 'partner_id', 'image_1920' ]);

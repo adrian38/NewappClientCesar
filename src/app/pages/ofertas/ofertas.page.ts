@@ -44,10 +44,12 @@ export class OfertasPage implements OnInit, OnDestroy {
 	offersList$: Observable<TaskModel[]>;
 	notificationOffertCancelled$: Observable<number[]>;
 	notificationNewOffertSuplier$: Observable<number[]>;
+	notificationPoCancelled$:Observable<number[]>
 
 	subscriptionOffersList: Subscription;
 	subscriptionOffertCancelled: Subscription;
 	subscriptioNewPoSuplier: Subscription;
+	subscriptionPoCancelled: Subscription;
 
 	veroferta: boolean = true;
 	verdetalles: boolean = false;
@@ -82,17 +84,17 @@ export class OfertasPage implements OnInit, OnDestroy {
 		private modalCtrl: ModalController
 	) {
 		this.task = new TaskModel();
-
 		this.veroferta = true;
 		this.verdetalles = false;
 	}
 
 	ngOnInit() {
-		this.screenOrientation.lock('portrait');
 
-		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.navCtrl.navigateRoot('/tabs/tab1', { animated: true, animationDirection: 'back' });
-		});
+
+		this.screenOrientation.lock('portrait');
+		this._taskOdoo.solicitudeListEdit(this.task.id,2);
+		
+		this.subscriptions();
 
 		this.user = this._authOdoo.getUser();
 		this.task = this._taskOdoo.getTaskCesar();
@@ -103,6 +105,14 @@ export class OfertasPage implements OnInit, OnDestroy {
 		this.deshabilitar1();
 		this.deshabilitar2();
 		this.deshabilitar3();
+	
+	
+		
+		this.platform.backButton.subscribeWithPriority(10, () => {
+			this.navCtrl.navigateRoot('/tabs/tab1', { animated: true, animationDirection: 'back' });
+		});
+
+		
 
 		if (!this.subServ.get_Detalles()) {
 			
@@ -115,11 +125,55 @@ export class OfertasPage implements OnInit, OnDestroy {
 				this.segment.value = 'detalle';
 			}, 100);
 		}
+		
+		
+	}
 
+
+
+	ngOnDestroy(): void {
+		
+		this.subscriptioNewPoSuplier.unsubscribe();
+		this.subscriptionOffersList.unsubscribe();
+		this.subscriptionOffertCancelled.unsubscribe();
+		this.subscriptionPoCancelled.unsubscribe();
+	}
+
+
+
+
+	subscriptions(){
+
+
+		/////////para notificaciones borradas por el provider
 		this.notificationOffertCancelled$ = this._taskOdoo.getRequestedNotificationOffertCancelled$();
 		this.subscriptionOffertCancelled = this.notificationOffertCancelled$.subscribe(
 			(notificationOffertCancelled) => {
 				this.ngZone.run(() => {
+
+					if (typeof this.offersList !== 'undefined' && this.offersList.length > 0) {
+						for (let Po_id of notificationOffertCancelled) {
+							let temp = this.offersList.findIndex((element) => element.id === Po_id);
+							if (temp !== -1) {
+								this.offersList.splice(temp, 1);
+							}
+						}
+						if(!(typeof this.offersList !== 'undefined' && this.offersList.length > 0)){
+							this.ofertaDisponible = true;
+						}
+					}
+				});
+			}
+		);
+
+
+		////////////////////////////////Para notificaciones borradas por el cliente
+
+		this.notificationPoCancelled$ = this._taskOdoo.getRequestedNotificationPoCancelled$();
+		this.subscriptionPoCancelled = this.notificationPoCancelled$.subscribe(
+			(notificationOffertCancelled) => {
+				this.ngZone.run(() => {
+
 					if (typeof this.offersList !== 'undefined' && this.offersList.length > 0) {
 						for (let Po_id of notificationOffertCancelled) {
 							let temp = this.offersList.findIndex((element) => element.id === Po_id);
@@ -128,9 +182,17 @@ export class OfertasPage implements OnInit, OnDestroy {
 							}
 						}
 					}
+
+					if(!(typeof this.offersList !== 'undefined' && this.offersList.length > 0)){
+						this.ofertaDisponible = true;
+					}
+					this.loading.dismiss();
 				});
 			}
 		);
+
+		
+		
 
 		this.notificationNewOffertSuplier$ = this._taskOdoo.getRequestedNotificationNewOffertSuplier$();
 		this.subscriptioNewPoSuplier = this.notificationNewOffertSuplier$.subscribe((notificationNewOffertSuplier) => {
@@ -174,14 +236,12 @@ export class OfertasPage implements OnInit, OnDestroy {
 		});
 	}
 
-	ngOnDestroy(): void {
-		
-		this.subscriptioNewPoSuplier.unsubscribe();
-		this.subscriptionOffersList.unsubscribe();
-		this.subscriptionOffertCancelled.unsubscribe();
-	}
+
+
 
 	segChange(event) {
+
+		;
 		this.valorSegment = event.detail.value;
 
 		if (this.valorSegment === 'ofertas') {
@@ -222,11 +282,12 @@ export class OfertasPage implements OnInit, OnDestroy {
 	}
 
 	//////////////////////////////Arreglar Cancelacion
-	cancelSOclient() {
+	cancelSOclient(id:number) {
 		this.displayAceptar = -1;
-		console.log('CancelarPo', this.task.id);
-		this._taskOdoo.cancelPOsuplier(this.task.id);
-		//this.isLoading3 = true;
+		this.presentLoading();
+		this._taskOdoo.cancelPOsuplier(id);
+		
+		
 	}
 
 	////////////////////////////////////////

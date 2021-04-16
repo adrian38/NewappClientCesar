@@ -28,9 +28,10 @@ export class Tab1Page implements OnInit {
 	
 	notificationSOCancelled$: Observable<number>;
 	tasksList$: Observable<boolean>; // servicio comunicacion
+	notificationNewOffertSuplier$;
 
 	subscriptionNotificationSoCancel: Subscription;
-	
+	subscriptioNewPoSuplier:Subscription;
 	subscriptiontasksList: Subscription;
 
 	/* 
@@ -65,6 +66,7 @@ export class Tab1Page implements OnInit {
 	
 		this.subscriptionNotificationSoCancel.unsubscribe();
 		this.subscriptiontasksList.unsubscribe();
+		this.subscriptioNewPoSuplier.unsubscribe();
 		this._taskOdoo.setTab1In(false);
 		
 	}
@@ -85,6 +87,23 @@ export class Tab1Page implements OnInit {
 		this.platform.backButton.subscribeWithPriority(10, () => {
 			this.loading.dismiss();
 			this.presentAlert();
+		});
+
+
+
+		this.notificationNewOffertSuplier$ = this._taskOdoo.getRequestedNotificationNewOffertSuplier$();
+		this.subscriptioNewPoSuplier = this.notificationNewOffertSuplier$.subscribe((notificationNewOffertSuplier) => {
+			this.ngZone.run(() => {
+		
+				for (let i = 0; i < notificationNewOffertSuplier.length; i++) {
+					let temp = this.solicitudesList.findIndex((element) => element.id_string === notificationNewOffertSuplier[i]['origin']);
+					if (temp != -1) {
+						this.solicitudesList[temp].notificationOffert=true;
+					
+				}
+			}
+				console.log('nueva oferta ha llegado',this.solicitudesList);
+			});
 		});
 
 		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
@@ -126,13 +145,12 @@ export class Tab1Page implements OnInit {
 
 	in(i) {
 		this.cant = i;
-	/* 	this.subServ.setposicion(this.cant);*/
+	
 		this.task = this.solicitudesList[this.cant]; 
 		this._taskOdoo.setTaskCesar(this.task);
 		 this.subServ.setSolicitudeList(this.solicitudesList); 
-		/* this.solicitudesList = this.subServ.getSolicitudeList(); */
-		console.log("tarea actual",this.task)
-		console.log("todas las tareas",this.solicitudesList)
+		
+		
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
 	}
 
@@ -141,6 +159,10 @@ export class Tab1Page implements OnInit {
 	}
 
 	async presentAlert() {
+		
+		this.loading.dismiss();  //////////////////////Probar a ver si quita las anteriores cuando doy atras
+
+
 		const alert = await this.alertCtrl.create({
 			cssClass: 'my-custom-class',
 			header: 'Alerta',
