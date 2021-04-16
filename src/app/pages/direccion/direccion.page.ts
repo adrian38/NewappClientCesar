@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, Platform, AlertController } from '@ionic/angular';
+import { NavController, Platform, AlertController, ToastController } from '@ionic/angular';
 import { Address, TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
@@ -50,13 +50,12 @@ export class DireccionPage implements OnInit {
 		public alertCtrl: AlertController,
 		private splashScreen: SplashScreen,
 		private statusBar: StatusBar,
-		private _location: Location
-	) {
+		private _location: Location,
+		public toastController: ToastController) {
+
+
 		this.coordenadas = this.datos.getcoordenada();
-		/*   this.platform.backButton.subscribeWithPriority(10, () => {
-        this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
-          
-        }); */
+		
 	}
 
 	ngOnInit() {
@@ -92,6 +91,7 @@ export class DireccionPage implements OnInit {
 
 		 if(this.coordenadas == false){
 			 this.oblidatorioGPS=true;
+			
 		 }
 		 else{
 			this.oblidatorioGPS=false; 
@@ -107,6 +107,7 @@ export class DireccionPage implements OnInit {
 
 		  else{
 			  console.log("llene campo")
+			  this.ToastCoordenadas();
 		  }
 
 		
@@ -233,5 +234,13 @@ export class DireccionPage implements OnInit {
 				this._location.back();
 			}
 		});
+	}
+
+	async ToastCoordenadas() {
+		const toast = await this.toastController.create({
+			message: 'Indique su geolocalización',
+			duration: 2000
+		});
+		toast.present();
 	}
 }
