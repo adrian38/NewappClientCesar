@@ -33,19 +33,34 @@
     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
  
     <ion-col size="10">
-      <ion-input  id="inc"
-                  name="calle"
-                  type="text"
-                  placeholder="Calle"
-                  [(ngModel)]="calle"
-                  required
-                  #call="ngModel"
-                  [disabled]="Autofill"></ion-input>
-                  
-                  <div id="link">
-                    <small *ngIf= "call.invalid && call.touched"   
-                            class="text-danger">Campo obligatorio</small>
-                   </div>
+      <div *ngIf="!this.oblidatoriocalle">
+        <ion-input  
+        id="inc"
+        name="calle"
+        type="text"
+        placeholder="Calle"
+        [(ngModel)]="calle"
+        required
+        #call="ngModel"
+        [disabled]="Autofill">
+    </ion-input>
+        
+        <div id="link">
+          <small *ngIf= "call.invalid && call.touched"   
+                  class="text-danger">Campo obligatorio</small>
+         </div>
+      </div>
+            
+
+
+                   <div *ngIf="this.oblidatoriocalle">
+                    <ion-input style=" border: 2px solid rgb(101,173,172) !important;" name="calle" type="text"
+                      [(ngModel)]="calle" placeholder="Calle"></ion-input>
+
+                      <div id="link">
+                        <small class="text-danger">Campo obligatorio</small>
+                       </div>
+                  </div>
                 </ion-col>
             
                
@@ -58,18 +73,30 @@
     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
  
     <ion-col size="5">
-      <ion-input id="in" name="numero"
-                  type="number"
-                  placeholder="Numero"
-                  [(ngModel)]="numero"
-                  required
-                  #num="ngModel"
-                  [disabled]="Autofill"></ion-input>
+             <div *ngIf="!this.oblidatorionumero">
+              <ion-input 
+              id="in" name="numero"
+              type="number"
+              placeholder="Numero"
+              [(ngModel)]="numero"
+              required
+              #num="ngModel"
+              [disabled]="Autofill"></ion-input>
 
-                  <div id="link">
-                    <small *ngIf= "num.invalid && num.touched"   
-                            class="text-danger">Campo obligatorio</small>
-                   </div>
+              <div id="link">
+                <small *ngIf= "num.invalid && num.touched"   
+                        class="text-danger">Campo obligatorio</small>
+               </div>
+             </div>
+
+                   <div *ngIf="this.oblidatorionumero">
+                    <ion-input style=" border: 2px solid rgb(101,173,172) !important;" name="calle" type="text"
+                      [(ngModel)]="numero" placeholder="Numero"></ion-input>
+
+                      <div id="link">
+                        <small class="text-danger">Campo obligatorio</small>
+                       </div>
+                  </div>
                 </ion-col>
             
                 <ion-col size="5"   style="margin-left: 15px;">
@@ -138,20 +165,31 @@
    <ion-row>
     <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
     <ion-col size="3" style="text-align: end; margin-top: 5px;background: rgb(255, 255, 255);" >
-      <div >
-     <ion-card id="logo1" 
-               [disabled]="Autofill"
-               (click)="ubicacion()">
-      <img   style=" width: 39px;
-                     height: 39px;"   
-                     src="../../assets/ubicacion.svg"
-     >
-     </ion-card>
+     
+      <div *ngIf="!this.oblidatorioGPS">
+           <ion-card id="logo1" 
+                     [disabled]="Autofill"
+                     (click)="ubicacion()">
+          
+             <img   style=" width: 39px;
+                         height: 39px;"   
+                         src="../../assets/ubicacion.svg" >
+            </ion-card>
       
-    
-      
-
       </div>
+
+      <div *ngIf="this.oblidatorioGPS">
+        <ion-card id="logo1" 
+                  [disabled]="Autofill"
+                  (click)="ubicacion()">
+       
+          <img   style=" width: 39px;
+                      height: 39px;"   
+                      src="../../assets/gpsObligatorio.svg" >
+         </ion-card>
+   
+   </div>
+
     </ion-col>
 
    
@@ -161,13 +199,13 @@
  
  </form>
   
- 
+ <!-- [disabled]="(formulario.invalid || !coordenadas) && !Autofill  " -->
 
   <ion-row >
     <ion-col ></ion-col>
     <ion-col>
        <ion-button id="boton" (click)="goto()"
-       [disabled]="(formulario.invalid || !coordenadas) && !Autofill  "
+      
       >
       Siguiente
     </ion-button> </ion-col>

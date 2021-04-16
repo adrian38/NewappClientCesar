@@ -32,6 +32,9 @@ export class DireccionPage implements OnInit {
 	dpservicio: string = '';
 
 	coordenadas: boolean;
+	oblidatoriocalle: boolean = false;
+	oblidatorionumero: boolean = false;
+	oblidatorioGPS: boolean = false;
 
 	Autofill: boolean = false;
 
@@ -72,8 +75,40 @@ export class DireccionPage implements OnInit {
 	}
 	goto() {
 		this.mantener_campos(0);
+		if(this.calle==""){
+			this.oblidatoriocalle=true;
+		}
+		else{
+			this.oblidatoriocalle=false;
+		}
 
-		this.navCtrl.navigateRoot('/comentario', { animated: true, animationDirection: 'forward' });
+		if(this.numero==""){
+			this.oblidatorionumero=true;
+		  }
+		  else{
+			this.oblidatorionumero=false;
+		 }
+
+		 if(this.coordenadas == false){
+			 this.oblidatorioGPS=true;
+		 }
+		 else{
+			this.oblidatorioGPS=false; 
+		 }
+
+
+
+		  if( this.oblidatoriocalle==false && this.oblidatorionumero==false && this.oblidatorioGPS==false ){
+
+		this.navCtrl.navigateRoot('/comentario', { animated: true, animationDirection: 'forward' }); 
+		 
+		  }
+
+		  else{
+			  console.log("llene campo")
+		  }
+
+		
 	}
 
 	autofillChange() {
