@@ -30,12 +30,7 @@ export class Tab2Page {
   valorSegment:string;
   
   tasksList$: Observable<TaskModel[]>; // servicio comunicacion
-  tab: String;
-  tab$: Observable<String>;
-
-  notificationTabs2$: Observable<boolean>;
-
-  subscriptionNotificationTabs2: Subscription;
+  
 
   constructor(private subServ: ObtSubSService,
               private _taskOdoo: TaskOdooService,
@@ -44,7 +39,7 @@ export class Tab2Page {
               private platform: Platform)
                {
 
-    this.contratadosList = this.subServ.getContratadosList();
+                
     
     this.verservicios=true;
     this.verhistorial=false;
@@ -57,37 +52,31 @@ export class Tab2Page {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subscriptionNotificationTabs2.unsubscribe();
+    
    
     
   }
 
   ngOnInit(): void {
 
-    if(this.contratadosList.length == 0){
-			console.log(" NO hay solicitud",this.contratadosList);
-			this.contratadoVacia=true;
-
-		}
-		else{
-			console.log("hay solicitud",this.contratadosList);
-			this.contratadoVacia=false;
-		} 
-
+    this.contratadosList = this._taskOdoo.getContratadosList();
+    this.solicitudEmpty();
     
     setTimeout(()=>{
      
       this.segment.value = 'servicio';
     }, 100);
     
-    this.notificationTabs2$ = this.subServ.getNotificationSetTab2$();
-    this.subscriptionNotificationTabs2=this.notificationTabs2$.subscribe(notificationTab => {
-      this.ngZone.run(()=>{
-        this.contratadosList = this.subServ.getContratadosList();
-        
-      });
-    });
+    
   }
+
+  solicitudEmpty() {
+		if (typeof this.contratadosList !== 'undefined' && this.contratadosList.length > 0) {
+			this.contratadoVacia = false;
+		} else {
+			this.contratadoVacia = true;
+		}
+	}
    in(i: number) {
      this.cant = i;
      this.subServ.setposicion(this.cant);

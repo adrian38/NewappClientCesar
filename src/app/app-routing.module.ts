@@ -105,7 +105,8 @@ const routes: Routes = [
   {
     path: 'contrase',
     loadChildren: () => import('./pages/contrase/contrase.module').then( m => m.ContrasePageModule), canActivate: [ AuthGuardService ]
-  },  {
+  },
+  {
     path: 'contrasolvida',
     loadChildren: () => import('./pages/contrasolvida/contrasolvida.module').then( m => m.ContrasolvidaPageModule)
   },

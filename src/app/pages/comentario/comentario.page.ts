@@ -54,7 +54,7 @@ this.datos.setcomentario(this.comentario);
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            
           }
         }, {
           text: 'Aceptar',

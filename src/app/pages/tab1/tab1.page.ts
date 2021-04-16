@@ -9,7 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
-
+import { ChatOdooService } from 'src/app/services/chat-odoo.service';
+import { MessageModel } from 'src/app/models/message.model';
 
 @Component({
 	selector: 'app-tab1',
@@ -24,14 +25,20 @@ export class Tab1Page implements OnInit {
 	tab: String;
 	user: UsuarioModel;
 	loading: any;
-	solicitudVacia:boolean=true;
-	ss:number=0;
+	solicitudVacia: boolean = true;
 
-	notificationTabs$: Observable<boolean>;
+	
 	notificationSOCancelled$: Observable<number>;
+	tasksList$: Observable<boolean>; // servicio comunicacion
+	notificationNewOffertSuplier$;
+	notificationNewMessg$: Observable<number[]>;
+	notificationNewMessgOrigin$: Observable<MessageModel[]>;
 
 	subscriptionNotificationSoCancel: Subscription;
-	subscriptionNotificationTab: Subscription;
+	subscriptioNewPoSuplier:Subscription;
+	subscriptiontasksList: Subscription;
+	subscriptionNotificationMess: Subscription;
+	subscriptionNotificationMessgOrigin: Subscription;
 
 	/* 
   @ViewChild('tabs') tabs: IonTabs; */
@@ -47,83 +54,139 @@ export class Tab1Page implements OnInit {
 		public loadingController: LoadingController,
 		private statusBar: StatusBar,
 		private _location: Location,
-		private splashScreen: SplashScreen
-	) {
-		this.solicitudesList = this.subServ.getSolicitudeList();
-		console.log(this.subServ.get_cantidad_solicitud()) 
-	 	
-		
-	
-	}
+		private splashScreen: SplashScreen,
+		private _chatOdoo: ChatOdooService,
+	) {}
 
 	ngOnInit(): void {
+		
+		this.init();
+		this.subscriptions();
 		this.subServ.set_Detalles(false);
-		this._taskOdoo.setTab1In();
+		this._taskOdoo.setTab1In(true);
 		
-		    this.subServ.setSolicitudeList(this.solicitudesList);
-		    console.log("cambios1111",this.solicitudesList) 
-
-		this.ss=this.subServ.get_cantidad_solicitud()
-
-		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.loading.dismiss();
-			this.presentAlert();
-		});
-
-	
-
-		if(this.subServ.get_cantidad_solicitud() == 0){
-			console.log(" NO hay solicitud",this.solicitudesList);
-			this.solicitudVacia=true;
-
-		}
-		else{
-			console.log("hay solicitud",this.solicitudesList);
-			this.solicitudVacia=false;
-
-		
-			
-		} 
-
-		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
-		this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe((notificationCancel) => {
-			this.ngZone.run(() => {
-				//////////////////////////////////////eliminar cargando
-				this.loading.dismiss();
-				this.messageService.add({ severity: 'error', detail: 'Solicitud eliminada' });
-			});
-		});
-
-		this.notificationTabs$ = this.subServ.getNotificationSetTab$();
-		this.subscriptionNotificationTab = this.notificationTabs$.subscribe((notificationTab) => {
-			this.ngZone.run(() => {
-				this.solicitudesList = this.subServ.getSolicitudeList();
-				/* console.log("hay solicitud**"); */
-			});
-			/* console.log(" no hay solicitud !!!!!"); */
-		});
-	
 	}
 
 	ngOnDestroy(): void {
 		//Called once, before the instance is destroyed.
 		//Add 'implements OnDestroy' to the class.
-		this.subscriptionNotificationTab.unsubscribe();
+	
 		this.subscriptionNotificationSoCancel.unsubscribe();
+		this.subscriptiontasksList.unsubscribe();
+		this.subscriptioNewPoSuplier.unsubscribe();
+		this.subscriptionNotificationMess.unsubscribe();
+		this.subscriptionNotificationMessgOrigin.unsubscribe();
+		this._taskOdoo.setTab1In(false);
+		
+	}
 
-		this._taskOdoo.setTab1Out();
+	init() {
+		if (!this._taskOdoo.getInitTab()) {
+			this._taskOdoo.setInitTab();
+			this._taskOdoo.requestTaskListClient();
+			this.presentLoadingCargado();
+		} else {
+
+			this.solicitudesList = this._taskOdoo.getSolicitudeList();
+			this.solicitudEmpty();
+		}
+	}
+
+	subscriptions() {
+		this.platform.backButton.subscribeWithPriority(10, () => {
+			this.loading.dismiss();
+			this.presentAlert();
+		});
+
+		this.notificationNewMessg$ = this._taskOdoo.getRequestedNotificationNewMessg$();
+		this.subscriptionNotificationMess = this.notificationNewMessg$.subscribe(
+			(notificationNewMessg) => {
+				this.ngZone.run(() => {
+					this._chatOdoo.requestNewMessageNoti(notificationNewMessg);
+				});
+			}
+		);
+
+		
+		this.notificationNewMessgOrigin$ = this._chatOdoo.getMessagesOriginNotification$();//
+		 this.subscriptionNotificationMessgOrigin = this.notificationNewMessgOrigin$.subscribe(
+			(notificationNewMessg) => {
+				this.ngZone.run(() => {
+		
+					for (let i = 0; i < notificationNewMessg.length; i++) {
+						let temp = this.solicitudesList.findIndex((element) => element.id_string === notificationNewMessg[i].offer_origin);
+						if (temp != -1) {
+							this.solicitudesList[temp].notificationChat=true;
+						
+					}
+				}
+
+				});
+			}
+		); 
+
+
+
+		this.notificationNewOffertSuplier$ = this._taskOdoo.getRequestedNotificationNewOffertSuplier$();
+		this.subscriptioNewPoSuplier = this.notificationNewOffertSuplier$.subscribe((notificationNewOffertSuplier) => {
+			this.ngZone.run(() => {
+		
+				for (let i = 0; i < notificationNewOffertSuplier.length; i++) {
+					let temp = this.solicitudesList.findIndex((element) => element.id_string === notificationNewOffertSuplier[i]['origin']);
+					if (temp != -1) {
+						this.solicitudesList[temp].notificationOffert=true;
+					
+				}
+			}
+				console.log('nueva oferta ha llegado',this.solicitudesList);
+			});
+		});
+
+		this.notificationSOCancelled$ = this._taskOdoo.getNotificationSoCancelled$();
+		this.subscriptionNotificationSoCancel = this.notificationSOCancelled$.subscribe((notificationCancel) => {
+			this.ngZone.run(() => {
+				//////////////////////////////////////eliminar cargando
+
+				let temp = this.solicitudesList.findIndex((element) => element.id === notificationCancel);
+				if (temp !== -1) {
+					this.solicitudesList.splice(temp, 1);
+					
+				}
+
+				this.loading.dismiss();
+				this.messageService.add({ severity: 'error', detail: 'Solicitud eliminada' });
+			});
+		});
+	
+
+		this.tasksList$ = this._taskOdoo.getRequestedTaskList$();
+		this.subscriptiontasksList = this.tasksList$.subscribe((tasksList: boolean) => {
+			this.ngZone.run(() => {
+				if (tasksList) {
+					this.solicitudesList = this._taskOdoo.getSolicitudeList();
+				}
+				this.solicitudEmpty();
+				this.loading.dismiss();
+			});
+		});
+	}
+
+	solicitudEmpty() {
+		if (typeof this.solicitudesList !== 'undefined' && this.solicitudesList.length > 0) {
+			this.solicitudVacia = false;
+		} else {
+			this.solicitudVacia = true;
+		}
 	}
 
 	in(i) {
 		this.cant = i;
-		this.subServ.setposicion(this.cant);
-		this.task = this.solicitudesList[this.cant];
-		this.task.notificationNewSo=false;
+	
+		this.task = this.solicitudesList[this.cant]; 
 		this._taskOdoo.setTaskCesar(this.task);
 		 this.subServ.setSolicitudeList(this.solicitudesList); 
-		/* this.solicitudesList = this.subServ.getSolicitudeList(); */
-		console.log("tarea actual",this.task)
-		console.log("todas las tareas",this.solicitudesList)
+		
+		
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
 	}
 
@@ -132,6 +195,10 @@ export class Tab1Page implements OnInit {
 	}
 
 	async presentAlert() {
+		
+		this.loading.dismiss();  //////////////////////Probar a ver si quita las anteriores cuando doy atras
+
+
 		const alert = await this.alertCtrl.create({
 			cssClass: 'my-custom-class',
 			header: 'Alerta',
@@ -169,6 +236,15 @@ export class Tab1Page implements OnInit {
 			//duration: 2000
 		});
 
+		return this.loading.present();
+	}
+
+	async presentLoadingCargado() {
+		this.loading = await this.loadingController.create({
+			cssClass: 'my-custom-class',
+			message: 'Cargando Solicitudes...'
+			//duration: 2000
+		});
 		return this.loading.present();
 	}
 

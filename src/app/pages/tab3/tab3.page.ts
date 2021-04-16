@@ -19,14 +19,14 @@ export class Tab3Page {
   }
 
   ngOnInit(): void {
-    this._taskOdoo.setTab1In();
+    this._taskOdoo.setTab1In(true);
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this._taskOdoo.setTab1Out();
     
+    this._taskOdoo.setTab1In(false);
   }
 
   datospersonales(){

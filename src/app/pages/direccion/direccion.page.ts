@@ -3,7 +3,6 @@ import { NavController, Platform, AlertController, ToastController } from '@ioni
 import { Address, TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
-import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';

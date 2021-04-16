@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model';
 import { Address, TaskModel } from '../models/task.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
 import { Router } from '@angular/router';
@@ -21,9 +21,15 @@ let user: UsuarioModel;
 
 let task$ = new Subject<TaskModel[]>();
 
-let tasksList$ = new Subject<TaskModel[]>();
+let tasksList$ = new Subject<boolean>();
 
-let offersList: TaskModel[];
+let tasksList: TaskModel[];
+
+let solicitudesList: TaskModel[];
+let historialList: TaskModel[];
+let contratadosList: TaskModel[];
+
+let temp;
 
 let offersList$ = new Subject<TaskModel[]>();
 
@@ -41,6 +47,9 @@ let notificationNewSoClient$ = new Subject<boolean>(); ///////cliente
 
 let notificationNewOffertSuplier$ = new Subject<any[]>(); ///////cliente
 
+let notificationServNewMessg$ = new Subject<number[]>();//////////Ambos
+let subscriptionNotificationMess: Subscription;
+
 ////////////////////////////////////////////////////////////////////////////
 
 let notificationNewMessg$ = new Subject<number[]>(); ///////Proveedor
@@ -53,8 +62,8 @@ let notificationOK$ = new Subject<boolean>();
 
 let notificationPoAcepted$ = new Subject<any[]>();
 
-let rutaActual:boolean = true ;
-
+let rutaActual: boolean = true;
+let rutaChat: boolean = false;
 
 //-------------------------------------------------cesar
 
@@ -75,10 +84,9 @@ export class TaskOdooService {
 	selectedTab: String;
 	selectedTab$ = new Subject<String>();
 
-	constructor(private _authOdoo: AuthOdooService, private router: Router,) {
+	constructor(private _authOdoo: AuthOdooService, private router: Router) {
 		jaysonServer = this._authOdoo.OdooInfoJayson;
 		pilaSolicitudes = new PilaSolicitudes<TaskModel>();
-		
 	}
 
 	setTaskPayment(task: TaskModel) {
@@ -126,12 +134,12 @@ export class TaskOdooService {
 		user = usuario;
 	}
 
-	setTab1Out(){
-		rutaActual = false;
+	setTab1In(temp: boolean) {
+		rutaActual = temp;
 	}
 
-	setTab1In(){
-		rutaActual = true;
+	setChatIn(temp: boolean) {
+		rutaChat = temp;
 	}
 
 	getNotificationError$(): Observable<boolean> {
@@ -146,16 +154,38 @@ export class TaskOdooService {
 		return notificationNewMessg$.asObservable();
 	}
 
+	getRequestedNotificationServNewMessg$(): Observable<number[]> {
+		return notificationServNewMessg$.asObservable();
+	}
+
+	ngOnInit(): void {
+		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+		//Add 'implements OnInit' to the class.
+
+		//notificationServNewMessg$ = this.getRequestedNotificationServNewMessg$();
+		
+	}
+
+	ngOnDestroy(): void {
+		//Called once, before the instance is destroyed.
+		//Add 'implements OnDestroy' to the class.
+
+		subscriptionNotificationMess.unsubscribe();
+		
+	}
+
+
+
 	notificationPull() {
 		let id_po = [];
 		let id_po_offert = [];
 		let id_messg = [];
 		let new_offert = [];
 		let id_offert_acepted = [];
-		
+
 		let poll = function(uid, partner_id, last) {
 			let path = '/longpolling/poll';
-						
+
 			client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + path });
 
 			client.request(
@@ -166,9 +196,7 @@ export class TaskOdooService {
 					if (err) {
 						console.log(err, 'Error poll');
 					} else {
-				
 						if (typeof value !== 'undefined' && value.length > 0) {
-
 							id_po = [];
 							id_po_offert = [];
 							id_messg = [];
@@ -227,8 +255,25 @@ export class TaskOdooService {
 							}
 
 							if (typeof id_messg !== 'undefined' && id_messg.length > 0) {
-								 console.log(id_messg,"nuevo mensaje id")
-								notificationNewMessg$.next(id_messg);
+								/* console.log(id_messg, 'nuevo mensaje id'); */
+
+								if (rutaActual) {
+									notificationNewMessg$.next(id_messg);
+								}  else if(!rutaActual && !rutaChat) {
+
+									console.log("notificacion de new chat");
+
+									
+
+									/* for (let i = 0; i < new_offert.length; i++) {
+										temp = solicitudesList.findIndex(
+											(element) => element.id_string === new_offert[i]['origin']
+										);
+										if (temp != -1) {
+											solicitudesList[temp].notificationOffert = true;
+										}
+									}*/
+								} 
 							}
 
 							if (typeof id_po !== 'undefined' && id_po.length > 0) {
@@ -247,23 +292,23 @@ export class TaskOdooService {
 							}
 
 							if (typeof new_offert !== 'undefined' && new_offert.length > 0) {
-								if(rutaActual){
-									
-								notificationNewOffertSuplier$.next(new_offert);}
-								else{
-							
-									/////////pila
-									let task:TaskModel = new TaskModel();
-									task.notificationType = 2;
+								if (rutaActual) {
+									notificationNewOffertSuplier$.next(new_offert);
+								} else {
 									for (let i = 0; i < new_offert.length; i++) {
-										task.id_string = new_offert[i]['origin'];
-										pilaSolicitudes.insertar(task);
+										temp = solicitudesList.findIndex(
+											(element) => element.id_string === new_offert[i]['origin']
+										);
+										if (temp != -1) {
+											solicitudesList[temp].notificationOffert = true;
+										}
 									}
-								
 								}
 							}
 
 							poll(user.id, user.partner_id, value[value.length - 1].id);
+
+							
 						} else {
 							poll(user.id, user.partner_id, 0);
 						}
@@ -328,7 +373,6 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error cancelPOsuplierSelected');
 				} else {
-					
 					notificationPoCancelled$.next([ id ]);
 				}
 			});
@@ -382,7 +426,10 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error cancelSOclientSelected');
 				} else {
-					
+					let temp = solicitudesList.findIndex((element) => element.id === SO_id);
+					if (temp !== -1) {
+						solicitudesList.splice(temp, 1);
+					}
 					notificationSoCancelled$.next(SO_id);
 				}
 			});
@@ -439,7 +486,6 @@ export class TaskOdooService {
 				if (err || !value) {
 					console.log(err, 'Error cancelSOclientSelected');
 				} else {
-					
 					notificationError$.next(true);
 				}
 			});
@@ -472,9 +518,9 @@ export class TaskOdooService {
 				} else {
 					task.id_string = value[0]['name'];
 					task.notificationNewSo = true;
-					task.type = "Servicio de Fontanería";
-					pilaSolicitudes.insertar(task);
+					task.type = 'Servicio de Fontanería';
 
+					solicitudesList.unshift(task);
 					notificationNewSoClient$.next(true);
 				}
 			});
@@ -524,8 +570,7 @@ export class TaskOdooService {
 		};
 
 		let create_SO_attachment = function(SO_id: number) {
-		
-				let attachement = {
+			let attachement = {
 				name: 'photoSolicitud_' + count + '.jpg',
 				datas: task.photoNewTaskArray[count],
 				type: 'binary',
@@ -563,7 +608,6 @@ export class TaskOdooService {
 					if (count >= 0) {
 						create_SO_attachment(SO_id);
 					} else {
-						
 						confirmService(SO_id);
 					}
 				}
@@ -829,105 +873,6 @@ export class TaskOdooService {
 		);
 	}
 
-	requestTaskPoUpdate(id_po: number[]) {
-		let tasksList: TaskModel[] = [];
-
-		let get_po_by_id = function() {
-			//console.log(id_po);
-			let inParams = [];
-			inParams.push([ [ 'id', 'in', id_po ] ]);
-			inParams.push([
-				'partner_id',
-				'amount_total',
-				'user_id',
-				'origin',
-				'title',
-				'note',
-				'commitment_date',
-				'product_id',
-				'address_street',
-				'state',
-				'invoice_status',
-				'name',
-				'date_order'
-			]);
-			let params = [];
-			params.push(inParams);
-			let fparams = [];
-			fparams.push(jaysonServer.db);
-			fparams.push(user.id);
-			fparams.push(jaysonServer.password);
-			fparams.push('purchase.order'); //model
-			fparams.push('search_read'); //method
-
-			for (let i = 0; i < params.length; i++) {
-				fparams.push(params[i]);
-			}
-
-			client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
-			client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function(
-				err,
-				error,
-				value
-			) {
-				if (err || !value) {
-					console.log(err, 'Error get_po_by_id');
-				} else {
-					for (let task of value) {
-						let temp = new TaskModel();
-						temp.offer_send = task['state'];
-						temp.budget = task['amount_total'];
-						temp.type = task['product_id'][1];
-						temp.description = task['note'];
-						temp.client_id = task['user_id'][0];
-						temp.client_name = task['user_id'][1];
-						temp.provider_id = task['partner_id'][0];
-						temp.provider_name = task['partner_id'][1];
-						temp.id = task['id'];
-						temp.state = task['invoice_status'];
-						temp.id_string = task['name'];
-						temp.date = task['date_order'];
-						temp.date_planned = String(task['commitment_date']).slice(0, 10);
-						temp.time = String(task['commitment_date']).slice(10, String(task['commitment_date']).length);
-						temp.title = task['title'];
-						temp.address = new Address(
-							task['address_street'],
-							task['address_number'],
-							task['address_portal'],
-							task['address_stairs'],
-							task['address_floor'],
-							task['address_door'],
-							task['address_zip_code'],
-							task['address_latitude'],
-							task['address_longitude']
-						);
-
-						tasksList.push(temp);
-					}
-					//      console.log(tasksList, "reques por notifications");
-					tasksList$.next(tasksList);
-				}
-			});
-		};
-
-		let client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
-		client.request(
-			'call',
-			{
-				service: 'common',
-				method: 'login',
-				args: [ jaysonServer.db, jaysonServer.username, jaysonServer.password ]
-			},
-			function(err, error, value) {
-				if (err || !value) {
-					console.log(err, 'Error  requestTaskPoUpdate');
-				} else {
-					get_po_by_id();
-				}
-			}
-		);
-	}
-
 	requestTask(id: number) {
 		let tasksList: TaskModel[] = [];
 		let id_po = [];
@@ -1037,7 +982,6 @@ export class TaskOdooService {
 						tasksList.push(temp);
 					}
 					search_avatar_provider();
-					//task$.next(tasksList);
 				}
 			});
 		};
@@ -1066,10 +1010,43 @@ export class TaskOdooService {
 	}
 
 	requestTaskListClient() {
-		let tasksList: TaskModel[] = [];
+		tasksList = [];
 		let SO_id = [];
 		let contratados_id = [];
 		let partner_id = [];
+
+		let filter = function() {
+			let temp: TaskModel[];
+			temp = tasksList.filter((task) => {
+				return task.state === 'to invoice'; //Solicitadas
+			});
+			if (typeof solicitudesList !== 'undefined' && solicitudesList.length > 0) {
+				Array.prototype.push.apply(solicitudesList, temp);
+			} else {
+				solicitudesList = temp;
+			}
+
+			temp = tasksList.filter((task) => {
+				return task.state === 'invoiced'; //Contratadas
+			});
+			if (typeof contratadosList !== 'undefined' && contratadosList.length > 0) {
+				Array.prototype.push.apply(contratadosList, temp);
+			} else {
+				contratadosList = temp;
+				historialList = temp;
+			}
+
+			temp = tasksList.filter((task) => {
+				return task.state === ''; //Historial
+			});
+			if (typeof historialList !== 'undefined' && historialList.length > 0) {
+				Array.prototype.push.apply(historialList, temp);
+			} else {
+				historialList = temp;
+			}
+
+			tasksList$.next(true);
+		};
 
 		let search_avatar_provider = function() {
 			let inParams = [];
@@ -1098,7 +1075,6 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error search_avatar_provider');
 				} else {
-					
 					for (let resId of value) {
 						for (let task of tasksList) {
 							if (task.provider_id === resId.partner_id[0]) {
@@ -1108,7 +1084,9 @@ export class TaskOdooService {
 							}
 						}
 					}
-					tasksList$.next(tasksList);
+
+					filter();
+					////////////////////////filtrado
 				}
 			});
 		};
@@ -1182,18 +1160,17 @@ export class TaskOdooService {
 				if (err) {
 					console.log(err, 'Error get_photo_so');
 				} else {
-					
 					if (typeof value !== 'undefined' && value.length > 0) {
-					for (let resId of value) {
-						for (let task of tasksList) {
-							if (task.id === resId.res_id) {
-								if (knownTypes[resId.datas[0]]) {
-									task.photoNewTaskArray.push(knownTypes[resId.datas[0]] + resId.datas);
+						for (let resId of value) {
+							for (let task of tasksList) {
+								if (task.id === resId.res_id) {
+									if (knownTypes[resId.datas[0]]) {
+										task.photoNewTaskArray.push(knownTypes[resId.datas[0]] + resId.datas);
+									}
 								}
 							}
 						}
 					}
-				}
 					///
 					get_po_of_task();
 				}
@@ -1319,7 +1296,8 @@ export class TaskOdooService {
 					if (SO_id.length) {
 						get_so_type();
 					} else {
-						tasksList$.next(tasksList);
+						///////////////////////////filtrado
+						filter();
 					}
 				}
 			});
@@ -1343,14 +1321,48 @@ export class TaskOdooService {
 		);
 	}
 
-	getRequestedTaskList$(): Observable<TaskModel[]> {
+	getRequestedTaskList$(): Observable<boolean> {
 		return tasksList$.asObservable();
+	}
+
+	getSolicitudeList() {
+		return solicitudesList;
+	}
+
+	solicitudeListEdit(id: number, type: number) {
+		switch (type) {
+			case 1:
+				//////////////////////////eliminar solicitud
+				temp = solicitudesList.findIndex((element) => element.id === id);
+				if (temp !== -1) {
+					solicitudesList.splice(temp, 1);
+				}
+				break;
+			case 2:
+				temp = solicitudesList.findIndex((element) => element.id === id);
+				if (temp != -1) {
+					solicitudesList[temp].notificationNewSo = false;
+					solicitudesList[temp].notificationOffert = false;
+					solicitudesList[temp].notificationChat = false;
+				}
+
+				break;
+		}
+	}
+
+	getContratadosList() {
+		return contratadosList;
+	}
+
+	getHistorialList() {
+		return historialList;
 	}
 
 	requestOffersForTask(id) {
 		let partner_id = [];
 		let SO_origin = [];
 		let SO_id = [];
+		let offersList: TaskModel[];
 
 		let get_Res_Id = function() {
 			let inParams = [];
@@ -1390,7 +1402,6 @@ export class TaskOdooService {
 						}
 					}
 
-					console.log(offersList);
 					offersList$.next(offersList);
 				}
 			});
@@ -1435,7 +1446,6 @@ export class TaskOdooService {
 		};
 
 		let search_avatar_provider = function() {
-			console.log(partner_id, 'partner_id provider');
 			let inParams = [];
 			inParams.push([ [ 'partner_id', 'in', partner_id ] ]);
 			inParams.push([ 'partner_id', 'image_1920' ]);

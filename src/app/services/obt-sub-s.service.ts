@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { TaskModel } from '../models/task.model';
 import { Observable, Subject } from 'rxjs';
 
-
 @Injectable({
 	providedIn: 'root'
 })
@@ -49,16 +48,15 @@ export class ObtSubSService {
 
 	//-----------------------------------------------------------
 
-    sub_servicio_activo:string="";
-	detalles:boolean=false;
+	sub_servicio_activo: string = '';
+	detalles: boolean = false;
 
-   //-----------------------------------------------------------
+	//-----------------------------------------------------------
 
-    
-    i:number=0;
-    idString:String;
-    private subServicioActual:string;
-/* 
+	i: number = 0;
+	idString: String;
+	private subServicioActual: string;
+	/* 
     foto0:string = '../../../assets/fotoadd.png'; */
 	fotoRegistro: string = '../../../assets/registro.svg';
 
@@ -245,7 +243,6 @@ export class ObtSubSService {
 		this.dat = d;
 	}
 
-
 	setCalendarioT(t: Date) {
 		this.tim = t;
 	}
@@ -285,12 +282,10 @@ export class ObtSubSService {
 
 	setfoto0(f0: string) {
 		this.foto0 = f0;
-		
 	}
 
 	setfoto00(f0: string) {
 		this.foto00 = f0;
-		
 	}
 	setfoto1(f1: string) {
 		this.foto1 = f1;
@@ -303,7 +298,6 @@ export class ObtSubSService {
 	}
 	setfoto11(f0: string) {
 		this.foto11 = f0;
-		
 	}
 	setfoto2(f2: string) {
 		this.foto2 = f2;
@@ -398,25 +392,23 @@ export class ObtSubSService {
 		this.nombre = v1;
 	}
 
-set_sub_servicio_activo(sub){
-this.sub_servicio_activo=sub;
-}
+	set_sub_servicio_activo(sub) {
+		this.sub_servicio_activo = sub;
+	}
 
-get_sub_servicio_activo(){
-return  this.sub_servicio_activo;
-  }
-/* setfotovacia(f){
+	get_sub_servicio_activo() {
+		return this.sub_servicio_activo;
+	}
+	/* setfotovacia(f){
   this.fotovacia=f
 }*/
 
-set_Detalles(temp:boolean){
-	console.log("detalles true");
-this.detalles=temp;
-}
+	set_Detalles(temp: boolean) {
+		/*  */
+		this.detalles = temp;
+	}
 
-get_Detalles(){
-	
-	return this.detalles;
-}
-
+	get_Detalles() {
+		return this.detalles;
+	}
 }
