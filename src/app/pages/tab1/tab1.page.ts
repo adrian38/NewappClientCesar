@@ -9,6 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
+import { ChatOdooService } from 'src/app/services/chat-odoo.service';
+import { MessageModel } from 'src/app/models/message.model';
 
 @Component({
 	selector: 'app-tab1',
@@ -29,10 +31,14 @@ export class Tab1Page implements OnInit {
 	notificationSOCancelled$: Observable<number>;
 	tasksList$: Observable<boolean>; // servicio comunicacion
 	notificationNewOffertSuplier$;
+	notificationNewMessg$: Observable<number[]>;
+	notificationNewMessgOrigin$: Observable<MessageModel[]>;
 
 	subscriptionNotificationSoCancel: Subscription;
 	subscriptioNewPoSuplier:Subscription;
 	subscriptiontasksList: Subscription;
+	subscriptionNotificationMess: Subscription;
+	subscriptionNotificationMessgOrigin: Subscription;
 
 	/* 
   @ViewChild('tabs') tabs: IonTabs; */
@@ -48,7 +54,8 @@ export class Tab1Page implements OnInit {
 		public loadingController: LoadingController,
 		private statusBar: StatusBar,
 		private _location: Location,
-		private splashScreen: SplashScreen
+		private splashScreen: SplashScreen,
+		private _chatOdoo: ChatOdooService,
 	) {}
 
 	ngOnInit(): void {
@@ -67,6 +74,8 @@ export class Tab1Page implements OnInit {
 		this.subscriptionNotificationSoCancel.unsubscribe();
 		this.subscriptiontasksList.unsubscribe();
 		this.subscriptioNewPoSuplier.unsubscribe();
+		this.subscriptionNotificationMess.unsubscribe();
+		this.subscriptionNotificationMessgOrigin.unsubscribe();
 		this._taskOdoo.setTab1In(false);
 		
 	}
@@ -88,6 +97,33 @@ export class Tab1Page implements OnInit {
 			this.loading.dismiss();
 			this.presentAlert();
 		});
+
+		this.notificationNewMessg$ = this._taskOdoo.getRequestedNotificationNewMessg$();
+		this.subscriptionNotificationMess = this.notificationNewMessg$.subscribe(
+			(notificationNewMessg) => {
+				this.ngZone.run(() => {
+					this._chatOdoo.requestNewMessageNoti(notificationNewMessg);
+				});
+			}
+		);
+
+		
+		this.notificationNewMessgOrigin$ = this._chatOdoo.getMessagesOriginNotification$();//
+		 this.subscriptionNotificationMessgOrigin = this.notificationNewMessgOrigin$.subscribe(
+			(notificationNewMessg) => {
+				this.ngZone.run(() => {
+		
+					for (let i = 0; i < notificationNewMessg.length; i++) {
+						let temp = this.solicitudesList.findIndex((element) => element.id_string === notificationNewMessg[i].offer_origin);
+						if (temp != -1) {
+							this.solicitudesList[temp].notificationChat=true;
+						
+					}
+				}
+
+				});
+			}
+		); 
 
 
 

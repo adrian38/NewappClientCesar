@@ -12,6 +12,7 @@ let user: UsuarioModel
 let messagesList: MessageModel[];
 let messagesList$ = new Subject<MessageModel[]>();
 let messageSendOk$ = new Subject<MessageModel>();
+let messageOriginNotification$ = new Subject<MessageModel[]>();
 
 let id:number;
 
@@ -47,7 +48,7 @@ export class ChatOdooService {
 
     sendMessageClient(message: MessageModel) {
 
-        let send_msg_PO = function () {
+            let send_msg_PO = function () {
             let inParams = []
             inParams.push([message.offer_id])
             let params = []
@@ -113,7 +114,7 @@ export class ChatOdooService {
                 if (err || !value) {
                     console.log(err, "Error NewMessage");
                 } else {
-                    console.log(value);
+                    
                     value = value.filter(messages => {
                         return messages.subtype_id === false;
                     });
@@ -129,7 +130,7 @@ export class ChatOdooService {
                         messagesList.push(temp);
                     }
                     messagesList$.next(messagesList);
-                    console.log(messagesList,"nuevos mensajes");                                    
+                                                        
                 }
             });
 
@@ -147,7 +148,8 @@ export class ChatOdooService {
         });
     }
 
-    
+
+       
 
     requestAllMessages(idPurchaseOrder: number) {
         let list_msg_ids = function () {
@@ -175,7 +177,7 @@ export class ChatOdooService {
                 if (err || !value) {
                     console.log(err, "Error list_msg_ids");
                 } else {
-                    console.log(value);
+                    
                     value = value.filter(messages => {
                         return messages.subtype_id === false;
                     });
@@ -211,4 +213,140 @@ export class ChatOdooService {
     getAllMessages$(): Observable<MessageModel[]> {
         return messagesList$.asObservable();
     }
+
+
+
+    requestNewMessageNoti(idNewMessage: number[]) {
+
+        let messagesList:MessageModel[] = [];
+        let Po :number[] = [];
+        
+        let get_po_of_task = function(id:number[]) {
+			let inParams = [];
+			inParams.push([ [ 'id', 'in', id ] ]);
+			inParams.push(['origin', 'state' ]);
+
+			let params = [];
+			params.push(inParams);
+
+			let fparams = [];
+			fparams.push(jaysonServer.db);
+			fparams.push(user.id);
+			fparams.push(jaysonServer.password);
+			fparams.push('purchase.order'); //model
+			fparams.push('search_read'); //method
+
+			for (let i = 0; i < params.length; i++) {
+				fparams.push(params[i]);
+			}
+
+			client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function(
+				err,
+				error,
+				value
+			) {
+				if (err || !value) {
+					console.log(err, 'Error requestOffersForTask');
+				} else {
+
+                    
+				
+				 for (let offer of value) {
+                    for (let msg of messagesList) {
+						if (offer['id'] === msg.offer_id) {
+							msg.offer_origin = offer['origin'];
+						
+						} 
+					}
+                }
+
+                messageOriginNotification$.next(messagesList);
+                
+            }
+					
+				
+			});
+		};
+
+
+        let NewMessage = function () {
+            let inParams = []
+            inParams.push([idNewMessage])
+            inParams.push([['id', 'in', idNewMessage]])
+            inParams.push(['res_id','subtype_id'])
+            let params = []
+            params.push(inParams)
+
+            let fparams = [];
+            fparams.push(jaysonServer.db);
+            fparams.push(user.id);
+            fparams.push(jaysonServer.password);
+            fparams.push('purchase.order');//model
+            fparams.push('search_messages');//method
+
+            for (let i = 0; i < params.length; i++) {
+                fparams.push(params[i]);
+            }
+
+            client.request('call', { service: 'object', method: 'execute_kw', args: fparams }, function (err, error, value) {
+
+                if (err || !value) {
+                    console.log(err, "Error NewMessage");
+                } else {
+                    value = value.filter(messages => {
+                        return messages.subtype_id === false;
+                    });
+                    
+                    
+                    for (let message of value) {
+
+                        let temp: MessageModel = new MessageModel("","",0,message['res_id']);
+                        messagesList.push(temp);
+                        Po.push(message['res_id'])
+                    }
+                                       
+                    get_po_of_task(Po);
+                                                                           
+                }
+            });
+
+        }
+
+        let client = jayson.http({ host: jaysonServer.host, port: jaysonServer.port + jaysonServer.pathConnection });
+        client.request('call', { service: 'common', method: 'login', args: [jaysonServer.db, jaysonServer.username, jaysonServer.password] }, function (err, error, value) {
+
+            if (err || !value) {
+                console.log(err, "Error requestAllMessages ");
+            } else {
+                
+                NewMessage();
+            }
+        });
+  
+    }
+
+    getMessagesOriginNotification$(): Observable<MessageModel[]> {
+        return messageOriginNotification$.asObservable();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

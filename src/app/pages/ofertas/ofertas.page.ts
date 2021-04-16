@@ -92,12 +92,13 @@ export class OfertasPage implements OnInit, OnDestroy {
 
 
 		this.screenOrientation.lock('portrait');
+		this.user = this._authOdoo.getUser();
+		this.task = this._taskOdoo.getTaskCesar();
 		this._taskOdoo.solicitudeListEdit(this.task.id,2);
 		
 		this.subscriptions();
 
-		this.user = this._authOdoo.getUser();
-		this.task = this._taskOdoo.getTaskCesar();
+		
 
 		this.offersList = [];
 		this.userType = this.user.type;
