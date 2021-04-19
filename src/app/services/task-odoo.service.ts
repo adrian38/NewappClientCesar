@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model';
 import { Address, TaskModel } from '../models/task.model';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
 import { Router } from '@angular/router';
@@ -46,9 +46,6 @@ let notificationNewPoSuplier$ = new Subject<number[]>(); ///////Proveedor
 let notificationNewSoClient$ = new Subject<boolean>(); ///////cliente
 
 let notificationNewOffertSuplier$ = new Subject<any[]>(); ///////cliente
-
-let notificationServNewMessg$ = new Subject<number[]>();//////////Ambos
-let subscriptionNotificationMess: Subscription;
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -154,28 +151,6 @@ export class TaskOdooService {
 		return notificationNewMessg$.asObservable();
 	}
 
-	getRequestedNotificationServNewMessg$(): Observable<number[]> {
-		return notificationServNewMessg$.asObservable();
-	}
-
-	ngOnInit(): void {
-		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-		//Add 'implements OnInit' to the class.
-
-		//notificationServNewMessg$ = this.getRequestedNotificationServNewMessg$();
-		
-	}
-
-	ngOnDestroy(): void {
-		//Called once, before the instance is destroyed.
-		//Add 'implements OnDestroy' to the class.
-
-		subscriptionNotificationMess.unsubscribe();
-		
-	}
-
-
-
 	notificationPull() {
 		let id_po = [];
 		let id_po_offert = [];
@@ -263,8 +238,6 @@ export class TaskOdooService {
 
 									console.log("notificacion de new chat");
 
-									
-
 									/* for (let i = 0; i < new_offert.length; i++) {
 										temp = solicitudesList.findIndex(
 											(element) => element.id_string === new_offert[i]['origin']
@@ -307,8 +280,6 @@ export class TaskOdooService {
 							}
 
 							poll(user.id, user.partner_id, value[value.length - 1].id);
-
-							
 						} else {
 							poll(user.id, user.partner_id, 0);
 						}
