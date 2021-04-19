@@ -128,6 +128,65 @@ export class RegistroPage implements OnInit {
 		await alert.present();
 	}
 
+	/* iniciar() {
+		this.entrar_campos();
+		this.obligatorio();
+
+		this.fechactual = new Date().getFullYear().toString();
+
+		let fechalarga = this.fecha.slice(0, 10);
+		let fechacorta = this.fecha.slice(0, 4);
+		let fechavalida = Number(this.fechactual) - Number(fechacorta);
+
+		if (
+			this.nombre != '' &&
+			this.fecha != '' &&
+			this.correo != '' &&
+			this.pass != '' &&
+			this.ppass != '' &&
+			String(this.telefono) != '' &&
+			this.calle != '' &&
+			this.numero != ''
+		) {
+			console.log('si los campos');
+			if (this.selectFoto) {
+				this.obligatoriofoto = false;
+
+				if (fechavalida > 17) {
+					if (this.pass == this.ppass) {
+						this.calen = false;
+						this.ccontra = false;
+
+						this.datos.setfecha(fechalarga);
+
+						if (this.coordenadas == true) {
+							this.obligatorioGPS = true;
+							this.navCtrl.navigateRoot('/aceptarregistro', {
+								animated: true,
+								animationDirection: 'forward'
+							});
+						} else {
+							this.obligatorioGPS = true;
+							this.ToastCoordenadas();
+						}
+					} else {
+						this.calen = false;
+						this.ccontra = true;
+					}
+				} else {
+					this.calen = true;
+					this.ccontra = false;
+				}
+			} else {
+				this.obligatoriofoto = true;
+				this.ToastFoto();
+			}
+		} else {
+			this.ToastCampos();
+		}
+	}
+ */
+
 	iniciar() {
 		this.entrar_campos();
 		this.obligatorio();
@@ -341,5 +400,21 @@ export class RegistroPage implements OnInit {
 		} else {
 			this.oblidatoriotelefono = true;
 		}
+
+		if (this.selectFoto) {
+			this.obligatoriofoto = false;
+		}
+		else{
+			this.obligatoriofoto = true;
+		}
+
+		if (this.coordenadas) {
+			this.obligatorioGPS = false;
+		}
+		else{
+			this.obligatorioGPS = true;
+		}
+
+
 	}
 }

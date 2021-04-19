@@ -23,7 +23,6 @@ export class Tab1Page implements OnInit {
 	task: TaskModel;
 	solicitudesList: TaskModel[];
 	tab: String;
-	user: UsuarioModel;
 	loading: any;
 	solicitudVacia: boolean = true;
 
@@ -59,9 +58,8 @@ export class Tab1Page implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		
-		this.init();
 		this.subscriptions();
+		this.init();
 		this.subServ.set_Detalles(false);
 		this._taskOdoo.setTab1In(true);
 		

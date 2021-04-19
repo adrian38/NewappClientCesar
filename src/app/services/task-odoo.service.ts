@@ -430,8 +430,6 @@ export class TaskOdooService {
 
 	newTask(task: TaskModel) {
 		let count: number;
-		console.log(this.router.url, 'mi ruta'); //  /tu-ruta
-
 		let cancelSOclientSelected = function(SO_id: number) {
 			let inParams = [];
 			inParams.push([ SO_id ]);
