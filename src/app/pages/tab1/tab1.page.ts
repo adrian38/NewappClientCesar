@@ -2,7 +2,6 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { AlertController, NavController, LoadingController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
 import { TaskModel } from 'src/app/models/task.model';
-import { UsuarioModel } from 'src/app/models/usuario.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -22,6 +21,7 @@ export class Tab1Page implements OnInit {
 	id_string: string;
 	task: TaskModel;
 	solicitudesList: TaskModel[];
+	messaggeList: number[];
 	tab: String;
 	loading: any;
 	solicitudVacia: boolean = true;
@@ -58,6 +58,7 @@ export class Tab1Page implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+
 		this.subscriptions();
 		this.init();
 		this.subServ.set_Detalles(false);
@@ -80,13 +81,19 @@ export class Tab1Page implements OnInit {
 
 	init() {
 		if (!this._taskOdoo.getInitTab()) {
-			this._taskOdoo.setInitTab();
+			this._taskOdoo.setInitTab(true);
 			this._taskOdoo.requestTaskListClient();
 			this.presentLoadingCargado();
 		} else {
-
 			this.solicitudesList = this._taskOdoo.getSolicitudeList();
 			this.solicitudEmpty();
+			if(!this.solicitudVacia){
+		
+				if (!this._taskOdoo.getPilaEmpthy()) {
+					let temp = this._taskOdoo.getPilaSolicitud();
+					this._chatOdoo.requestNewMessageNoti(temp);
+				}
+			}
 		}
 	}
 
@@ -110,13 +117,15 @@ export class Tab1Page implements OnInit {
 		 this.subscriptionNotificationMessgOrigin = this.notificationNewMessgOrigin$.subscribe(
 			(notificationNewMessg) => {
 				this.ngZone.run(() => {
-		
+					
 					for (let i = 0; i < notificationNewMessg.length; i++) {
 						let temp = this.solicitudesList.findIndex((element) => element.id_string === notificationNewMessg[i].offer_origin);
 						if (temp != -1) {
 							this.solicitudesList[temp].notificationChat=true;
 						
 					}
+
+					this._taskOdoo.setSolicitudesListEdit(notificationNewMessg);
 				}
 
 				});
@@ -136,7 +145,7 @@ export class Tab1Page implements OnInit {
 					
 				}
 			}
-				console.log('nueva oferta ha llegado',this.solicitudesList);
+				
 			});
 		});
 

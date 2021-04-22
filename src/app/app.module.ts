@@ -44,6 +44,11 @@ import { MessageService } from 'primeng/api';
 import { AgmCoreModule } from '@agm/core';
 /////////////////////////////////////////
 
+///////internet
+
+
+/////////////////////////////////////
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -63,6 +68,8 @@ import { ComponentsModule } from './components/components.module';
     AppRoutingModule,
     ToastModule,
     CommonModule,
+  
+    
     
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyBXq33cjYMCezL6xP-vo3m-qWQ5U9gRTfQ'

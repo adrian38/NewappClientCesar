@@ -7,6 +7,8 @@ import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
 import { Router } from '@angular/router';
+import { MessageModel } from '../models/message.model';
+
 
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
@@ -64,7 +66,7 @@ let rutaChat: boolean = false;
 
 //-------------------------------------------------cesar
 
-let pilaSolicitudes: PilaSolicitudes<TaskModel>;
+let pilaSolicitudes: PilaSolicitudes<number>;
 
 let taskPayment: TaskModel;
 
@@ -83,7 +85,7 @@ export class TaskOdooService {
 
 	constructor(private _authOdoo: AuthOdooService, private router: Router) {
 		jaysonServer = this._authOdoo.OdooInfoJayson;
-		pilaSolicitudes = new PilaSolicitudes<TaskModel>();
+		pilaSolicitudes = new PilaSolicitudes<number>();
 	}
 
 	setTaskPayment(task: TaskModel) {
@@ -102,8 +104,8 @@ export class TaskOdooService {
 		return init;
 	}
 
-	setInitTab() {
-		initTab = true;
+	setInitTab(temp:boolean) {
+		initTab = temp;
 	}
 
 	getInitTab() {
@@ -236,16 +238,11 @@ export class TaskOdooService {
 									notificationNewMessg$.next(id_messg);
 								}  else if(!rutaActual && !rutaChat) {
 
-									console.log("notificacion de new chat");
-
-									/* for (let i = 0; i < new_offert.length; i++) {
-										temp = solicitudesList.findIndex(
-											(element) => element.id_string === new_offert[i]['origin']
-										);
-										if (temp != -1) {
-											solicitudesList[temp].notificationOffert = true;
-										}
-									}*/
+									for (let i = 0; i < id_messg.length; i++) {
+										pilaSolicitudes.insertar(id_messg[i]);
+										
+									}
+								
 								} 
 							}
 
@@ -1296,6 +1293,19 @@ export class TaskOdooService {
 
 	getSolicitudeList() {
 		return solicitudesList;
+	}
+
+	setSolicitudesListEdit(messagesList:MessageModel[]){
+
+		
+		for (let i = 0; i < messagesList.length; i++) {
+			let temp = solicitudesList.findIndex((element) => element.id_string === messagesList[i].offer_origin);
+			if (temp != -1) {
+				solicitudesList[temp].notificationChat=true;
+			
+		}
+	}
+
 	}
 
 	solicitudeListEdit(id: number, type: number) {
