@@ -137,7 +137,7 @@ export class TaskOdooService {
 		rutaActual = temp;
 	}
 
-	setChatIn(temp: boolean) {
+	setChat(temp: boolean) {
 		rutaChat = temp;
 	}
 
@@ -234,7 +234,7 @@ export class TaskOdooService {
 							if (typeof id_messg !== 'undefined' && id_messg.length > 0) {
 								/* console.log(id_messg, 'nuevo mensaje id'); */
 
-								if (rutaActual) {
+								if (rutaActual || rutaChat) {
 									notificationNewMessg$.next(id_messg);
 								}  else if(!rutaActual && !rutaChat) {
 
