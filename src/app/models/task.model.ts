@@ -42,6 +42,8 @@ export class TaskModel {
 	provider_id: number;
 	provider_name: number;
 	budget: number;
+	materials: number;
+	work_force: number;
 	origin: string;
 	date_planned: string;
 	date: string;
@@ -92,6 +94,8 @@ export class TaskModel {
 		notificationOffert=false,
 		notificationChat=false,
 		notificationNewSo=false,
+		materials = 0,
+		work_force= 0,
 	) {
 		this.notificationType = notificationType;
 		this.comment = comment;
@@ -121,5 +125,7 @@ export class TaskModel {
 		this.notificationNewSo = notificationNewSo;
 		this.notificationOffert = notificationOffert;
 		this.notificationChat = notificationChat;
+		this.work_force = work_force;
+		this.materials =materials;
 	}
 }

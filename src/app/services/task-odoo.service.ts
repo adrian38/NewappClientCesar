@@ -3,10 +3,12 @@
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model';
 import { Address, TaskModel } from '../models/task.model';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthOdooService } from './auth-odoo.service';
 import { PilaSolicitudes } from '../models/pilaSolicitudes.class';
 import { Router } from '@angular/router';
+import { MessageModel } from '../models/message.model';
+
 
 let jayson = require('../../../node_modules/jayson/lib/client/');
 
@@ -47,9 +49,6 @@ let notificationNewSoClient$ = new Subject<boolean>(); ///////cliente
 
 let notificationNewOffertSuplier$ = new Subject<any[]>(); ///////cliente
 
-let notificationServNewMessg$ = new Subject<number[]>();//////////Ambos
-let subscriptionNotificationMess: Subscription;
-
 ////////////////////////////////////////////////////////////////////////////
 
 let notificationNewMessg$ = new Subject<number[]>(); ///////Proveedor
@@ -67,7 +66,7 @@ let rutaChat: boolean = false;
 
 //-------------------------------------------------cesar
 
-let pilaSolicitudes: PilaSolicitudes<TaskModel>;
+let pilaSolicitudes: PilaSolicitudes<number>;
 
 let taskPayment: TaskModel;
 
@@ -86,7 +85,7 @@ export class TaskOdooService {
 
 	constructor(private _authOdoo: AuthOdooService, private router: Router) {
 		jaysonServer = this._authOdoo.OdooInfoJayson;
-		pilaSolicitudes = new PilaSolicitudes<TaskModel>();
+		pilaSolicitudes = new PilaSolicitudes<number>();
 	}
 
 	setTaskPayment(task: TaskModel) {
@@ -105,8 +104,8 @@ export class TaskOdooService {
 		return init;
 	}
 
-	setInitTab() {
-		initTab = true;
+	setInitTab(temp:boolean) {
+		initTab = temp;
 	}
 
 	getInitTab() {
@@ -138,7 +137,7 @@ export class TaskOdooService {
 		rutaActual = temp;
 	}
 
-	setChatIn(temp: boolean) {
+	setChat(temp: boolean) {
 		rutaChat = temp;
 	}
 
@@ -153,28 +152,6 @@ export class TaskOdooService {
 	getRequestedNotificationNewMessg$(): Observable<number[]> {
 		return notificationNewMessg$.asObservable();
 	}
-
-	getRequestedNotificationServNewMessg$(): Observable<number[]> {
-		return notificationServNewMessg$.asObservable();
-	}
-
-	ngOnInit(): void {
-		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-		//Add 'implements OnInit' to the class.
-
-		//notificationServNewMessg$ = this.getRequestedNotificationServNewMessg$();
-		
-	}
-
-	ngOnDestroy(): void {
-		//Called once, before the instance is destroyed.
-		//Add 'implements OnDestroy' to the class.
-
-		subscriptionNotificationMess.unsubscribe();
-		
-	}
-
-
 
 	notificationPull() {
 		let id_po = [];
@@ -257,22 +234,15 @@ export class TaskOdooService {
 							if (typeof id_messg !== 'undefined' && id_messg.length > 0) {
 								/* console.log(id_messg, 'nuevo mensaje id'); */
 
-								if (rutaActual) {
+								if (rutaActual || rutaChat) {
 									notificationNewMessg$.next(id_messg);
 								}  else if(!rutaActual && !rutaChat) {
 
-									console.log("notificacion de new chat");
-
-									
-
-									/* for (let i = 0; i < new_offert.length; i++) {
-										temp = solicitudesList.findIndex(
-											(element) => element.id_string === new_offert[i]['origin']
-										);
-										if (temp != -1) {
-											solicitudesList[temp].notificationOffert = true;
-										}
-									}*/
+									for (let i = 0; i < id_messg.length; i++) {
+										pilaSolicitudes.insertar(id_messg[i]);
+										
+									}
+								
 								} 
 							}
 
@@ -307,8 +277,6 @@ export class TaskOdooService {
 							}
 
 							poll(user.id, user.partner_id, value[value.length - 1].id);
-
-							
 						} else {
 							poll(user.id, user.partner_id, 0);
 						}
@@ -1325,6 +1293,19 @@ export class TaskOdooService {
 
 	getSolicitudeList() {
 		return solicitudesList;
+	}
+
+	setSolicitudesListEdit(messagesList:MessageModel[]){
+
+		
+		for (let i = 0; i < messagesList.length; i++) {
+			let temp = solicitudesList.findIndex((element) => element.id_string === messagesList[i].offer_origin);
+			if (temp != -1) {
+				solicitudesList[temp].notificationChat=true;
+			
+		}
+	}
+
 	}
 
 	solicitudeListEdit(id: number, type: number) {

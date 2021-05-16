@@ -1,11 +1,14 @@
 import { Component, OnInit,NgZone } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription ,Observer, fromEvent, merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { AuthOdooService } from 'src/app/services/auth-odoo.service';
 import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
 import { AlertController, LoadingController, NavController,Platform } from '@ionic/angular';
 import { Location } from '@angular/common';
+
+ 
 
 
 @Component({
@@ -28,6 +31,9 @@ export class LoginPage implements OnInit {
 
   subscriptionUsuario: Subscription;
 
+  public onlineOffline: boolean = navigator.onLine;
+  
+
   constructor(private ngZone: NgZone,
     private _authOdoo:AuthOdooService,
     private _taskOdoo:TaskOdooService,
@@ -36,22 +42,40 @@ export class LoginPage implements OnInit {
     public alertController: AlertController,
     public navController:NavController,
     private platform: Platform,
-    private _location: Location) {
-
-this.usuario = new UsuarioModel;
-
-this.platform.backButton.subscribeWithPriority(10, () => {
-  if (this._location.isCurrentPathEqualTo('/login')) {
+    private _location: Location,
     
-    this.navController.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
-    
-  }
-  
-  });
+   
+  ) {
 
 }
 
 ngOnInit() {
+  this._taskOdoo.setInitTab(false);
+  this.usuario = new UsuarioModel();
+  this.subscriptions();
+  
+}
+
+
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  this.subscriptionUsuario.unsubscribe();
+  
+}
+
+subscriptions(){
+
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    if (this._location.isCurrentPathEqualTo('/login')) {
+      
+      this.navController.navigateRoot('/inicio', {animated: true, animationDirection: 'back' }) ;
+      
+    }
+    
+    });
+  
 
   this.usuario$ = this._authOdoo.getUser$();
   
@@ -64,17 +88,12 @@ ngOnInit() {
       this.checkUser();
     });
   });
-}
 
-ngOnDestroy(): void {
-  //Called once, before the instance is destroyed.
-  //Add 'implements OnDestroy' to the class.
-  this.subscriptionUsuario.unsubscribe();
-  
 }
 
 checkUser(){
   if(this.usuario.connected){
+
     this._taskOdoo.setUser(this.usuario);
     this._chatOdoo.setUser(this.usuario);
     
@@ -97,6 +116,7 @@ checkUser(){
     
     this.usuario.username = this.user;
     this.usuario.password = this.pass;
+
     this._authOdoo.loginClientApk(this.usuario);
    
   }
