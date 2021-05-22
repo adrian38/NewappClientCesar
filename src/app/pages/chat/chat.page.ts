@@ -73,7 +73,7 @@ export class ChatPage implements OnInit {
 
 	ngOnInit(): void {
 
-		this._taskOdoo.setChatIn(true);
+		this._taskOdoo.setChat(true);
 		this.presentLoading();
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
@@ -134,7 +134,7 @@ export class ChatPage implements OnInit {
 		this.subscriptionNewMsg.unsubscribe();
 		this.subscriptionNotification.unsubscribe();
 		this.subscriptionTask.unsubscribe();
-		this._taskOdoo.setChatIn(false);
+		this._taskOdoo.setChat(false);
 	}
 
 	enviarSMS() {
