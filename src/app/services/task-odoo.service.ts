@@ -194,7 +194,7 @@ export class TaskOdooService {
 								if (
 									(task['message']['type'] === 'purchase_order_notification' &&
 										task['message']['action'] === 'canceled') ||
-									task['message']['action'] === 'canceled'
+									task['message']['action'] === 'calceled'
 								) {
 									console.log('se ha eliminado una oferta');
 									id_po_offert.push(task['message']['order_id']);
