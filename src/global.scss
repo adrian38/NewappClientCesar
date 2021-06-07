@@ -111,3 +111,38 @@
     -webkit-animation-name: flash;
     animation-name: flash;
   }
+
+  .flex_row {
+    display       : flex;
+    flex-direction: row;
+    width         : 100% !important;
+  }
+  
+  
+  
+  .flex_column {
+    display       : flex;
+    flex-direction: column;
+    width         : 100% !important;
+  }
+  
+  .flex_space_between {
+    justify-content: space-between;
+  }
+  
+  .flex_centered {
+    display        : flex !important;
+    justify-content: center !important;
+    align-items    : center !important;
+    text-align     : center;
+  }
+  
+
+
+  .orange {
+    color: var(--ion-color-orange) !important;
+  }
+  
+  .greenblue{
+    color: var(--ion-color-greenblue) !important;
+  }

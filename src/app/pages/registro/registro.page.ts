@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
-import { AlertController, NavController, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, Platform } from '@ionic/angular';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { Address } from '../../models/task.model';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { Photo } from 'src/app/interfaces/photo';
 import { ToastController } from '@ionic/angular';
+
+import { Observable, Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
+import { SignUpOdooService } from 'src/app/services/signup-odoo.service';
 
 
 @Component({
@@ -54,13 +58,28 @@ export class RegistroPage implements OnInit {
 	coordenadas: boolean = false;
 	ccontra: boolean = false;
 
+	//------------------------------------------
+
+    notificationOK$: Observable<boolean>;
+    notificationError$: Observable<boolean>;
+
+	subscriptionError: Subscription;
+	subscriptionOk: Subscription;
+
+    islog: boolean;
+    loading: HTMLIonLoadingElement = null;
+
 	constructor(
 		public photoService: PhotoService,
 		public datos: ObtSubSService,
 		public navCtrl: NavController,
 		public alertController: AlertController,
 		private platform: Platform,
-		public toastController: ToastController
+		public toastController: ToastController,
+		private messageService: MessageService,
+		private ngZone: NgZone,
+		private _signupOdoo: SignUpOdooService,
+		public loadingController: LoadingController
 	) {
 		this.coordenadas = this.datos.getcoordenada();
 		this.selectFoto = this.datos.getselectfoto();
@@ -73,6 +92,39 @@ export class RegistroPage implements OnInit {
 		this.platform.backButton.subscribeWithPriority(10, () => {
 			this.alert_atras();
 		});
+
+		this.notificationError$ = this._signupOdoo.getNotificationError$();
+		this.subscriptionError = this.notificationError$.subscribe((notificationError) => {
+			this.ngZone.run(() => {
+				if (notificationError) {
+					this.loading.dismiss();
+					this.messageService.add({ severity: 'error', detail: 'Reistro incompletado' });
+					//error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
+				}
+			});
+		});
+		this.notificationOK$ = this._signupOdoo.getNotificationOK$();
+		this.subscriptionOk = this.notificationOK$.subscribe((notificationOK) => {
+			this.ngZone.run(() => {
+				if (notificationOK) {
+					//quitar cargado e ir a la pagina de logguearse
+
+					this.loading.dismiss();
+					this.messageService.add({ severity: 'success', detail: 'Reistro completado' });
+
+					setTimeout(() => {
+						this.navCtrl.navigateRoot('/inicio', { animated: true, animationDirection: 'back' });
+					}, 2000);
+				}
+			});
+		});
+	}
+
+	ngOnDestroy(): void {
+		//Called once, before the instance is destroyed.
+		//Add 'implements OnDestroy' to the class.
+		this.subscriptionOk.unsubscribe();
+		this.subscriptionError.unsubscribe();
 	}
 
 	async presentAlertConfirm() {
@@ -220,10 +272,11 @@ export class RegistroPage implements OnInit {
 
 						if (this.coordenadas == true) {
 							this.obligatorioGPS = true;
-							this.navCtrl.navigateRoot('/aceptarregistro', {
-								animated: true,
-								animationDirection: 'forward'
-							});
+                           this.completarRegistro();
+							// this.navCtrl.navigateRoot('/inicio', {
+							// 	animated: true,
+							// 	animationDirection: 'forward'
+							// });
 						} else {
 							this.obligatorioGPS = true;
 							this.ToastCoordenadas();
@@ -417,4 +470,81 @@ export class RegistroPage implements OnInit {
 
 
 	}
+	//-----------------------------*******************----------------
+
+	completarRegistro(){
+		this.presentLoading();
+		this.usuario = new UsuarioModel();
+		this.usuario.address = new Address('', '', '', '', '', '', '', '', '');
+        this.usuario.avatar=this.avatarusuario64;      
+		this.usuario.realname = this.nombre.trim();
+		this.usuario.password = this.pass;
+		this.usuario.phone = this.telefono;
+		this.usuario.username = this.correo.trim().toLowerCase();
+		this.usuario.date = this.fecha;
+		
+		this.usuario.type = 'client';
+
+		this.usuario.address.street = this.calle.trim();
+		this.usuario.address.door = this.puerta;
+		this.usuario.address.stair = this.escalera;
+		this.usuario.address.portal = this.portal;
+		this.usuario.address.cp = this.cod_postal;
+		this.usuario.address.number = this.numero;
+		this.usuario.address.floor = this.piso;
+
+		this.usuario.address.latitude = String(this.datos.getlatitud());
+		this.usuario.address.longitude = String(this.datos.getlongitud());
+
+		if (
+			Buffer.from(this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1)).length / 1e6 >
+			0.322216
+		) {
+			this.resizedataURL(this.datos.getfoto0(), 1280, 960);
+		} else {
+			this.usuario.avatar = this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1);
+		}
+
+		this._signupOdoo.newUser(this.usuario);
+
+		
+	}
+
+
+	resizedataURL(datas, wantedWidth, wantedHeight) {
+		var img = document.createElement('img');
+		img.src = datas;
+		img.onload = () => {
+			let ratio = img.width / img.height;
+			wantedWidth = wantedHeight * ratio;
+			let canvas = document.createElement('canvas');
+			let ctx = canvas.getContext('2d');
+			canvas.width = wantedWidth;
+			canvas.height = wantedHeight;
+			ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+			let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
+			this.usuario.avatar = temp.substring(temp.indexOf(',') + 1);
+		};
+	}
+	async presentLoading() {
+			this.loading = await this.loadingController.create({
+				cssClass: 'my-custom-class',
+				message: 'Registrando...'
+				//duration: 2000
+			});
+	
+			return this.loading.present();
+		}
+	
 }
+
+
+
+	
+	//this.datos.setcontraseñaConfirmafa(this.ppass);
+	
+
+
+
+	//this.datos.setfotoRegis(this.avatarusuario);
+	

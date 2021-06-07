@@ -1,6 +1,6 @@
-
+<!-- 
 <ion-content >
-  <div id="contenido">
+   <div id="contenido">
     <ion-row>
       <ion-col size=1></ion-col>
       <ion-col size=10 style="text-align: center;">
@@ -41,6 +41,37 @@
       </ion-col>
       <ion-col size=1></ion-col>
     </ion-row>
-  </div>
+  </div> 
+
  
+ 
+</ion-content> -->
+
+
+
+<ion-content class="ion-no-padding">
+  <div
+    class="flex_column"
+    style="height: 100%; background-color: var(--ion-color-black)"
+  >
+    <div class="logo_principal">
+      <ion-img
+        src="../../assets/logoNavbar.svg"
+        style="width: 100px"
+      ></ion-img>
+    </div>
+    <div class="flex_column">
+      <h1 style="color: rgb(246, 183, 118);">TodoenunApp</h1>
+    </div>
+    <div class="init_div">
+      <ion-button class="btn" color="orange" (click)="navegar()">
+        <span style="padding-top: 5px">Iniciar sesión</span>
+      </ion-button>
+    </div>
+    <div class="create_div">
+      <ion-button class="btn" color="orange" (click)="registro()">
+        <span style="padding-top: 5px">Crear cuenta</span>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

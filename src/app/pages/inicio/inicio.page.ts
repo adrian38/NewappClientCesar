@@ -34,7 +34,7 @@ export class InicioPage implements OnInit {
 		this.navCon.navigateRoot('/login', { animated: true, animationDirection: 'forward' });
 	}
 	registro() {
-		this.navCon.navigateRoot('/registro', { animated: true, animationDirection: 'forward' });
+		this.navCon.navigateRoot('/aceptarregistro', { animated: true, animationDirection: 'forward' });
 	}
 
 	initializeApp() {
