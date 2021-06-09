@@ -14,17 +14,17 @@ import { MessageService } from 'primeng/api';
 export class AceptarregistroPage implements OnInit {
 	aceptar: boolean = true;
 
-	usuario: UsuarioModel;
-	address: Address;
-	islog: boolean;
+	// usuario: UsuarioModel;
+	// address: Address;
+	// islog: boolean;
 
-	loading: HTMLIonLoadingElement = null;
+	// loading: HTMLIonLoadingElement = null;
 
-	notificationOK$: Observable<boolean>;
-	notificationError$: Observable<boolean>;
+	// notificationOK$: Observable<boolean>;
+	// notificationError$: Observable<boolean>;
 
-	subscriptionError: Subscription;
-	subscriptionOk: Subscription;
+	// subscriptionError: Subscription;
+	// subscriptionOk: Subscription;
 
 	constructor(
 		public datos: ObtSubSService,
@@ -38,126 +38,129 @@ export class AceptarregistroPage implements OnInit {
 
 	ngOnInit() {
 		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.navCtrl.navigateRoot('/registro', { animated: true, animationDirection: 'back' });
+			this.navCtrl.navigateRoot('/inicio', { animated: true, animationDirection: 'back' });
 		});
 
-		this.notificationError$ = this._signupOdoo.getNotificationError$();
-		this.subscriptionError = this.notificationError$.subscribe((notificationError) => {
-			this.ngZone.run(() => {
-				if (notificationError) {
-					this.loading.dismiss();
-					this.messageService.add({ severity: 'error', detail: 'Reistro incompletado' });
-					//error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
-				}
-			});
-		});
-		this.notificationOK$ = this._signupOdoo.getNotificationOK$();
-		this.subscriptionOk = this.notificationOK$.subscribe((notificationOK) => {
-			this.ngZone.run(() => {
-				if (notificationOK) {
-					//quitar cargado e ir a la pagina de logguearse
+		// this.notificationError$ = this._signupOdoo.getNotificationError$();
+		// this.subscriptionError = this.notificationError$.subscribe((notificationError) => {
+		// 	this.ngZone.run(() => {
+		// 		if (notificationError) {
+		// 			this.loading.dismiss();
+		// 			this.messageService.add({ severity: 'error', detail: 'Reistro incompletado' });
+		// 			//error por usuario ya creado o conectividad o datos ingreados///////esto lo vamos a definir despues
+		// 		}
+		// 	});
+		// });
+		// this.notificationOK$ = this._signupOdoo.getNotificationOK$();
+		// this.subscriptionOk = this.notificationOK$.subscribe((notificationOK) => {
+		// 	this.ngZone.run(() => {
+		// 		if (notificationOK) {
+		// 			//quitar cargado e ir a la pagina de logguearse
 
-					this.loading.dismiss();
-					this.messageService.add({ severity: 'success', detail: 'Reistro completado' });
+		// 			this.loading.dismiss();
+		// 			this.messageService.add({ severity: 'success', detail: 'Reistro completado' });
 
-					setTimeout(() => {
-						this.navCtrl.navigateRoot('/inicio', { animated: true, animationDirection: 'back' });
-					}, 2000);
-				}
-			});
-		});
+		// 			setTimeout(() => {
+		// 				this.navCtrl.navigateRoot('/inicio', { animated: true, animationDirection: 'back' });
+		// 			}, 2000);
+		// 		}
+		// 	});
+		// });
 	}
 	ngOnDestroy(): void {
 		//Called once, before the instance is destroyed.
 		//Add 'implements OnDestroy' to the class.
-		this.subscriptionOk.unsubscribe();
-		this.subscriptionError.unsubscribe();
+		// this.subscriptionOk.unsubscribe();
+		// this.subscriptionError.unsubscribe();
 	}
 
 	condiciones() {
-		if (this.aceptar == true) this.aceptar = false;
+		if (this.aceptar == true)
+		 this.aceptar = false;
 		else this.aceptar = true;
 	}
 
 	aceptarregistro() {
-		this.presentLoading();
-		this.usuario = new UsuarioModel();
-		this.usuario.address = new Address('', '', '', '', '', '', '', '', '');
-		this.usuario.realname = this.datos.getnombre();
-		this.usuario.password = this.datos.getcontraseña();
-		this.usuario.phone = this.datos.gettelefono();
-		this.usuario.username = this.datos.getcorreo();
-		this.usuario.date = this.datos.getfecha();
-		/*  this.usuario.date='2020-02-20'; */
-		this.usuario.type = 'client';
 
-		this.usuario.address.street = this.datos.getcalle();
-		this.usuario.address.door = this.datos.getpuerta();
-		this.usuario.address.stair = this.datos.getescalera();
-		this.usuario.address.portal = this.datos.getportal();
-		this.usuario.address.cp = this.datos.getcod_postal();
-		this.usuario.address.number = this.datos.getnumero();
-		this.usuario.address.floor = this.datos.getpiso();
+		this.navCtrl.navigateRoot('/registro', { animated: true, animationDirection: 'forward' });
+		// this.presentLoading();
+		// this.usuario = new UsuarioModel();
+		// this.usuario.address = new Address('', '', '', '', '', '', '', '', '');
+		// this.usuario.realname = this.datos.getnombre();
+		// this.usuario.password = this.datos.getcontraseña();
+		// this.usuario.phone = this.datos.gettelefono();
+		// this.usuario.username = this.datos.getcorreo();
+		// this.usuario.date = this.datos.getfecha();
+		
+		// this.usuario.type = 'client';
 
-		this.usuario.address.latitude = String(this.datos.getlatitud());
-		this.usuario.address.longitude = String(this.datos.getlongitud());
+		// this.usuario.address.street = this.datos.getcalle();
+		// this.usuario.address.door = this.datos.getpuerta();
+		// this.usuario.address.stair = this.datos.getescalera();
+		// this.usuario.address.portal = this.datos.getportal();
+		// this.usuario.address.cp = this.datos.getcod_postal();
+		// this.usuario.address.number = this.datos.getnumero();
+		// this.usuario.address.floor = this.datos.getpiso();
 
-		if (
-			Buffer.from(this.datos.getfoto0().substring(this.datos.getfoto0().indexOf(',') + 1)).length / 1e6 >
-			0.322216
-		) {
-			this.resizedataURL(this.datos.getfoto0(), 1280, 960);
-		} else {
-			this.usuario.avatar = this.datos.getfoto0().substring(this.datos.getfoto0().indexOf(',') + 1);
-		}
+		// this.usuario.address.latitude = String(this.datos.getlatitud());
+		// this.usuario.address.longitude = String(this.datos.getlongitud());
 
-		this._signupOdoo.newUser(this.usuario);
+		// if (
+		// 	Buffer.from(this.datos.getfoto0().substring(this.datos.getfoto0().indexOf(',') + 1)).length / 1e6 >
+		// 	0.322216
+		// ) {
+		// 	this.resizedataURL(this.datos.getfoto0(), 1280, 960);
+		// } else {
+		// 	this.usuario.avatar = this.datos.getfoto0().substring(this.datos.getfoto0().indexOf(',') + 1);
+		// }
 
-		this.limpiar_campos();
+		// this._signupOdoo.newUser(this.usuario);
+
+		// this.limpiar_campos();
 	}
 
-	limpiar_campos() {
-		this.datos.setnombre('');
+	// limpiar_campos() {
+	// 	this.datos.setnombre('');
 
-		this.datos.setcorreo('');
-		this.datos.setcontraseña('');
+	// 	this.datos.setcorreo('');
+	// 	this.datos.setcontraseña('');
 
-		this.datos.settelefono('');
+	// 	this.datos.settelefono('');
 
-		this.datos.setcalle('');
-		this.datos.setpiso('');
-		this.datos.setnumero('');
-		this.datos.setpuerta('');
-		this.datos.setportal(''); /*  */
-		this.datos.setcod_postal('');
-		this.datos.setescalera('');
-		this.datos.setfoto0('');
-		this.datos.setfoto1('');
-	}
+	// 	this.datos.setcalle('');
+	// 	this.datos.setpiso('');
+	// 	this.datos.setnumero('');
+	// 	this.datos.setpuerta('');
+	// 	this.datos.setportal(''); 
+	// 	this.datos.setcod_postal('');
+	// 	this.datos.setescalera('');
+	// 	this.datos.setfoto0('');
+	// 	this.datos.setfoto1('');
+	// }
 
-	async presentLoading() {
-		this.loading = await this.loadingController.create({
-			cssClass: 'my-custom-class',
-			message: 'Registrando...'
-			//duration: 2000
-		});
+	// async presentLoading() {
+	// 	this.loading = await this.loadingController.create({
+	// 		cssClass: 'my-custom-class',
+	// 		message: 'Registrando...'
+	// 		//duration: 2000
+	// 	});
 
-		return this.loading.present();
-	}
+	// 	return this.loading.present();
+	// }
 
-	resizedataURL(datas, wantedWidth, wantedHeight) {
-		var img = document.createElement('img');
-		img.src = datas;
-		img.onload = () => {
-			let ratio = img.width / img.height;
-			wantedWidth = wantedHeight * ratio;
-			let canvas = document.createElement('canvas');
-			let ctx = canvas.getContext('2d');
-			canvas.width = wantedWidth;
-			canvas.height = wantedHeight;
-			ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
-			let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
-			this.usuario.avatar = temp.substring(temp.indexOf(',') + 1);
-		};
-	}
+	// resizedataURL(datas, wantedWidth, wantedHeight) {
+	// 	var img = document.createElement('img');
+	// 	img.src = datas;
+	// 	img.onload = () => {
+	// 		let ratio = img.width / img.height;
+	// 		wantedWidth = wantedHeight * ratio;
+	// 		let canvas = document.createElement('canvas');
+	// 		let ctx = canvas.getContext('2d');
+	// 		canvas.width = wantedWidth;
+	// 		canvas.height = wantedHeight;
+	// 		ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+	// 		let temp = canvas.toDataURL('image/jpeg', [ 0.0, 1.0 ]);
+	// 		this.usuario.avatar = temp.substring(temp.indexOf(',') + 1);
+	// 	};
+	// }
 }

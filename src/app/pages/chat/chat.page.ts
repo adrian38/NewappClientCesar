@@ -1,7 +1,6 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { IonContent, LoadingController, MenuController, NavController, Platform } from '@ionic/angular';
 import { Observable, Subscription } from 'rxjs';
-import { Photo } from 'src/app/interfaces/photo';
 import { MessageModel } from 'src/app/models/message.model';
 import { TaskModel } from 'src/app/models/task.model';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -10,6 +9,7 @@ import { ChatOdooService } from 'src/app/services/chat-odoo.service';
 import { ObtSubSService } from 'src/app/services/obt-sub-s.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { TaskOdooService } from 'src/app/services/task-odoo.service';
+
 
 @Component({
 	selector: 'app-chat',
@@ -47,6 +47,13 @@ export class ChatPage implements OnInit {
 	loading: HTMLIonLoadingElement = null;
 
 	fotoTemporal: string = ' ';
+
+
+	@ViewChild(IonContent) content: IonContent;
+	@ViewChild('target') private myScrollContainer: ElementRef;
+
+	ultimo_sms:string="";
+	sms_cliente:string="";
 	constructor(
 		private _authOdoo: AuthOdooService,
 		private _taskOdoo: TaskOdooService,
@@ -104,7 +111,7 @@ export class ChatPage implements OnInit {
 		this.subscriptionMessList = this.messagesList$.subscribe((messagesList) => {
 			this.ngZone.run(() => {
 				this.loading.dismiss();
-				/* this.scrollToend(); */
+				
 				let temp = messagesList.find((element) => element.offer_id);
 				if (temp) {
 					if (this.purchaseOrderID === temp.offer_id) {
@@ -125,35 +132,38 @@ export class ChatPage implements OnInit {
 				if (this.purchaseOrderID === temp.id) this.task = temp;
 			});
 		});
+
+		
 	}
 
 	ngOnDestroy(): void {
 		//Called once, before the instance is destroyed.
 		//Add 'implements OnDestroy' to the class.
-		this.subscriptionMessList.unsubscribe();
+	     	this.subscriptionMessList.unsubscribe();
 		this.subscriptionNewMsg.unsubscribe();
-		this.subscriptionNotification.unsubscribe();
-		this.subscriptionTask.unsubscribe();
+		     this.subscriptionNotification.unsubscribe();
+		  this.subscriptionTask.unsubscribe();
 		this._taskOdoo.setChat(false);
 	}
 
-	enviarSMS() {
-		/*  this.scrollToend(); */
+	// enviarSMS() {
+		
+	
 
-		/*    if(this.message.message.length){
-    this.message.offer_id = this.purchaseOrderID;
-    console.log(this.message);
-    this._chatOdoo.sendMessageClient(this.message);
-    this.message = new MessageModel();
+	// 	    if(this.message.message.length){
+    // this.message.offer_id = this.purchaseOrderID;
+    // console.log(this.message);
+    // this._chatOdoo.sendMessageClient(this.message);
+    // this.message = new MessageModel();
    
-    }    */
-		if (this.message.message.length || this.fo) {
-			this.message.offer_id = this.purchaseOrderID;
-			this.message.foto = this.foto64;
-			this._chatOdoo.sendMessageClient(this.message);
-			this.message = new MessageModel();
-		}
-	}
+    // }    
+	// 	if (this.message.message.length || this.fo) {
+	// 		this.message.offer_id = this.purchaseOrderID;
+	// 		this.message.foto = this.foto64;
+	// 		this._chatOdoo.sendMessageClient(this.message);
+	// 		this.message = new MessageModel();
+	// 	}
+	// }
 
 	cerrarsolicitud() {
 		this.navCtrl.navigateRoot('/ofertas', { animated: true, animationDirection: 'forward' });
@@ -163,16 +173,16 @@ export class ChatPage implements OnInit {
 		this.menu.open('first');
 	}
 
-	actualizar() {
-		/* this.datos.setCalendarioD(String(this.fecha));
-    this.datos.setCalendarioT(String(this.reloj)); */
-		/*   this.task.date=(String(this.fecha));
-    this.task.time==(String(this.reloj)); */
-	}
+	// actualizar() {
+	// 	 this.datos.setCalendarioD(String(this.fecha));
+    // this.datos.setCalendarioT(String(this.reloj));
+	// 	  this.task.date=(String(this.fecha));
+    // this.task.time==(String(this.reloj)); 
+	// }
 
-	adjuntar() {
-		this.displayAdjunto = true;
-	}
+	// adjuntar() {
+	// 	this.displayAdjunto = true;
+	// }
 
 	async presentLoading() {
 		this.loading = await this.loadingController.create({
@@ -183,4 +193,68 @@ export class ChatPage implements OnInit {
 
 		return this.loading.present();
 	}
+
+
+	pushToChat() {
+
+		if (this.message.message.length > 0) {
+			this.message.offer_id = this.task.id;
+	
+		
+		  this._chatOdoo.sendMessageClient(this.message);
+		  this.ultimo_sms=this.message.message;
+		  console.log('´sms mandado', this.message.message);
+		  this.message = new MessageModel();
+		  this.coger();
+		}
+	
+	   /*  setTimeout(() => {
+		  this.content.scrollToBottom(300);
+		}, 500);
+	
+		this.message.message= ''; */
+	}
+	
+	 scrollToElement(): void {
+	  this.myScrollContainer.nativeElement.scroll({
+		top: this.myScrollContainer.nativeElement.scrollHeight,
+		left: 0,
+		behavior: 'smooth'
+	  });
+	} 
+
+	coger(){
+		// console.log('ultimo sms',this.messagesList[0].message )
+		//  console.log('ultimo sms',this.messagesList[0].author_id )
+		//  console.log('ultimovvv sms',this.user.partner_id )
+	
+	for (let i = 0; i <  this.messagesList.length; i++) {
+	
+	if(this.messagesList[i].author_id != this.user.partner_id ){
+		 this.sms_cliente = this.messagesList[i].message;
+		 console.log('ultimo sms temporal', this.sms_cliente);
+	}
+	else{
+	console.log('nooooo');
+	}
+	
+	} 
+	
+	 this.scrollToBottom(); 
+	
+	}
+	scrollToBottom(){
+
+			
+		setTimeout(() => {
+			this.scrollToElement();
+		}, 400);
+	  
+		
+	  } 
+
+	  onClose() {
+		
+		this.navCtrl.navigateRoot('/ofertas', {animated: true, animationDirection: 'back' }) ;
+	  }
 }

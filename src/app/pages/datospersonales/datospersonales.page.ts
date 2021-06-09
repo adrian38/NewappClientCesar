@@ -55,6 +55,9 @@ export class DatospersonalesPage implements OnInit {
 
 	ngOnInit() {
 		this.usuario = this._authOdoo.getUser();
+		console.log('foto',this.usuario.avatar);
+		console.log('lat',this.usuario.address.latitude);
+		console.log('lon',this.usuario.address.longitude);
 		this.placeholder();
 
 		this.obtener_campos();

@@ -54,18 +54,18 @@ export class MapaPage implements OnInit {
 
 		this.ruta = this.datos.getruta();
 
-		this.platform.backButton.subscribeWithPriority(10, () => {
+/* 		this.platform.backButton.subscribeWithPriority(10, () => {
 			if (this.ruta == 'datospersonales') {
 				this.navCtrl.navigateRoot('/datospersonales', { animated: true, animationDirection: 'back' });
 			} else {
 				this.navCtrl.navigateRoot('/registro', { animated: true, animationDirection: 'back' });
 			}
-		});
+		}); */
 
-		/* this.platform.backButton.subscribeWithPriority(10, () => {
-            this.navCtrl.navigateRoot('/registro', {animated: true, animationDirection: 'back' }) ;
+		 this.platform.backButton.subscribeWithPriority(10, () => {
+            this.navCtrl.navigateRoot('/direccion', {animated: true, animationDirection: 'back' }) ;
             
-            }); */
+            }); 
 	}
 
 	getLocaleDirection() {
