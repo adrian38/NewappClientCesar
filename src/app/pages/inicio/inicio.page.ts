@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
+
 @Component({
 	selector: 'app-inicio',
 	templateUrl: './inicio.page.html',
@@ -26,10 +27,13 @@ export class InicioPage implements OnInit {
 		this.initializeApp();
 
 			// set to landscape
-		this.screenOrientation.lock('portrait');
+		
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.screenOrientation.lock('portrait');
+		
+	}
 	navegar() {
 		this.navCon.navigateRoot('/login', { animated: true, animationDirection: 'forward' });
 	}

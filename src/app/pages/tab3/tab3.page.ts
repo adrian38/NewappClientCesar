@@ -38,5 +38,8 @@ export class Tab3Page {
     this.navCtrl.navigateRoot('/contrase', {animated: true, animationDirection: 'forward' }) ;      
      
   }
+  somos(){
+    this.navCtrl.navigateRoot('/somos', {animated: true, animationDirection: 'forward' }) ; 
+  }
 
 }

@@ -168,7 +168,7 @@ class="animated fadeIn"></app-header>
       
                 </ion-row>
                 <ion-row style="margin-top: 7px;">
-                  <ion-label style="font-size: smaller;margin-left: 3px;">Despues</ion-label> 
+                  <ion-label style="font-size: smaller;margin-left: 3px;">Después</ion-label> 
                 </ion-row>
 
                 <ion-row>
@@ -220,12 +220,16 @@ class="animated fadeIn"></app-header>
                 <ion-col size=4 style="text-align: end;">
                   <ion-button id="buton" 
                                style="font-size: 8px;"
-                               (click)="clasificar()">Clasificar</ion-button>
+                               (click)="clasificar()">
+                               <span style="padding-top: 2px">Clasificar</span>
+                              </ion-button>
                 </ion-col>
                 <ion-col size=4 style="text-align: end;">
                   <ion-button id="buton" 
                               style="font-size: 8px;"
-                              (click)="denunciar()">Denunciar</ion-button>
+                              (click)="denunciar()">
+                              <span style="padding-top: 2px">Denunciar</span>
+                            </ion-button>
                 </ion-col>
                  
               </ion-row>
@@ -257,7 +261,9 @@ class="animated fadeIn"></app-header>
     <ion-row style="margin-top: 45px;">
       <ion-col size=2></ion-col>
       <ion-col size=8 style="text-align: center;">
-        <ion-button>Finalizar tarea</ion-button>
+        <ion-button>
+          <span style="padding-top: 2px">Finalizar tarea</span>
+        </ion-button>
       </ion-col>
       <ion-col size=2></ion-col>
     </ion-row>

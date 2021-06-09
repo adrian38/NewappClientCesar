@@ -118,10 +118,10 @@ const routes: Routes = [
     path: 'materiales',
     loadChildren: () => import('./pages/materiales/materiales.module').then( m => m.MaterialesPageModule)
   },
-
-
- 
-
+  {
+    path: 'somos',
+    loadChildren: () => import('./pages/somos/somos.module').then( m => m.SomosPageModule)
+  },
 
 
 

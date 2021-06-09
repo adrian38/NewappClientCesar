@@ -141,7 +141,9 @@ export class RegistroPage implements OnInit {
 						let photo: Photo = await this.photoService.addNewToCamara();
 						if (photo) {
 							this.avatarusuario = photo.webviewPath;
+							console.log('this.avatarusuario',this.avatarusuario);
 							this.avatarusuario64 = this.photoService.devuelve64();
+							console.log('this.avatarusuario64',this.avatarusuario64);
 							this.selectFoto = true;
 							this.datos.setselectfoto(true);
 						
@@ -473,10 +475,10 @@ export class RegistroPage implements OnInit {
 	//-----------------------------*******************----------------
 
 	completarRegistro(){
-		this.presentLoading();
+		
 		this.usuario = new UsuarioModel();
 		this.usuario.address = new Address('', '', '', '', '', '', '', '', '');
-        this.usuario.avatar=this.avatarusuario64;      
+           
 		this.usuario.realname = this.nombre.trim();
 		this.usuario.password = this.pass;
 		this.usuario.phone = this.telefono;
@@ -495,19 +497,23 @@ export class RegistroPage implements OnInit {
 
 		this.usuario.address.latitude = String(this.datos.getlatitud());
 		this.usuario.address.longitude = String(this.datos.getlongitud());
+		this.usuario.avatar = this.avatarusuario64;
+		console.log('fotos',this.avatarusuario);
+		console.log('fotos64',this.avatarusuario64);
+		
 
-		if (
-			Buffer.from(this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1)).length / 1e6 >
-			0.322216
-		) {
-			this.resizedataURL(this.datos.getfoto0(), 1280, 960);
-		} else {
-			this.usuario.avatar = this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1);
-		}
+		// if (
+		// 	Buffer.from(this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1)).length / 1e6 >
+		// 	0.322216
+		// ) {
+		// 	this.resizedataURL(this.avatarusuario64, 1280, 960);
+		// } else {
+		// 	this.usuario.avatar = this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1);
+		// }
 
 		this._signupOdoo.newUser(this.usuario);
 
-		
+		this.presentLoading();
 	}
 
 
