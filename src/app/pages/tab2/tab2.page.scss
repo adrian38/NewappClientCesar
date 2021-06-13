@@ -14,12 +14,12 @@
 $font-aero: 'Aero', sans-serif;
 $font-helvetica: 'Helvetica', sans-serif;
 
-h6{
-    font-family: $font-aero;
-    /* font-size: 32; */
-    margin-top: 0px;
-    font-size: 5vw;
-}
+// h6{
+//     font-family: $font-aero;
+//     /* font-size: 32; */
+//     margin-top: 0px;
+//     font-size: 5vw;
+// }
 
 .text-helvetica{
     font-family: $font-helvetica !important;
@@ -44,8 +44,12 @@ h6{
         margin-top: 7px;
       /*   width: 90px;            
         height: 89px; */
-        width: 91%;
-        height: 15vh;
+        height: 93px !important;
+        width: 91px !important;
+        min-height: 93px;
+        min-width: 91px;
+        /* width: 91%;
+        height: 15vh; */
         background-color: rgb(246, 183, 118);
         opacity: 30%;
         border-radius: 20px 3px 3px 5px;
@@ -54,8 +58,12 @@ h6{
         object-fit: cover;
      /*    width: 90px;            
         height: 89px; */
-        width: 100%;
-        height: 15vh;
+        height: 93px !important;
+        width: 91px !important;
+        min-height: 93px;
+        min-width: 91px;
+    /*     width: 100%;
+        height: 15vh; */
     border-radius: 20px 3px 3px 5px;
     }
 }
@@ -68,3 +76,18 @@ h6{
     width: 100%;
     height: 90%;
 }
+
+
+.cat_title {
+    // font-family: $font-aero;
+    // font-size: 16px;
+    text-transform: uppercase;
+    font: normal 16px "Helvetica-Bd", sans-serif;
+    text-align: left;
+    margin: 5px 0 12px 0;
+  }
+
+  .text-helvetica {
+    font: normal 16px "Helvetica-Roman", sans-serif;
+    text-align: left;
+  }

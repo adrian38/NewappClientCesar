@@ -20,6 +20,8 @@ export class DireccionPage implements OnInit {
 	portal: string = '';
 	cod_postal: string = '';
 	escalera: string = '';
+	longitud: string = '';
+	latitud: string = '';
 	servicio: string = '';
 
 	dpcalle: string;
@@ -36,7 +38,7 @@ export class DireccionPage implements OnInit {
 	oblidatorionumero: boolean = false;
 	oblidatorioGPS: boolean = false;
 
-	Autofill: boolean = false;
+	Autofill: boolean ;
 
 	user: UsuarioModel;
 	task: TaskModel;
@@ -101,18 +103,30 @@ export class DireccionPage implements OnInit {
 		  if( this.oblidatoriocalle==false && this.oblidatorionumero==false && this.oblidatorioGPS==false ){
 
 		this.navCtrl.navigateRoot('/comentario', { animated: true, animationDirection: 'forward' }); 
-		 
+		
+	/* 	console.log('oblidatoriocalle',this.oblidatoriocalle);
+		console.log('oblidatorionumero',this.oblidatorionumero);
+		console.log('oblidatorioGPS',this.oblidatorioGPS); */
 		  }
 
 		  else{
 			  console.log("llene campo")
 			  this.ToastCoordenadas();
+/* 
+			  console.log('oblidatoriocalle',this.oblidatoriocalle);
+		      console.log('oblidatorionumero',this.oblidatorionumero);
+		      console.log('oblidatorioGPS',this.oblidatorioGPS); */
 		  }
 
 		
 	}
 
 	autofillChange() {
+	/* 	console.log('usuario',this.user.address);
+		console.log('oblidatoriocalle',this.oblidatoriocalle);
+		console.log('oblidatorionumero',this.oblidatorionumero);
+		console.log('oblidatorioGPS',this.oblidatorioGPS); */
+		
 		if (this.Autofill) {
 			for (let value in this.user.address) {
 				if (!this.user.address[value]) this.user.address[value] = '';
@@ -125,6 +139,12 @@ export class DireccionPage implements OnInit {
 			this.piso = this.user.address.floor;
 			this.numero = this.user.address.number;
 			this.portal = this.user.address.portal;
+			this.latitud=this.user.address.latitude;
+			this.longitud=this.user.address.longitude;
+			//this.oblidatorioGPS=false;
+			this.coordenadas=true;
+			console.log('oblidatorioGPS',this.oblidatorioGPS);
+
 		} else {
 			this.calle = '';
 			this.puerta = '';
@@ -178,7 +198,7 @@ export class DireccionPage implements OnInit {
 			this.datos.setcod_postal(this.cod_postal);
 			this.datos.setnumero(this.numero);
 			this.datos.setportal(this.portal);
-			this.datos.setradiobuton(false);
+			this.datos.setradiobuton(true);
 		} else {
 			this.calle = this.datos.getcalle();
 			this.puerta = this.datos.getpuerta();
@@ -188,6 +208,8 @@ export class DireccionPage implements OnInit {
 			this.numero = this.datos.getnumero();
 			this.portal = this.datos.getportal();
 			this.Autofill = this.datos.getradiobuton();
+			console.log('marca',this.Autofill)
+			
 		}
 	}
 

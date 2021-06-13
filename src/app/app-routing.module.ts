@@ -122,6 +122,10 @@ const routes: Routes = [
     path: 'somos',
     loadChildren: () => import('./pages/somos/somos.module').then( m => m.SomosPageModule)
   },
+  {
+    path: 'promociones',
+    loadChildren: () => import('./pages/promociones/promociones.module').then( m => m.PromocionesPageModule),  canActivate: [ AuthGuardService ] 
+  },
 
 
 

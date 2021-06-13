@@ -29,7 +29,8 @@ class="animated fadeIn"></app-header>
 
 <ion-content >
  
-  <ion-row style="margin-top: 30px;" >
+  <ion-row style="margin-top: 30px;"
+            (click)="datospersonales()" >
     
 
     <ion-col size=1></ion-col>
@@ -41,7 +42,7 @@ class="animated fadeIn"></app-header>
 
       <ion-list  >
         
-        <ion-label (click)="datospersonales()" style="color: rgb(49 ,49 ,57)">
+        <ion-label  style="color: rgb(49 ,49 ,57)">
          Datos personales
         </ion-label>
         <div id="item"></div>
@@ -75,7 +76,7 @@ class="animated fadeIn"></app-header>
   <ion-col size=1></ion-col>
   </ion-row> -->
    
-  <ion-row>
+  <ion-row (click)="cambiarcontrasea()">
     <ion-col size=1></ion-col>
     <ion-col size=1>
       <ion-img
@@ -85,7 +86,7 @@ class="animated fadeIn"></app-header>
 
       <ion-list  >
         
-        <ion-label (click)="cambiarcontrasea()" style="color: rgb(49 ,49 ,57)">
+        <ion-label  style="color: rgb(49 ,49 ,57)">
          Contraseña
         </ion-label>
         <div id="item"></div>
@@ -121,7 +122,7 @@ class="animated fadeIn"></app-header>
   </ion-row>
 
 
-  <ion-row>
+  <ion-row (click)="promociones()">
     <ion-col size=1></ion-col>
     <ion-col size=1>
       <ion-img

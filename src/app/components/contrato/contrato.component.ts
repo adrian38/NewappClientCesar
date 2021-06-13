@@ -9,9 +9,17 @@ import { TaskModel } from 'src/app/models/task.model';
 export class ContratoComponent implements OnInit {
 
   @Input() contrato: TaskModel = null;
-  
+  titulo:string="";
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    if( this.contrato.title.length < 11){
+      this.titulo=this.contrato.title;
+     }
+     else{
+      this.titulo=this.contrato.title.slice(0,15) + " ... ";
+     }
+  }
 
 }

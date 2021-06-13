@@ -10,6 +10,8 @@ export class SolicitudComponent implements OnInit {
 
   @Input() Solicitud: TaskModel ; 
 
+  
+
   titulo:string="";
   constructor() { }
 
@@ -18,7 +20,7 @@ export class SolicitudComponent implements OnInit {
     this.titulo=this.Solicitud.title;
    }
    else{
-    this.titulo=this.Solicitud.title.slice(0,10) + " " + " . . .";
+    this.titulo=this.Solicitud.title.slice(0,15) + " ... ";
    }
   }
 
