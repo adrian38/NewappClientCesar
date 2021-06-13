@@ -80,6 +80,8 @@ export class AuthOdooService {
 			) {
 				if (err) {
 				} else {
+
+					
 					usuario.address = new Address(
 						value[0].address_street,
 						value[0].address_number,
@@ -126,6 +128,7 @@ export class AuthOdooService {
 
 				} else {
 
+					console.log(value,"usuario");
 					
 					if (value[0].classification === 'custumer') {
 						if (knownTypes[value[0].image_1920[0]]) {
