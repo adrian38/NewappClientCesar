@@ -78,8 +78,10 @@
         <ion-col size=0.5>      
         </ion-col>    
         <ion-col size=11>      
-          <ion-list>        
-            <div *ngFor="let contrato of contratadosList;let h = index"  
+          <ion-list>    
+            
+                  
+          <div *ngFor="let contrato of contratadosList;let h = index"  
                   (click)="inhistorial(h)">        
                   <ion-row id="item" class="animated fadeIn">
      
@@ -89,16 +91,18 @@
                         </div>
                     </ion-col>       
                     <ion-col size=8>        
-                      <ion-row >  
+                      <ion-row  style="padding: 0px 0px 8.5px 5px;">  
                         <ion-col size=0.4></ion-col>  
                          <ion-col size=11.6 style="text-align: start;padding-bottom: 0px;padding-top: 0px;">
-                          <h6> {{contrato.title | uppercase}}</h6> </ion-col>  
+                          <!-- <h6> {{contrato.title | uppercase}}</h6>  -->
+                          <ion-label class="cat_title"> {{ contrato.title | uppercase }}</ion-label>
+                        </ion-col>  
                       
                              
                       </ion-row >        
                       <ion-row style="margin-top: -4px;">          
                         <ion-col size=2 style="text-align: end;padding-left: 0px;margin-top: 3px;padding-bottom: 0px;">
-                          <img style="width: 71%;height: 71%;" src="../../../assets/calendario.svg">          
+                          <img style="width: 66%;height: 66%;" src="../../../assets/calendario.svg">          
                         </ion-col>          
                         <ion-col size=10 style="text-align: start;">            
                           <ion-label class="text-helvetica">
@@ -108,7 +112,7 @@
                       </ion-row>        
                       <ion-row style="margin-top: -3px;">        
                         <ion-col size=2  style="text-align: end;padding-left: 0px;margin-top: 3px;padding-bottom: 0px;">        
-                          <img style="width: 71%;height: 71%;" src="../../../assets/hora.svg">        
+                          <img style="width: 66%;height: 66%;" src="../../../assets/hora.svg">        
                         </ion-col>        
                         <ion-col size=6.5  style="text-align: start;">        
                           <ion-label class="text-helvetica" style="margin-left: 0px;">
@@ -122,7 +126,7 @@
                       </ion-row>        
                     </ion-col>        
                   </ion-row>       
-            </div>        
+            </div>       
           </ion-list>       
         </ion-col>    
         <ion-col size=0.5> 

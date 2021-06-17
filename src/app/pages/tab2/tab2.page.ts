@@ -67,6 +67,7 @@ export class Tab2Page {
       this.segment.value = 'servicio';
     }, 100);
     
+ 
     
   }
 

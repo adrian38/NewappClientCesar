@@ -111,7 +111,7 @@ checkUser(){
   }
 }
 
-  async iniciar(){
+  async onSubmit(){
     await this.presentLoading();
     
     this.usuario.username = this.user;
@@ -154,7 +154,7 @@ async presentAlertConfirm() {
   await alert.present();
 }
 
-cambiarpass(){
+recuperar(){
   this.navController.navigateRoot('/contrasolvida', {animated: true, animationDirection: 'forward' }) ;   
  
 }

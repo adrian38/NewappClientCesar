@@ -1,12 +1,12 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "todoapp",
+  "appId": "io.ionic.gremiocliente",
+  "appName": "GremioCliente",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 0
+      "launchShowDuration": 3000
     }
   },
   "cordova": {}

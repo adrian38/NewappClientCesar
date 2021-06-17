@@ -1,5 +1,5 @@
 
- <ion-content>
+ <!-- <ion-content>
  <ion-grid style="margin-top: 10%;margin-bottom: 10%;">
   
 
@@ -26,7 +26,8 @@
                          <ion-row style="margin-top: 12px;">
                             <ion-col size="1" style="background: rgb(255, 255, 255);"></ion-col>
                             <ion-col size="10">
-                               <ion-input name="email"
+                               <ion-input 
+                                 name="email"
                                  type="email"
                                  required
                                  [(ngModel)]="user"
@@ -109,70 +110,68 @@
    
 
   
-  <!--  <div class="flex_column" style="height: 100%;">
+ 
+</ion-content> -->
+
+
+
+
+
+
+ <ion-content class="ion-no-padding">
+  <div class="flex_column" style="height: 90%">
     <div class="container">
       <div class="logo_principal">
         <ion-img src="../../assets/logoHome1.svg" style="width: 100px;"></ion-img>
       </div>
-      <div style="display: flex; justify-content: flex-start; padding: 15px 0;">
-       
-        <ion-label class="welcome" style="font-family: 'HelveticaNeueLTStd-Bd';font-size: x-large; color: rgb(246, 183, 118);">Bienvenido</ion-label>
+      <div style="display: flex; justify-content: flex-start; padding: 15px 0">
+        <ion-label class="welcome">Bienvenido</ion-label>
       </div>
 
-      <form #formulario="ngForm" class="animated fadeIn">
-        <div >
-          <ion-input name="email"
-                                 type="email"
-                                 required
-                                 [(ngModel)]="user"
-                                 placeholder="Usuario"                     
-                                 #nombre="ngModel"
-                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                                 ></ion-input>
-                                
-                                 <div id="link">
-                                  <small *ngIf= "nombre.invalid && nombre.touched"   
-                                  class="text-danger">Su usuario debe insertado correctamente</small>
-                                 </div>
+      <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+       
+        <ion-input
+            class="custom_input"
+            type="email"
+            name="user"
+            [(ngModel)]="user"
+            placeholder="USUARIO"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+            required
+          >
+          </ion-input>
+        <div class="div">
+          <ion-input
+            class="custom_input"
+            type="password"
+            name="password"
+            [(ngModel)]="pass"
+            minlength=5
+            placeholder="CONTRASEÑA"
+            required
+          >
+          </ion-input>
         </div>
-        <div >
-          <ion-input name="password"
-          type="password"
-          required
-          [(ngModel)]="pass"
-           minlength=5
-           #pa="ngModel"
-           placeholder="Contraseña"
-
-          ></ion-input>
-          <div id="link">
-           <small *ngIf= "pa.invalid && pa.touched"   
-           class="text-danger">Su contraseña debe contener mas de 5 caracteres</small>
-          </div>
-        </div>
-        <div >
-          <ion-button id="boton"
-          (click)="iniciar()"                       
-          [disabled]="formulario.invalid"
-          style="margin-top: 15px;"
-          
-          
-         >
-Iniciar Sesion
-</ion-button>
+        <div class="div">
+          <ion-button
+            class="btn_init_section"
+            type="submit"
+            color="orange"
+            expand="block"
+            [disabled]="formulario.invalid"
+          >
+          <span style="padding-top: 5px">INICIAR SESIÓN</span>
+            
+          </ion-button>
         </div>
       </form>
 
-      <ion-row  style="margin-top: 40px;">
-      
-          <a id="link" (click)="cambiarpass()"
-          >¿Has olvidado tu contraseña?</a>
-   
-      </ion-row>
+      <div class="forgotten_pass_div">
+        <a class="forgotten_pass" (click)="recuperar()"
+          >¿Has olvidado tu contraseña?</a
+        >
+      </div>
     </div>
-  </div> -->
+  </div>
 </ion-content>
-
-
-
 

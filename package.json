@@ -40,7 +40,7 @@
     "fibers": "^4.0.3",
     "html-webpack-plugin": "^4.5.2",
     "jayson": "github:tedeh/jayson#typescript",
-    "node-sass": "^4.9.4",
+    "node-sass": "^5.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.1.0",
     "rxjs": "~6.5.5",

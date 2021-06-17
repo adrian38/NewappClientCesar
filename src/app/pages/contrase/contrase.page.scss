@@ -65,9 +65,12 @@ ion-input{
    
 }
 
-ion-input.ng-invalid.ng-touched {
+ion-input.ng-invalid.ng-touched{
     border: 2px solid rgb(101,173,172) !important;
+
+  
 }
+
 
 /* #notificacion{
     width: 25px;

@@ -146,6 +146,8 @@ export class RegistroPage implements OnInit {
 							console.log('this.avatarusuario64',this.avatarusuario64);
 							this.selectFoto = true;
 							this.datos.setselectfoto(true);
+							// console.log('this.avatarusuario64puroinicio',this.avatarusuario64.slice(0,22));
+							// console.log('this.avatarusuario64purofin',this.avatarusuario64.slice(22));
 						
 						}
 					}
@@ -182,64 +184,7 @@ export class RegistroPage implements OnInit {
 		await alert.present();
 	}
 
-	/* iniciar() {
-		this.entrar_campos();
-		this.obligatorio();
-
-		this.fechactual = new Date().getFullYear().toString();
-
-		let fechalarga = this.fecha.slice(0, 10);
-		let fechacorta = this.fecha.slice(0, 4);
-		let fechavalida = Number(this.fechactual) - Number(fechacorta);
-
-		if (
-			this.nombre != '' &&
-			this.fecha != '' &&
-			this.correo != '' &&
-			this.pass != '' &&
-			this.ppass != '' &&
-			String(this.telefono) != '' &&
-			this.calle != '' &&
-			this.numero != ''
-		) {
-			console.log('si los campos');
-			if (this.selectFoto) {
-				this.obligatoriofoto = false;
-
-				if (fechavalida > 17) {
-					if (this.pass == this.ppass) {
-						this.calen = false;
-						this.ccontra = false;
-
-						this.datos.setfecha(fechalarga);
-
-						if (this.coordenadas == true) {
-							this.obligatorioGPS = true;
-							this.navCtrl.navigateRoot('/aceptarregistro', {
-								animated: true,
-								animationDirection: 'forward'
-							});
-						} else {
-							this.obligatorioGPS = true;
-							this.ToastCoordenadas();
-						}
-					} else {
-						this.calen = false;
-						this.ccontra = true;
-					}
-				} else {
-					this.calen = true;
-					this.ccontra = false;
-				}
-			} else {
-				this.obligatoriofoto = true;
-				this.ToastFoto();
-			}
-		} else {
-			this.ToastCampos();
-		}
-	}
- */
+	
 
 	iniciar() {
 		this.entrar_campos();
@@ -468,8 +413,7 @@ export class RegistroPage implements OnInit {
 		}
 		else{
 			this.obligatorioGPS = true;
-		}
-
+		} 
 
 	}
 	//-----------------------------*******************----------------
@@ -478,7 +422,9 @@ export class RegistroPage implements OnInit {
 		
 		this.usuario = new UsuarioModel();
 		this.usuario.address = new Address('', '', '', '', '', '', '', '', '');
-           
+        
+		let foto=this.avatarusuario64.slice(0,22);
+		
 		this.usuario.realname = this.nombre.trim();
 		this.usuario.password = this.pass;
 		this.usuario.phone = this.telefono;
@@ -497,23 +443,26 @@ export class RegistroPage implements OnInit {
 
 		this.usuario.address.latitude = String(this.datos.getlatitud());
 		this.usuario.address.longitude = String(this.datos.getlongitud());
-		this.usuario.avatar = this.avatarusuario64;
-		console.log('fotos',this.avatarusuario);
-		console.log('fotos64',this.avatarusuario64);
+		
+		// console.log('this.avatarusuario64purofin',this.avatarusuario64.slice(22));
+		 this.usuario.avatar = foto;
+		// console.log('fotos',this.avatarusuario);
+		// console.log('fotos64',this.avatarusuario64);
 		
 
-		// if (
-		// 	Buffer.from(this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1)).length / 1e6 >
-		// 	0.322216
-		// ) {
-		// 	this.resizedataURL(this.avatarusuario64, 1280, 960);
-		// } else {
-		// 	this.usuario.avatar = this.avatarusuario64.substring(this.avatarusuario64.indexOf(',') + 1);
-		// }
-
+		if (
+			Buffer.from(foto.substring(foto.indexOf(',') + 1)).length / 1e6 >
+			0.322216
+		) {
+			this.resizedataURL(foto, 1280, 960);
+		} else {
+			this.usuario.avatar = foto.substring(foto.indexOf(',') + 1);
+		}
+		console.log('todoantes',this.usuario);
 		this._signupOdoo.newUser(this.usuario);
 
 		this.presentLoading();
+		console.log('todoluego',this.usuario);
 	}
 
 

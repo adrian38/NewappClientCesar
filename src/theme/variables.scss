@@ -316,3 +316,31 @@
   text-align: center;
   font-size: 10px;
 }
+
+
+
+@font-face {
+  font-family: 'Aero';
+  src: url("../assets/fonts/Aero.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Helvetica-Md';
+  src: url("../assets/fonts/HelveticaNeueLTStd-Md.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Helvetica-Bd';
+  src: url("../assets/fonts/HelveticaNeueLTStd-Bd.otf") format("opentype");
+}
+
+@font-face {
+  font-family: 'Helvetica-Roman';
+  src: url("../assets/fonts/HelveticaNeueLTStd-Roman.otf") format("opentype");
+}
+
+$font-aero: 'Aero', sans-serif;
+$font-helvetica-md: 'Helvetica-Md', sans-serif;
+$font-helvetica-bd: 'Helvetica-Bd', sans-serif;
+$font-helvetica-roman: 'Helvetica-Roman', sans-serif;
+
