@@ -24,7 +24,7 @@
 //     font-family: 'HelveticaNeueLTStd-Bd';
 // }
 
-h1{
+/* h1{
     font-family: 'HelveticaNeueLTStd-Bd';
     display: flex;
     justify-content: center;
@@ -41,6 +41,37 @@ h1{
     align-items: flex-end;
     height: 40%;
     padding-bottom: 10px;
+}
+
+.init_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.btn {
+   font: normal 15px 'Helvetica-Roman', sans-serif !important;
+   // font: normal 15px 'Helvetica-Md', sans-serif;
+    height: 30px !important;
+    min-width: 175px;
+}
+
+ .create_div {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    min-width: 160px;
+}  */
+
+.logo_principal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 50%;
+    padding-bottom: 80px;
 }
 
 .init_div {
