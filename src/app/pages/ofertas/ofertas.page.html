@@ -479,37 +479,35 @@
                   <ion-col size="0.5"></ion-col>
                   <ion-col size="11">
                     <ion-row>
-                      <ion-col size="2">
+                      <ion-col size="2.3">
                         <ion-input
                           name="numero"
                           type="text"
                           required
                           [(ngModel)]="numero_tarjeta"
-                          maxlength="16"
-                          minlength="13"
                           placeholder="MM"
                           [disabled]="efectivo"
+                         
+                   
                         >
                         </ion-input>
                       </ion-col>
-                      <ion-col size="0.5">
+                      <ion-col size="0.5" style="padding-left:2px ;">
                         <h3 style="margin-top: 10px !important">/</h3></ion-col
                       >
-                      <ion-col size="2">
+                      <ion-col size="2.3">
                         <ion-input
                           name="numero"
                           type="text"
                           required
                           [(ngModel)]="numero_tarjeta"
-                          maxlength="16"
-                          minlength="13"
                           placeholder="AA"
                           [disabled]="efectivo"
                         >
                         </ion-input>
                       </ion-col>
 
-                      <ion-col size="4"></ion-col>
+                      <ion-col size="3.4"></ion-col>
                       <ion-col size="3.5">
                         <ion-input
                           name="numero"
@@ -520,6 +518,7 @@
                           minlength="13"
                           placeholder="CVC"
                           [disabled]="efectivo"
+                         
                         >
                         </ion-input>
                       </ion-col>
