@@ -55,10 +55,7 @@ ion-button{
     height: 20px; 
 }
 
-/*  #icono{
-    width: 48px;
-    height: 43px; 
-} */ 
+
 
 
 
@@ -108,18 +105,22 @@ ion-button{
 }
 
 ion-input{
-    border: 1px solid rgb(49 ,49 ,57);
+    //border: 1px solid rgb(49 ,49 ,57);
+    border: 1px solid rgb(255 ,255 ,255);
     
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(255, 255, 255);
+    height: 50%;
+    
    
 }
 ion-input:focus-within{
-    border: 2px solid rgb(49 ,49 ,57);
+    border: 1px solid  rgb(246, 183, 118);
     border-radius: 5px 5px 5px 5px ;
     margin-top: 10px;
     background-color: rgb(255, 255, 255);
+    height: 50%;
 }
 #buton{
     width: 25px;
@@ -194,3 +195,9 @@ ion-item{
   
 }
 
+.btn_pagar{
+    width: 100%;
+    font: normal 15px 'Helvetica-Roman', sans-serif !important;
+    --border-radius: 5px;
+    color: black;
+}

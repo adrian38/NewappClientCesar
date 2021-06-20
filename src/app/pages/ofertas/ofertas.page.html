@@ -1,378 +1,749 @@
-<p-toast key="c" [showTransformOptions]="'translateX(100%)'" [baseZIndex]="3"
-  [style]="{width: '250px', height: '25px' , minWidth: '200px'}">
+<p-toast
+  key="c"
+  [showTransformOptions]="'translateX(100%)'"
+  [baseZIndex]="3"
+  [style]="{width: '250px', height: '25px' , minWidth: '200px'}"
+>
   <ng-template let-message pTemplate="message">
-    <div class="p-flex p-flex-column" style="flex: auto;">
+    <div class="p-flex p-flex-column" style="flex: auto">
       <div class="p-text-center">
-       
         <p>{{message.detail}}</p>
       </div>
-
     </div>
   </ng-template>
 </p-toast>
 
-
 <ion-header>
-
   <div id="barraSuperior">
     <div id="barraInferior">
       <ion-row>
-
-        <ion-col size=3>
-          <img id="logo" src="../../../assets/icon/logo_header.svg">
-
+        <ion-col size="3">
+          <img id="logo" src="../../../assets/icon/logo_header.svg" />
         </ion-col>
-        <ion-col size=6>
-          <h2 style="text-align: center;color: rgb(246, 183, 118);">Solicitudes</h2>
-
+        <ion-col size="6">
+          <h2 style="text-align: center; color: rgb(246, 183, 118)">
+            Solicitudes
+          </h2>
         </ion-col>
-        <ion-col size=3 style="text-align: end;">
-          <img id="notificacion" src="../../../assets/4.svg">
+        <ion-col size="3" style="text-align: end">
+          <img id="notificacion" src="../../../assets/4.svg" />
         </ion-col>
-
       </ion-row>
     </div>
-
   </div>
   <div id="ServHist">
-    <ion-segment (ionChange)="segChange($event)" style="color: rgb(49 ,49 ,57);" color="dark">
-
+    <ion-segment
+      (ionChange)="segChange($event)"
+      style="color: rgb(49, 49, 57)"
+      color="dark"
+    >
       <ion-segment-button value="ofertas">
-        <ion-label style="color: rgb(49 ,49 ,57)">OFERTAS</ion-label>
-
+        <ion-label style="color: rgb(49, 49, 57)">OFERTAS</ion-label>
       </ion-segment-button>
       <ion-segment-button value="detalle">
-        <ion-label style="color: rgb(49 ,49 ,57)">DETALLES</ion-label>
+        <ion-label style="color: rgb(49, 49, 57)">DETALLES</ion-label>
       </ion-segment-button>
-
     </ion-segment>
   </div>
-
-
 </ion-header>
 
-
 <ion-content>
-
-
   <div *ngIf="veroferta">
-
-
     <div *ngIf="ofertaDisponible">
-
-      <ion-row style="margin-top: 75px;">
-        <ion-col size=4></ion-col>
-        <ion-col size=4 style="text-align: center;">
+      <ion-row style="margin-top: 75px">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4" style="text-align: center">
           <ion-row>
             <div>
-              <img style="width: 85%;height: 85%;" src="../../../assets/vaio.svg">
+              <img
+                style="width: 85%; height: 85%"
+                src="../../../assets/vaio.svg"
+              />
             </div>
           </ion-row>
         </ion-col>
-        <ion-col size=4></ion-col>
+        <ion-col size="4"></ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col size=3></ion-col>
-        <ion-col size=6 style="text-align: center;">
-
-          <h4 style="color:lightgray;margin-top: 0px;">No hay ofertas</h4>
-
+        <ion-col size="3"></ion-col>
+        <ion-col size="6" style="text-align: center">
+          <h4 style="color: lightgray; margin-top: 0px">No hay ofertas</h4>
         </ion-col>
-        <ion-col size=3></ion-col>
+        <ion-col size="3"></ion-col>
       </ion-row>
-
     </div>
 
-
-
-    <div *ngIf="showSubCard">
-
+    <!-- <div *ngIf="showSubCard">
       <ion-row *ngFor="let offer of offersList ;let i = index">
-
-        <ion-col size=0.5></ion-col>
-        <ion-col size=11>
-
-
+        <ion-col size="0.5"></ion-col>
+        <ion-col size="11">
           <ion-row>
-
             <ion-item-sliding>
-
-              <ion-item lines="none" id="item" *ngIf="desplegar==false" class="ion-no-padding">
-
-
-
-                <ion-col size=3>
-                  <img id="fotopersonal" style="margin-top: 15px;" src="{{offer.photoProvider}}"
-                    onError="this.src='assets/noImage.svg'" (click)="showDialog(i)">
+              <ion-item
+                lines="none"
+                id="item"
+                *ngIf="desplegar==false"
+                class="ion-no-padding"
+              >
+                <ion-col size="3">
+                  <img
+                    id="fotopersonal"
+                    style="margin-top: 15px"
+                    src="{{offer.photoProvider}}"
+                    onError="this.src='assets/noImage.svg'"
+                    (click)="showDialog(i)"
+                  />
                 </ion-col>
 
-
-                <ion-col size=4>
-
-
+                <ion-col size="4">
                   <ion-row>
                     <h4>{{editnombre(offer.client_name)}}</h4>
                   </ion-row>
 
                   <ion-row>
-                    <ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
+                    <ion-label
+                      style="color: rgb(246, 183, 118); font-size: 20px"
+                      >{{offer.budget}} €</ion-label
+                    >
                   </ion-row>
-
                 </ion-col>
 
-                <ion-col size=1.5></ion-col>
+                <ion-col size="1.5"></ion-col>
 
-                <ion-col size=1.5>
+                <ion-col size="1.5">
                   <ion-row>
-                    <img style="width: 24px; height: 35px;margin-top: 24px;" src="../../assets/chat.svg"
-                      (click)="openChat(offer.id)">
+                    <img
+                      style="width: 24px; height: 35px; margin-top: 24px"
+                      src="../../assets/chat.svg"
+                      (click)="openChat(offer.id)"
+                    />
                   </ion-row>
- 
                 </ion-col>
 
-                <ion-col size=0.5></ion-col>
+                <ion-col size="0.5"></ion-col>
 
-                <ion-col size=1.5>
- 
+                <ion-col size="1.5">
                   <ion-row>
-                    <img style="width: 24px; height: 26px;margin-top: 24px;" src="../../assets/acep.svg"
-                      (click)="showDialogAceptar(offer.id)">
+                    <img
+                      style="width: 24px; height: 26px; margin-top: 24px"
+                      src="../../assets/acep.svg"
+                      (click)="showDialogAceptar(offer.id)"
+                    />
                   </ion-row>
-
                 </ion-col>
               </ion-item>
 
-
-              <ion-item lines="none" style="padding: 0px;" *ngIf="desplegar==true">
-
-                <ion-col size=3>
-                  <img id="fotopersonal" style="margin-top: 15px;" src="{{offer.photoProvider}}"
-                    onError="this.src='assets/noImage.svg'" (click)="showDialog(i)">
+              <ion-item
+                lines="none"
+                style="padding: 0px"
+                *ngIf="desplegar==true"
+              >
+                <ion-col size="3">
+                  <img
+                    id="fotopersonal"
+                    style="margin-top: 15px"
+                    src="{{offer.photoProvider}}"
+                    onError="this.src='assets/noImage.svg'"
+                    (click)="showDialog(i)"
+                  />
                 </ion-col>
 
-
-                <ion-col size=4>
-
-
+                <ion-col size="4">
                   <ion-row>
                     <h4>{{editnombre(offer.client_name)}}</h4>
                   </ion-row>
 
                   <ion-row>
-                    <ion-label style="color: rgb(246, 183, 118); font-size: 20px;">{{offer.budget}} €</ion-label>
+                    <ion-label
+                      style="color: rgb(246, 183, 118); font-size: 20px"
+                      >{{offer.budget}} €</ion-label
+                    >
                   </ion-row>
-
                 </ion-col>
 
-                <ion-col size=1.5></ion-col>
+                <ion-col size="1.5"></ion-col>
 
-                <ion-col size=1.5>
+                <ion-col size="1.5">
                   <ion-row>
-                    <img style="width: 22px; height: 25px;margin-top: 24px;" src="../../assets/chat.png"
-                      (click)="openChat(offer.id)">
+                    <img
+                      style="width: 22px; height: 25px; margin-top: 24px"
+                      src="../../assets/chat.png"
+                      (click)="openChat(offer.id)"
+                    />
                   </ion-row>
                   <ion-row>
-                    <ion-label style="font-size: xx-small;">CHAT</ion-label>
+                    <ion-label style="font-size: xx-small">CHAT</ion-label>
                   </ion-row>
-
                 </ion-col>
 
-                <ion-col size=1.5>
-
-                  <ion-icon name="checkbox-outline" color="tertiary"
-                    style="width: 31px;height: 31px;margin-top: 18px;margin-left: 7px;"
-                    (click)="showDialogAceptar(offer.id)"></ion-icon>
-
+                <ion-col size="1.5">
+                  <ion-icon
+                    name="checkbox-outline"
+                    color="tertiary"
+                    style="
+                      width: 31px;
+                      height: 31px;
+                      margin-top: 18px;
+                      margin-left: 7px;
+                    "
+                    (click)="showDialogAceptar(offer.id)"
+                  ></ion-icon>
                 </ion-col>
               </ion-item>
 
-
-              <ion-item-options side="end" style="padding: 0px;">
-                <ion-item-option (click)="cancelSOclient(offer.id)" color="tertiary" expandable>cancelar</ion-item-option>
+              <ion-item-options side="end" style="padding: 0px">
+                <ion-item-option
+                  (click)="cancelSOclient(offer.id)"
+                  color="tertiary"
+                  expandable
+                  >cancelar</ion-item-option
+                >
               </ion-item-options>
             </ion-item-sliding>
 
-
-            <!-- -----------------------Nueva card desplegable------------------- -->
+         
             <ion-row *ngIf="displayAceptar==offer.id" id="item">
-
-
-
-              <ion-card style="background-color: rgb(241, 241, 241);
-                      border-radius: 0px 0px 0px 0px;">
-
-
+              <ion-card
+                style="
+                  background-color: rgb(241, 241, 241);
+                  border-radius: 0px 0px 0px 0px;
+                "
+              >
                 <ion-row>
-                  <ion-col size=7>
-                    <ion-input name="numero" type="text" required [(ngModel)]="numero_tarjeta" maxlength=16 minlength=13
-                      placeholder="Numero de la tarjeta" [disabled]="efectivo">
+                  <ion-col size="7">
+                    <ion-input
+                      name="numero"
+                      type="text"
+                      required
+                      [(ngModel)]="numero_tarjeta"
+                      maxlength="16"
+                      minlength="13"
+                      placeholder="NUMERO DE TARJETA"
+                      [disabled]="efectivo"
+                    >
                     </ion-input>
                   </ion-col>
-                  <ion-col size=5>
-                    <ion-input name="datos" type="text" required [(ngModel)]="datos" maxlength=10 minlength=9
-                      placeholder=" mm / aa / cvc" [disabled]="efectivo">
+                  <ion-col size="5">
+                    <ion-input
+                      name="datos"
+                      type="text"
+                      required
+                      [(ngModel)]="datos"
+                      maxlength="10"
+                      minlength="9"
+                      placeholder=" mm / aa / cvc"
+                      [disabled]="efectivo"
+                    >
                     </ion-input>
                   </ion-col>
                 </ion-row>
 
-                <ion-row style="margin-top: 10px;">
-
-                  <ion-checkbox mode="ios" color="primary" value="select"
-                    style="width: 20px; height: 20px;margin-left: 8px;" (click)="seleccionado()"></ion-checkbox>
-                  <ion-label style="margin-left: 20px;">Pagar en efectivo </ion-label>
-
+                <ion-row style="margin-top: 10px">
+                  <ion-checkbox
+                    mode="ios"
+                    color="primary"
+                    value="select"
+                    style="width: 20px; height: 20px; margin-left: 8px"
+                    (click)="seleccionado()"
+                  ></ion-checkbox>
+                  <ion-label style="margin-left: 20px"
+                    >Pagar en efectivo
+                  </ion-label>
                 </ion-row>
 
-                <ion-row style="margin-top: 5px;">
-                  <ion-col size=7>
+                <ion-row style="margin-top: 5px">
+                  <ion-col size="7">
                     <ion-button id="botonguardar" [disabled]="efectivo">
                       Tarjeta guardada
                     </ion-button>
                   </ion-col>
 
-                  <ion-col size=5>
-                    <ion-button id="botonpagar" (click)="pagar(offer.id,offer.origin_id)">
+                  <ion-col size="5">
+                    <ion-button
+                      id="botonpagar"
+                      (click)="pagar(offer.id,offer.origin_id)"
+                    >
                       Pagar
                     </ion-button>
                   </ion-col>
                 </ion-row>
-
               </ion-card>
+            </ion-row> 
 
-
-
-            </ion-row>
-
-
+           
 
           </ion-row>
         </ion-col>
 
-        <ion-col size=0.5></ion-col>
-
-
+        <ion-col size="0.5"></ion-col>
       </ion-row>
 
-
-      <p-dialog header=" " [(visible)]="display" [modal]="true" [style]="{ width: '85vw' }" [baseZIndex]="1000"
-        [draggable]="false" [resizable]="false">
+      <p-dialog
+        header=" "
+        [(visible)]="display"
+        [modal]="true"
+        [style]="{ width: '85vw' }"
+        [baseZIndex]="1000"
+        [draggable]="false"
+        [resizable]="false"
+      >
         <ion-row>
-          <ion-col size=4>
-            <img style="width: 60px; height: 60px; border: 0.5px solid  rgb(241, 241, 241);
-                        border-radius: 7px 7px 7px 7px; margin-top: 17px; " src="{{task.photoProvider}}"
-              onError="this.src='assets/noImage.svg'">
+          <ion-col size="4">
+            <img
+              style="
+                width: 60px;
+                height: 60px;
+                border: 0.5px solid rgb(241, 241, 241);
+                border-radius: 7px 7px 7px 7px;
+                margin-top: 17px;
+              "
+              src="{{task.photoProvider}}"
+              onError="this.src='assets/noImage.svg'"
+            />
           </ion-col>
-          <ion-col size=8>
-
-            <h2> {{task.client_name}}</h2>
-            <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
-
-
+          <ion-col size="8">
+            <h2>{{task.client_name}}</h2>
+            <p-rating
+              [ngModel]="3"
+              readonly="true"
+              stars="5"
+              [cancel]="false"
+            ></p-rating>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <p *ngIf="task.comment" style="margin-top: 5px;">
-            {{task.comment}}
-          </p>
-          <p *ngIf="!task.comment" style="margin-top: 5px;">
+          <p *ngIf="task.comment" style="margin-top: 5px">{{task.comment}}</p>
+          <p *ngIf="!task.comment" style="margin-top: 5px">
             No hay comentarios del trabajador
           </p>
         </ion-row>
-
       </p-dialog>
+    </div> -->
 
+    <div *ngIf="showSubCard">
+      <ion-row *ngFor="let offer of offersList ;let i = index">
+        <ion-col size="0.5"></ion-col>
+        <ion-col size="11">
+          <ion-row>
+            <ion-item-sliding>
+              <ion-item
+                lines="none"
+                id="item"
+                *ngIf="desplegar==false"
+                class="ion-no-padding"
+              >
+                <ion-col size="3">
+                  <img
+                    id="fotopersonal"
+                    style="margin-top: 15px"
+                    src="{{offer.photoProvider}}"
+                    onError="this.src='assets/noImage.svg'"
+                    (click)="showDialog(i)"
+                  />
+                </ion-col>
 
+                <ion-col size="4">
+                  <ion-row>
+                    <h4>{{editnombre(offer.client_name)}}</h4>
+                  </ion-row>
 
+                  <ion-row>
+                    <ion-label
+                      style="color: rgb(246, 183, 118); font-size: 20px"
+                      >{{offer.budget}} €</ion-label
+                    >
+                  </ion-row>
+                </ion-col>
 
+                <ion-col size="1.5"></ion-col>
+
+                <ion-col size="1.5">
+                  <ion-row>
+                    <img
+                      style="width: 24px; height: 35px; margin-top: 24px"
+                      src="../../assets/chat.svg"
+                      (click)="openChat(offer.id)"
+                    />
+                  </ion-row>
+                </ion-col>
+
+                <ion-col size="0.5"></ion-col>
+
+                <ion-col size="1.5">
+                  <ion-row>
+                    <img
+                      style="width: 24px; height: 26px; margin-top: 24px"
+                      src="../../assets/acep.svg"
+                      (click)="showDialogAceptar(offer.id)"
+                    />
+                  </ion-row>
+                </ion-col>
+              </ion-item>
+
+              <ion-item
+                lines="none"
+                style="padding: 0px"
+                *ngIf="desplegar==true"
+              >
+                <ion-col size="3">
+                  <img
+                    id="fotopersonal"
+                    style="margin-top: 15px"
+                    src="{{offer.photoProvider}}"
+                    onError="this.src='assets/noImage.svg'"
+                    (click)="showDialog(i)"
+                  />
+                </ion-col>
+
+                <ion-col size="4">
+                  <ion-row>
+                    <h4>{{editnombre(offer.client_name)}}</h4>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-label
+                      style="color: rgb(246, 183, 118); font-size: 20px"
+                      >{{offer.budget}} €</ion-label
+                    >
+                  </ion-row>
+                </ion-col>
+
+                <ion-col size="1.5"></ion-col>
+
+                <ion-col size="1.5">
+                  <ion-row>
+                    <img
+                      style="width: 24px; height: 35px; margin-top: 24px"
+                      src="../../assets/chat.svg"
+                      (click)="openChat(offer.id)"
+                    />
+                  </ion-row>
+                </ion-col>
+
+                <ion-col size="0.5"></ion-col>
+
+                <ion-col size="1.5">
+                  <ion-row>
+                    <img
+                      style="width: 24px; height: 26px; margin-top: 24px"
+                      src="../../assets/acep.svg"
+                      (click)="showDialogAceptar(offer.id)"
+                    />
+                  </ion-row>
+                </ion-col>
+              </ion-item>
+
+              <!-- <ion-item-options side="end" style="padding: 0px">
+                <ion-item-option
+                  (click)="cancelSOclient(offer.id)"
+                  color="tertiary"
+                  expandable
+                  >cancelar</ion-item-option
+                >
+              </ion-item-options> -->
+            </ion-item-sliding>
+
+            <ion-row
+              *ngIf="displayAceptar==offer.id"
+              id="item"
+              style="width: 100%"
+            >
+              <ion-card
+                style="
+                  background-color: rgb(241, 241, 241);
+                  border-radius: 0px 0px 0px 0px;
+                  width: 100%;
+                "
+              >
+                <ion-row>
+                  <ion-col size="0.5"></ion-col>
+                  <ion-col size="11">
+                    <ion-input
+                      name="numero"
+                      type="text"
+                      required
+                      [(ngModel)]="numero_tarjeta"
+                      maxlength="16"
+                      minlength="13"
+                      placeholder="NUMERO DE TARJETA"
+                      [disabled]="efectivo"
+                    >
+                    </ion-input>
+                  </ion-col>
+                  <ion-col size="0.5"></ion-col>
+                </ion-row>
+
+                <ion-row style="margin-top: -10px">
+                  <ion-col size="0.5"></ion-col>
+                  <ion-col size="11">
+                    <ion-row>
+                      <ion-col size="2">
+                        <ion-input
+                          name="numero"
+                          type="text"
+                          required
+                          [(ngModel)]="numero_tarjeta"
+                          maxlength="16"
+                          minlength="13"
+                          placeholder="MM"
+                          [disabled]="efectivo"
+                        >
+                        </ion-input>
+                      </ion-col>
+                      <ion-col size="0.5">
+                        <h3 style="margin-top: 10px !important">/</h3></ion-col
+                      >
+                      <ion-col size="2">
+                        <ion-input
+                          name="numero"
+                          type="text"
+                          required
+                          [(ngModel)]="numero_tarjeta"
+                          maxlength="16"
+                          minlength="13"
+                          placeholder="AA"
+                          [disabled]="efectivo"
+                        >
+                        </ion-input>
+                      </ion-col>
+
+                      <ion-col size="4"></ion-col>
+                      <ion-col size="3.5">
+                        <ion-input
+                          name="numero"
+                          type="text"
+                          required
+                          [(ngModel)]="numero_tarjeta"
+                          maxlength="16"
+                          minlength="13"
+                          placeholder="CVC"
+                          [disabled]="efectivo"
+                        >
+                        </ion-input>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row style="margin-top: 8px">
+                      <ion-checkbox
+                        mode="ios"
+                        color="primary"
+                        value="select"
+                        style="width: 15px; height: 15px; margin-left: 8px"
+                        (click)="seleccionado()"
+                      ></ion-checkbox>
+                      <ion-label style="margin-left: 20px"
+                        >Pagar en efectivo
+                      </ion-label>
+                    </ion-row>
+
+                    <ion-row style="margin-top: 10px">
+                      <ion-col></ion-col>
+                      <ion-col>
+                        <ion-button class="btn_pagar"> pagar </ion-button>
+                      </ion-col>
+                      <ion-col></ion-col>
+                    </ion-row>
+                  </ion-col>
+
+                  <ion-col size="0.5"></ion-col>
+                </ion-row>
+
+                <!-- <ion-row style="margin-top: 10px">
+                  <ion-checkbox
+                    mode="ios"
+                    color="primary"
+                    value="select"
+                    style="width: 20px; height: 20px; margin-left: 8px"
+                    (click)="seleccionado()"
+                  ></ion-checkbox>
+                  <ion-label style="margin-left: 20px"
+                    >Pagar en efectivo
+                  </ion-label>
+                </ion-row> -->
+
+                <!-- <ion-row style="margin-top: 5px">
+                  <ion-col size="7">
+                    <ion-button id="botonguardar" [disabled]="efectivo">
+                      Tarjeta guardada
+                    </ion-button>
+                  </ion-col>
+
+                  <ion-col size="5">
+                    <ion-button
+                      id="botonpagar"
+                      (click)="pagar(offer.id,offer.origin_id)"
+                    >
+                      Pagar
+                    </ion-button>
+                  </ion-col>
+                </ion-row> -->
+              </ion-card>
+            </ion-row>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="0.5"></ion-col>
+      </ion-row>
+
+      <p-dialog
+        header=" "
+        [(visible)]="display"
+        [modal]="true"
+        [style]="{ width: '85vw' }"
+        [baseZIndex]="1000"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <ion-row>
+          <ion-col size="4">
+            <img
+              style="
+                width: 60px;
+                height: 60px;
+                border: 0.5px solid rgb(241, 241, 241);
+                border-radius: 7px 7px 7px 7px;
+                margin-top: 17px;
+              "
+              src="{{task.photoProvider}}"
+              onError="this.src='assets/noImage.svg'"
+            />
+          </ion-col>
+          <ion-col size="8">
+            <h2>{{task.client_name}}</h2>
+            <p-rating
+              [ngModel]="3"
+              readonly="true"
+              stars="5"
+              [cancel]="false"
+            ></p-rating>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <p *ngIf="task.comment" style="margin-top: 5px">{{task.comment}}</p>
+          <p *ngIf="!task.comment" style="margin-top: 5px">
+            No hay comentarios del trabajador
+          </p>
+        </ion-row>
+      </p-dialog>
     </div>
   </div>
 
   <div *ngIf="verdetalles">
-    <ion-row style="margin-top: 5px;">
-      <ion-col size=1></ion-col>
+    <ion-row style="margin-top: 5px">
+      <ion-col size="1"></ion-col>
 
-      <ion-col size=10>
-
-
+      <ion-col size="10">
         <ion-row>
-
-          <h5 style="   font-family: 'HelveticaNeueLTStd-Bd';">{{task.type}}</h5>
+          <h5 style="font-family: 'HelveticaNeueLTStd-Bd'">{{task.type}}</h5>
         </ion-row>
-        <ion-row style="margin-top: 5px;">
+        <ion-row style="margin-top: 5px">
           <p>{{task.title | uppercase}}</p>
         </ion-row>
 
-
         <div id="item">
-          <ion-row style="margin-top: 5px;">
-            <ion-col size=1.3>
-              <img style="width: 19px;height: 20px;" src="../../../assets/calendario.svg">
+          <ion-row style="margin-top: 5px">
+            <ion-col size="1.3">
+              <img
+                style="width: 19px; height: 20px"
+                src="../../../assets/calendario.svg"
+              />
             </ion-col>
-            <ion-col size=10.7>
-              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Fecha</ion-label>
+            <ion-col size="10.7">
+              <ion-label style="font-family: 'HelveticaNeueLTStd-Bd'"
+                >Fecha</ion-label
+              >
             </ion-col>
           </ion-row>
-          <ion-row style="margin-bottom: 13px;">
-            <ion-label style="margin-top: 5px;">{{ task.date_planned |date:'EEEE d.MMMM yyyy' | lowercase}}</ion-label>
-
+          <ion-row style="margin-bottom: 13px">
+            <ion-label style="margin-top: 5px"
+              >{{ task.date_planned |date:'EEEE d.MMMM yyyy' |
+              lowercase}}</ion-label
+            >
           </ion-row>
         </div>
 
         <div id="item">
-          <ion-row style="margin-top: 6px;">
-            <ion-col size=1.3>
-              <img style="width: 19px;height: 20px;" src="../../../assets/hora.svg">
+          <ion-row style="margin-top: 6px">
+            <ion-col size="1.3">
+              <img
+                style="width: 19px; height: 20px"
+                src="../../../assets/hora.svg"
+              />
             </ion-col>
-            <ion-col size=10.7>
-              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Horario</ion-label>
+            <ion-col size="10.7">
+              <ion-label style="font-family: 'HelveticaNeueLTStd-Bd'"
+                >Horario</ion-label
+              >
             </ion-col>
           </ion-row>
-          <ion-row style="margin-bottom: 13px;">
-            <ion-label style="margin-top: 5px;">{{task.time |date: 'h:mm a' }}</ion-label>
-
+          <ion-row style="margin-bottom: 13px">
+            <ion-label style="margin-top: 5px"
+              >{{task.time |date: 'h:mm a' }}</ion-label
+            >
           </ion-row>
         </div>
 
         <div id="item">
-          <ion-row style="margin-top: 6px;">
-            <ion-col size=1.3>
-              <img style="width: 18px;height: 24px;" src="../../../assets/2.svg">
+          <ion-row style="margin-top: 6px">
+            <ion-col size="1.3">
+              <img
+                style="width: 18px; height: 24px"
+                src="../../../assets/2.svg"
+              />
             </ion-col>
-            <ion-col size=10.7>
-              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Direccion</ion-label>
+            <ion-col size="10.7">
+              <ion-label style="font-family: 'HelveticaNeueLTStd-Bd'"
+                >Direccion</ion-label
+              >
             </ion-col>
           </ion-row>
-          <ion-row style="margin-bottom: 13px;">
-
-            <ion-col size=10>
+          <ion-row style="margin-bottom: 13px">
+            <ion-col size="10">
               <ion-row>
-                <ion-label>{{task.address.street}}, Numero: {{task.address.number}}, </ion-label>
-                <ion-label *ngIf="task.address.door">Piso: {{task.address.floor}}, </ion-label>
-                <ion-label *ngIf="task.address.stair">Escalera: {{task.address.stair}}, </ion-label>
-                <ion-label *ngIf="task.address.portal">Portal: {{task.address.portal}}, </ion-label>
-
+                <ion-label
+                  >{{task.address.street}}, Numero: {{task.address.number}},
+                </ion-label>
+                <ion-label *ngIf="task.address.door"
+                  >Piso: {{task.address.floor}},
+                </ion-label>
+                <ion-label *ngIf="task.address.stair"
+                  >Escalera: {{task.address.stair}},
+                </ion-label>
+                <ion-label *ngIf="task.address.portal"
+                  >Portal: {{task.address.portal}},
+                </ion-label>
               </ion-row>
               <ion-row>
-                <ion-label *ngIf="task.address.cp"> Codigo postal: {{task.address.cp}} </ion-label>
+                <ion-label *ngIf="task.address.cp">
+                  Codigo postal: {{task.address.cp}}
+                </ion-label>
               </ion-row>
             </ion-col>
-            <ion-col size=2>
-              <img id="imgGPS" src="../../../assets/ubicacion.svg" (click)="verubicacion()">
+            <ion-col size="2">
+              <img
+                id="imgGPS"
+                src="../../../assets/ubicacion.svg"
+                (click)="verubicacion()"
+              />
             </ion-col>
           </ion-row>
         </div>
-
-
 
         <div>
-          <ion-row style="margin-top: 5px;">
-            <ion-col size=1.3>
-              <img style="width: 20px;height: 18px;" src="../../../assets/cam.png">
+          <ion-row style="margin-top: 5px">
+            <ion-col size="1.3">
+              <img
+                style="width: 20px; height: 18px"
+                src="../../../assets/cam.png"
+              />
             </ion-col>
-            <ion-col size=10.7>
-              <ion-label style="   font-family: 'HelveticaNeueLTStd-Bd';">Fotos</ion-label>
+            <ion-col size="10.7">
+              <ion-label style="font-family: 'HelveticaNeueLTStd-Bd'"
+                >Fotos</ion-label
+              >
             </ion-col>
           </ion-row>
           <!--   <ion-row  >
@@ -382,33 +753,61 @@
             
           </ion-row> -->
           <ion-row>
-
-            <ion-col size=4 style="text-align: center;padding-top: 0px;">
-              <ion-card [disabled]="habilitar1"
-                style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                <img id="selecf" (click)="imageClick(task.photoNewTaskArray[0])" src="{{task.photoNewTaskArray[0]}}"
-                  onError="this.src='assets/noImage.svg'">
+            <ion-col size="4" style="text-align: center; padding-top: 0px">
+              <ion-card
+                [disabled]="habilitar1"
+                style="
+                  border: 0.5px solid rgb(49, 49, 57);
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 5px 5px 5px 5px;
+                "
+              >
+                <img
+                  id="selecf"
+                  (click)="imageClick(task.photoNewTaskArray[0])"
+                  src="{{task.photoNewTaskArray[0]}}"
+                  onError="this.src='assets/noImage.svg'"
+                />
               </ion-card>
             </ion-col>
-            <ion-col size=4 style="text-align: center;padding-top: 0px;">
-              <ion-card [disabled]="habilitar2"
-                style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                <img id="selecf" src="{{task.photoNewTaskArray[1]}}" onError="this.src='assets/noImage.svg' "
-                  (click)="imageClick(task.photoNewTaskArray[1])">
+            <ion-col size="4" style="text-align: center; padding-top: 0px">
+              <ion-card
+                [disabled]="habilitar2"
+                style="
+                  border: 0.5px solid rgb(49, 49, 57);
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 5px 5px 5px 5px;
+                "
+              >
+                <img
+                  id="selecf"
+                  src="{{task.photoNewTaskArray[1]}}"
+                  onError="this.src='assets/noImage.svg' "
+                  (click)="imageClick(task.photoNewTaskArray[1])"
+                />
               </ion-card>
             </ion-col>
 
-            <ion-col size=4 style="text-align: center;padding-top: 0px;">
-              <ion-card [disabled]="habilitar3"
-                style="border: 0.5px solid  rgb(49 ,49 ,57); width: 80px;height: 80px;border-radius: 5px 5px 5px 5px;">
-                <img id="selecf" src="{{task.photoNewTaskArray[2]}}" onError="this.src='assets/noImage.svg'"
-                  (click)="imageClick(task.photoNewTaskArray[2])">
+            <ion-col size="4" style="text-align: center; padding-top: 0px">
+              <ion-card
+                [disabled]="habilitar3"
+                style="
+                  border: 0.5px solid rgb(49, 49, 57);
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 5px 5px 5px 5px;
+                "
+              >
+                <img
+                  id="selecf"
+                  src="{{task.photoNewTaskArray[2]}}"
+                  onError="this.src='assets/noImage.svg'"
+                  (click)="imageClick(task.photoNewTaskArray[2])"
+                />
               </ion-card>
             </ion-col>
-
-
-
-
           </ion-row>
           <!-- <div >
   <p-galleria [(value)]="foto0" [(visible)]="displayBasic2"  [numVisible]="3"
@@ -453,27 +852,7 @@
         </div>
       </ion-col>
 
-
-
-      <ion-col size=1></ion-col>
-
-
-
+      <ion-col size="1"></ion-col>
     </ion-row>
-
-
-
-
-
-
-
-
-
-
-
   </div>
-
-
-
-
 </ion-content>
