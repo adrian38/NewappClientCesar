@@ -65,8 +65,9 @@ ion-button{
     
 }
 #fotoDenuncia{
-    width: auto;
-    height: auto;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
 
 :host ::ng-deep .p-dialog {
