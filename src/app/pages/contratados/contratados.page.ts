@@ -16,9 +16,9 @@ export class ContratadosPage implements OnInit {
 	task: TaskModel;
 	displayClasificar: boolean = false;
 	displayDenunciar: boolean = false;
-	foto0: string = '../../../assets/icon/noImage.svg';
-	foto1: string = '../../../assets/icon/noImage.svg';
-	foto2: string = '../../../assets/icon/noImage.svg';
+	foto0: string = '../../../assets/fotoadd.png';
+	foto1: string = '../../../assets/fotoadd.png';
+	foto2: string = '../../../assets/fotoadd.png';
 	comentario: string = '';
 
 	constructor(
@@ -38,7 +38,13 @@ export class ContratadosPage implements OnInit {
 		this._taskOdoo.requestOffersForTask(this.task.id_string);
 
 		this.platform.backButton.subscribeWithPriority(10, () => {
-			this.navCtrl.navigateRoot('/tabs/tab2', { animated: true, animationDirection: 'back' });
+			if(this.displayClasificar==true || this.displayDenunciar == true){
+				this.navCtrl.navigateRoot('/contratados', { animated: true, animationDirection: 'back' });
+			}
+			else{
+
+				this.navCtrl.navigateRoot('/tabs/tab2', { animated: true, animationDirection: 'back' });
+			}
 		});
 	}
 
